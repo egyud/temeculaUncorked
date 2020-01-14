@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     width: 12,
     height: 100,
     borderStyle: 'solid',
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'black',
     flex: 1,
     backgroundColor: '#99ff99',

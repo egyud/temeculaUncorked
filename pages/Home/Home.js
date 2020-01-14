@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, ImageBackground, TextInput } from 'react-native'
 import { Header, Input, Icon, Item } from 'native-base'
 import HomePageLink from '../../components/HomePageLink/HomePageLink'
 import ReviewList from '../../components/ReviewList/ReviewList'
@@ -8,20 +8,19 @@ export default Home = () => {
   return (
     <View>
       <View>
-        {/* picture header part */}
-        <Header searchBar rounded style={styles.search}>
-          <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="Search for wineries" />
-          </Item>
-          
-        </Header>
-        <View style={styles.linkContainer}>
-          <HomePageLink linkText='Winery Directory'/>
-          <HomePageLink linkText='Wine Clubs'/>
-          <HomePageLink linkText='Events'/>
-          <HomePageLink linkText='Wines'/>          
-        </View>
+        <ImageBackground 
+          source={require('../../assets/wineGlasses.jpg')}
+          style={{width: '100%', height: 300}}>
+          <TextInput 
+            style={styles.searchBar}
+            placeholder='Search for wineries'/>
+          <View style={styles.linkContainer}>
+            <HomePageLink linkText='Winery Directory'/>
+            <HomePageLink linkText='Wine Clubs'/>
+            <HomePageLink linkText='Events'/>
+            <HomePageLink linkText='Wines'/>          
+          </View>
+        </ImageBackground>
       </View>
       <View>
         <View style={styles.lastestActivity}>
@@ -34,16 +33,30 @@ export default Home = () => {
 }
 
 const styles = StyleSheet.create({
-  search: {
-    paddingBottom: 20
+  searchBar: {
+    backgroundColor: 'white',
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginBottom: 30,
+    marginTop: 20,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    width: '80%',
   },
   linkContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingBottom: 30,
   },
   lastestActivity: {
-    borderBottomColor: 1,
+    borderBottomWidth: 1,
+    backgroundColor: '#99ff99',
     textAlign: 'center',
-    width: '100%'
+    width: '100%',
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingLeft: 10
   }
   
 })

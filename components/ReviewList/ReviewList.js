@@ -5,7 +5,7 @@ import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 export default ReviewList = () => {
   return (
     <List>
-      <ListItem avatar>
+      <ListItem avatar style={styles.listItem}>
         <Left>
           <Thumbnail/>
         </Left>
@@ -17,7 +17,7 @@ export default ReviewList = () => {
           <Text note>3:43pm</Text>
         </Right>
       </ListItem>
-      <ListItem avatar>
+      <ListItem avatar style={styles.listItem}>
         <Left>
           <Thumbnail/>
         </Left>
@@ -29,9 +29,9 @@ export default ReviewList = () => {
           <Text note>2:22pm</Text>
         </Right>
       </ListItem>
-      <ListItem avatar>
+      <ListItem avatar style={styles.listItem}>
         <Left>
-          <Thumbnail/>
+          <Thumbnail source={{ uri: '../../assets/IMG_0684 copy.JPG' }}/>
         </Left>
         <Body>
           <Text>Lester</Text>
@@ -41,7 +41,7 @@ export default ReviewList = () => {
           <Text note>12:30pm</Text>
         </Right>
       </ListItem>
-      <ListItem avatar>
+      <ListItem avatar style={styles.listItem}>
         <Left>
           <Thumbnail/>
         </Left>
@@ -53,7 +53,7 @@ export default ReviewList = () => {
           <Text note>12:28pm</Text>
         </Right>
       </ListItem>
-      <ListItem avatar>
+      <ListItem avatar style={styles.listItem}>
         <Left>
           <Thumbnail/>
         </Left>
@@ -70,5 +70,7 @@ export default ReviewList = () => {
 }
 
 const styles = StyleSheet.create({
-
+  listItem: {
+    backgroundColor: '#e6ffe6'
+  }
 })
