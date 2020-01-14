@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Picker, Text } from 'react-native'
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component'
+import { View, StyleSheet, Text } from 'react-native'
+import { Table, Row, Rows } from 'react-native-table-component'
+import { Form, Picker } from 'native-base'
 import { clubData } from '../../clubData'
 
 export default WineClubsPage = () => {
@@ -52,19 +53,27 @@ export default WineClubsPage = () => {
 
   return (
     <View style={styles.container}>
-      <Picker
-        selectedValue={selectedColumn}
-        onValueChange={(value) => updateSelectedColumn(value)}
-      >
-        <Picker.Item label="Free Tastings" value="Free Tastings" />
-        <Picker.Item label="Pickups" value="Pickups" />
-        <Picker.Item label="Discounts" value="Discounts" />
-        <Picker.Item label="Other Benefits" value="Other Benefits" />
-        <Picker.Item label="Avg. Cost" value="Avg. Cost" />
-      </Picker>
-      <Table borderStyle={{borderWidth: 1}}>
-        <Row data={tableHead} flexArr={[1, 2, 1, 1]} style={styles.head} />
-         <Rows data={tableData} style={styles.row}/>
+      <Text style={styles.text}>Which category do you want to compare?</Text>
+      <Form>
+        <Picker
+          note
+          mode="dropdown"
+          selectedValue={selectedColumn}
+          onValueChange={(value) => updateSelectedColumn(value)}
+          style={styles.picker}
+        >
+          <Picker.Item label="Free Tastings" value="Free Tastings" />
+          <Picker.Item label="Pickups" value="Pickups" />
+          <Picker.Item label="Discounts" value="Discounts" />
+          <Picker.Item label="Other Benefits" value="Other Benefits" />
+          <Picker.Item label="Avg. Cost" value="Avg. Cost" />
+        </Picker>
+      </Form>
+      <Table 
+        borderStyle={{borderWidth: 1}}
+        style={styles.table}>
+        <Row data={tableHead} style={styles.head} />
+        <Rows data={tableData} style={styles.row}/>
       </Table>
     </View>
   )
@@ -72,8 +81,20 @@ export default WineClubsPage = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: {  height: 40,  backgroundColor: '#f1f8ff'  },
+  head: {  
+    height: 40,  
+    backgroundColor: '#99ff99'  
+  },
   wrapper: { flexDirection: 'row' },
-  row: {  height: 28  },
-  text: { textAlign: 'center' }
+  row: {  height: 60  },
+  text: { 
+    textAlign: 'center',
+    marginBottom: 0
+  },
+  table: {
+    width: '100%'
+  },
+  picker: {
+    marginVertical: 0,
+  }
 })
