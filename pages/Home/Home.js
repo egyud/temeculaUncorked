@@ -15,10 +15,22 @@ export default Home = () => {
             style={styles.searchBar}
             placeholder='Search for wineries'/>
           <View style={styles.linkContainer}>
-            <HomePageLink linkText='Winery Directory'/>
-            <HomePageLink linkText='Wine Clubs'/>
-            <HomePageLink linkText='Events'/>
-            <HomePageLink linkText='Wines'/>          
+            <HomePageLink
+              path='wineryList' 
+              linkText='Winery Directory'
+            />
+            <HomePageLink
+              path='wineClubs' 
+              linkText='Wine Clubs'
+            />
+            <HomePageLink
+              path='eventsPage' 
+              linkText='Events'
+            />
+            <HomePageLink
+              path='wineList' 
+              linkText='Wines'
+            />          
           </View>
         </ImageBackground>
       </View>

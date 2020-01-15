@@ -1,12 +1,15 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { Link } from 'react-router-native'
 
-export default HomePageLink = ({ linkText }) => {
+export default HomePageLink = ({ linkText, path }) => {
   return (
     <TouchableOpacity style={styles.btn}>
-      <Text>
-        {linkText}
-      </Text>
+      <Link to={`/${path}`}>
+        <Text>
+          {linkText}
+        </Text>
+      </Link>
     </TouchableOpacity>
   )
 }

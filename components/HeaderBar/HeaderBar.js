@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Header, Left, Right, Body, Button, Icon, Title } from 'native-base'
+import { Link } from 'react-router-native'
 
 export default HeaderBar = ({ title }) => {
   return (
@@ -11,7 +12,7 @@ export default HeaderBar = ({ title }) => {
       </Button>
       </Left>
       <Body>
-        <Title>{title}</Title>
+        <Link to="/"><Title>{title}</Title></Link>
       </Body>
       <Right>
       </Right>
