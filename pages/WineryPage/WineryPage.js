@@ -2,6 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import { Tabs, Tab, List, ListItem, Right } from 'native-base'
 import { Rating } from 'react-native-ratings' 
+import EventList from '../../components/EventList'
+import BlockHeader from '../../components/BlockHeader'
 
 export default WineryPage = () => {
   return (
@@ -10,12 +12,13 @@ export default WineryPage = () => {
         <ImageBackground 
           source={require('../../assets/wineGlasses.jpg')}
           style={styles.imageBackground}>
-          <View style={styles.headerBox}>
+          {/* <View style={styles.headerBox}>
             <Text>Akash Winery</Text>
             <Rating />
             <Text>Call: 951-888-1393</Text>
             <Text>39730 Calle Contento, Temecula, CA 92591</Text>
-          </View>
+          </View> */}
+          <BlockHeader />
         </ImageBackground>
       </View>
       <Tabs style={styles.tabs}>
@@ -26,7 +29,7 @@ export default WineryPage = () => {
 
         </Tab>
         <Tab heading="Events">
-
+          <EventList/>
         </Tab>
         <Tab heading="Hours">
           <List>
@@ -67,7 +70,8 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     width: '100%', 
-    height: 300,
+    paddingVertical: 40,
+    height: 250,
     justifyContent: 'center',
     alignItems: 'center'
   },

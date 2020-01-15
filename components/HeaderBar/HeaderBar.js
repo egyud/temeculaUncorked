@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Header, Left, Right, Body, Button, Icon, Title } from 'native-base'
 
-export default HeaderBar = () => {
+export default HeaderBar = ({ title }) => {
   return (
     <Header style={styles.header}>
       <Left>
@@ -11,7 +11,7 @@ export default HeaderBar = () => {
       </Button>
       </Left>
       <Body>
-        <Title>Uncorked</Title>
+        <Title>{title}</Title>
       </Body>
       <Right>
       </Right>
