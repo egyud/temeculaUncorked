@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import { Tabs, Tab, List, ListItem, Right } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 import EventList from '../../components/EventList'
+import WineClubInfo from '../../components/WineClubInfo'
 import BlockHeader from '../../components/BlockHeader'
 
 export default WineryPage = () => {
@@ -28,7 +29,7 @@ export default WineryPage = () => {
           heading="Wine Clubs" 
           activeTextStyle={{color: '#89012c'}}
         >
-
+          <WineClubInfo />
         </Tab>
         <Tab 
           heading="Events" 
