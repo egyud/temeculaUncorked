@@ -12,26 +12,34 @@ export default WineryPage = () => {
         <ImageBackground 
           source={require('../../assets/wineGlasses.jpg')}
           style={styles.imageBackground}>
-          {/* <View style={styles.headerBox}>
-            <Text>Akash Winery</Text>
-            <Rating />
-            <Text>Call: 951-888-1393</Text>
-            <Text>39730 Calle Contento, Temecula, CA 92591</Text>
-          </View> */}
           <BlockHeader />
         </ImageBackground>
       </View>
-      <Tabs style={styles.tabs}>
-        <Tab heading="Wine List">
+      <Tabs 
+        style={styles.tabs}
+        tabBarUnderlineStyle={{backgroundColor: '#89012c'}}>
+        <Tab 
+          heading="Wine List" 
+          activeTextStyle={{color: '#89012c'}}
+        >
 
         </Tab>
-        <Tab heading="Wine Clubs">
+        <Tab 
+          heading="Wine Clubs" 
+          activeTextStyle={{color: '#89012c'}}
+        >
 
         </Tab>
-        <Tab heading="Events">
+        <Tab 
+          heading="Events" 
+          activeTextStyle={{color: '#89012c'}}
+        >
           <EventList/>
         </Tab>
-        <Tab heading="Hours">
+        <Tab 
+          heading="Hours" 
+          activeTextStyle={{color: '#89012c'}}
+        >
           <List>
             <ListItem>
               <Text>Monday: 11am-6pm</Text>
