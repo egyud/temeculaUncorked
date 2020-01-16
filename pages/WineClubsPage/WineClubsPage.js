@@ -70,10 +70,18 @@ export default WineClubsPage = () => {
         </Picker>
       </Form>
       <Table 
-        borderStyle={{borderWidth: 1}}
+        borderStyle={{borderWidth: 0, borderColor: '#d2d2d2'}}
         style={styles.table}>
-        <Row data={tableHead} style={styles.head} />
-        <Rows data={tableData} style={styles.row}/>
+        <Row 
+          data={tableHead} 
+          style={styles.head}
+          textStyle={styles.rowHead}
+        />
+        <Rows 
+          data={tableData} 
+          style={styles.row}
+          textStyle={styles.rowText}
+        />
       </Table>
     </View>
   )
@@ -87,21 +95,43 @@ WineClubsPage.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  container: { 
+    flex: 1, 
+    padding: 16, 
+    paddingTop: 30, 
+    backgroundColor: '#fff'
+},
   head: {  
     height: 40,  
     backgroundColor: '#99ff99'  
   },
-  wrapper: { flexDirection: 'row' },
-  row: {  height: 60  },
+  wrapper: { 
+    flexDirection: 'row' 
+  },
+  row: {  
+    height: 80,
+    justifyContent: 'center',
+    backgroundColor: '#e6ffe6'
+  },
   text: { 
     textAlign: 'center',
-    marginBottom: 0
+    marginBottom: 0,
+    backgroundColor: '#fff',
+    padding: 20
   },
   table: {
     width: '100%'
   },
   picker: {
     marginVertical: 0,
+  },
+  rowText: {
+    // fontSize: 20,
+    textAlign: 'center',
+    // paddingLeft: 10
+  },
+  rowHead: {
+    textAlign: 'center',
+    borderWidth: 0
   }
 })
