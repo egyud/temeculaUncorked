@@ -1,15 +1,14 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
-import { Link } from 'react-router-native'
 
-export default HomePageLink = ({ linkText, path }) => {
+export default HomePageLink = ({ linkText, nav }) => {
   return (
-    <TouchableOpacity style={styles.btn}>
-      <Link to={`/${path}`}>
-        <Text>
-          {linkText}
-        </Text>
-      </Link>
+    <TouchableOpacity 
+      style={styles.btn}
+      onPress={() => nav()}>
+      <Text>
+        {linkText}
+      </Text>
     </TouchableOpacity>
   )
 }

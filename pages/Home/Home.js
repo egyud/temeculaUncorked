@@ -4,7 +4,12 @@ import { Header, Input, Icon, Item } from 'native-base'
 import HomePageLink from '../../components/HomePageLink/HomePageLink'
 import ReviewList from '../../components/ReviewList/ReviewList'
 
-export default Home = () => {
+export default Home = ({ navigation }) => {
+  
+  function navigate(page) {
+    navigation.navigate(page)
+  }
+
   return (
     <View>
       <View>
@@ -16,20 +21,20 @@ export default Home = () => {
             placeholder='Search for wineries'/>
           <View style={styles.linkContainer}>
             <HomePageLink
-              path='wineryList' 
               linkText='Winery Directory'
+              nav={() => navigate('WineryList')}
             />
             <HomePageLink
-              path='wineClubs' 
               linkText='Wine Clubs'
+              nav={() => navigate('WineClubs')}
             />
             <HomePageLink
-              path='eventsPage' 
               linkText='Events'
+              nav={() => navigate('Events')}
             />
             <HomePageLink
-              path='wineList' 
               linkText='Wines'
+              nav={() => navigate('WineSearch')}
             />          
           </View>
         </ImageBackground>
@@ -42,6 +47,13 @@ export default Home = () => {
       </View>
     </View>
   )
+}
+
+Home.navigationOptions = {
+  title: 'Uncorked',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
 }
 
 const styles = StyleSheet.create({
