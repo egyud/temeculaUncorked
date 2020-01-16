@@ -66,6 +66,13 @@ export default WineSearch = () => {
   )
 }
 
+WineSearch.navigationOptions = {
+  title: 'Wines',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: {  

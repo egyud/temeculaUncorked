@@ -18,6 +18,13 @@ export default EventsPage = () => {
   )
 }
 
+EventsPage.navigationOptions = {
+  title: 'Events',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   imageBackground: {
     width: '100%', 

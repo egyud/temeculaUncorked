@@ -21,6 +21,14 @@ export default WineryList = () => {
   )
 }
 
+WineryList.navigationOptions = {
+  title: 'Wineries',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   
 })
+

@@ -79,6 +79,13 @@ export default WineClubsPage = () => {
   )
 }
 
+WineClubsPage.navigationOptions = {
+  title: 'Compare Wine Clubs',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: {  
