@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
-import { wineList } from '../../wineList'
+import { wineList } from '../../fakeData/wineList'
 
 export default WineSearch = () => {
   const [tableHead, updateTableHead]  = useState(['Winery', 'Wine', 'Rating'])

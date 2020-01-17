@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
   },
   headline: {
     fontSize: 30,
-    color: '#89012c',
-    backgroundColor: '#99ff99',
-    paddingVertical: 5,
-    paddingHorizontal: 10
+    fontWeight: '700',
+    color: '#fff',
+    backgroundColor: '#89012c',
+    paddingVertical: 25,
+    paddingHorizontal: 40
   }
 })

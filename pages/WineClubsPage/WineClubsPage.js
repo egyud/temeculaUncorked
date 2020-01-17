@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
-import { clubData } from '../../clubData'
+import { clubData } from '../../fakeData/clubData'
 
 export default WineClubsPage = () => {
   const [tableHead, updateTableHead]  = useState(['Winery', 'Club', 'Free Tastings'])

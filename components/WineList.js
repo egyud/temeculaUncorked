@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { ListItem, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
-import { wineList } from '../wineList'
+import { wineList } from '../fakeData/wineList'
 
 export default WineList = () => {
   return (

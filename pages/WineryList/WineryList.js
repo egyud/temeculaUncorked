@@ -2,13 +2,13 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { ListItem, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
-import { wineries } from '../../wineries'
+import { wineries } from '../../fakeData/wineries'
 
 export default WineryList = () => {
   return (
-    <View>
+    <View style={styles.container}>
       {wineries.map(winery => (
-        <ListItem>
+        <ListItem style={styles.listItem}>
           <Body>
             <Text>{winery}</Text>
           </Body>
@@ -29,6 +29,11 @@ WineryList.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-  
+  container: {
+    backgroundColor: '#fff'
+  },
+  listItem: {
+    backgroundColor: '#fff'
+  }
 })
 

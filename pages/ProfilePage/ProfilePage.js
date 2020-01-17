@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import ReviewList from '../../components/ReviewList/ReviewList'
-import user from '../../user'
+import user from '../../fakeData/user'
 
 export default ProfilePage = () => {
   let { name, followers, joined, memberAt } = user

@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { ListItem, Right, Body } from 'native-base'
 import Event from './Event'
-import events from '../events'
+import events from '../fakeData/events'
 
 export default EventList = () => {
   return (

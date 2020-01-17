@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Image } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
-import events from '../events'
+import events from '../fakeData/events'
 
 export default EventPage = () => {
   const event = events[0]
