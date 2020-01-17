@@ -1,19 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchWineryList } from '../../actions/wineActions'
 import { View, Text, StyleSheet } from 'react-native'
 import { ListItem, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 import { wineries } from '../../fakeData/wineries'
 
-export default WineryList = () => {
+const WineryList = ({ list, fetchWineries, navigation }) => {
+
+  useEffect(() => {
+    fetchWineries()
+  }, [])
+
+  function calculateAverage(totalValue, reviewCount) {
+    return Number((totalValue / reviewCount).toFixed(1)) || 0
+  }
+
   return (
     <View style={styles.container}>
-      {wineries.map(winery => (
-        <ListItem style={styles.listItem}>
+      {list.map(winery => (
+        <ListItem 
+          key={winery._id}
+          style={styles.listItem}>
           <Body>
-            <Text>{winery}</Text>
+            <Text
+              onPress={() => navigation.navigate('Winery')}
+            >
+              {winery.name}
+            </Text>
           </Body>
           <Right>
-            <Rating imageSize={25}/>
+            <Rating 
+              startingValue={calculateAverage(winery.avgRating, winery.reviewCount)}
+              imageSize={25}/>
           </Right>
         </ListItem>
       ))}
@@ -37,3 +57,14 @@ const styles = StyleSheet.create({
   }
 })
 
+const mapStateToProps = (state) => {
+  return {
+    list: state.wineReducer.wineriesList
+  }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetchWineries: fetchWineryList
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WineryList)
