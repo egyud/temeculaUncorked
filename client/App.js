@@ -1,22 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Container, Content, Drawer } from 'native-base'
-// import HeaderBar from './components/HeaderBar/HeaderBar'
-// import SideBar from './components/SideBar/SideBar'
-import Home from './pages/Home/Home'
-import WineClubsPage from './pages/WineClubsPage/WineClubsPage'
-import WineryList from './pages/WineryList/WineryList'
-import WineryPage from './pages/WineryPage/WineryPage'
-import EventsPage from './pages/EventsPage/EventsPage'
-import EventPage from './pages/EventPage'
-import ProfilePage from './pages/ProfilePage/ProfilePage'
-import WineSearch from './pages/WineSearch/WineSearch'
-// import DrawerNavigator from './navigation/Navigation'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import rootReducer from './reducers/index'
 import StackNav from './navigation/Navigation'
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+)
 
 export default App = () => {
   return (
-    <StackNav />
+    <Provider store={store}>
+      <StackNav />
+    </Provider>
   );
 }
 
@@ -28,15 +27,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-// export default StackNavigator({
-//   Home: {
-//     screen: Home
-//   },
-//   Events: {
-//     screen: EventsPage
-//   },
-//   WineClubs: {
-//     screen: WineClubsPage
-//   }
-// })
