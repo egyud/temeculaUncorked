@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchWineryList } from '../../actions/wineActions' 
 import { StyleSheet, View, Text, ImageBackground, TextInput } from 'react-native'
 import { Header, Input, Icon, Item } from 'native-base'
 import HomePageLink from '../../components/HomePageLink/HomePageLink'
 import ReviewList from '../../components/ReviewList/ReviewList'
 
-export default Home = ({ navigation }) => {
+const Home = ({ navigation, fetchWineries }) => {
+
+  useEffect(() => {
+    fetchWineries()
+  }, [])
   
   function navigate(page) {
     navigation.navigate(page)
@@ -84,3 +92,15 @@ const styles = StyleSheet.create({
   }
   
 })
+
+const mapStateToProps = (state) => {
+  return {
+    wineryList: state.wineReducer.wineriesList
+  }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetchWineries: fetchWineryList
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

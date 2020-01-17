@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchWineClubs } from '../../actions/wineActions'
 import { View, StyleSheet, Text } from 'react-native'
 import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
 import { clubData } from '../../fakeData/clubData'
 
-export default WineClubsPage = () => {
+const WineClubsPage = ({ wineClubs, fetchWineClubs }) => {
   const [tableHead, updateTableHead]  = useState(['Winery', 'Club', 'Free Tastings'])
   const [tableData, updateTableData] = useState([])
   const [selectedColumn, updateSelectedColumn] = useState('Free Tastings')
 
+  console.log(wineClubs)
+
+  useEffect(() => {
+    fetchWineClubs()
+  }, [])
+
   useEffect(() => {
     createTableDataArray()
-  }, [selectedColumn])
+  }, [wineClubs, selectedColumn])
 
   function createTableDataArray() {
     let tableDataArray = []
-    clubData.forEach(winery => {
+    wineClubs.forEach(winery => {
       let { wineClubs: clubs } = winery
       clubs.forEach(club => {
         let rowArray = [winery.name, club.name]
@@ -135,3 +144,15 @@ const styles = StyleSheet.create({
     borderWidth: 0
   }
 })
+
+const mapStateToProps = (state) => {
+  return {
+    wineClubs: state.wineReducer.wineClubs
+  }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetchWineClubs
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WineClubsPage)
