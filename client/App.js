@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
+import { Container, Content } from 'native-base'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers/index'
 import StackNav from './navigation/Navigation'
@@ -14,7 +15,9 @@ const store = createStore(
 export default App = () => {
   return (
     <Provider store={store}>
-      <StackNav />
+      <Container>
+        <StackNav />
+      </Container>
     </Provider>
   );
 }

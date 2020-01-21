@@ -25,7 +25,7 @@ const WineryList = ({ list, fetchWineries, navigation }) => {
           style={styles.listItem}>
           <Body>
             <Text
-              onPress={() => navigation.navigate('Winery')}
+              onPress={() => navigation.navigate('Winery', { winery: winery.name })}
             >
               {winery.name}
             </Text>

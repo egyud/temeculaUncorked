@@ -25,7 +25,13 @@ exports.getAllWines = async (req, res) => {
 exports.getWines = async (req, res) => {
   const { winery } = req.body
   try {
-    let wines = await Wine.find({ winery })
+    let wines = await Wine.find({ winery }).lean()
+    wines = wines.map(wine => {
+      return {
+        rating: average(wine.avgRating, wine.ratingCount),
+        ...wine
+      }
+    })
     return res.status(200).send({ wines })
   } catch(error) {
     console.error(error)

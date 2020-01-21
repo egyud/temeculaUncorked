@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineList } from '../../actions/wineActions'
 import { View, StyleSheet, Text } from 'react-native'
-import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
 import WineList from '../../components/WineList'
 
