@@ -3,18 +3,21 @@ import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings'
 
-export default BlockHeader = () => {
+export default BlockHeader = ({ data, rating }) => {
+  const { name, phone, reviewCount } = data
   return (
     <Card style={styles.block}>
       <CardItem>
         <Left>
           <Body>
-            <Text>Wiens Family Cellars</Text>
+            <Text>{name}</Text>
           </Body>
         </Left>
         <Right>
-          <Rating imageSize={25} />
-          <Text>75 Reviews</Text>
+          <Rating 
+            imageSize={25} 
+            startingValue={rating}/>
+          <Text>{reviewCount} Reviews</Text>
         </Right>
       </CardItem>
       <CardItem>
@@ -25,7 +28,7 @@ export default BlockHeader = () => {
         </Left>
         <Right>
           <Button style={styles.callButton}>
-            <Text style={styles.callText}>951-888-1393</Text>
+            <Text style={styles.callText}>{phone}</Text>
           </Button>
         </Right>
       </CardItem>

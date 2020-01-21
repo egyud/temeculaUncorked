@@ -8,6 +8,7 @@ import EventList from '../../components/EventList'
 import WineClubInfo from '../../components/WineClubInfo'
 import BlockHeader from '../../components/BlockHeader'
 import WineList from '../../components/WineList'
+import WineryInfo from '../../components/WineryInfo'
 
 const WineryPage = ({ navigation }) => {
   const [wineryData, updateWineryData] = useState({})
@@ -39,6 +40,10 @@ const WineryPage = ({ navigation }) => {
       })
   }
 
+  function calculateAverage(totalValue, reviewCount) {
+    return Number((totalValue / reviewCount).toFixed(1)) || 0
+  }
+
   return (
     <Content>
       <View>
@@ -46,7 +51,7 @@ const WineryPage = ({ navigation }) => {
           <ImageBackground 
             source={require('../../assets/wineGlasses.jpg')}
             style={styles.imageBackground}>
-            <BlockHeader />
+            <BlockHeader data={wineryData} rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}/>
           </ImageBackground>
         </View>
         <Tabs 
@@ -71,32 +76,10 @@ const WineryPage = ({ navigation }) => {
             <EventList events={eventsArray}/>
           </Tab>
           <Tab 
-            heading="Hours" 
+            heading="Info" 
             activeTextStyle={{color: '#89012c'}}
           >
-            <List>
-              <ListItem>
-                <Text>Monday: 11am-6pm</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Tuesday: 11am-6pm</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Wednesday: 11am-6pm</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Thursday: 11am-6pm</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Friday: 11am-8pm</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Saturday: 11am-8pm</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Sunday: 11am-6pm</Text>
-              </ListItem>
-            </List>
+            <WineryInfo info={wineryData}/>
           </Tab>
         </Tabs>
       </View>
