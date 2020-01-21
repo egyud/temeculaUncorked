@@ -2,11 +2,14 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 
-export default Event = ({ event }) => {
+export default Event = ({ event, navigation }) => {
   // event will have props: winery, date, time, title, attending, price, whoCanAttend
   return (
     
-    <Card style={styles.event}>
+    <Card 
+      style={styles.event}
+      onPress={() => navigation.navigate('Event')}
+    >
       <CardItem>
         <Left>
           <Body>
