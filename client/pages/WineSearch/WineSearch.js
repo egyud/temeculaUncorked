@@ -1,67 +1,56 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchWineList } from '../../actions/wineActions'
 import { View, StyleSheet, Text } from 'react-native'
 import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
-import { wineList } from '../../fakeData/wineList'
+import WineList from '../../components/WineList'
 
-export default WineSearch = () => {
-  const [tableHead, updateTableHead]  = useState(['Winery', 'Wine', 'Rating'])
-  const [tableData, updateTableData] = useState([])
-  const [selectedColumn, updateSelectedColumn] = useState('Rating')
+const WineSearch = ({ wineArray, fetchWineList }) => {
+  const [sortBy, updateSortBy] = useState('name')
+  const [filterBy, updateFilterBy] = useState('')
+  const [wineList, updateWineList] = useState([])
 
   useEffect(() => {
-    createTableDataArray()
-  }, [selectedColumn])
+    fetchWineList()
+  }, [])
 
-  function createTableDataArray() {
-    let tableDataArray = []
-    wineList.forEach(wine => {
-      let rowArray = [wine.winery, wine.name]
-      switch(selectedColumn) {
-        case 'Rating':
-          rowArray.push(wine.rating)
-          updateTableHead(['Winery', 'Wine', 'Rating'])
-          break;
-        case 'Price':
-          rowArray.push(wine.price)
-          updateTableHead(['Winery', 'Wine', 'Price'])
-          break;
-        case 'Type':
-          rowArray.push(wine.type)
-          updateTableHead(['Winery', 'Wine', 'Type'])
-          break;
-        default:
-          rowArray.push(wine.rating)
-          updateTableHead(['Winery', 'Wine', 'Rating'])
-          break;
-      }
-      tableDataArray.push(rowArray)
-    })
-    updateTableData(tableDataArray)
+  useEffect(() => {
+    updateWineList(wineArray)
+  }, [wineArray])
+
+  useEffect(() => {
+    console.log('wineList')
+    console.log(wineList)
+    sortWines()
+  }, [sortBy])
+
+
+  function sortWines() {
+    let sortedList = wineList.sort((a,b) => a.rating - b.rating )
+    console.log(sortedList)
+    updateWineList(sortedList)
   }
 
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Select which data to view</Text>
-      <Form>
-        <Picker
-          note
-          mode="dropdown"
-          selectedValue={selectedColumn}
-          onValueChange={(value) => updateSelectedColumn(value)}
-          style={styles.picker}
-        >
-          <Picker.Item label="Rating" value="Rating" />
-          <Picker.Item label="Price" value="Price" />
-          <Picker.Item label="Type" value="Type" />
-        </Picker>
-      </Form>
-      <Table 
-        borderStyle={{borderWidth: 1}}
-        style={styles.table}>
-        <Row data={tableHead} style={styles.head} />
-        <Rows data={tableData} style={styles.row}/>
-      </Table>
+    <View>
+      <View>
+        <Form>
+          <Text>Sort By</Text>
+          <Picker
+            mode="dropdown"
+            selectedValue={sortBy}
+            onValueChange={(value) => updateSortBy(value)}>
+            <Picker.Item label="winery" value="winery"/>
+            <Picker.Item label="name" value="name"/>
+            <Picker.Item label="type" value="category"/>
+            <Picker.Item label="rating" value="rating"/>
+          </Picker>
+        </Form>
+      </View>
+      <WineList wines={wineArray}/>
     </View>
   )
 }
@@ -92,3 +81,15 @@ const styles = StyleSheet.create({
     marginVertical: 0,
   }
 })
+
+const mapStateToProps = (state) => {
+  return {
+    wineArray: state.wineReducer.wineList
+  }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetchWineList
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WineSearch)

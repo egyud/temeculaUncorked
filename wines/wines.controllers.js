@@ -1,9 +1,19 @@
 const Wine = require('./wine.model')
+const average = require('../utils/average')
 
 // get all wines from all wineries
 exports.getAllWines = async (req, res) => {
   try {
-    let wines = await Wine.find({})
+    let wines = await Wine.find({}).lean()
+    wines = wines.map(wine => {
+      // console.log(typeof wine.avgRating)
+      // console.log(typeof wine.ratingCount)
+      return {
+        rating: average(wine.avgRating, wine.ratingCount),
+        ...wine
+      }
+    })
+    // console.log(wines)
     return res.status(200).send({ wines })
   } catch(error) {
     console.error(error)
