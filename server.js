@@ -19,6 +19,7 @@ const ratingRoutes = require('./ratings/ratings.routes')
 const wineRoutes = require('./wines/wines.routes')
 const eventRoutes = require('./events/events.routes')
 const imageRoutes = require('./images/images.routes')
+const commentRoutes = require('./comments/comments.routes')
 
 const PORT = process.env.PORT || 5000
 
@@ -37,6 +38,7 @@ app.use('/api/ratings', ratingRoutes)
 app.use('/api/wines', wineRoutes)
 app.use('/api/events', eventRoutes)
 app.use('/api/images', imageRoutes)
+app.use('/api/comments', commentRoutes)
 
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then(() => console.log('Connected to MongoDB'))
