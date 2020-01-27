@@ -27,7 +27,10 @@ const WineSearch = ({ wineArray, fetchWineList }) => {
 
 
   function sortWines() {
-    let sortedList = wineList.sort((a,b) => a.rating - b.rating )
+    console.log('wineList')
+    console.log(wineList)
+    let sortedList = wineList.sort((a,b) => b.rating - a.rating )
+    console.log('sortedList')
     console.log(sortedList)
     updateWineList(sortedList)
   }

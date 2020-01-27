@@ -13,6 +13,8 @@ router.get('/winery/recent', ReviewsController.getRecentWineryReviews)
 
 router.get('/:userId', ReviewsController.getUserWineryReviews)
 
+// router.get('/winery/:name', ReviewsController.getWineryReviews)
+
 // // post reviews/wine/:winery/:name
 // router.post('/wine/:winery/:name', ReviewsController.postWineReview)
 

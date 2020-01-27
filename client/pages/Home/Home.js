@@ -3,15 +3,17 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineryList } from '../../actions/wineActions' 
+import { fetchAllReviews } from '../../actions/reviewActions'
 import { StyleSheet, View, Text, ImageBackground, TextInput } from 'react-native'
 import { Header, Input, Icon, Item } from 'native-base'
 import HomePageLink from '../../components/HomePageLink/HomePageLink'
 import ReviewList from '../../components/ReviewList/ReviewList'
 
-const Home = ({ navigation, fetchWineries }) => {
+const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
 
   useEffect(() => {
     fetchWineries()
+    fetchAllReviews()
   }, [])
   
   function navigate(page) {
@@ -51,7 +53,7 @@ const Home = ({ navigation, fetchWineries }) => {
         <View style={styles.lastestActivity}>
           <Text>Latest Activity</Text>
         </View>
-        <ReviewList />
+        {/* <ReviewList /> */}
       </View>
     </View>
   )
@@ -100,7 +102,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  fetchWineries: fetchWineryList
+  fetchWineries: fetchWineryList,
+  fetchAllReviews
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

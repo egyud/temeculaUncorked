@@ -7,6 +7,8 @@ import moment from 'moment'
 export default Review = ({ review }) => {
   const { text, rating, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
 
+  console.log(review.userId)
+
   const modifyTimestamp = () => {
     let newTime = timestamp
       .slice(0, 10)

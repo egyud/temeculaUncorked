@@ -34,7 +34,7 @@ exports.getAllWineryReviews = async (req, res) => {
   try {
     const reviews = await Review
         .find({})
-        .populate('userId', 'name')
+        .populate('userId', 'name avatar')
         .populate('reviewedId', 'name')
         .sort({ timestamp: -1 })
     return res.status(200).send({ reviews })
@@ -75,3 +75,13 @@ exports.getUserWineryReviews = async (req, res) => {
     return res.status(400).end()
   }
 }
+
+// exports.getWineryReviews = async (req, res) => {
+//   const { name } = req.params
+//   try {
+//     const reviews = await Review
+//       .find({  })
+//   } catch (error) {
+    
+//   }
+// }
