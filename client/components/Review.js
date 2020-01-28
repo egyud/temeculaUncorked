@@ -20,7 +20,7 @@ export default Review = ({ review, navigation }) => {
   }
 
   return (
-    <Content>
+    <View>
       <Card>
         <CardItem>
           <Left>
@@ -60,7 +60,7 @@ export default Review = ({ review, navigation }) => {
           </Right>
         </CardItem>
       </Card>
-    </Content>
+    </View>
   )
 }
 

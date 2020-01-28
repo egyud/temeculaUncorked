@@ -7,7 +7,7 @@ import CommentListItem from './CommentListItem'
 export default CommentList = ({ comments }) => {
   if (comments) {
     return (
-      <View>
+      <View style={styles.container}>
         {comments.map(comment => (
           <CommentListItem 
             key={comment._id}
@@ -25,7 +25,9 @@ export default CommentList = ({ comments }) => {
 }
 
 const styles = StyleSheet.create({
-  listItem: {
-    backgroundColor: '#e6ffe6'
+  container: {
+    flex: 1,
+    marginLeft: 25,
+    marginTop: 0
   }
 })

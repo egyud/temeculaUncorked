@@ -24,14 +24,21 @@ export default ReviewScreen = ({ navigation }) => {
       .catch(err => console.error(err))
   }
 
+  console.log('REVIEW SCREEN RENDERED')
+
   return (
-    <View>
-      <Review review={review} navigation={navigation}/>
+    <View style={styles.container}>
+      <Review 
+        review={review} 
+        navigation={navigation}
+        style={{ paddingBottom: 0 }}/>
       <CommentList comments={commentsList}/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1
+  }
 })

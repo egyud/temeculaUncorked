@@ -15,7 +15,7 @@ const store = createStore(
 export default App = () => {
   return (
     <Provider store={store}>
-      <Container>
+      <Container style={styles.container}>
         <StackNav />
       </Container>
     </Provider>
@@ -25,8 +25,8 @@ export default App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // backgroundColor: '#fff',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });

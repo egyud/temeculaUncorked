@@ -17,7 +17,7 @@ export default CommentListItem = ({ comment, navigation }) => {
   }
 
   return (
-    <Content>
+    <View>
       <Card>
         <CardItem>
           <Left>
@@ -44,7 +44,7 @@ export default CommentListItem = ({ comment, navigation }) => {
           </Right>
         </CardItem>
       </Card>
-    </Content>
+    </View>
   )
 }
 
