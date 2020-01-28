@@ -1,13 +1,10 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
-import { Rating } from 'react-native-ratings' 
 import moment from 'moment'
 
-export default Review = ({ review, navigation }) => {
-  const { _id, text, rating, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
-
-  console.log(review.userId)
+export default CommentListItem = ({ comment, navigation }) => {
+  const { timestamp, text, likes, userId: { name: userName, _id: userId, avatar } } = comment
 
   const modifyTimestamp = () => {
     let newTime = timestamp
@@ -29,11 +26,6 @@ export default Review = ({ review, navigation }) => {
               <Text>{userName}</Text>
             </Body>
           </Left>
-          <Right>
-            <Rating 
-              startingValue={rating}
-              imageSize={25}/>
-          </Right>
         </CardItem>
         <CardItem cardBody>
           <Body>
@@ -47,14 +39,6 @@ export default Review = ({ review, navigation }) => {
               <Text>12 Likes</Text>
             </Button>
           </Left>
-          <Body>
-            <Button 
-              transparent
-              onPress={() => navigation.navigate('Review', { review: review })}>
-              <Icon active name="chatbubbles" />
-              <Text>4 Comments</Text>
-            </Button>
-          </Body>
           <Right>
             <Text>{moment(modifyTimestamp()).fromNow()}</Text>
           </Right>

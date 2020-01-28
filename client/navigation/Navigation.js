@@ -9,6 +9,7 @@ import EventsPage from '../pages/EventsPage/EventsPage'
 import EventPage from '../pages/EventPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import WineSearch from '../pages/WineSearch/WineSearch'
+import ReviewScreen from '../pages/ReviewScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -34,6 +35,9 @@ const StackNavigator = createStackNavigator({
   },
   WineSearch: {
     screen: WineSearch
+  },
+  Review: {
+    screen: ReviewScreen
   }
 },
 {

@@ -4,13 +4,14 @@ import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import Review from '../Review'
 
 
-export default ReviewList = ({ reviews }) => {
+export default ReviewList = ({ reviews, navigation }) => {
   return (
     <View>
       {reviews.map(review => (
         <Review 
           key={review._id}
-          review={review}/>
+          review={review}
+          navigation={navigation}/>
       ))}
     </View>
   )

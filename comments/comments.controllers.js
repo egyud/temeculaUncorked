@@ -20,7 +20,7 @@ exports.getCommentsForReview = async (req, res) => {
   try {
     let comments = await Comment
       .find({ reviewId })
-      .populate('userId', 'name')
+      .populate('userId', 'name avatar')
       .populate('likes', 'name')
       .sort({ timestamp: 1 })
 

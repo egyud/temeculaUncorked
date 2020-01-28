@@ -79,7 +79,9 @@ const WineryPage = ({ navigation, reviews, user }) => {
             heading="Reviews" 
             activeTextStyle={{color: '#89012c'}}
           >
-            <ReviewList reviews={filteredReviews}/>
+            <ReviewList 
+              reviews={filteredReviews}
+              navigation={navigation}/>
           </Tab>
           <Tab 
             heading="Wines" 
