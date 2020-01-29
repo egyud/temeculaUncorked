@@ -9,4 +9,7 @@ router.post('/', CommentsControllers.postComment)
 // get /api/comments/:reviewId
 router.get('/:reviewId', CommentsControllers.getCommentsForReview)
 
+// post /api/comments/like
+router.post('/like', CommentsControllers.postLike)
+
 module.exports = router

@@ -4,7 +4,14 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Ic
 import moment from 'moment'
 
 export default CommentListItem = ({ comment, navigation }) => {
-  const { timestamp, text, likes, userId: { name: userName, _id: userId, avatar } } = comment
+  const { _id, timestamp, text, likes, userId: { name: userName, _id: userId, avatar } } = comment
+
+  function addLike() {
+    axios.post('http://localhost:5000/api/comments/like', {
+      // userId: activeUserId,
+      commentId: _id
+    })
+  }
 
   const modifyTimestamp = () => {
     let newTime = timestamp
@@ -34,7 +41,9 @@ export default CommentListItem = ({ comment, navigation }) => {
         </CardItem>
         <CardItem>
           <Left>
-            <Button transparent>
+            <Button 
+              transparent
+              onPress={() => addLike()}>
               <Icon active name="thumbs-up" />
               <Text>12 Likes</Text>
             </Button>
