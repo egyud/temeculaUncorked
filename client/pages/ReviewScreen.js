@@ -19,7 +19,7 @@ export default ReviewScreen = ({ navigation }) => {
   console.log(commentsList)
 
   function getComments() {
-    axios.get(`http://localhost:5000/api/comments/${reviewId}`)
+    axios.get(`http://localhost:5000/api/comments/review/${reviewId}`)
       .then(res => updateCommentsList(res.data.comments))
       .catch(err => console.error(err))
   }
