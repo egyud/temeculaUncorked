@@ -25,7 +25,11 @@ const ReviewSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true
-  }
+  },
+  likes: [{
+    type: ObjectId,
+    ref: 'User',
+  }]
 })
 
 module.exports = mongoose.model('Review', ReviewSchema)

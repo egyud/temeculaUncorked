@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
@@ -8,6 +9,13 @@ export default Review = ({ review, navigation }) => {
   const { _id, text, rating, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
 
   console.log(review.userId)
+
+  function addLike() {
+    axios.post('http://localhost:5000/api/reviews/like', {
+      // userId: activeUserId,
+      reviewId: _id
+    })
+  }
 
   const modifyTimestamp = () => {
     let newTime = timestamp
@@ -42,7 +50,9 @@ export default Review = ({ review, navigation }) => {
         </CardItem>
         <CardItem>
           <Left>
-            <Button transparent>
+            <Button 
+              transparent
+              onPress={() => addLike()}>
               <Icon active name="thumbs-up" />
               <Text>12 Likes</Text>
             </Button>
