@@ -7,7 +7,7 @@ import { fetchAllReviews } from '../../actions/reviewActions'
 import { StyleSheet, View, Text, ImageBackground, TextInput } from 'react-native'
 import { Header, Input, Icon, Item } from 'native-base'
 import HomePageLink from '../../components/HomePageLink/HomePageLink'
-import ReviewList from '../../components/ReviewList/ReviewList'
+import ActivityFeed from '../../components/ActivityFeed'
 
 const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
 
@@ -53,7 +53,7 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
         <View style={styles.lastestActivity}>
           <Text>Latest Activity</Text>
         </View>
-        {/* <ReviewList /> */}
+        <ActivityFeed />
       </View>
     </View>
   )
