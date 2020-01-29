@@ -15,11 +15,42 @@ exports.postComment = async (req, res) => {
   }
 }
 
+exports.postCommentForEvent = async (req, res) => {
+  const { text, userId, eventId } = req.body
+  try {
+    let comment = await Comment.create({
+      userId,
+      eventId,
+      text
+    })
+    return res.status(200).send({ comment })
+  } catch (error) {
+    console.error(error)
+    return res.status(400).send({ message: 'Error creating the comment' })
+  }
+}
+
 exports.getCommentsForReview = async (req, res) => {
   const { reviewId } = req.params
   try {
     let comments = await Comment
       .find({ reviewId })
+      .populate('userId', 'name avatar')
+      .populate('likes', 'name')
+      .sort({ timestamp: 1 })
+
+    return res.status(200).send({ comments })
+  } catch (error) {
+    console.error(error)
+    return res.status(400).send({ message: 'Error getting the comments' })
+  }
+}
+
+exports.getCommentsForEvent = async (req, res) => {
+  const { eventId } = req.params
+  try {
+    let comments = await Comment
+      .find({ eventId })
       .populate('userId', 'name avatar')
       .populate('likes', 'name')
       .sort({ timestamp: 1 })

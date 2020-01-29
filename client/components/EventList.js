@@ -4,11 +4,14 @@ import { ListItem, Right, Body } from 'native-base'
 import Event from './Event'
 // import events from '../fakeData/events'
 
-export default EventList = ({ events }) => {
+export default EventList = ({ events, navigation }) => {
   return (
     <View>
       {events.map(event => (
-        <Event key={event._id} event={event}/>
+        <Event 
+          key={event._id} 
+          event={event}
+          navigation={navigation} />
       ))}
     </View>
   )

@@ -5,6 +5,7 @@ import CommentListItem from './CommentListItem'
 
 
 export default CommentList = ({ comments }) => {
+
   if (comments) {
     return (
       <View style={styles.container}>
@@ -17,7 +18,7 @@ export default CommentList = ({ comments }) => {
     )
   } else {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>No comments to display</Text>
       </View>
     )

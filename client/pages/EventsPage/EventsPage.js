@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import EventList from '../../components/EventList'
 
-export default EventsPage = () => {
+export default EventsPage = ({ navigation }) => {
+  const [events, updateEvents] = useState([])
+
+  useEffect(() => {
+    getEvents()
+  }, [])
+
+  function getEvents() {
+    axios.get('http://localhost:5000/api/events')
+      .then(res => updateEvents(res.data.events))
+      .catch(err => console.error(err))
+  }
+
   return (
     <View>
       <View>
@@ -13,7 +26,9 @@ export default EventsPage = () => {
           <Text style={styles.headline}>Upcoming Events</Text>
         </ImageBackground>
       </View>
-      <EventList />
+      <EventList 
+        events={events}
+        navigation={navigation}/>
     </View>
   )
 }

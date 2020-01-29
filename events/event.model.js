@@ -16,13 +16,16 @@ const EventSchema = new mongoose.Schema({
   },
   winery: {
     type: String,
-    require: true
+    required: true
   },
   // array of users that are attending the event
   attending: [{
     type: ObjectId,
     ref: 'User'
-  }]
+  }],
+  description: {
+    type: String
+  }
 })
 
 module.exports = mongoose.model('Event', EventSchema)
