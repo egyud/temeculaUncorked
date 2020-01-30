@@ -10,6 +10,7 @@ import EventPage from '../pages/EventPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import WineSearch from '../pages/WineSearch/WineSearch'
 import ReviewScreen from '../pages/ReviewScreen'
+import ImageGallery from '../pages/ImageGallery'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -38,6 +39,9 @@ const StackNavigator = createStackNavigator({
   },
   Review: {
     screen: ReviewScreen
+  },
+  Gallery: {
+    screen: ImageGallery
   }
 },
 {

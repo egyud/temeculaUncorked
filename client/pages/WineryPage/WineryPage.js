@@ -18,12 +18,16 @@ const WineryPage = ({ navigation, reviews, user }) => {
   const [eventsArray, updateEventsArray] = useState([])
   const [wineryImages, updateWineryImages] = useState([])
   const [filteredReviews, updatedFilteredReviews] = useState([])
+  const winery = navigation.getParam('winery')
 
   useEffect(() => {
-    console.log(navigation.getParam('winery'))
-    getWineryData(navigation.getParam('winery'))
-    getEventsData(navigation.getParam('winery'))
+    getWineryData(winery)
+    getEventsData(winery)
   }, [navigation])
+
+  useEffect(() => {
+    getWineryImages(wineryData._id)
+  }, [wineryData])
 
   useEffect(() => {
     console.log(reviews)
@@ -47,6 +51,15 @@ const WineryPage = ({ navigation, reviews, user }) => {
       })
   }
 
+  function getWineryImages(selectedWinery) {
+    axios.get(`http://localhost:5000/api/images/${selectedWinery}`)
+      .then(res => {
+        console.log('***!!*******!!********!!*')
+        console.log(res.data.images)
+        updateWineryImages(res.data.images)
+      })
+  }
+
   function calculateAverage(totalValue, reviewCount) {
     return Number((totalValue / reviewCount).toFixed(1)) || 0
   }
@@ -55,7 +68,7 @@ const WineryPage = ({ navigation, reviews, user }) => {
     if (reviews) {
       console.log('in filterReviews')
       console.log(reviews.reviews)
-      const filtered = reviews.reviews.filter(review => navigation.getParam('winery') === review.reviewedId.name)
+      const filtered = reviews.reviews.filter(review => winery === review.reviewedId.name)
       updatedFilteredReviews(filtered)
     }
   }
@@ -69,7 +82,8 @@ const WineryPage = ({ navigation, reviews, user }) => {
             style={styles.imageBackground}>
             <BlockHeader 
               data={wineryData} 
-              rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}/>
+              rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
+              openGallery={() => navigation.navigate('Gallery', { images: wineryImages })}/>
           </ImageBackground>
         </View>
         <Tabs 
@@ -99,7 +113,9 @@ const WineryPage = ({ navigation, reviews, user }) => {
             heading="Events" 
             activeTextStyle={{color: '#89012c'}}
           >
-            <EventList events={eventsArray}/>
+            <EventList 
+              events={eventsArray}
+              navigation={navigation}/>
           </Tab>
           <Tab 
             heading="Info" 
