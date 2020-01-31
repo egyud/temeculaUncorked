@@ -34,7 +34,7 @@ export default Review = ({ review, navigation }) => {
           <Left>
             <Thumbnail source={{ uri: avatar.url }}/> 
             <Body>
-              <Text>{userName}</Text>
+              <Text onPress={() => navigation.navigate('Profile', { userId: userId })}>{userName}</Text>
             </Body>
           </Left>
           <Right>
