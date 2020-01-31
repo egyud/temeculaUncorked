@@ -1,19 +1,20 @@
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
+import deviceStorage from '../utils/deviceStorage'
 
 export const GET_ERRORS = "GET_ERRORS"
 export const USER_LOADING = "USER_LOADING"
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 
 // Register User
-export const registerUser = (userData) => async (dispatch) => {
+export const registerUser = (userData, navigation) => async (dispatch) => {
   try {
     const response = await axios.post('http:localhost:5000/api/users/register', userData)
     if (response) {
       console.log(response.data)
       // if registration is successful, redirect to login drawer
-      return dispatch(showLoginDrawer())
+      return navigation.navigate('Login')
     }
   } catch(err) {
     return dispatch({
@@ -24,13 +25,14 @@ export const registerUser = (userData) => async (dispatch) => {
 
 }
 
-export const loginUser = (userData) => async (dispatch) => {
+export const loginUser = (userData, navigation) => async (dispatch) => {
   try {
     const response = await axios.post('http:localhost:5000/api/users/login', userData)
     if (response) {
       // Set token to localStorage
       const { token, user } = response.data
-      localStorage.setItem("jwtToken", token)
+      deviceStorage.saveItem("jwtToken", token)
+      // localStorage.setItem("jwtToken", token)
       // set token to Auth header
       console.log('token')
       console.log(token)
@@ -41,7 +43,7 @@ export const loginUser = (userData) => async (dispatch) => {
       console.log(decoded)
       // Set current user
       dispatch(setCurrentUser(decoded, user))
-      // dispatch(hideBothDrawers())
+      return navigation.navigate('Home')
     }
   } catch(err) {
     console.log(err.response.data)

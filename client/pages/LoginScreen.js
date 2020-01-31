@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { loginUser } from '../actions/authActions'
+import { View, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
 
-export default LoginScreen = () => {
+const LoginScreen = ({ loginUser, navigation }) => {
   const [email, updateEmail] = useState('')
   const [password, updatePassword] = useState('')
 
-  function emailChangeHandler(e) {
+  function onSubmitHandler(e) {
+    console.log('in onSubmitHandler for login')
+    console.log(email)
+    console.log(password)
     e.preventDefault()
-    e.persist()
-    updateEmail(e.target.value)
-  }
-
-  function passwordChangeHandler(e) {
-    e.preventDefault()
-    e.persist()
-    updatePassword(e.target.value)
+    loginUser({
+      email,
+      password
+    }, navigation)
   }
 
   return (
@@ -23,13 +25,21 @@ export default LoginScreen = () => {
       <Form>
         <Item stackedLabel>
           <Label>Email</Label>
-          <Input onChange={(event) => emailChangeHandler(event)}/>
+          <Input
+            autoCapitalize="none" 
+            onChangeText={(text) => updateEmail(text)}/>
         </Item>
         <Item stackedLabel last>
           <Label>Password</Label>
-          <Input onChange={(event) => passwordChangeHandler(event)}/>
+          <Input
+            autoCapitalize="none" 
+            secureTextEntry={true}
+            onChangeText={(text) => updatePassword(text)}/>
         </Item>
-        <Button block primary>
+        <Button 
+          block 
+          primary
+          onPress={(event) => onSubmitHandler(event)}>
           <Text>Login</Text>
         </Button>
       </Form>
@@ -40,3 +50,9 @@ export default LoginScreen = () => {
 const styles = StyleSheet.create({
 
 })
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  loginUser
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(LoginScreen)

@@ -11,6 +11,8 @@ import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import WineSearch from '../pages/WineSearch/WineSearch'
 import ReviewScreen from '../pages/ReviewScreen'
 import ImageGallery from '../pages/ImageGallery'
+import LoginScreen from '../pages/LoginScreen'
+import RegisterScreen from '../pages/RegisterScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -42,6 +44,12 @@ const StackNavigator = createStackNavigator({
   },
   Gallery: {
     screen: ImageGallery
+  },
+  Register: {
+    screen: RegisterScreen
+  },
+  Login: {
+    screen: LoginScreen
   }
 },
 {

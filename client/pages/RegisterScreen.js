@@ -1,36 +1,25 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { View, StyleSheet } from 'react-redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { registerUser } from '../actions/authActions'
+import { View, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
 
-export default LoginScreen = () => {
+const RegisterScreen = ({ registerUser, navigation }) => {
   const [email, updateEmail] = useState('')
   const [name, updateName] = useState('')
   const [password, updatePassword] = useState('')
   const [password2, updatePassword2] = useState('')
 
-  function emailChangeHandler(e) {
+  function onSubmitHandler(e) {
     e.preventDefault()
-    e.persist()
-    updateEmail(e.target.value)
-  }
+    registerUser({
+      email,
+      name,
+      password,
+      password2
+    }, navigation)
 
-  function nameChangeHandler(e) {
-    e.preventDefault()
-    e.persist()
-    updateName(e.target.value)
-  }
-
-  function passwordChangeHandler(e) {
-    e.preventDefault()
-    e.persist()
-    updatePassword(e.target.value)
-  }
-
-  function password2ChangeHandler(e) {
-    e.preventDefault()
-    e.persist()
-    updatePassword2(e.target.value)
   }
 
   return (
@@ -38,21 +27,34 @@ export default LoginScreen = () => {
       <Form>
         <Item stackedLabel>
           <Label>Email</Label>
-          <Input onChange={(event) => emailChangeHandler(event)}/>
+          <Input
+            autoCapitalize="none" 
+            onChangeText={(text) => updateEmail(text)}/>
         </Item>
         <Item stackedLabel>
           <Label>Name(displayed publicly)</Label>
-          <Input onChange={(event) => nameChangeHandler(event)}/>
+          <Input
+            autoCapitalize="none" 
+            onChangeText={(text) => updateName(text)}/>
         </Item>
         <Item stackedLabel>
           <Label>Password</Label>
-          <Input onChange={(event) => passwordChangeHandler(event)}/>
+          <Input
+            autoCapitalize="none"
+            secureTextEntry={true}
+            onChangeText={(text) => updatePassword(text)}/>
         </Item>
         <Item stackedLabel last>
           <Label>Enter Password Again</Label>
-          <Input onChange={(event) => password2ChangeHandler(event)}/>
+          <Input
+            autoCapitalize="none" 
+            secureTextEntry={true}
+            onChangeText={(text) => updatePassword2(text)}/>
         </Item>
-        <Button block primary>
+        <Button 
+          block 
+          primary
+          onPress={(event) => onSubmitHandler(event)}>
           <Text>Register</Text>
         </Button>
       </Form>
@@ -63,3 +65,9 @@ export default LoginScreen = () => {
 const styles = StyleSheet.create({
 
 })
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  registerUser
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(RegisterScreen)

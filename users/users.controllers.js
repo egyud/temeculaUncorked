@@ -61,6 +61,8 @@ exports.registerUser = async (req, res, next) => {
 
 exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body
+  console.log(email)
+  console.log(password)
 
   // const { error } = loginValidation(req.body)
   // const valid = error == null

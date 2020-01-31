@@ -45,7 +45,15 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
             <HomePageLink
               linkText='Wines'
               nav={() => navigate('WineSearch')}
-            />          
+            />
+            <HomePageLink
+              linkText='Login'
+              nav={() => navigate('Login')}
+            /> 
+            <HomePageLink
+              linkText='Register'
+              nav={() => navigate('Register')}
+            />           
           </View>
         </ImageBackground>
       </View>
