@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
+import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import moment from 'moment'
 
-export default CommentListItem = ({ comment, navigation }) => {
+export default CommentListItem = ({ comment, navigation, activeUserId }) => {
   const { _id, timestamp, text, likes, userId: { name: userName, _id: userId, avatar } } = comment
 
   function addLike() {
     axios.post('http://localhost:5000/api/comments/like', {
-      // userId: activeUserId,
+      userId: activeUserId,
       commentId: _id
     })
   }

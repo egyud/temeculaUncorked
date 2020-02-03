@@ -70,7 +70,10 @@ exports.postLike = async (req, res) => {
     if (hasLiked) {
       console.log('hasLiked')
       console.log(hasLiked)
-      return res.send({ message: "You've already liked this comment" })
+      // if user has already liked, remove them from the likes array
+      let comment = await Comment.updateOne({ _id: commentId }, { $pull: { likes: userId } })
+      return res.send({ comment, message: 
+      'Removed your like' })
     }
     let comment = await Comment.updateOne({ _id: commentId }, { $push: { likes: userId } })
     return res.status(200).send({ comment })

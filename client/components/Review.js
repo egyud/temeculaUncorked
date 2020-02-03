@@ -1,18 +1,18 @@
 import React from 'react'
 import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
+import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 import moment from 'moment'
 
-export default Review = ({ review, navigation }) => {
+export default Review = ({ review, navigation, activeUserId }) => {
   const { _id, text, rating, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
 
   console.log(review.userId)
 
   function addLike() {
     axios.post('http://localhost:5000/api/reviews/like', {
-      // userId: activeUserId,
+      userId: activeUserId,
       reviewId: _id
     })
   }

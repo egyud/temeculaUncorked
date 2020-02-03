@@ -84,7 +84,9 @@ exports.postLike = async (req, res) => {
     if (hasLiked) {
       console.log('hasLiked')
       console.log(hasLiked)
-      return res.send({ message: "You've already liked this review" })
+      let review = await Review.updateOne({ _id: reviewId }, { $pull: { likes: userId } })
+      return res.send({ review, message: 
+      'Removed your like' })
     }
     let review = await Review.updateOne({ _id: reviewId }, { $push: { likes: userId } })
     return res.status(200).send({ review })

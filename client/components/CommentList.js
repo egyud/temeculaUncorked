@@ -4,7 +4,7 @@ import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import CommentListItem from './CommentListItem'
 
 
-export default CommentList = ({ comments }) => {
+export default CommentList = ({ comments, activeUserId }) => {
 
   if (comments) {
     return (
@@ -12,7 +12,8 @@ export default CommentList = ({ comments }) => {
         {comments.map(comment => (
           <CommentListItem 
             key={comment._id}
-            comment={comment}/>
+            comment={comment}
+            activeUserId={activeUserId}/>
         ))}
       </View>
     )
