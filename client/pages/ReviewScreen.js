@@ -32,7 +32,7 @@ const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   let postCommentBtn = (
     <Button
       style={styles.btnText}
-      onPress={() => navigation.navigate('NewComment', { review, activeUser })}>
+      onPress={() => navigation.navigate('NewComment', { review, activeUser, type: 'review' })}>
       <Icon
         type="FontAwesome"
         name='plus' />
