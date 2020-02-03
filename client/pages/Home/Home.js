@@ -9,7 +9,7 @@ import { Header, Input, Icon, Item } from 'native-base'
 import HomePageLink from '../../components/HomePageLink/HomePageLink'
 import ActivityFeed from '../../components/ActivityFeed'
 
-const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
+const Home = ({ navigation, fetchWineries, fetchAllReviews, isAuthenticated }) => {
 
   useEffect(() => {
     fetchWineries()
@@ -20,6 +20,22 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
     navigation.navigate(page)
   }
 
+  let login = (
+    <>
+      <HomePageLink
+        linkText='Login'          
+        nav={() => navigate('Login')}
+      /> 
+      <HomePageLink
+        linkText='Register'
+        nav={() => navigate('Register')}
+      />
+    </>
+  )
+  if(isAuthenticated) {
+    login = null
+  }
+
   return (
     <View>
       <View>
@@ -27,6 +43,7 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
           source={require('../../assets/wineGlasses.jpg')}
           style={{width: '100%', height: 300}}>
           <TextInput 
+            onFocus={() => navigate('WineryList')}
             style={styles.searchBar}
             placeholder='Search for wineries'/>
           <View style={styles.linkContainer}>
@@ -46,14 +63,7 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews }) => {
               linkText='Wines'
               nav={() => navigate('WineSearch')}
             />
-            <HomePageLink
-              linkText='Login'
-              nav={() => navigate('Login')}
-            /> 
-            <HomePageLink
-              linkText='Register'
-              nav={() => navigate('Register')}
-            />           
+            {login}   
           </View>
         </ImageBackground>
       </View>
@@ -105,7 +115,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    wineryList: state.wineReducer.wineriesList
+    wineryList: state.wineReducer.wineriesList,
+    isAuthenticated: state.authReducer.isAuthenticated
   }
 }
 

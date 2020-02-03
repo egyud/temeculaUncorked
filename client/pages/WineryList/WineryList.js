@@ -1,42 +1,68 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineryList } from '../../actions/wineActions'
 import { View, Text, StyleSheet } from 'react-native'
-import { ListItem, Right, Body } from 'native-base'
+import { ListItem, Right, Body, Header, Item, Icon, Input } from 'native-base'
 import { Rating } from 'react-native-ratings' 
-import { wineries } from '../../fakeData/wineries'
 
 const WineryList = ({ list, fetchWineries, navigation }) => {
+  const [searchInput, updateSearchInput] = useState('')
 
   useEffect(() => {
     fetchWineries()
   }, [])
 
+  let filteredWineryList = list
+  if (searchInput.length > 0) {
+    filteredWineryList = filterMatches()
+  } 
+  // else {
+  //   filteredWineryList = list
+  // }
+
   function calculateAverage(totalValue, reviewCount) {
     return Number((totalValue / reviewCount).toFixed(1)) || 0
   }
 
+  function filterMatches() {
+    return list.filter(winery => {
+      const regex = new RegExp(searchInput, 'gi')
+      return winery.name.match(regex)
+    })
+  }
+
   return (
-    <View style={styles.container}>
-      {list.map(winery => (
-        <ListItem 
-          key={winery._id}
-          style={styles.listItem}>
-          <Body>
-            <Text
-              onPress={() => navigation.navigate('Winery', { winery: winery.name })}
-            >
-              {winery.name}
-            </Text>
-          </Body>
-          <Right>
-            <Rating 
-              startingValue={calculateAverage(winery.avgRating, winery.reviewCount)}
-              imageSize={25}/>
-          </Right>
-        </ListItem>
-      ))}
+    <View>
+      <Header searchBar>
+        <Item>
+          <Icon name="ios-search" />
+          <Input 
+            autoFocus
+            placeholder="Search"
+            onChangeText={(text) => updateSearchInput(text)} />
+        </Item>
+      </Header>
+      <View style={styles.container}>
+        {filteredWineryList.map(winery => (
+          <ListItem 
+            key={winery._id}
+            style={styles.listItem}>
+            <Body>
+              <Text
+                onPress={() => navigation.navigate('Winery', { winery: winery.name })}
+              >
+                {winery.name}
+              </Text>
+            </Body>
+            <Right>
+              <Rating 
+                startingValue={calculateAverage(winery.avgRating, winery.reviewCount)}
+                imageSize={25}/>
+            </Right>
+          </ListItem>
+        ))}
+      </View>
     </View>
   )
 }
