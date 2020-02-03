@@ -60,14 +60,14 @@ export default EventPage = ({ navigation }) => {
           <CardItem>
             <Left>
               <Button 
-                style={styles.attendButton}
+                style={styles.button}
               >
                 <Text>Attend</Text>
               </Button>
               <Text>{attending.length} people are going</Text>
             </Left>
             <Right>
-              <Button>
+              <Button style={styles.button}>
                 <Text>Photos</Text>
               </Button>
             </Right>
@@ -103,5 +103,8 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 14
+  },
+  button: {
+    backgroundColor: '#89012c'
   }
 })
