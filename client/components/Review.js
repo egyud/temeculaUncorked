@@ -6,7 +6,7 @@ import { Rating } from 'react-native-ratings'
 import moment from 'moment'
 
 export default Review = ({ review, navigation, activeUserId }) => {
-  const { _id, text, rating, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
+  const { _id, text, rating, likes, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
 
   console.log(review.userId)
 
@@ -54,7 +54,7 @@ export default Review = ({ review, navigation, activeUserId }) => {
               transparent
               onPress={() => addLike()}>
               <Icon active name="thumbs-up" />
-              <Text>12 Likes</Text>
+              <Text>{likes.length} Likes</Text>
             </Button>
           </Left>
           <Body>

@@ -65,18 +65,19 @@ exports.getCommentsForEvent = async (req, res) => {
 exports.postLike = async (req, res) => {
   const { userId, commentId } = req.body
   try {
-    // check to see if user has already liked the comment.  if yes, don't do anything.  If not, add their like to the likes array.
-    const hasLiked = await Comment.findOne({ likes: userId })
-    if (hasLiked) {
-      console.log('hasLiked')
-      console.log(hasLiked)
+ 
+    const comment = await Comment.findOne({ _id: commentId })
+
+    // check to see if user already has liked the comment
+    if (comment.likes.includes(userId)) {
       // if user has already liked, remove them from the likes array
-      let comment = await Comment.updateOne({ _id: commentId }, { $pull: { likes: userId } })
-      return res.send({ comment, message: 
+      let updatedComment = await Comment.updateOne({ _id: commentId }, { $pull: { likes: userId } })
+      return res.send({ updatedComment, message: 
       'Removed your like' })
     }
-    let comment = await Comment.updateOne({ _id: commentId }, { $push: { likes: userId } })
-    return res.status(200).send({ comment })
+    // add the userId to the likes array in comment
+    let updatedComment = await Comment.updateOne({ _id: commentId }, { $push: { likes: userId } })
+    return res.status(200).send({ updatedComment })
   } catch (error) {
     console.error(error)
     return res.status(400).end()

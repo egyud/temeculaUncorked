@@ -79,17 +79,18 @@ exports.getUserWineryReviews = async (req, res) => {
 exports.postLike = async (req, res) => {
   const { userId, reviewId } = req.body
   try {
-    // check to see if user has already liked the review.  if yes, don't do anything.  If not, add their like to the likes array.
-    const hasLiked = await Review.findOne({ likes: userId })
-    if (hasLiked) {
-      console.log('hasLiked')
-      console.log(hasLiked)
-      let review = await Review.updateOne({ _id: reviewId }, { $pull: { likes: userId } })
-      return res.send({ review, message: 
+
+    const review = await Comment.findOne({ _id: reviewId })
+    // check to see if user has already liked the review
+    if (review.likes.includes(userId)) {
+      // if user has already liked, remove them from the likes array
+      let updatedReview = await Review.updateOne({ _id: reviewId }, { $pull: { likes: userId } })
+      return res.send({ updatedReview, message: 
       'Removed your like' })
     }
-    let review = await Review.updateOne({ _id: reviewId }, { $push: { likes: userId } })
-    return res.status(200).send({ review })
+    // add the userId to the likes array in review
+    let updatedReview = await Review.updateOne({ _id: reviewId }, { $push: { likes: userId } })
+    return res.status(200).send({ updatedReview })
   } catch (error) {
     console.error(error)
     return res.status(400).end()

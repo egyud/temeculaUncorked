@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import moment from 'moment'
@@ -45,7 +46,7 @@ export default CommentListItem = ({ comment, navigation, activeUserId }) => {
               transparent
               onPress={() => addLike()}>
               <Icon active name="thumbs-up" />
-              <Text>12 Likes</Text>
+              <Text>{likes.length} Likes</Text>
             </Button>
           </Left>
           <Right>
