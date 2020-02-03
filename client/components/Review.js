@@ -62,7 +62,7 @@ export default Review = ({ review, navigation, activeUserId }) => {
               transparent
               onPress={() => navigation.navigate('Review', { review: review })}>
               <Icon active name="chatbubbles" />
-              <Text>4 Comments</Text>
+              <Text>View Comments</Text>
             </Button>
           </Body>
           <Right>

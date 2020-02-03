@@ -40,10 +40,11 @@ const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
     </Button>
   )
 
+  let activeUserId
   if (isAuthenticated) {
     activeUserId = activeUser._id
   } else {
-    activeUserId = null
+    // activeUserId = null
     postCommentBtn = null
   }
 
