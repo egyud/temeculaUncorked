@@ -3,8 +3,7 @@ const Wine = require('../wines/wine.model')
 
 
 exports.postWineRating = async (req, res) => {
-  const { wineId } = req.params
-  const { userId, rating } = req.body
+  const { userId, rating, wineId } = req.body
   try {
     // check to see if user has already rated wine
     const hasRated = await Rating.findOne({ userId, wineId })
@@ -13,7 +12,7 @@ exports.postWineRating = async (req, res) => {
       console.log(hasRated)
       // check to see if rating is the same as previous, if so, don't do anything
       if (hasRated.rating === rating) {
-        return res.end()
+        return res.send({ message: 'Nothing changed, rated same as previously' })
       }
       // determine the difference between the new and previous rating(used for updating the total ratingValue in Wine doc)
       let ratingDif = rating - hasRated.rating

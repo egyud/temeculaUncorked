@@ -58,7 +58,7 @@ exports.getRecentWineryReviews = async (req, res) => {
     })
   } catch(error) {
     console.error(error)
-    return res.status(400).end()
+    return res.status(400).send({ message: 'Error loading the recent reviews.' })
   }
 }
 

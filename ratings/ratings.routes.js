@@ -3,8 +3,8 @@ const router = express.Router()
 
 const RatingsController = require('./ratings.controller')
 
-// post /api/ratings/:wineId
-router.post('/:wineId', RatingsController.postWineRating)
+// post /api/ratings/
+router.post('/', RatingsController.postWineRating)
 
 // get /api/ratings/:userId
 router.get('/:userId', RatingsController.getUserWineRatings)
