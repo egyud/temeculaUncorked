@@ -9,9 +9,10 @@ exports.postWineryReview = async (req, res) => {
     console.log('in postWineryReview')
     if (user && reviewText && winery) {
       wineryId = await Winery.find({name: winery}, '_id')
+      console.log(user)
       console.log(wineryId[0]._id)
       const review = await Review.create({
-        userId: user.id,
+        userId: user._id,
         reviewedId: wineryId[0]._id,
         text: reviewText,
         rating

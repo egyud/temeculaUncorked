@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { View, Text, StyleSheet, ImageBackground } from 'react-native'
-import { Tabs, Tab, List, ListItem, Right, Content } from 'native-base'
+import { View, StyleSheet, ImageBackground } from 'react-native'
+import { Tabs, Tab, Text, Icon, Button, Content } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 import EventList from '../../components/EventList'
 import WineClubInfo from '../../components/WineClubInfo'
@@ -12,7 +12,7 @@ import WineryInfo from '../../components/WineryInfo'
 import ReviewList from '../../components/ReviewList/ReviewList'
 import Review from '../../components/Review'
 
-const WineryPage = ({ navigation, reviews, user }) => {
+const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   const [wineryData, updateWineryData] = useState({})
   const [wineListData, updateWineListData] = useState([])
   const [eventsArray, updateEventsArray] = useState([])
@@ -73,6 +73,21 @@ const WineryPage = ({ navigation, reviews, user }) => {
     }
   }
 
+  let postCommentBtn = (
+    <Button
+      style={styles.btnText}
+      onPress={() => navigation.navigate('NewReview', { wineryData, user, avgRating: calculateAverage(wineryData.avgRating, wineryData.reviewCount) })}>
+      <Icon
+        type="FontAwesome"
+        name='plus' />
+      <Text style={styles.btnText}>Add a new comment</Text>
+    </Button>
+  )
+
+  if (!isAuthenticated) {
+    postCommentBtn = null
+  }
+
   return (
     <Content>
       <View>
@@ -93,6 +108,7 @@ const WineryPage = ({ navigation, reviews, user }) => {
             heading="Reviews" 
             activeTextStyle={{color: '#89012c'}}
           >
+            {postCommentBtn}
             <ReviewList 
               reviews={filteredReviews}
               navigation={navigation}/>
@@ -160,7 +176,8 @@ const mapStateToProps = (state) => {
   console.log(state.reviewReducer.reviews)
   return {
     reviews: state.reviewReducer.reviews.data,
-    user: state.authReducer.user.user
+    user: state.authReducer.user.user,
+    isAuthenticated: state.authReducer.isAuthenticated
   }
 }
 

@@ -15,6 +15,7 @@ import ImageGallery from '../pages/ImageGallery'
 import LoginScreen from '../pages/LoginScreen'
 import RegisterScreen from '../pages/RegisterScreen'
 import PostCommentScreen from '../pages/PostCommentScreen'
+import PostReviewScreen from '../pages/PostReviewScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -55,6 +56,9 @@ const StackNavigator = createStackNavigator({
   },
   NewComment: {
     screen: PostCommentScreen
+  },
+  NewReview: {
+    screen: PostReviewScreen
   }
 },
 {
