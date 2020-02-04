@@ -57,6 +57,7 @@ const RegisterScreen = ({ registerUser, navigation }) => {
           onPress={(event) => onSubmitHandler(event)}>
           <Text>Register</Text>
         </Button>
+        <Text onPress={() => navigation.navigate('Login')}>Already have an account? Login here</Text>
       </Form>
     </Content>
   )
