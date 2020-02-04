@@ -65,8 +65,58 @@ const StackNavigator = createStackNavigator({
   initialRouteName: 'Home',
 })
 
-// const TabNavigator = createTabNavigator({
+const SearchNav = createStackNavigator({
+  WineryList: {
+    screen: WineryList
+  },
+  Review: {
+    screen: ReviewScreen
+  },
+  Profile: {
+    screen: ProfilePage
+  },
+  Event: {
+    screen: EventPage
+  },
+  Gallery: {
+    screen: ImageGallery
+  },
+  NewComment: {
+    screen: PostCommentScreen
+  },
+  NewReview: {
+    screen: PostReviewScreen
+  }
+})
 
-// })
+const ClubNav = createStackNavigator({
+  WineClubs: {
+    screen: WineClubsPage
+  }
+})
 
-export default StackNav = createAppContainer(StackNavigator)
+const AccountNav = createStackNavigator({
+  Register: {
+    screen: RegisterScreen
+  },
+  Login: {
+    screen: LoginScreen
+  }
+})
+
+const TabNavigator = createBottomTabNavigator({
+  Home: {
+    screen: StackNavigator,
+  },
+  Search: {
+    screen: SearchNav
+  },
+  Clubs: {
+    screen: ClubNav
+  },
+  Account: {
+    screen: AccountNav
+  }
+})
+
+export default StackNav = createAppContainer(TabNavigator)
