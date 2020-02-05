@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 
-const WineCard = ({ wine, isAuthenticated, user }) => {
+const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   const [wineRating, updateWineRating] = useState(0)
   const { name, rating, winery, ratingCount, price, _id: wineId } = wine
 
@@ -40,22 +40,22 @@ const WineCard = ({ wine, isAuthenticated, user }) => {
                 startingValue={rating}
                 imageSize={25}
                 readonly={!isAuthenticated}
-                onFinishRating={(rate) => {
-                  updateWineRating(rate)
-                  // postRating()
-                }}/>
+                onFinishRating={(rate) => updateWineRating(rate)}/>
               <Text note>{ratingCount} ratings</Text>
             </Body>
           </Right>
       </CardItem>
       <CardItem>
         <Left>
+          <Button onPress={() => navigation.navigate('Wine', { wine })}>
+            <Text>More</Text>
+          </Button>
+        </Left>
+        <Right>
           <Body>
             <Text>{price}</Text>
-            <Text>{rating}</Text>
           </Body>
-        </Left>
-        <Right></Right>
+        </Right>
       </CardItem>
     </Card>
   )

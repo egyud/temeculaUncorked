@@ -5,11 +5,14 @@ import { Rating } from 'react-native-ratings'
 import WineCard from './WineCard'
 import { wineList } from '../fakeData/wineList'
 
-export default WineList = ({ wines }) => {
+export default WineList = ({ wines, navigation }) => {
   return (
     <View>
       {wines.map(wine => (
-        <WineCard key={wine._id} wine={wine}/>
+        <WineCard 
+          key={wine._id} 
+          wine={wine}
+          navigation={navigation}/>
       ))}
     </View>
   )

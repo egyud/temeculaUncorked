@@ -6,7 +6,7 @@ import { View, StyleSheet, Text } from 'react-native'
 import { Form, Picker } from 'native-base'
 import WineList from '../../components/WineList'
 
-const WineSearch = ({ wineArray, fetchWineList }) => {
+const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   const [sortBy, updateSortBy] = useState('name')
   const [filterBy, updateFilterBy] = useState('')
   const [wineList, updateWineList] = useState([])
@@ -52,7 +52,7 @@ const WineSearch = ({ wineArray, fetchWineList }) => {
           </Picker>
         </Form>
       </View>
-      <WineList wines={wineArray}/>
+      <WineList wines={wineArray} navigation={navigation}/>
     </View>
   )
 }

@@ -16,6 +16,7 @@ import LoginScreen from '../pages/LoginScreen'
 import RegisterScreen from '../pages/RegisterScreen'
 import PostCommentScreen from '../pages/PostCommentScreen'
 import PostReviewScreen from '../pages/PostReviewScreen'
+import WineScreen from '../pages/WineScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -59,6 +60,9 @@ const StackNavigator = createStackNavigator({
   },
   NewReview: {
     screen: PostReviewScreen
+  },
+  Wine: {
+    screen: WineScreen
   }
 },
 {
@@ -86,6 +90,9 @@ const SearchNav = createStackNavigator({
   },
   NewReview: {
     screen: PostReviewScreen
+  },
+  Wine: {
+    screen: WineScreen
   }
 })
 

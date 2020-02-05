@@ -54,3 +54,18 @@ exports.getUserRating = async (req, res) => {
     return res.status(400).end()
   }
 }
+
+exports.getRecentWineRatings = async (req, res) => {
+  const { wineId } = req.params
+  try {
+    const ratings = await Rating
+      .find({ wineId })
+      .populate('userId', 'name avatar')
+      .sort({ _id: -1 })
+      .limit(10)
+    return res.status(200).send({ ratings })
+  } catch (error) {
+    console.error(error)
+    return res.send({ message: 'There was an error retrieving the recent ratings for this wine' })
+  }
+}
