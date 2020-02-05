@@ -2,10 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-import { Container, Content } from 'native-base'
+import { Container } from 'native-base'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers/index'
 import StackNav from './navigation/Navigation'
+import FlashMessage from 'react-native-flash-message'
 
 const store = createStore(
   rootReducer,
@@ -17,6 +18,7 @@ export default App = () => {
     <Provider store={store}>
       <Container style={styles.container}>
         <StackNav />
+        <FlashMessage position="center"/>
       </Container>
     </Provider>
   );
