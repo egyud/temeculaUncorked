@@ -41,11 +41,11 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews, isAuthenticated }) =
       <View>
         <ImageBackground 
           source={require('../../assets/wineGlasses.jpg')}
-          style={{width: '100%', height: 300}}>
-          <TextInput 
+          style={styles.imageBackground}>
+          {/* <TextInput 
             onFocus={() => navigate('WineryList')}
             style={styles.searchBar}
-            placeholder='Search for wineries'/>
+            placeholder='Search for wineries'/> */}
           <View style={styles.linkContainer}>
             <HomePageLink
               linkText='Winery Directory'
@@ -71,7 +71,7 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews, isAuthenticated }) =
         <View style={styles.lastestActivity}>
           <Text>Latest Activity</Text>
         </View>
-        <ActivityFeed />
+        <ActivityFeed navigation={navigation}/>
       </View>
     </View>
   )
@@ -99,7 +99,9 @@ const styles = StyleSheet.create({
   },
   linkContainer: {
     flexDirection: 'row',
-    paddingBottom: 30,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   lastestActivity: {
     borderBottomWidth: 1,
@@ -109,6 +111,12 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     paddingLeft: 10
+  },
+  imageBackground: {
+    width: '100%', 
+    height: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
   
 })

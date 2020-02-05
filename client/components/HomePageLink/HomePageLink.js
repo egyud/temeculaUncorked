@@ -15,7 +15,7 @@ export default HomePageLink = ({ linkText, nav }) => {
 
 const styles = StyleSheet.create({
   btn: {
-    width: 12,
+    // width: 20,
     height: 100,
     borderStyle: 'solid',
     borderWidth: 1,
