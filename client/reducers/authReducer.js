@@ -1,10 +1,11 @@
-import { SET_CURRENT_USER, USER_LOADING } from '../actions/authActions'
+import { SET_CURRENT_USER, USER_LOADING, SET_USER_EVENTS } from '../actions/authActions'
 import isEmpty from 'is-empty'
 
 const initialState = {
   isAuthenticated: false,
   user: {},
-  loading: false
+  loading: false,
+  userEvents: []
 }
 
 export default function(state = initialState, action) {
@@ -14,7 +15,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: !isEmpty(payload),
-        user: payload
+        user: payload,
+      }
+    case SET_USER_EVENTS:
+      return {
+        ...state,
+        userEvents: payload
       }
     case USER_LOADING:
       return {

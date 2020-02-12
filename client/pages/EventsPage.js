@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { View, Text, StyleSheet, ImageBackground } from 'react-native'
-import EventList from '../../components/EventList'
+import EventList from '../components/EventList'
 
 export default EventsPage = ({ navigation }) => {
   const [events, updateEvents] = useState([])
@@ -20,7 +20,7 @@ export default EventsPage = ({ navigation }) => {
     <View>
       <View>
         <ImageBackground
-          source={require('../../assets/wineGlasses.jpg')}
+          source={require('../assets/wineGlasses.jpg')}
           style={styles.imageBackground}
         >
           <Text style={styles.headline}>Upcoming Events</Text>

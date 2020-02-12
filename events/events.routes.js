@@ -15,8 +15,8 @@ router.post('/unattend', eventsController.unattendEvent)
 // get /api/events
 router.get('/', eventsController.getAllEvents)
 
-// // get /api/events/user/:user
-// router.get('/user/:user', eventsController.getUsersEvents)
+// get /api/events/user/:userId
+router.get('/user/:userId', eventsController.getUsersEvents)
 
 // get /api/events/winery/:name
 router.get('/winery/:name', eventsController.getEventsForWinery)

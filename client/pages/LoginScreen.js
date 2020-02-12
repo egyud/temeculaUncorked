@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { loginUser } from '../actions/authActions'
 import { View, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const LoginScreen = ({ loginUser, navigation }) => {
   const [email, updateEmail] = useState('')

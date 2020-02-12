@@ -6,13 +6,13 @@ import deviceStorage from '../utils/deviceStorage'
 export const GET_ERRORS = "GET_ERRORS"
 export const USER_LOADING = "USER_LOADING"
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
+export const SET_USER_EVENTS = "SET_USER_EVENTS"
 
 // Register User
 export const registerUser = (userData, navigation) => async (dispatch) => {
   try {
-    const response = await axios.post('http:localhost:5000/api/users/register', userData)
+    const response = await axios.post('http://localhost:5000/api/users/register', userData)
     if (response) {
-      console.log(response.data)
       // if registration is successful, redirect to login drawer
       return navigation.navigate('Login')
     }
@@ -27,26 +27,34 @@ export const registerUser = (userData, navigation) => async (dispatch) => {
 
 export const loginUser = (userData, navigation) => async (dispatch) => {
   try {
-    const response = await axios.post('http:localhost:5000/api/users/login', userData)
+    const response = await axios.post('http://localhost:5000/api/users/login', userData)
     if (response) {
-      // Set token to localStorage
+      // Save token to deviceStorage
       const { token, user } = response.data
       deviceStorage.saveItem("jwtToken", token)
-      // localStorage.setItem("jwtToken", token)
       // set token to Auth header
-      console.log('token')
-      console.log(token)
       setAuthToken(token)
       // decode token to get user data
       const decoded = jwt_decode(token)
-      console.log('decoded')
-      console.log(decoded)
       // Set current user
       dispatch(setCurrentUser(decoded, user))
       return navigation.navigate('Home')
     }
   } catch(err) {
-    console.log(err.response.data)
+    return dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  }
+}
+
+export const getUserEvents = (user) => async (dispatch) => {
+  console.log('in get User Events ')
+  try {
+    const response = await axios.get(`http://localhost:5000/api/events/user/${user._id}`)
+    const { events } = response.data
+    return dispatch(setUserEvents(events))
+  } catch (error) {
     return dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -61,6 +69,15 @@ export const setCurrentUser = (decoded, user) => {
     payload: {
       decoded,
       user
+    }
+  }
+}
+
+export const setUserEvents = (events) => {
+  return {
+    type: SET_USER_EVENTS,
+    payload: {
+      events
     }
   }
 }

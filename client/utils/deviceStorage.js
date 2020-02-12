@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 
-export default deviceStorage = {
+const deviceStorage = {
   
   async saveItem(key, value) {
     try {
@@ -10,3 +10,5 @@ export default deviceStorage = {
     }
   }
 }
+
+export default deviceStorage

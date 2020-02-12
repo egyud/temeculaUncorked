@@ -15,6 +15,9 @@ export default Review = ({ review, navigation, activeUserId }) => {
       userId: activeUserId,
       reviewId: _id
     })
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
+
   }
 
   const modifyTimestamp = () => {

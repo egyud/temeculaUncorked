@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchWineryList } from '../../actions/wineActions'
+import { fetchWineryList } from '../actions/wineActions'
 import { View, Text, StyleSheet } from 'react-native'
 import { ListItem, Right, Body, Header, Item, Icon, Input } from 'native-base'
 import { Rating } from 'react-native-ratings' 
+
 
 const WineryList = ({ list, fetchWineries, navigation }) => {
   const [searchInput, updateSearchInput] = useState('')
@@ -63,6 +64,7 @@ const WineryList = ({ list, fetchWineries, navigation }) => {
           </ListItem>
         ))}
       </View>
+      
     </View>
   )
 }

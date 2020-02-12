@@ -2,18 +2,26 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchWineryList } from '../../actions/wineActions' 
-import { fetchAllReviews } from '../../actions/reviewActions'
+import { fetchWineryList } from '../actions/wineActions' 
+import { fetchAllReviews } from '../actions/reviewActions'
+import { getUserEvents } from '../actions/authActions'
 import { StyleSheet, View, Text, ImageBackground, TextInput } from 'react-native'
 import { Header, Input, Icon, Item } from 'native-base'
-import HomePageLink from '../../components/HomePageLink/HomePageLink'
-import ActivityFeed from '../../components/ActivityFeed'
+import HomePageLink from '../components/HomePageLink/HomePageLink'
+import ActivityFeed from '../components/ActivityFeed'
 
-const Home = ({ navigation, fetchWineries, fetchAllReviews, isAuthenticated }) => {
+
+const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAuthenticated, userEvents, user }) => {
 
   useEffect(() => {
+    console.log('HOME PAGE LOADED')
     fetchWineries()
     fetchAllReviews()
+    console.log('called after login')
+    if (isAuthenticated && userEvents.length === 0) {
+      console.log('in if statement')
+      getUserEvents(user)
+    }
   }, [])
   
   function navigate(page) {
@@ -33,14 +41,19 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews, isAuthenticated }) =
     </>
   )
   if(isAuthenticated) {
-    login = null
+    login = (
+      <HomePageLink 
+        linkText='Account'
+        nav={() => navigate('Account')}
+      />
+    )
   }
 
   return (
     <View>
       <View>
         <ImageBackground 
-          source={require('../../assets/wineGlasses.jpg')}
+          source={require('../assets/wineGlasses.jpg')}
           style={styles.imageBackground}>
           {/* <TextInput 
             onFocus={() => navigate('WineryList')}
@@ -69,10 +82,12 @@ const Home = ({ navigation, fetchWineries, fetchAllReviews, isAuthenticated }) =
       </View>
       <View>
         <View style={styles.lastestActivity}>
+          <Text>PLEASE SHOW THIS</Text>
           <Text>Latest Activity</Text>
         </View>
         <ActivityFeed navigation={navigation}/>
       </View>
+      
     </View>
   )
 }
@@ -124,13 +139,16 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     wineryList: state.wineReducer.wineriesList,
-    isAuthenticated: state.authReducer.isAuthenticated
+    isAuthenticated: state.authReducer.isAuthenticated,
+    userEvents: state.authReducer.userEvents,
+    user: state.authReducer.user.user,
   }
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchWineries: fetchWineryList,
-  fetchAllReviews
+  fetchAllReviews,
+  getUserEvents
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

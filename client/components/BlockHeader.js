@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings'
 
-export default BlockHeader = ({ data, rating, openGallery }) => {
+export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPhoto }) => {
   const { name, phone, reviewCount } = data
   return (
     <Card style={styles.block}>
@@ -26,6 +26,16 @@ export default BlockHeader = ({ data, rating, openGallery }) => {
             onPress={openGallery}
             style={styles.photoButton}>
             <Text style={styles.photoButtonText}>Photos</Text>
+          </Button>
+          <Button
+            onPress={choosePhoto}
+            style={styles.photoButton}>
+            <Icon 
+              type="FontAwesome" 
+              name="plus"/>
+          </Button>
+          <Button onPress={submitPhoto}>
+            <Text>Upload</Text>
           </Button>
         </Left>
         <Right>
@@ -52,6 +62,7 @@ const styles = StyleSheet.create({
   },
   photoButton: {
     backgroundColor: '#99ff99',
+    marginRight: 4
     // backgroundColor: '#89012c'
   },
   photoButtonText: {

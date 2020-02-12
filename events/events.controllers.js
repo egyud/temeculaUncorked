@@ -17,7 +17,7 @@ exports.attendEvent = async (req, res) => {
     return res.send({ message: 'You are already attending this event' })
   } catch(error) {
     console.error(error)
-    return res.status(400).end()
+    return res.status(400).send({ error })
   }
 }
 
@@ -30,7 +30,7 @@ exports.unattendEvent = async (req, res) => {
     return res.status(200).send({ event })
   } catch (error) {
     console.error(error)
-    return res.status(400).end()
+    return res.status(400).send({ error })
   }
 }
 
@@ -41,7 +41,7 @@ exports.getEventsForWinery = async (req, res) => {
     return res.status(200).send({ events })
   } catch(error) {
     console.error(error)
-    return res.status(400).end()
+    return res.status(400).send({ error })
   }
 }
 
@@ -52,7 +52,7 @@ exports.postEvent = async (req, res) => {
     return res.status(200).send({ event })
   } catch(error) {
     console.error(error)
-    return res.status(400).end()
+    return res.status(400).send({ error })
   }
 }
 
@@ -62,18 +62,18 @@ exports.getAllEvents = async (req, res) => {
     return res.status(200).send({ events })
   } catch(error) {
     console.error(error)
-    return res.status(400).end()
+    return res.status(400).send({ error })
   }
 }
 
-// exports.getUsersEvents = async (req, res) => {
-//   console.log('in getUserEvents')
-//   const { user } = req.params
-//   try {
-//     const events = await Event.find({ attending: mongoose.Types.ObjectId(user) })
-//     return res.status(200).send({ events })
-//   } catch (error) {
-//     console.error(error)
-//     return res.status(400).end()
-//   }
-// }
+exports.getUsersEvents = async (req, res) => {
+  console.log('in getUserEvents')
+  const { userId } = req.params
+  try {
+    const events = await Event.find({ attending: userId })
+    return res.status(200).send({ events })
+  } catch (error) {
+    console.error(error)
+    return res.status(400).send({ error })
+  }
+}

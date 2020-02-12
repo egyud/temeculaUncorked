@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchWineClubs } from '../../actions/wineActions'
+import { fetchWineClubs } from '../actions/wineActions'
 import { View, StyleSheet, Text } from 'react-native'
 import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
-import { clubData } from '../../fakeData/clubData'
+
 
 const WineClubsPage = ({ wineClubs, fetchWineClubs }) => {
   const [tableHead, updateTableHead]  = useState(['Winery', 'Club', 'Free Tastings'])
@@ -63,6 +63,7 @@ const WineClubsPage = ({ wineClubs, fetchWineClubs }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Which category do you want to compare?</Text>
+      <Text>Let's see if this is visible</Text>
       <Form>
         <Picker
           note
@@ -92,6 +93,7 @@ const WineClubsPage = ({ wineClubs, fetchWineClubs }) => {
           textStyle={styles.rowText}
         />
       </Table>
+      
     </View>
   )
 }

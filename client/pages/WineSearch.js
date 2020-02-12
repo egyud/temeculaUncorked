@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchWineList } from '../../actions/wineActions'
+import { fetchWineList } from '../actions/wineActions'
 import { View, StyleSheet, Text } from 'react-native'
 import { Form, Picker } from 'native-base'
-import WineList from '../../components/WineList'
+import WineList from '../components/WineList'
+
 
 const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   const [sortBy, updateSortBy] = useState('name')
@@ -53,6 +54,7 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
         </Form>
       </View>
       <WineList wines={wineArray} navigation={navigation}/>
+      
     </View>
   )
 }

@@ -4,13 +4,15 @@ import axios from 'axios'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { Tabs, Tab, Text, Icon, Button, Content } from 'native-base'
 import { Rating } from 'react-native-ratings' 
-import EventList from '../../components/EventList'
-import WineClubInfo from '../../components/WineClubInfo'
-import BlockHeader from '../../components/BlockHeader'
-import WineList from '../../components/WineList'
-import WineryInfo from '../../components/WineryInfo'
-import ReviewList from '../../components/ReviewList/ReviewList'
-import Review from '../../components/Review'
+import ImagePicker from 'react-native-image-picker'
+import EventList from '../components/EventList'
+import WineClubInfo from '../components/WineClubInfo'
+import BlockHeader from '../components/BlockHeader'
+import WineList from '../components/WineList'
+import WineryInfo from '../components/WineryInfo'
+import ReviewList from '../components/ReviewList/ReviewList'
+import Review from '../components/Review'
+
 
 const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   const [wineryData, updateWineryData] = useState({})
@@ -18,6 +20,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   const [eventsArray, updateEventsArray] = useState([])
   const [wineryImages, updateWineryImages] = useState([])
   const [filteredReviews, updatedFilteredReviews] = useState([])
+  const [selectedImage, updateSelectedImage] = useState(null)
   const winery = navigation.getParam('winery')
 
   useEffect(() => {
@@ -41,6 +44,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
         updateWineryData(res.data.winery)
         updateWineListData(res.data.wines)
       })
+      .catch(err => console.error(err))
   }
 
   function getEventsData(selectedWinery) {
@@ -49,15 +53,16 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
         console.log(res.data)
         updateEventsArray(res.data.events)
       })
+      .catch(err => console.error(err))
   }
 
   function getWineryImages(selectedWinery) {
     axios.get(`http://localhost:5000/api/images/${selectedWinery}`)
       .then(res => {
-        console.log('***!!*******!!********!!*')
         console.log(res.data.images)
         updateWineryImages(res.data.images)
       })
+      .catch(err => console.error(err))
   }
 
   function calculateAverage(totalValue, reviewCount) {
@@ -71,6 +76,43 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
       const filtered = reviews.reviews.filter(review => winery === review.reviewedId.name)
       updatedFilteredReviews(filtered)
     }
+  }
+
+  const handleChoosePhoto = (e) => {
+
+    console.log('handleChoosePhoto()()()()')
+    // const options = {
+    //   noData: true,
+    // }
+    // ImagePicker.launchImageLibrary(options, response => {
+    //   if (response.uri) {
+    //     updateSelectedImage(response)
+    //   }
+    // })
+
+  }
+
+  function createFormData(photo, body) {      
+    const data = new FormData()
+    data.append('photo', {
+      name: photo.fileName,
+      type: photo.type,
+      uri:
+        Platform.OS === 'android' ? photo.uri : photo.uri.replace('file://', ''),
+    })
+    Object.keys(body).forEach(key => {
+      data.append(key, body[key])
+    })
+    return data
+  }
+
+  function handleUploadPhoto() {
+    console.log('in handleUploadPhoto()')
+    // let data = createFormData(selectedImage, {
+    //   activeUserId: user._id,
+    //   wineryId: wineryData._id
+    // })
+    // axios.post('http://localhost:5000/api/images', data)
   }
 
   let postCommentBtn = (
@@ -93,12 +135,15 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
       <View>
         <View>
           <ImageBackground 
-            source={require('../../assets/wineGlasses.jpg')}
+            source={require('../assets/wineGlasses.jpg')}
             style={styles.imageBackground}>
             <BlockHeader 
+              openGallery={() => navigation.navigate('UploadPhoto')}
+              submitPhoto={() => handleUploadPhoto()}
               data={wineryData} 
               rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
-              openGallery={() => navigation.navigate('Gallery', { images: wineryImages })}/>
+              choosePhoto={() => handleChoosePhoto()}
+            />
           </ImageBackground>
         </View>
         <Tabs 
@@ -170,6 +215,25 @@ const styles = StyleSheet.create({
   },
   tabs: {
     backgroundColor: '#99ff99'
+  },
+  block: {
+    width: '80%',
+    marginVertical: 0,
+    marginHorizontal: 'auto'
+  },
+  callButton: {
+    backgroundColor: 'white',
+  },
+  callText: {
+    color: '#89012c'
+  },
+  photoButton: {
+    backgroundColor: '#99ff99',
+    marginRight: 4
+    // backgroundColor: '#89012c'
+  },
+  photoButtonText: {
+    color: '#89012c'
   }
 })
 

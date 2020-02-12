@@ -4,7 +4,8 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
-import ReviewList from '../../components/ReviewList/ReviewList'
+import ReviewList from '../components/ReviewList/ReviewList'
+
 
 const ProfilePage = ({ activeUser, navigation }) => {
   const [currentUser, updateCurrentUser] = useState({})
@@ -71,7 +72,7 @@ const ProfilePage = ({ activeUser, navigation }) => {
     <View>
       <View>
         <ImageBackground
-          source={require('../../assets/wineGlasses.jpg')}
+          source={require('../assets/wineGlasses.jpg')}
           style={styles.imageBackground}
         >
           <Card>
@@ -109,6 +110,7 @@ const ProfilePage = ({ activeUser, navigation }) => {
           <Text>Wine Rating History</Text>
         </View>
       </View>
+      
     </View>
   )
 }

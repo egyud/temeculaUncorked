@@ -72,7 +72,7 @@ exports.loginUser = async (req, res, next) => {
 
   const user = await User.findOne({ email })
   if (!user) {
-    return res.status(400).send('Cannot find user')
+    return res.status(400).send({message: 'Cannot find user'})
   } 
 
   try {
@@ -93,10 +93,10 @@ exports.loginUser = async (req, res, next) => {
         user: data
       })
     } else {
-      res.status(400).send('Passwords do not match')
+      res.status(400).send({message: 'Passwords do not match'})
     }
-  } catch {
-    res.status(500).send()
+  } catch(error) {
+    res.status(500).send({ error })
   }
 
 }
@@ -110,7 +110,7 @@ exports.getUserInfo = async (req, res) => {
     return res.status(200).send({ user })
   } catch(error) {
     console.error(error)
-    res.status(404).end()
+    res.status(404).send({ error })
   }
 }
 

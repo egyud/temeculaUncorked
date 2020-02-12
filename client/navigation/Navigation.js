@@ -2,14 +2,14 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import Home from '../pages/Home/Home'
-import WineClubsPage from '../pages/WineClubsPage/WineClubsPage'
-import WineryList from '../pages/WineryList/WineryList'
-import WineryPage from '../pages/WineryPage/WineryPage'
-import EventsPage from '../pages/EventsPage/EventsPage'
+import Home from '../pages/Home'
+import WineClubsPage from '../pages/WineClubsPage'
+import WineryList from '../pages/WineryList'
+import WineryPage from '../pages/WineryPage'
+import EventsPage from '../pages/EventsPage'
 import EventPage from '../pages/EventPage'
-import ProfilePage from '../pages/ProfilePage/ProfilePage'
-import WineSearch from '../pages/WineSearch/WineSearch'
+import ProfilePage from '../pages/ProfilePage'
+import WineSearch from '../pages/WineSearch'
 import ReviewScreen from '../pages/ReviewScreen'
 import ImageGallery from '../pages/ImageGallery'
 import LoginScreen from '../pages/LoginScreen'
@@ -17,6 +17,8 @@ import RegisterScreen from '../pages/RegisterScreen'
 import PostCommentScreen from '../pages/PostCommentScreen'
 import PostReviewScreen from '../pages/PostReviewScreen'
 import WineScreen from '../pages/WineScreen'
+import AccountPage from '../pages/AccountPage'
+import UploadPhotoScreen from '../pages/UploadPhotoScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -63,6 +65,12 @@ const StackNavigator = createStackNavigator({
   },
   Wine: {
     screen: WineScreen
+  },
+  Account: {
+    screen: AccountPage
+  },
+  UploadPhoto: {
+    screen: UploadPhotoScreen
   }
 },
 {
@@ -103,6 +111,9 @@ const ClubNav = createStackNavigator({
 })
 
 const AccountNav = createStackNavigator({
+  Account: {
+    screen: AccountPage
+  },
   Register: {
     screen: RegisterScreen
   },
