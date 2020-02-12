@@ -3,14 +3,18 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Tabs, Tab } from 'native-base'
-
+import EventList from '../components/EventList'
 import MembershipList from '../components/MembershipList'
 
-const AccountPage = ({ user, isAuthenticated, userEvents, wineryList }) => {
+const AccountPage = ({ user, isAuthenticated, userEvents, wineryList, navigation }) => {
   const [selectedImage, updateSelectedImage] = useState({})
   const [newEmail, updateNewEmail] = useState('')
   const [newPassword, updateNewPassword] = useState('')
-  const [eventsList, updateEventsList] = useState([])
+
+  const { events: eventsList } = userEvents
+
+  console.log('userEvents')
+  console.log(userEvents.events)
 
   return (
       <Content>
@@ -42,9 +46,10 @@ const AccountPage = ({ user, isAuthenticated, userEvents, wineryList }) => {
             heading="Events"
             activeTextStyle={{color: '#89012c'}}>
             <View>
-              {userEvents.map(event => (
-                <Text>{event.title}</Text>
-              ))}
+              <EventList 
+                events={eventsList}
+                navigation={navigation}
+              />
             </View>
           </Tab>
         </Tabs>
