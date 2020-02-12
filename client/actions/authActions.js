@@ -22,7 +22,6 @@ export const registerUser = (userData, navigation) => async (dispatch) => {
       payload: err.response.data
     })
   }
-
 }
 
 export const loginUser = (userData, navigation) => async (dispatch) => {
@@ -48,6 +47,7 @@ export const loginUser = (userData, navigation) => async (dispatch) => {
   }
 }
 
+// get a list of all events the user is set to attend
 export const getUserEvents = (user) => async (dispatch) => {
   console.log('in get User Events ')
   try {
@@ -61,6 +61,7 @@ export const getUserEvents = (user) => async (dispatch) => {
     })
   }
 }
+
 
 // set logged in user
 export const setCurrentUser = (decoded, user) => {

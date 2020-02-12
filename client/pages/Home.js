@@ -17,12 +17,11 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
     console.log('HOME PAGE LOADED')
     fetchWineries()
     fetchAllReviews()
-    console.log('called after login')
-    if (isAuthenticated && userEvents.length === 0) {
-      console.log('in if statement')
-      getUserEvents(user)
-    }
   }, [])
+
+  useEffect(() => {
+    getUserEvents(user)
+  }, [isAuthenticated]) 
   
   function navigate(page) {
     navigation.navigate(page)
@@ -82,7 +81,6 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
       </View>
       <View>
         <View style={styles.lastestActivity}>
-          <Text>PLEASE SHOW THIS</Text>
           <Text>Latest Activity</Text>
         </View>
         <ActivityFeed navigation={navigation}/>
