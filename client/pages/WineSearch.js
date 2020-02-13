@@ -8,7 +8,7 @@ import WineList from '../components/WineList'
 
 
 const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
-  const [sortBy, updateSortBy] = useState('name')
+  const [sortBy, updateSortBy] = useState('ratingD')
   const [filterBy, updateFilterBy] = useState('')
   const [wineList, updateWineList] = useState([])
 
@@ -21,21 +21,41 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   }, [wineArray])
 
   useEffect(() => {
-    console.log('wineList')
-    console.log(wineList)
+    // console.log('wineList')
+    // console.log(wineList)
     sortWines()
   }, [sortBy])
 
 
   function sortWines() {
-    console.log('wineList')
-    console.log(wineList)
-    let sortedList = wineList.sort((a,b) => b.rating - a.rating )
+    let wineArr = [...wineArray]
+    wineArr.sort((a,b) => b.rating - a.rating)
+    switch (sortBy) {
+      case 'ratingA':
+        wineArr.sort((a,b) => a.rating - b.rating)
+        break
+      case 'ratingD':
+        wineArr.sort((a,b) => b.rating - a.rating)
+        break
+      case 'numRatingA':
+        wineArr.sort((a,b) => a.ratingCount - b.ratingCount)
+        break
+      case 'numRatingD':
+        wineArr.sort((a,b) => b.ratingCount - a.ratingCount)
+        break
+      case 'priceA':
+        wineArr.sort((a,b) => Number(a.price.substring(1)) - Number(b.price.substring(1)))
+        break
+      case 'priceD':
+        wineArr.sort((a,b) => Number(b.price.substring(1)) - Number(a.price.substring(1)))
+        break
+      default:
+        wineArr.sort((a,b) => b.rating - a.rating)
+    }
     console.log('sortedList')
-    console.log(sortedList)
-    updateWineList(sortedList)
+    console.log(wineArr)
+    updateWineList(wineArr)
   }
-
 
   return (
     <View>
@@ -46,14 +66,16 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
             mode="dropdown"
             selectedValue={sortBy}
             onValueChange={(value) => updateSortBy(value)}>
-            <Picker.Item label="winery" value="winery"/>
-            <Picker.Item label="name" value="name"/>
-            <Picker.Item label="type" value="category"/>
-            <Picker.Item label="rating" value="rating"/>
+            <Picker.Item label="rating asc" value="ratingA"/>
+            <Picker.Item label="rating desc" value="ratingD"/>
+            <Picker.Item label="# of ratings asc" value="numRatingA"/>
+            <Picker.Item label="# of ratings desc" value="numRatingD"/>
+            <Picker.Item label="price asc" value="priceA"/>
+            <Picker.Item label="price desc" value="priceD"/>
           </Picker>
         </Form>
       </View>
-      <WineList wines={wineArray} navigation={navigation}/>
+      <WineList wines={wineList} navigation={navigation}/>
       
     </View>
   )
