@@ -85,7 +85,9 @@ exports.loginUser = async (req, res, next) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        avatar: user.avatar
+        avatar: user.avatar,
+        memberOf: user.memberOf,
+        following: user.following
       }
       return res.status(200).send({
         success: true,
@@ -107,6 +109,7 @@ exports.getUserInfo = async (req, res) => {
     const user = await User
       .findOne({_id: userId})
       .populate('memberOf', 'name')
+      .populate('following', 'name avatar')
     return res.status(200).send({ user })
   } catch(error) {
     console.error(error)
@@ -120,12 +123,10 @@ exports.followUser = async (req, res) => {
   if (!activeUser.id) return res.send({ message: 'You must be logged in to do this' })
   try {
     console.log(activeUser)
-    let followedUser = await User.findOne({ _id: userIdToFollow })
-    console.log(followedUser)
     // check to see if user is already following, and make sure that the user isn't trying to follow themself
-    if (!followedUser.followers.includes(activeUser.id) && userIdToFollow !== activeUser.id ) {
-      followedUser = await User.updateOne({ _id: userIdToFollow }, { $push: { followers: activeUser.id } })
-      return res.status(200).send({ followedUser })
+    if (!activeUser.following.includes(userIdToFollow) && userIdToFollow !== activeUser.id ) {
+      let updatedUser = await User.updateOne({ _id: activeUser.id }, { $push: { following: userIdToFollow } })
+      return res.status(200).send({ updatedUser })
     }
     return res.send({ message: 'You already follow this user' })
   } catch(error) {

@@ -27,7 +27,8 @@ const UserSchema = new mongoose.Schema({
     ref: 'Winery'
   }],
   bio: String,
-  followers: [{
+  link: String,
+  following: [{
     type: ObjectId,
     ref: 'User'
   }],
