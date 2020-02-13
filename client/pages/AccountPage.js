@@ -15,8 +15,8 @@ const AccountPage = ({ user, isAuthenticated, userEvents, wineryList, navigation
   const { events: eventsList } = userEvents
   const { memberOf, following } = user
   
-  console.log('following')
-  console.log(following)
+  console.log('memberOf')
+  console.log(memberOf)
 
   const updateEmailSubmitHandler = () => {
     axios.post('http://localhost:5000/api/users/update-email', {
@@ -86,7 +86,9 @@ const AccountPage = ({ user, isAuthenticated, userEvents, wineryList, navigation
           <Tab
             heading="Memberships"
             activeTextStyle={{color: '#89012c'}}>
-            <MembershipList wineryList={wineryList}/>
+            <MembershipList
+              memberships={memberOf}
+              wineryList={wineryList}/>
           </Tab>
           <Tab
             heading="Following"
