@@ -54,14 +54,13 @@ export const getUserEvents = (user) => async (dispatch) => {
     const response = await axios.get(`http://localhost:5000/api/events/user/${user._id}`)
     const { events } = response.data
     return dispatch(setUserEvents(events))
-  } catch (error) {
+  } catch (err) {
     return dispatch({
       type: GET_ERRORS,
       payload: err.response.data
     })
   }
 }
-
 
 // set logged in user
 export const setCurrentUser = (decoded, user) => {

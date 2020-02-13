@@ -50,7 +50,7 @@ const ProfilePage = ({ activeUser, navigation }) => {
     if (activeUser) {
       axios.post(`http://localhost:5000/api/users/follow`, {
         userIdToFollow: userId,
-        activeUser 
+        activeUser
       })
         .then(res => console.log(res.data))
         .catch(err => console.error(err))
@@ -89,9 +89,6 @@ const ProfilePage = ({ activeUser, navigation }) => {
               <Left>
                 <Text>Member at {currentUser.memberOf.length} wineries</Text>
               </Left>
-              <Body>
-                <Text>{currentUser.followers.length} followers</Text>
-              </Body>
               <Right>
                 <Button onPress={() => followUser()}>
                   <Text>Follow</Text>

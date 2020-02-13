@@ -11,7 +11,7 @@ import HomePageLink from '../components/HomePageLink/HomePageLink'
 import ActivityFeed from '../components/ActivityFeed'
 
 
-const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAuthenticated, userEvents, user }) => {
+const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAuthenticated, user }) => {
 
   useEffect(() => {
     console.log('HOME PAGE LOADED')
