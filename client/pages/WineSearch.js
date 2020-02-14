@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineList } from '../actions/wineActions'
-import { View, StyleSheet, Text } from 'react-native'
-import { Form, Picker } from 'native-base'
+import { View, StyleSheet, Text, Modal } from 'react-native'
+import { Form, Picker, Button } from 'native-base'
 import WineList from '../components/WineList'
+import WineFilters from '../components/WineFilters'
 
 
 const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
-  const [filterBy, updateFilterBy] = useState('')
+  const [filters, updateFilters] = useState([])
   const [wineList, updateWineList] = useState([])
+  const [modalVisible, updateModalVisible] = useState(false)
 
   useEffect(() => {
     fetchWineList()
@@ -29,7 +31,6 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
 
   function sortWines() {
     let wineArr = [...wineArray]
-    wineArr.sort((a,b) => b.rating - a.rating)
     switch (sortBy) {
       case 'ratingA':
         wineArr.sort((a,b) => a.rating - b.rating)
@@ -57,9 +58,40 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
     updateWineList(wineArr)
   }
 
+  function addToFilters(value) {
+    updateFilters([...filters, value])
+  }
+
+  function filterWines() {
+    if (filters.length === 0) {
+      updateWineList(wineArray)
+    } else {   
+      let filteredWines = wineArray.filter(wine => {
+        return filters.includes(wine.type) || filters.includes(wine.name)
+      })
+      // this is returning an empty array
+      console.log(filteredWines)
+      updateWineList(filteredWines)
+    }
+  }
+
   return (
     <View>
       <View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={modalVisible}>
+          <WineFilters
+            filterWines={() => filterWines()} 
+            addToFilters={(val) => addToFilters(val)} />
+          <Button onPress={() => updateModalVisible(false)}>
+            <Text>Close</Text>
+          </Button>
+        </Modal>
+        <Button onPress={() => updateModalVisible(true)}>
+          <Text>Filter Wine List</Text>
+        </Button>
         <Form>
           <Text>Sort By</Text>
           <Picker
