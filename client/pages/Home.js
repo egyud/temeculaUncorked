@@ -65,7 +65,7 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
             />
             <HomePageLink
               linkText='Wine Clubs'
-              nav={() => navigate('WineClubs')}
+              nav={() => navigate('ClubList')}
             />
             <HomePageLink
               linkText='Events'

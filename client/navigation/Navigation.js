@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import Home from '../pages/Home'
-import WineClubsPage from '../pages/WineClubsPage'
+import ClubComparison from '../pages/ClubComparison'
 import WineryList from '../pages/WineryList'
 import WineryPage from '../pages/WineryPage'
 import EventsPage from '../pages/EventsPage'
@@ -19,13 +19,15 @@ import PostReviewScreen from '../pages/PostReviewScreen'
 import WineScreen from '../pages/WineScreen'
 import AccountPage from '../pages/AccountPage'
 import UploadPhotoScreen from '../pages/UploadPhotoScreen'
+import ClubListScreen from '../pages/ClubListScreen'
+import ClubScreen from '../pages/ClubScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
     screen: Home
   },
-  WineClubs: {
-    screen: WineClubsPage
+  Comparison: {
+    screen: ClubComparison
   },
   WineryList: {
     screen: WineryList
@@ -71,6 +73,12 @@ const StackNavigator = createStackNavigator({
   },
   UploadPhoto: {
     screen: UploadPhotoScreen
+  },
+  ClubList: {
+    screen: ClubListScreen
+  },
+  Club: {
+    screen: ClubScreen
   }
 },
 {
@@ -105,9 +113,9 @@ const SearchNav = createStackNavigator({
 })
 
 const ClubNav = createStackNavigator({
-  WineClubs: {
-    screen: WineClubsPage
-  }
+  Comparison: {
+    screen: ClubComparison
+  },
 })
 
 const AccountNav = createStackNavigator({

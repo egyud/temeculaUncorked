@@ -6,7 +6,7 @@ export const FETCH_ALL_WINES = 'FETCH_ALL_WINES'
 export const FETCH_ALL_WINERIES = 'FETCH_ALL_WINERIES'
 
 export const fetchWineClubs = () => async (dispatch) => {
-  try {    
+  try {
     const response = await axios.get('http://localhost:5000/api/wineries/club')
   
     return dispatch({

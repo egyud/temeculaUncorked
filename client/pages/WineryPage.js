@@ -78,19 +78,27 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
     }
   }
 
-  const handleChoosePhoto = (e) => {
-
-    console.log('handleChoosePhoto()()()()')
-    // const options = {
-    //   noData: true,
-    // }
-    // ImagePicker.launchImageLibrary(options, response => {
-    //   if (response.uri) {
-    //     updateSelectedImage(response)
-    //   }
-    // })
+  async function openImagePickerAsync () {
+    try {
+      // let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync()
+  
+      // if (permissionResult.granted === false) {
+      //   alert('Permission to access camera roll is required!')
+      //   return
+      // }
+  
+      let result = await ImagePicker.launchImageLibraryAsync()
+  
+      if (result.cancelled) {
+        return
+      }
+      updateSelectedImage({ localUri: result.uri, filename: localUri.split('/').pop() })
+    } catch(err) {
+      console.error(err)
+    }
 
   }
+
 
   function createFormData(photo, body) {      
     const data = new FormData()
@@ -108,6 +116,15 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
 
   function handleUploadPhoto() {
     console.log('in handleUploadPhoto()')
+    let formData = FormDa
+    formData.append('image', selectedImage)
+    formData.set('activeUserId', user._id)
+    formData.set('winery', wineryData._id)
+    if (selectedImage) {
+      axios.post(`http://localhost:5000/api/images`, formData)
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
+    }
     // let data = createFormData(selectedImage, {
     //   activeUserId: user._id,
     //   wineryId: wineryData._id
@@ -142,7 +159,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
               submitPhoto={() => handleUploadPhoto()}
               data={wineryData} 
               rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
-              choosePhoto={() => handleChoosePhoto()}
+              choosePhoto={() => openImagePickerAsync()}
             />
           </ImageBackground>
         </View>

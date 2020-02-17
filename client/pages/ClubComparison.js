@@ -7,7 +7,7 @@ import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
 
 
-const WineClubsPage = ({ wineClubs, fetchWineClubs }) => {
+const ClubComparison = ({ wineClubs, fetchWineClubs }) => {
   const [tableHead, updateTableHead]  = useState(['Winery', 'Club', 'Free Tastings'])
   const [tableData, updateTableData] = useState([])
   const [selectedColumn, updateSelectedColumn] = useState('Free Tastings')
@@ -98,7 +98,7 @@ const WineClubsPage = ({ wineClubs, fetchWineClubs }) => {
   )
 }
 
-WineClubsPage.navigationOptions = {
+ClubComparison.navigationOptions = {
   title: 'Compare Wine Clubs',
   headerStyle: {
     backgroundColor: '#99ff99'
@@ -157,4 +157,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchWineClubs
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(WineClubsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ClubComparison)

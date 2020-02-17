@@ -49,7 +49,6 @@ export const loginUser = (userData, navigation) => async (dispatch) => {
 
 // get a list of all events the user is set to attend
 export const getUserEvents = (user) => async (dispatch) => {
-  console.log('in get User Events ')
   try {
     const response = await axios.get(`http://localhost:5000/api/events/user/${user._id}`)
     const { events } = response.data
