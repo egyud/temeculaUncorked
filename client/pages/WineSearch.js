@@ -67,10 +67,8 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
       updateWineList(wineArray)
     } else {   
       let filteredWines = wineArray.filter(wine => {
-        return filters.includes(wine.type) || filters.includes(wine.name)
+        return filters.includes(wine.category) || filters.includes(wine.winery)
       })
-      // this is returning an empty array
-      console.log(filteredWines)
       updateWineList(filteredWines)
     }
   }
