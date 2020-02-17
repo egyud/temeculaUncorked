@@ -23,8 +23,6 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   }, [wineArray])
 
   useEffect(() => {
-    // console.log('wineList')
-    // console.log(wineList)
     sortWines()
   }, [sortBy])
 
@@ -53,8 +51,6 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
       default:
         wineArr.sort((a,b) => b.rating - a.rating)
     }
-    console.log('sortedList')
-    console.log(wineArr)
     updateWineList(wineArr)
   }
 
@@ -71,6 +67,7 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
       })
       updateWineList(filteredWines)
     }
+    updateModalVisible(false)
   }
 
   return (
@@ -83,11 +80,14 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
           <WineFilters
             filterWines={() => filterWines()} 
             addToFilters={(val) => addToFilters(val)} />
-          <Button onPress={() => updateModalVisible(false)}>
+          <Button 
+            onPress={() => updateModalVisible(false)}>
             <Text>Close</Text>
           </Button>
         </Modal>
-        <Button onPress={() => updateModalVisible(true)}>
+        <Button
+          style={styles.filterBtn} 
+          onPress={() => updateModalVisible(true)}>
           <Text>Filter Wine List</Text>
         </Button>
         <Form>
@@ -105,7 +105,9 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
           </Picker>
         </Form>
       </View>
-      <WineList wines={wineList} navigation={navigation}/>
+      <WineList 
+        wines={wineList} 
+        navigation={navigation}/>
       
     </View>
   )
@@ -135,6 +137,9 @@ const styles = StyleSheet.create({
   },
   picker: {
     marginVertical: 0,
+  },
+  filterBtn: {
+    width: '50%'
   }
 })
 

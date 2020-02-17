@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#99ff99',
     textAlign: 'center',
     width: '100%',
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: 18,
+    paddingBottom: 18,
     paddingLeft: 10
   },
   imageBackground: {
