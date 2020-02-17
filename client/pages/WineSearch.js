@@ -30,7 +30,7 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
 
 
   function sortWines() {
-    let wineArr = [...wineArray]
+    let wineArr = [...wineList]
     switch (sortBy) {
       case 'ratingA':
         wineArr.sort((a,b) => a.rating - b.rating)
