@@ -49,7 +49,7 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
   }
 
   return (
-    <View>
+    <View style={styles.home}>
       <View>
         <ImageBackground 
           source={require('../assets/wineGlasses.jpg')}
@@ -98,6 +98,9 @@ Home.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
+  // home: {
+  //   backgroundColor: '#99ff99'
+  // },
   searchBar: {
     backgroundColor: 'white',
     paddingTop: 20,

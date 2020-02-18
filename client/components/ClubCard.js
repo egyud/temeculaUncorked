@@ -23,7 +23,9 @@ const ClubCard = ({ club, navigation }) => {
       </CardItem>
       <CardItem>
         <Left>
-          <Button onPress={() => navigation.navigate('Club', { club })}>
+          <Button
+            style={styles.moreBtn} 
+            onPress={() => navigation.navigate('Club', { club })}>
             <Text>More</Text>
           </Button>
         </Left>
@@ -41,6 +43,9 @@ const styles = StyleSheet.create({
   // clubCard: {
   //   flex: 1
   // }
+  moreBtn: {
+    backgroundColor: '#614D36'
+  }
 })
 
 export default connect(null)(ClubCard)

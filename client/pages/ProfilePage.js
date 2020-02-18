@@ -112,6 +112,13 @@ const ProfilePage = ({ activeUser, navigation }) => {
   )
 }
 
+ProfilePage.navigationOptions = {
+  title: 'Profile',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   imageBackground: {
     width: '100%', 

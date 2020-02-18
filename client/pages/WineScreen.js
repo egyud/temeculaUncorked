@@ -110,6 +110,13 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
   )
 }
 
+WineScreen.navigationOptions = {
+  title: 'Wine',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   image: {
     height: 200,

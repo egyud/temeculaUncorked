@@ -63,6 +63,13 @@ const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   )
 }
 
+ReviewScreen.navigationOptions = {
+  title: 'Review',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1

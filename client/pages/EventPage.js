@@ -109,6 +109,13 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
   )
 }
 
+EventPage.navigationOptions = {
+  title: 'Event Info',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   image: {
     height: 200,

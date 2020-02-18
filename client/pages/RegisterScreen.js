@@ -63,6 +63,13 @@ const RegisterScreen = ({ registerUser, navigation }) => {
   )
 }
 
+RegisterScreen.navigationOptions = {
+  title: 'Register',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
 
 })

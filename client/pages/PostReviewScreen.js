@@ -46,6 +46,13 @@ export default PostReviewScreen = ({ navigation }) => {
   )
 }
 
+PostReviewScreen.navigationOptions = {
+  title: 'Post a Review',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
 
 })

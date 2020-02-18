@@ -54,6 +54,13 @@ export default PostCommentScreen = ({ navigation }) => {
   )
 }
 
+PostCommentScreen.navigationOptions = {
+  title: 'Post a new comment',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
 
 })

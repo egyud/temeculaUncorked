@@ -48,6 +48,13 @@ const LoginScreen = ({ loginUser, navigation }) => {
   )
 }
 
+LoginScreen.navigationOptions = {
+  title: 'Login',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
 
 })

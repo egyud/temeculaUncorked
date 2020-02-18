@@ -111,6 +111,13 @@ const AccountPage = ({ user, isAuthenticated, userEvents, wineryList, navigation
   )
 }
 
+AccountPage.navigationOptions = {
+  title: 'Your Account',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
 
 })

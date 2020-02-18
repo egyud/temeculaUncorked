@@ -41,6 +41,13 @@ const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   )
 }
 
+ClubListScreen.navigationOptions = {
+  title: 'Wine Clubs',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {

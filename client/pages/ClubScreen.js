@@ -73,6 +73,13 @@ const ClubScreen = ({ navigation }) => {
   )
 }
 
+ClubScreen.navigationOptions = {
+  title: 'Club Info',
+  headerStyle: {
+    backgroundColor: '#99ff99'
+  }
+}
+
 const styles = StyleSheet.create({
   image: {
     height: 200,
