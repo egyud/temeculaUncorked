@@ -3,16 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
 import { View, StyleSheet, Text } from 'react-native'
-import { Table, Row, Rows } from 'react-native-table-component'
 import { Form, Picker } from 'native-base'
-
+import ClubColumn from '../components/ClubColumn'
 
 const ClubComparison = ({ wineClubs, fetchWineClubs }) => {
-  const [tableHead, updateTableHead]  = useState(['Winery', 'Club', 'Free Tastings'])
-  const [tableData, updateTableData] = useState([])
-  const [selectedColumn, updateSelectedColumn] = useState('Free Tastings')
-
-  console.log(wineClubs)
+  const [clubList, updateClubList] = useState([])
+  const [firstClub, updateFirstClub] = useState('')
+  const [secondClub, updateSecondClub] = useState('')
 
   useEffect(() => {
     fetchWineClubs()
@@ -20,82 +17,76 @@ const ClubComparison = ({ wineClubs, fetchWineClubs }) => {
 
   useEffect(() => {
     createTableDataArray()
-  }, [wineClubs, selectedColumn])
+  }, [wineClubs])
 
   function createTableDataArray() {
     let tableDataArray = []
+    let clubListArray = []
     wineClubs.forEach(winery => {
       let { wineClubs: clubs } = winery
       clubs.forEach(club => {
-        let rowArray = [winery.name, club.name]
-        switch(selectedColumn) {
-          case 'Free Tastings':
-            rowArray.push(club.tastings)
-            updateTableHead(['Winery', 'Club', 'Free Tastings'])
-            break;
-          case 'Pickups':
-            rowArray.push(club.shipments)
-            updateTableHead(['Winery', 'Club', 'Pickups'])
-            break;
-          case 'Discounts':
-            rowArray.push(club.discounts)
-            updateTableHead(['Winery', 'Club', 'Discounts'])
-            break;
-          case 'Other Benefits':
-            rowArray.push(club.otherBenefits)
-            updateTableHead(['Winery', 'Club', 'Other Benefits'])
-            break;
-          case 'Avg. Cost':
-            rowArray.push(club.avgPrice)
-            updateTableHead(['Winery', 'Club', 'Avg. Cost'])
-            break;
-          default:
-            rowArray.push(club.tastings)
-            updateTableHead(['Winery', 'Club', 'Free Tastings'])
-            break;
-        }
-        tableDataArray.push(rowArray)
+        clubListArray.push({
+          ...club,
+          winery: winery.name
+        })
       })
     })
-    updateTableData(tableDataArray)
+    updateClubList(clubListArray)
+    updateFirstClub(clubListArray[0])
+    updateSecondClub(clubListArray[1])
   }
 
+  function changeClubValue(name, number) {
+    let index = clubList.findIndex(club => club.name === name)
+    if (number === 1) {
+      updateFirstClub(clubList[index])
+    } else {
+      updateSecondClub(clubList[index])
+    }
+  }
+
+  if (clubList.length > 0) {
+    return (
+      <View style={styles.container}>
+        <Form>
+          <Text>Pick a club for comparison</Text>
+          <Picker
+            note
+            mode="dropdown"
+            selectedValue={clubList[0]}
+            onValueChange={(value) => changeClubValue(value, 1)}
+            style={styles.picker}
+            >
+            {clubList.map(club => (
+              <Picker.Item label={club.name} value={club.name}/>
+            ))}
+          </Picker>
+          <Text>Pick a second club for comparison</Text>
+          <Picker
+            note
+            mode="dropdown"
+            selectedValue={clubList[1]}
+            onValueChange={(value) => changeClubValue(value, 2)}
+            style={styles.picker}
+            >
+            {clubList.map(club => (
+              <Picker.Item label={club.name} value={club.name}/>
+            ))}
+          </Picker>
+        </Form>
+        <View style={styles.columnWrapper}>
+          <ClubColumn club={firstClub}/>
+          <ClubColumn club={secondClub}/>
+        </View>
+      </View>
+    )
+  }
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Which category do you want to compare?</Text>
-      <Text>Let's see if this is visible</Text>
-      <Form>
-        <Picker
-          note
-          mode="dropdown"
-          selectedValue={selectedColumn}
-          onValueChange={(value) => updateSelectedColumn(value)}
-          style={styles.picker}
-        >
-          <Picker.Item label="Free Tastings" value="Free Tastings" />
-          <Picker.Item label="Pickups" value="Pickups" />
-          <Picker.Item label="Discounts" value="Discounts" />
-          <Picker.Item label="Other Benefits" value="Other Benefits" />
-          <Picker.Item label="Avg. Cost" value="Avg. Cost" />
-        </Picker>
-      </Form>
-      <Table 
-        borderStyle={{borderWidth: 0, borderColor: '#d2d2d2'}}
-        style={styles.table}>
-        <Row 
-          data={tableHead} 
-          style={styles.head}
-          textStyle={styles.rowHead}
-        />
-        <Rows 
-          data={tableData} 
-          style={styles.row}
-          textStyle={styles.rowText}
-        />
-      </Table>
-      
+    <View>
+      <Text>Loading...</Text>
     </View>
   )
+
 }
 
 ClubComparison.navigationOptions = {
@@ -144,6 +135,12 @@ const styles = StyleSheet.create({
   rowHead: {
     textAlign: 'center',
     borderWidth: 0
+  },
+  columnWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    // alignItems: 'center',
+    justifyContent: 'space-around',
   }
 })
 
