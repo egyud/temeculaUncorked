@@ -24,7 +24,7 @@ const RegisterScreen = ({ registerUser, navigation }) => {
 
   return (
     <Content>
-      <Form>
+      <Form style={styles.registerForm}>
         <Item stackedLabel>
           <Label>Email</Label>
           <Input
@@ -52,12 +52,13 @@ const RegisterScreen = ({ registerUser, navigation }) => {
             onChangeText={(text) => updatePassword2(text)}/>
         </Item>
         <Button 
-          block 
-          primary
+          style={styles.registerBtn}
           onPress={(event) => onSubmitHandler(event)}>
-          <Text>Register</Text>
+          <Text style={styles.registerBtnText}>Register</Text>
         </Button>
-        <Text onPress={() => navigation.navigate('Login')}>Already have an account? Login here</Text>
+        <Text
+          style={styles.loginLink} 
+          onPress={() => navigation.navigate('Login')}>Already have an account? Login here</Text>
       </Form>
     </Content>
   )
@@ -71,7 +72,27 @@ RegisterScreen.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-
+  registerForm: {
+    marginTop: 50
+  },
+  registerBtn: {
+    backgroundColor: '#99ff99',
+    width: 150,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    justifyContent: 'center',
+    marginTop: 25,
+    borderColor: '#614d36',
+    borderWidth: 1
+  },
+  registerBtnText: {
+    color: '#614d36',
+    fontWeight: 'bold'
+  },
+  loginLink: {
+    paddingTop: 25,
+    textAlign: 'center'
+  },
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

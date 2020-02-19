@@ -22,7 +22,7 @@ const LoginScreen = ({ loginUser, navigation }) => {
 
   return (
     <Content>
-      <Form>
+      <Form style={styles.loginForm}>
         <Item stackedLabel>
           <Label>Email</Label>
           <Input
@@ -37,12 +37,13 @@ const LoginScreen = ({ loginUser, navigation }) => {
             onChangeText={(text) => updatePassword(text)}/>
         </Item>
         <Button 
-          block 
-          primary
+          style={styles.loginBtn}
           onPress={(event) => onSubmitHandler(event)}>
-          <Text>Login</Text>
+          <Text style={styles.loginBtnText}>Login</Text>
         </Button>
-        <Text onPress={() => navigation.navigate('Register')}>Register for an account</Text>
+        <Text 
+          onPress={() => navigation.navigate('Register')}
+          style={styles.registerLink}>Don't have an account? Click here to register</Text>
       </Form>
     </Content>
   )
@@ -56,7 +57,27 @@ LoginScreen.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-
+  loginForm: {
+    marginTop: 50
+  }, 
+  registerLink: {
+    paddingTop: 25,
+    textAlign: 'center'
+  },
+  loginBtn: {
+    backgroundColor: '#99ff99',
+    width: 150,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    justifyContent: 'center',
+    marginTop: 25,
+    borderColor: '#614d36',
+    borderWidth: 1
+  },
+  loginBtnText: {
+    color: '#614d36',
+    fontWeight: 'bold'
+  }
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
