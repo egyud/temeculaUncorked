@@ -16,7 +16,9 @@ export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPh
         <Right>
           <Rating 
             imageSize={25} 
-            startingValue={rating}/>
+            startingValue={rating}
+            type="custom"
+            ratingColor="#99ff99" />
           <Text>{reviewCount} Reviews</Text>
         </Right>
       </CardItem>
@@ -25,17 +27,26 @@ export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPh
           <Button 
             onPress={openGallery}
             style={styles.photoButton}>
-            <Text style={styles.photoButtonText}>Photos</Text>
+            <Icon 
+              type="FontAwesome"
+              name="image"
+              style={styles.icon}/>
           </Button>
           <Button
             onPress={choosePhoto}
             style={styles.photoButton}>
             <Icon 
               type="FontAwesome" 
-              name="plus"/>
+              name="plus"
+              style={styles.icon}/>
           </Button>
-          <Button onPress={submitPhoto}>
-            <Text>Upload</Text>
+          <Button 
+            onPress={submitPhoto}
+            style={styles.photoButton}>
+            <Icon 
+              type="FontAwesome"
+              name="upload"
+              style={styles.icon}/>
           </Button>
         </Left>
         <Right>
@@ -50,7 +61,7 @@ export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPh
 
 const styles = StyleSheet.create({
   block: {
-    width: '80%',
+    width: '85%',
     marginVertical: 0,
     marginHorizontal: 'auto'
   },
@@ -67,5 +78,8 @@ const styles = StyleSheet.create({
   },
   photoButtonText: {
     color: '#89012c'
+  },
+  icon: {
+    color: '#614D36'
   }
 })

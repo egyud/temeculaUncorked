@@ -45,8 +45,12 @@ export default CommentListItem = ({ comment, navigation, activeUserId }) => {
             <Button 
               transparent
               onPress={() => addLike()}>
-              <Icon active name="thumbs-up" />
-              <Text>{likes.length} Likes</Text>
+              <Icon
+                style={styles.icons}
+                active name="thumbs-up"
+               />
+              <Text 
+                style={styles.icons}>{likes.length} Likes</Text>
             </Button>
           </Left>
           <Right>
@@ -59,5 +63,7 @@ export default CommentListItem = ({ comment, navigation, activeUserId }) => {
 }
 
 const styles = StyleSheet.create({
-
+  icons: {
+    color: '#614D36'
+  }
 })

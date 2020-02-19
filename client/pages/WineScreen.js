@@ -67,7 +67,9 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
               <Rating 
                 startingValue={rating}
                 readonly={!isAuthenticated}
-                onFinishRating={(rate) => updateWineRating(rate)}/>
+                onFinishRating={(rate) => updateWineRating(rate)}
+                type="custom"
+                ratingColor="#99ff99" />
             </Body>
           </CardItem>
           <CardItem>
@@ -98,7 +100,9 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
                 <Rating
                   readonly={true}
                   startingValue={rate.rating}
-                  imageSize={25}/>
+                  imageSize={25}
+                  type="custom"
+                  ratingColor="#99ff99" />
               </Body>
               <Right>
               </Right>

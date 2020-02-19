@@ -43,7 +43,9 @@ export default Review = ({ review, navigation, activeUserId }) => {
           <Right>
             <Rating 
               startingValue={rating}
-              imageSize={25}/>
+              imageSize={25}
+              type="custom"
+              ratingColor="#99ff99" />
           </Right>
         </CardItem>
         <CardItem cardBody>
@@ -56,16 +58,20 @@ export default Review = ({ review, navigation, activeUserId }) => {
             <Button 
               transparent
               onPress={() => addLike()}>
-              <Icon active name="thumbs-up" />
-              <Text>{likes.length} Likes</Text>
+              <Icon
+                style={styles.btns} 
+                active name="thumbs-up" />
+              <Text style={styles.btns}>{likes.length} Likes</Text>
             </Button>
           </Left>
           <Body>
             <Button 
               transparent
               onPress={() => navigation.navigate('Review', { review: review })}>
-              <Icon active name="chatbubbles" />
-              <Text>View Comments</Text>
+              <Icon
+                style={styles.btns}
+                active name="chatbubbles" />
+              <Text style={styles.btns}>View Comments</Text>
             </Button>
           </Body>
           <Right>
@@ -78,5 +84,7 @@ export default Review = ({ review, navigation, activeUserId }) => {
 }
 
 const styles = StyleSheet.create({
-
+  btns: {
+    color: '#614D36'
+  }
 })

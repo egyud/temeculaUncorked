@@ -32,7 +32,9 @@ export default PostReviewScreen = ({ navigation }) => {
         <Rating 
           imageSize={40}
           startingValue={avgRating}
-          onFinishRating={(rating) => updateRating(rating)}/>
+          onFinishRating={(rating) => updateRating(rating)}
+          type="custom"
+          ratingColor="#99ff99" />
         <Textarea 
           rowSpan={5} 
           bordered

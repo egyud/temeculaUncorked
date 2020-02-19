@@ -40,14 +40,19 @@ const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
                 startingValue={rating}
                 imageSize={25}
                 readonly={!isAuthenticated}
-                onFinishRating={(rate) => updateWineRating(rate)}/>
+                onFinishRating={(rate) => updateWineRating(rate)}
+                type="custom"
+                ratingColor="#99ff99" />
+                {/* ratingColor="#614D36" /> */}
               <Text note>{ratingCount} ratings</Text>
             </Body>
           </Right>
       </CardItem>
       <CardItem>
         <Left>
-          <Button onPress={() => navigation.navigate('Wine', { wine })}>
+          <Button
+            style={styles.moreBtn} 
+            onPress={() => navigation.navigate('Wine', { wine })}>
             <Text>More</Text>
           </Button>
         </Left>
@@ -62,7 +67,9 @@ const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
 }
 
 const styles = StyleSheet.create({
-
+  moreBtn: {
+    backgroundColor: '#614D36'
+  }
 })
 
 const mapStateToProps = (state) => {

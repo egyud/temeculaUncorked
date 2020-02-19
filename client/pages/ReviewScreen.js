@@ -72,7 +72,8 @@ ReviewScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#e6ffe6'
   },
   btnText: {
     textAlign: 'center'

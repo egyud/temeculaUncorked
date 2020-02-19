@@ -59,7 +59,9 @@ const WineryList = ({ list, fetchWineries, navigation }) => {
             <Right>
               <Rating 
                 startingValue={calculateAverage(winery.avgRating, winery.reviewCount)}
-                imageSize={25}/>
+                imageSize={25}
+                type="custom"
+                ratingColor="#99ff99" />
             </Right>
           </ListItem>
         ))}
