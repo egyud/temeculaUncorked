@@ -43,7 +43,6 @@ const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
                 onFinishRating={(rate) => updateWineRating(rate)}
                 type="custom"
                 ratingColor="#99ff99" />
-                {/* ratingColor="#614D36" /> */}
               <Text note>{ratingCount} ratings</Text>
             </Body>
           </Right>
