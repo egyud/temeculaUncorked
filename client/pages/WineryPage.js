@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   callText: {
-    color: '#89012c'
+    color: '#614D36'
   },
   photoButton: {
     backgroundColor: '#99ff99',
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#89012c'
   },
   photoButtonText: {
-    color: '#89012c'
+    color: '#614D36'
   }
 })
 

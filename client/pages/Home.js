@@ -30,10 +30,12 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
   let login = (
     <>
       <HomePageLink
+        iconName="sign-in"
         linkText='Login'          
         nav={() => navigate('Login')}
       /> 
       <HomePageLink
+        iconName="user-plus"
         linkText='Register'
         nav={() => navigate('Register')}
       />
@@ -42,6 +44,7 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
   if(isAuthenticated) {
     login = (
       <HomePageLink 
+        iconName="user-circle"
         linkText='Account'
         nav={() => navigate('Account')}
       />
@@ -54,24 +57,24 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
         <ImageBackground 
           source={require('../assets/wineGlasses.jpg')}
           style={styles.imageBackground}>
-          {/* <TextInput 
-            onFocus={() => navigate('WineryList')}
-            style={styles.searchBar}
-            placeholder='Search for wineries'/> */}
           <View style={styles.linkContainer}>
             <HomePageLink
-              linkText='Winery Directory'
+              iconName="list"
+              linkText='Wineries'
               nav={() => navigate('WineryList')}
             />
             <HomePageLink
+              iconName="users"
               linkText='Wine Clubs'
               nav={() => navigate('ClubList')}
             />
             <HomePageLink
+              iconName="music"
               linkText='Events'
               nav={() => navigate('Events')}
             />
             <HomePageLink
+              iconName="wine-glass"
               linkText='Wines'
               nav={() => navigate('WineSearch')}
             />
@@ -98,22 +101,8 @@ Home.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-  // home: {
-  //   backgroundColor: '#99ff99'
-  // },
-  searchBar: {
-    backgroundColor: 'white',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginBottom: 30,
-    marginTop: 20,
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    width: '80%',
-  },
   linkContainer: {
+    width: '80%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
