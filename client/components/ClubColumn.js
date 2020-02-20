@@ -7,13 +7,34 @@ export default ClubColumn = ({ club }) => {
 
   return (
     <View style={styles.column}>
-      <ClubColumnItem title="Club" body={name}/>
-      <ClubColumnItem title="Winery" body={winery}/>
-      <ClubColumnItem title="Tastings" body={tastings}/>
-      <ClubColumnItem title="Pickups/Shipments" body={shipments}/>
-      <ClubColumnItem title="Discounts" body={discounts}/>
-      <ClubColumnItem title="Other Benefits" body={otherBenefits}/>
-      <ClubColumnItem title="Avg. Price" body={avgPrice}/>
+      <ClubColumnItem
+        number={1} 
+        title="Club" 
+        body={name}/>
+      <ClubColumnItem
+        number={2}
+        title="Winery" 
+        body={winery}/>
+      <ClubColumnItem
+        number={1} 
+        title="Tastings" 
+        body={tastings}/>
+      <ClubColumnItem
+        number={2} 
+        title="Pickups/Shipments" 
+        body={shipments}/>
+      <ClubColumnItem
+        number={1} 
+        title="Discounts" 
+        body={discounts}/>
+      <ClubColumnItem
+        number={2} 
+        title="Other Benefits" 
+        body={otherBenefits}/>
+      <ClubColumnItem
+        number={1} 
+        title="Avg. Price" 
+        body={avgPrice}/>
     </View>
   )
 }
@@ -23,6 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     width: '70%',
-    paddingHorizontal: 0
+    paddingHorizontal: 0,
+    borderColor: '#fff'
   }
 })

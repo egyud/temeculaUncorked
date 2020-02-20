@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Text } from 'native-base'
 
-export default ClubColumnItem = ({ title, body }) => {
+export default ClubColumnItem = ({ title, body, number }) => {
   
   let bodyContent
   if (title !== 'Discounts' && title !== 'Other Benefits') {
@@ -16,7 +16,7 @@ export default ClubColumnItem = ({ title, body }) => {
   }
   
   return (
-    <View style={styles.row}>
+    <View style={[styles.row, number === 1 ? styles.dark : styles.light]}>
       <Text note>{title}</Text>
       {bodyContent}
     </View>
@@ -28,6 +28,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: '#fff',
+    overflow: 'scroll',
+    borderRadius: 30
+  },
+  light: {
+    backgroundColor: '#e6ffe6',
+  },
+  dark: {
+    backgroundColor: '#99ff99'
   }
 })

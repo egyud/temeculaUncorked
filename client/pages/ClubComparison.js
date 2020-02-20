@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, ImageBackground } from 'react-native'
 import { Form, Picker } from 'native-base'
 import ClubColumn from '../components/ClubColumn'
 
-const ClubComparison = ({ wineClubs, fetchWineClubs }) => {
+const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubList, updateClubList] = useState([])
   const [firstClub, updateFirstClub] = useState('')
   const [secondClub, updateSecondClub] = useState('')
@@ -47,38 +47,44 @@ const ClubComparison = ({ wineClubs, fetchWineClubs }) => {
 
   if (clubList.length > 0) {
     return (
-      <View style={styles.container}>
-        <Form>
-          <Text>Pick a club for comparison</Text>
-          <Picker
-            note
-            mode="dropdown"
-            selectedValue={clubList[0]}
-            onValueChange={(value) => changeClubValue(value, 1)}
-            style={styles.picker}
-            >
-            {clubList.map(club => (
-              <Picker.Item label={club.name} value={club.name}/>
-            ))}
-          </Picker>
-          <Text>Pick a second club for comparison</Text>
-          <Picker
-            note
-            mode="dropdown"
-            selectedValue={clubList[1]}
-            onValueChange={(value) => changeClubValue(value, 2)}
-            style={styles.picker}
-            >
-            {clubList.map(club => (
-              <Picker.Item label={club.name} value={club.name}/>
-            ))}
-          </Picker>
-        </Form>
-        <View style={styles.columnWrapper}>
-          <ClubColumn club={firstClub}/>
-          <ClubColumn club={secondClub}/>
+        <View style={styles.container}>
+            <View>
+              <Text
+                onPress={() => navigation.navigate('Club List')} 
+                style={styles.compareLink}>Click here to view a complete list of wine clubs</Text>
+            </View>
+         
+          <Form style={styles.form}>
+            <Text>Pick a club for comparison</Text>
+            <Picker
+              note
+              mode="dropdown"
+              selectedValue={clubList[0]}
+              onValueChange={(value) => changeClubValue(value, 1)}
+              style={styles.picker}
+              >
+              {clubList.map(club => (
+                <Picker.Item label={club.name} value={club.name}/>
+              ))}
+            </Picker>
+            <Text>Pick a second club for comparison</Text>
+            <Picker
+              note
+              mode="dropdown"
+              selectedValue={clubList[1]}
+              onValueChange={(value) => changeClubValue(value, 2)}
+              style={styles.picker}
+              >
+              {clubList.map(club => (
+                <Picker.Item label={club.name} value={club.name}/>
+              ))}
+            </Picker>
+          </Form>
+          <View style={styles.columnWrapper}>
+            <ClubColumn club={firstClub}/>
+            <ClubColumn club={secondClub}/>
+          </View>
         </View>
-      </View>
     )
   }
   return (
@@ -101,8 +107,11 @@ const styles = StyleSheet.create({
     flex: 1, 
     padding: 16, 
     paddingTop: 30, 
-    backgroundColor: '#fff'
-},
+    // backgroundColor: 'blue'
+  },
+  form: {
+    // flex: 1
+  },
   head: {  
     height: 40,  
     backgroundColor: '#99ff99'  
@@ -137,10 +146,32 @@ const styles = StyleSheet.create({
     borderWidth: 0
   },
   columnWrapper: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
     // alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  imageBackground: {
+    width: '100%', 
+    paddingVertical: 20,
+    height: 150,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  headline: {
+    fontSize: 30,
+    fontWeight: '700',
+    color: '#fff',
+    backgroundColor: '#89012c',
+    paddingVertical: 25,
+    paddingHorizontal: 40
+  },
+  compareLink: {
+    textAlign: 'center',
+    backgroundColor: '#99ff99',
+    paddingVertical: 15,
+    color: '#614d36',
+    fontWeight: '500'
   }
 })
 
