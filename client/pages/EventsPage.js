@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { View, Text, StyleSheet, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native'
 import EventList from '../components/EventList'
 
 export default EventsPage = ({ navigation }) => {
@@ -17,19 +17,21 @@ export default EventsPage = ({ navigation }) => {
   }
 
   return (
-    <View>
+    <ScrollView>
       <View>
-        <ImageBackground
-          source={require('../assets/wineGlasses.jpg')}
-          style={styles.imageBackground}
-        >
-          <Text style={styles.headline}>Upcoming Events</Text>
-        </ImageBackground>
+        <View>
+          <ImageBackground
+            source={require('../assets/wineGlasses.jpg')}
+            style={styles.imageBackground}
+          >
+            <Text style={styles.headline}>Upcoming Events</Text>
+          </ImageBackground>
+        </View>
+        <EventList 
+          events={events}
+          navigation={navigation}/>
       </View>
-      <EventList 
-        events={events}
-        navigation={navigation}/>
-    </View>
+    </ScrollView>
   )
 }
 

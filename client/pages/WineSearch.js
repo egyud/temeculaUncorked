@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineList } from '../actions/wineActions'
-import { View, StyleSheet, Text, Modal } from 'react-native'
+import { View, StyleSheet, Text, Modal, ScrollView } from 'react-native'
 import { Form, Picker, Button } from 'native-base'
 import WineList from '../components/WineList'
 import WineFilters from '../components/WineFilters'
@@ -71,45 +71,47 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   }
 
   return (
-    <View>
+    <ScrollView>
       <View>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={modalVisible}>
-          <WineFilters
-            filterWines={() => filterWines()} 
-            addToFilters={(val) => addToFilters(val)} />
-          <Button 
-            onPress={() => updateModalVisible(false)}>
-            <Text>Close</Text>
+        <View>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={modalVisible}>
+            <WineFilters
+              filterWines={() => filterWines()} 
+              addToFilters={(val) => addToFilters(val)} />
+            <Button 
+              onPress={() => updateModalVisible(false)}>
+              <Text>Close</Text>
+            </Button>
+          </Modal>
+          <Button
+            style={styles.filterBtn} 
+            onPress={() => updateModalVisible(true)}>
+            <Text>Filter Wine List</Text>
           </Button>
-        </Modal>
-        <Button
-          style={styles.filterBtn} 
-          onPress={() => updateModalVisible(true)}>
-          <Text>Filter Wine List</Text>
-        </Button>
-        <Form>
-          <Text>Sort By</Text>
-          <Picker
-            mode="dropdown"
-            selectedValue={sortBy}
-            onValueChange={(value) => updateSortBy(value)}>
-            <Picker.Item label="rating asc" value="ratingA"/>
-            <Picker.Item label="rating desc" value="ratingD"/>
-            <Picker.Item label="# of ratings asc" value="numRatingA"/>
-            <Picker.Item label="# of ratings desc" value="numRatingD"/>
-            <Picker.Item label="price asc" value="priceA"/>
-            <Picker.Item label="price desc" value="priceD"/>
-          </Picker>
-        </Form>
+          <Form>
+            <Text>Sort By</Text>
+            <Picker
+              mode="dropdown"
+              selectedValue={sortBy}
+              onValueChange={(value) => updateSortBy(value)}>
+              <Picker.Item label="rating asc" value="ratingA"/>
+              <Picker.Item label="rating desc" value="ratingD"/>
+              <Picker.Item label="# of ratings asc" value="numRatingA"/>
+              <Picker.Item label="# of ratings desc" value="numRatingD"/>
+              <Picker.Item label="price asc" value="priceA"/>
+              <Picker.Item label="price desc" value="priceD"/>
+            </Picker>
+          </Form>
+        </View>
+        <WineList 
+          wines={wineList} 
+          navigation={navigation}/>
+        
       </View>
-      <WineList 
-        wines={wineList} 
-        navigation={navigation}/>
-      
-    </View>
+    </ScrollView>
   )
 }
 

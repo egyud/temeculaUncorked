@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
-import { View, StyleSheet, ImageBackground, Text, Modal } from 'react-native'
+import { View, StyleSheet, ImageBackground, Text, Modal, ScrollView } from 'react-native'
 import { Form, Picker, Button } from 'native-base'
 import ClubList from '../components/ClubList'
 
@@ -33,24 +33,26 @@ const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View>
-        <ImageBackground
-          source={require('../assets/wineGlasses.jpg')}
-          style={styles.imageBackground}
-        >
-          <Text style={styles.headline}>Wine Clubs</Text>
-        </ImageBackground>
+    <ScrollView>
+      <View style={styles.container}>
         <View>
-          <Text
-            onPress={() => navigation.navigate('Comparison')} 
-            style={styles.compareLink}>Click here to compare wine club benefits</Text>
+          <ImageBackground
+            source={require('../assets/wineGlasses.jpg')}
+            style={styles.imageBackground}
+          >
+            <Text style={styles.headline}>Wine Clubs</Text>
+          </ImageBackground>
+          <View>
+            <Text
+              onPress={() => navigation.navigate('Comparison')} 
+              style={styles.compareLink}>Click here to compare wine club benefits</Text>
+          </View>
         </View>
+        <ClubList 
+          clubs={clubsList}
+          navigation={navigation}/>
       </View>
-      <ClubList 
-        clubs={clubsList}
-        navigation={navigation}/>
-    </View>
+    </ScrollView>
   )
 }
 
