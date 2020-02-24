@@ -66,8 +66,8 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
         return filters.includes(wine.category) || filters.includes(wine.winery)
       })
       updateWineList(filteredWines)
+      updateModalVisible(false)
     }
-    updateModalVisible(false)
   }
 
   return (
@@ -81,14 +81,25 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
             <WineFilters
               filterWines={() => filterWines()} 
               addToFilters={(val) => addToFilters(val)} />
-            <Button 
-              onPress={() => updateModalVisible(false)}>
-              <Text>Close</Text>
-            </Button>
+            <View style={styles.modalBtnWrapper}>
+              <Button
+                style={styles.modalBtn}
+                onPress={() => filterWines()}>
+                <Text>Apply Filters</Text>
+              </Button>
+              <Button
+                style={styles.modalBtn} 
+                onPress={() => updateModalVisible(false)}>
+                <Text>Close</Text>
+              </Button>
+            </View>
           </Modal>
           <Button
             style={styles.filterBtn} 
-            onPress={() => updateModalVisible(true)}>
+            onPress={() => {
+              updateModalVisible(true)
+              updateFilters([])
+            }}>
             <Text>Filter Wine List</Text>
           </Button>
           <Form>
@@ -141,7 +152,25 @@ const styles = StyleSheet.create({
     marginVertical: 0,
   },
   filterBtn: {
-    width: '50%'
+    backgroundColor: '#99ff99',
+    width: 150,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    justifyContent: 'center',
+    marginTop: 25,
+    borderColor: '#614d36',
+    borderWidth: 1
+  },
+  modalBtnWrapper: {
+    flexDirection: 'row',
+    width: '100%'
+  },
+  modalBtn: {
+    backgroundColor: '#99ff99',
+    flex: 1,
+    justifyContent: 'center',
+    borderColor: '#614d36',
+    borderWidth: 1
   }
 })
 

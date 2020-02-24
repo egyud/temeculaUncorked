@@ -28,9 +28,9 @@ const WineFilters = ({ wineryList, addToFilters, filterWines }) => {
               addToFilters={addToFilters} 
               text={winery.name}/>
         ))}
-        <Button onPress={filterWines}>
+        {/* <Button onPress={filterWines}>
           <Text>Apply Filters</Text>
-        </Button>
+        </Button> */}
       </View>
     </Content>
   )
