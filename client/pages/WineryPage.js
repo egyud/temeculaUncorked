@@ -3,15 +3,14 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { Tabs, Tab, Text, Icon, Button, Content } from 'native-base'
-import { Rating } from 'react-native-ratings' 
 import ImagePicker from 'expo-image-picker'
 import EventList from '../components/EventList'
-import WineClubInfo from '../components/WineClubInfo'
 import BlockHeader from '../components/BlockHeader'
 import WineList from '../components/WineList'
 import WineryInfo from '../components/WineryInfo'
 import ReviewList from '../components/ReviewList/ReviewList'
 import Review from '../components/Review'
+import ClubList from '../components/ClubList'
 
 
 const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
@@ -99,7 +98,6 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
 
   }
 
-
   function createFormData(photo, body) {      
     const data = new FormData()
     data.append('photo', {
@@ -118,8 +116,8 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
     console.log('in handleUploadPhoto()')
     let formData = FormDa
     formData.append('image', selectedImage)
-    formData.set('activeUserId', user._id)
-    formData.set('winery', wineryData._id)
+    formData.append('activeUserId', user._id)
+    formData.append('winery', wineryData._id)
     if (selectedImage) {
       axios.post(`http://localhost:5000/api/images`, formData)
         .then(res => console.log(res))
@@ -159,7 +157,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
               submitPhoto={() => handleUploadPhoto()}
               data={wineryData} 
               rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
-              choosePhoto={() => openImagePickerAsync()}
+              choosePhoto={() => navigation.navigate('PhotoPicker', { wineryData, user })}
             />
           </ImageBackground>
         </View>
@@ -187,7 +185,14 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
             heading="Wine Clubs" 
             activeTextStyle={{color: '#89012c'}}
           >
-            <WineClubInfo />
+            <View>
+              <Text
+                onPress={() => navigation.navigate('Comparison')} 
+                style={styles.compareLink}>
+                Compare wine club benefits
+              </Text>
+            </View>
+            <ClubList clubs={wineryData.wineClubs} navigation={navigation}/>
           </Tab>
           <Tab 
             heading="Events" 
@@ -251,12 +256,17 @@ const styles = StyleSheet.create({
   },
   photoButtonText: {
     color: '#614D36'
+  },
+  compareLink: {
+    textAlign: 'center',
+    backgroundColor: '#99ff99',
+    paddingVertical: 15,
+    color: '#614d36',
+    fontWeight: '500'
   }
 })
 
 const mapStateToProps = (state) => {
-  console.log('LOOOOOOK HERE')
-  console.log(state.reviewReducer.reviews)
   return {
     reviews: state.reviewReducer.reviews.data,
     user: state.authReducer.user.user,
