@@ -77,16 +77,6 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
               <Text>Next level aesthetic tbh, polaroid beard 8-bit YOLO. Artisan tumblr copper mug craft beer hashtag everyday carry iPhone you probably haven't heard of them vegan normcore ugh. Umami roof party williamsburg trust fund stumptown yr, godard swag.</Text>
             </Body>
           </CardItem>
-          <CardItem>
-            <Left>
-              
-            </Left>
-            <Right>
-              <Button style={styles.button}>
-                <Text>Photos</Text>
-              </Button>
-            </Right>
-          </CardItem>
         </Card>
         <Text>Recent Ratings</Text>
         <List>
