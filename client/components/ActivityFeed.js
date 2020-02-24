@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment from 'moment'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 
 export default ActivityFeed = ({ navigation }) => {
@@ -30,22 +30,21 @@ export default ActivityFeed = ({ navigation }) => {
   return (
     <List>
       {reviews.map(review => (
-        <TouchableOpacity 
-          onPress={() => navigation.navigate('Review', { review })}
+        <ListItem 
+          avatar style={styles.listItem} 
+          onPress={() => navigation.navigate('Review', { review })} 
           key={review._id}>
-          <ListItem avatar style={styles.listItem}>
-            <Left>
-              <Thumbnail source={{ uri: review.userId.avatar.url }}/>
-            </Left>
-            <Body>
-              <Text>{review.userId.name}</Text>
-              <Text note>Reviewed {review.reviewedId.name}</Text>
-            </Body>
-            <Right>
-              <Text note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
-            </Right>
-          </ListItem>
-        </TouchableOpacity>
+          <Left>
+            <Thumbnail source={{ uri: review.userId.avatar.url }}/>
+          </Left>
+          <Body>
+            <Text>{review.userId.name}</Text>
+            <Text note>Reviewed {review.reviewedId.name}</Text>
+          </Body>
+          <Right>
+            <Text note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
+          </Right>
+        </ListItem>
       ))}
     </List>
   )
