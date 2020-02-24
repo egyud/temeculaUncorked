@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { Icon } from 'native-base'
 
-export default HomePageLink = ({ linkText, nav, iconName }) => {
+export default HomePageLink = ({ linkText, nav, iconName, typeName }) => {
   return (
     <TouchableOpacity 
       style={styles.btn}
@@ -12,7 +12,7 @@ export default HomePageLink = ({ linkText, nav, iconName }) => {
       </Text>
       <Icon
         style={styles.icon}
-        type="FontAwesome"
+        type={typeName}
         name={iconName} />
     </TouchableOpacity>
   )

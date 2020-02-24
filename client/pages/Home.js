@@ -31,11 +31,13 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
     <>
       <HomePageLink
         iconName="sign-in"
-        linkText='Login'          
+        typeName="FontAwesome"          
+        linkText='Login'
         nav={() => navigate('Login')}
       /> 
       <HomePageLink
         iconName="user-plus"
+        typeName="FontAwesome"
         linkText='Register'
         nav={() => navigate('Register')}
       />
@@ -45,6 +47,7 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
     login = (
       <HomePageLink 
         iconName="user-circle"
+        typeName="FontAwesome"
         linkText='Account'
         nav={() => navigate('Account')}
       />
@@ -60,21 +63,25 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
           <View style={styles.linkContainer}>
             <HomePageLink
               iconName="list"
+              typeName="FontAwesome"
               linkText='Wineries'
               nav={() => navigate('WineryList')}
             />
             <HomePageLink
               iconName="users"
+              typeName="FontAwesome"
               linkText='Wine Clubs'
               nav={() => navigate('ClubList')}
             />
             <HomePageLink
-              iconName="music"
+              iconName="event"
+              typeName="MaterialIcons"
               linkText='Events'
               nav={() => navigate('Events')}
             />
             <HomePageLink
-              iconName="wine-glass"
+              iconName="glass-wine"
+              typeName="MaterialCommunityIcons"
               linkText='Wines'
               nav={() => navigate('WineSearch')}
             />
