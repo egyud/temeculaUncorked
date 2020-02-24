@@ -81,7 +81,7 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
         <Text>Recent Ratings</Text>
         <List>
           {recentRatings.map(rate => (
-            <ListItem>
+            <ListItem onPress={() => navigation.navigate('Profile', { userId: rate.userId._id })}>
               <Left>
                 <Thumbnail source={{ uri: rate.userId.avatar.url }}/>
                 <Text>{rate.userId.name}</Text>
