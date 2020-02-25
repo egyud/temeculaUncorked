@@ -26,7 +26,7 @@ const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   }
 
   return (
-    <Card>
+    <Card style={styles.card}>
       <CardItem>
         <Left>
           <Body>
@@ -68,6 +68,9 @@ const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
 const styles = StyleSheet.create({
   moreBtn: {
     backgroundColor: '#614D36'
+  },
+  card: {
+    backgroundColor: '#f5f5f5'
   }
 })
 

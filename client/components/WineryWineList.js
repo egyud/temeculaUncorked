@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { fetchWineList } from '../actions/wineActions'
 import { View, StyleSheet, Text, Modal, ScrollView } from 'react-native'
 import { Form, Picker, Button } from 'native-base'
-import WineList from '../components/WineList'
-import WineFilters from '../components/WineFilters'
-import FilterModal from '../components/FilterModal'
+import WineList from './WineList'
+import FilterModal from './FilterModal'
 
-
-const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
+export default WineryWineList = ({ wineArray, navigation }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
   const [filters, updateFilters] = useState([])
   const [wineList, updateWineList] = useState([])
   const [modalVisible, updateModalVisible] = useState(false)
 
   useEffect(() => {
-    fetchWineList()
-  }, [])
-
-  useEffect(() => {
     updateWineList(wineArray)
   }, [wineArray])
 
   useEffect(() => {
-    sortWines()
+    if (wineList.length > 0) {
+      sortWines()
+    }
   }, [sortBy])
-
 
   function sortWines() {
     let wineArr = [...wineList]
@@ -72,17 +64,16 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   }
 
   return (
-    <ScrollView>
+    <View>
       <View>
-        <View>
-          <FilterModal 
-            close={() => updateModalVisible(false)}
-            filterWines={() => filterWines()}
-            addToFilters={addToFilters}
-            isWineryScreen={false}
-            modalVisible={modalVisible}
-          />
-          <Button
+        <FilterModal 
+          close={() => updateModalVisible(false)}
+          filterWines={() => filterWines()}
+          addToFilters={addToFilters}
+          isWineryScreen={true}
+          modalVisible={modalVisible}
+        />
+        <Button
             style={styles.filterBtn} 
             onPress={() => {
               updateModalVisible(true)
@@ -104,21 +95,13 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
               <Picker.Item label="price desc" value="priceD"/>
             </Picker>
           </Form>
-        </View>
-        <WineList 
-          wines={wineList} 
-          navigation={navigation}/>
-        
       </View>
-    </ScrollView>
+      <WineList 
+        wines={wineList}
+        navigation={navigation}
+      />
+    </View>
   )
-}
-
-WineSearch.navigationOptions = {
-  title: 'Wines',
-  headerStyle: {
-    backgroundColor: '#99ff99'
-  }
 }
 
 const styles = StyleSheet.create({
@@ -144,16 +127,15 @@ const styles = StyleSheet.create({
     borderColor: '#614d36',
     borderWidth: 1
   },
-})
-
-const mapStateToProps = (state) => {
-  return {
-    wineArray: state.wineReducer.wineList
+  modalBtnWrapper: {
+    flexDirection: 'row',
+    width: '100%'
+  },
+  modalBtn: {
+    backgroundColor: '#99ff99',
+    flex: 1,
+    justifyContent: 'center',
+    borderColor: '#614d36',
+    borderWidth: 1
   }
-}
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  fetchWineList
-}, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(WineSearch)
+})

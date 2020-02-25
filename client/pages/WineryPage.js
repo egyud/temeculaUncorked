@@ -9,8 +9,8 @@ import BlockHeader from '../components/BlockHeader'
 import WineList from '../components/WineList'
 import WineryInfo from '../components/WineryInfo'
 import ReviewList from '../components/ReviewList/ReviewList'
-import Review from '../components/Review'
 import ClubList from '../components/ClubList'
+import WineryWineList from '../components/WineryWineList'
 
 
 const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
@@ -177,9 +177,13 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
             heading="Wines" 
             activeTextStyle={{color: '#89012c'}}
           >
-            <WineList 
+            <WineryWineList 
+              wineArray={wineListData}
+              navigation={navigation}
+            />
+            {/* <WineList 
               wines={wineListData}
-              navigation={navigation}/>
+              navigation={navigation}/> */}
           </Tab>
           <Tab 
             heading="Wine Clubs" 
@@ -192,7 +196,9 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
                 Compare wine club benefits
               </Text>
             </View>
-            <ClubList clubs={wineryData.wineClubs} navigation={navigation}/>
+            <ClubList 
+              clubs={wineryData.wineClubs} 
+              navigation={navigation}/>
           </Tab>
           <Tab 
             heading="Events" 

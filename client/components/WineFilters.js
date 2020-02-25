@@ -4,8 +4,25 @@ import { View, StyleSheet } from 'react-native'
 import { Container, Header, Content, ListItem, CheckBox, Text, Body, Button } from 'native-base'
 import WineFilterItem from './WineFilterItem'
 
-const WineFilters = ({ wineryList, addToFilters, filterWines }) => {
+const WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
   const types = ['red', 'white', 'rosé', 'sparkling', 'dessert']
+  let wineryFilters
+
+  if (!isWineryScreen) {
+    wineryFilters = (
+      <>
+        <ListItem itemDivider>
+          <Text>Winery</Text>
+        </ListItem>
+        {wineryList.map(winery => (
+            <WineFilterItem
+              key={winery._id}
+              addToFilters={addToFilters} 
+              text={winery.name}/>
+        ))}
+      </>
+    )
+  }
 
   return (
     <Content style={styles.wineFilters}>
@@ -19,18 +36,7 @@ const WineFilters = ({ wineryList, addToFilters, filterWines }) => {
             addToFilters={addToFilters} 
             text={type}/>
         ))}
-        <ListItem itemDivider>
-          <Text>Winery</Text>
-        </ListItem>
-        {wineryList.map(winery => (
-            <WineFilterItem
-              key={winery._id}
-              addToFilters={addToFilters} 
-              text={winery.name}/>
-        ))}
-        {/* <Button onPress={filterWines}>
-          <Text>Apply Filters</Text>
-        </Button> */}
+        {wineryFilters}
       </View>
     </Content>
   )
