@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
-import { View, StyleSheet, Text, ImageBackground } from 'react-native'
-import { Form, Picker } from 'native-base'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import { Button } from 'native-base'
 import ClubColumn from '../components/ClubColumn'
+import ClubModal from '../components/ClubModal'
 
 const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubList, updateClubList] = useState([])
   const [firstClub, updateFirstClub] = useState('')
   const [secondClub, updateSecondClub] = useState('')
+  const [modalVisible, updateModalVisible] = useState(false)
+  const [selectedClubNumber, updateSelectedClubNumber] = useState(null)
 
   useEffect(() => {
     fetchWineClubs()
@@ -20,7 +23,6 @@ const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   }, [wineClubs])
 
   function createTableDataArray() {
-    let tableDataArray = []
     let clubListArray = []
     wineClubs.forEach(winery => {
       let { wineClubs: clubs } = winery
@@ -47,44 +49,43 @@ const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
 
   if (clubList.length > 0) {
     return (
-        <View style={styles.container}>
-            <View>
-              <Text
-                onPress={() => navigation.navigate('Club List')} 
-                style={styles.compareLink}>Click here to view a complete list of wine clubs</Text>
-            </View>
-         
-          <Form style={styles.form}>
-            <Text>Pick a club for comparison</Text>
-            <Picker
-              note
-              mode="dropdown"
-              selectedValue={clubList[0]}
-              onValueChange={(value) => changeClubValue(value, 1)}
-              style={styles.picker}
-              >
-              {clubList.map(club => (
-                <Picker.Item label={club.name} value={club.name}/>
-              ))}
-            </Picker>
-            <Text>Pick a second club for comparison</Text>
-            <Picker
-              note
-              mode="dropdown"
-              selectedValue={clubList[1]}
-              onValueChange={(value) => changeClubValue(value, 2)}
-              style={styles.picker}
-              >
-              {clubList.map(club => (
-                <Picker.Item label={club.name} value={club.name}/>
-              ))}
-            </Picker>
-          </Form>
-          <View style={styles.columnWrapper}>
-            <ClubColumn club={firstClub}/>
-            <ClubColumn club={secondClub}/>
-          </View>
+      <View style={styles.container}>
+        <ClubModal 
+          removeClubNumber={() => updateSelectedClubNumber(null)}
+          clubNumber={selectedClubNumber}
+          close={() => updateModalVisible(false)}
+          modalVisible={modalVisible}
+          clubList={clubList}
+          changeClubValue={changeClubValue}
+          />
+        <View>
+          <Text
+            onPress={() => navigation.navigate('ClubList')} 
+            style={styles.compareLink}>View a complete list of wine clubs</Text>
         </View>
+        <View style={styles.clubSelectionBtnWrapper}>
+          <Button
+            style={styles.clubSelectionBtn}
+            onPress={() => {
+              updateSelectedClubNumber(1)
+              updateModalVisible(true)
+            }}>
+            <Text style={styles.selectBtnText}>Pick a club to compare</Text>
+          </Button>
+          <Button
+            style={styles.clubSelectionBtn}
+            onPress={() => {
+              updateSelectedClubNumber(2)
+              updateModalVisible(true)
+            }}>
+            <Text style={styles.selectBtnText}>Pick a 2nd club to compare</Text>
+          </Button>
+        </View>
+        <View style={styles.columnWrapper}>
+          <ClubColumn club={firstClub}/>
+          <ClubColumn club={secondClub}/>
+        </View>
+      </View>
     )
   }
   return (
@@ -105,12 +106,10 @@ ClubComparison.navigationOptions = {
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
-    padding: 16, 
-    paddingTop: 30, 
-    // backgroundColor: 'blue'
-  },
-  form: {
-    // flex: 1
+    // padding: 10, 
+    // paddingTop: 30, 
+    // backgroundColor: '#e6ffe6'
+    // backgroundColor: '#f5f5f5'
   },
   head: {  
     height: 40,  
@@ -124,32 +123,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#e6ffe6'
   },
-  text: { 
-    textAlign: 'center',
-    marginBottom: 0,
-    backgroundColor: '#fff',
-    padding: 20
-  },
-  table: {
-    width: '100%'
-  },
   picker: {
     marginVertical: 0,
   },
-  rowText: {
-    // fontSize: 20,
-    textAlign: 'center',
-    // paddingLeft: 10
-  },
-  rowHead: {
-    textAlign: 'center',
-    borderWidth: 0
-  },
   columnWrapper: {
-    flex: 2,
+    flex: 1,
     flexDirection: 'row',
-    // alignItems: 'center',
     justifyContent: 'space-around',
+    padding: 10
   },
   imageBackground: {
     width: '100%', 
@@ -168,10 +149,29 @@ const styles = StyleSheet.create({
   },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#99ff99',
+    color: '#e6ffe6',
+    backgroundColor: '#614d36',
     paddingVertical: 15,
-    color: '#614d36',
-    fontWeight: '500'
+    fontWeight: '600'
+  },
+  clubSelectionBtn: {
+    backgroundColor: '#614d36',
+    width: 220,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    justifyContent: 'center',
+    marginTop: 25,
+    // borderColor: '#99ff99',
+    // borderWidth: 3,
+    paddingVertical: 20
+  },
+  clubSelectionBtnWrapper: {
+    flexDirection: 'row',
+    marginVertical: 30
+  },
+  selectBtnText: {
+    color: '#fff',
+    fontWeight: 'bold',
   }
 })
 

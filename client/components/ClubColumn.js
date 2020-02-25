@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import ClubColumnItem from './ClubColumnItem'
 
 export default ClubColumn = ({ club }) => {
   const { name, winery, tastings, shipments, discounts, otherBenefits, avgPrice } = club
-
+ 
   return (
     <View style={styles.column}>
       <ClubColumnItem
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     width: '70%',
     paddingHorizontal: 0,
-    borderColor: '#fff'
+    borderColor: '#fff',
   }
 })

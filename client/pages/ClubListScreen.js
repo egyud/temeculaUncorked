@@ -45,7 +45,7 @@ const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
           <View>
             <Text
               onPress={() => navigation.navigate('Comparison')} 
-              style={styles.compareLink}>Click here to compare wine club benefits</Text>
+              style={styles.compareLink}>Compare wine club benefits</Text>
           </View>
         </View>
         <ClubList 
