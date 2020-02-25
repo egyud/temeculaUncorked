@@ -5,8 +5,8 @@ import { fetchWineList } from '../actions/wineActions'
 import { View, StyleSheet, Text, Modal, ScrollView } from 'react-native'
 import { Form, Picker, Button } from 'native-base'
 import WineList from '../components/WineList'
-import WineFilters from '../components/WineFilters'
 import FilterModal from '../components/FilterModal'
+import SortModal from '../components/SortModal'
 
 
 const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
@@ -14,6 +14,7 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
   const [filters, updateFilters] = useState([])
   const [wineList, updateWineList] = useState([])
   const [modalVisible, updateModalVisible] = useState(false)
+  const [sortModalVisible, updateSortModalVisible] = useState(false)
 
   useEffect(() => {
     fetchWineList()
@@ -82,28 +83,27 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
             isWineryScreen={false}
             modalVisible={modalVisible}
           />
-          <Button
-            style={styles.filterBtn} 
-            onPress={() => {
-              updateModalVisible(true)
-              updateFilters([])
-            }}>
-            <Text>Filter Wine List</Text>
-          </Button>
-          <Form>
-            <Text>Sort By</Text>
-            <Picker
-              mode="dropdown"
-              selectedValue={sortBy}
-              onValueChange={(value) => updateSortBy(value)}>
-              <Picker.Item label="rating asc" value="ratingA"/>
-              <Picker.Item label="rating desc" value="ratingD"/>
-              <Picker.Item label="# of ratings asc" value="numRatingA"/>
-              <Picker.Item label="# of ratings desc" value="numRatingD"/>
-              <Picker.Item label="price asc" value="priceA"/>
-              <Picker.Item label="price desc" value="priceD"/>
-            </Picker>
-          </Form>
+          <SortModal 
+            close={() => updateSortModalVisible(false)}
+            modalVisible={sortModalVisible}
+            sort={() => sortWines()}
+            updateSortBy={updateSortBy}
+          />
+          <View style={styles.btnWrapper}>
+            <Button
+              style={styles.filterBtn} 
+              onPress={() => {
+                updateModalVisible(true)
+                updateFilters([])
+              }}>
+              <Text>Filter Wines</Text>
+            </Button>
+            <Button
+              style={styles.filterBtn}
+              onPress={() => updateSortModalVisible(true)}>
+              <Text>Sort Wines</Text>
+            </Button>
+          </View>
         </View>
         <WineList 
           wines={wineList} 
@@ -144,6 +144,10 @@ const styles = StyleSheet.create({
     borderColor: '#614d36',
     borderWidth: 1
   },
+  btnWrapper: {
+    flexDirection: 'row',
+    marginVertical: 30
+  }
 })
 
 const mapStateToProps = (state) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, Modal, ScrollView } from 'react-native'
+import { View, StyleSheet, Text, Modal } from 'react-native'
 import { Button } from 'native-base'
 import WineFilters from './WineFilters'
 
