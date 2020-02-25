@@ -1,9 +1,15 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { List, ListItem } from 'native-base'
+import { Linking } from 'expo'
 
 export default WineryInfo = ({ info }) => {
-  const { address, hours } = info
+  const { address, hours, url } = info
+
+  function openInBrowser() {
+    Linking.openURL(url)
+  }
+
   return (
     <List>
       <Text>Address</Text>
@@ -37,6 +43,10 @@ export default WineryInfo = ({ info }) => {
       </ListItem>
       <ListItem>
         <Text>Sunday: {hours.Sunday}</Text>
+      </ListItem>
+      <Text>Website</Text>
+      <ListItem>
+        <Text onPress={() => openInBrowser()}>{url}</Text>
       </ListItem>
     </List>
   )

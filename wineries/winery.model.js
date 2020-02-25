@@ -42,7 +42,8 @@ const WinerySchema = new mongoose.Schema({
   hasRestaurant: Boolean,
   keywords: Array,
   hasLiveMusic: Boolean,
-  phone: String
+  phone: String,
+  url: String
 })
 
 module.exports = mongoose.model('Winery', WinerySchema)
