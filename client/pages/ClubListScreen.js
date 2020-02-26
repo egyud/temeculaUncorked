@@ -33,26 +33,26 @@ const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   }
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View>
-          <ImageBackground
-            source={require('../assets/wineGlasses.jpg')}
-            style={styles.imageBackground}
+    <View style={styles.container}>
+      <View>
+        <ImageBackground
+          source={require('../assets/wineGlasses.jpg')}
+          style={styles.imageBackground}
           >
-            <Text style={styles.headline}>Wine Clubs</Text>
-          </ImageBackground>
-          <View>
-            <Text
-              onPress={() => navigation.navigate('Comparison')} 
-              style={styles.compareLink}>Compare wine club benefits</Text>
-          </View>
+          <Text style={styles.headline}>Wine Clubs</Text>
+        </ImageBackground>
+        <View>
+          <Text
+            onPress={() => navigation.navigate('Comparison')} 
+            style={styles.compareLink}>Compare wine club benefits</Text>
         </View>
+      </View>
+      <ScrollView>
         <ClubList 
           clubs={clubsList}
           navigation={navigation}/>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   )
 }
 
