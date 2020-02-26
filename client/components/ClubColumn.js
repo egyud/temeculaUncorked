@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import ClubColumnItem from './ClubColumnItem'
 
 export default ClubColumn = ({ club }) => {
@@ -7,34 +7,36 @@ export default ClubColumn = ({ club }) => {
  
   return (
     <View style={styles.column}>
-      <ClubColumnItem
-        number={1} 
-        title="Club" 
-        body={name}/>
-      <ClubColumnItem
-        number={2}
-        title="Winery" 
-        body={winery}/>
-      <ClubColumnItem
-        number={1} 
-        title="Tastings" 
-        body={tastings}/>
-      <ClubColumnItem
-        number={2} 
-        title="Pickups/Shipments" 
-        body={shipments}/>
-      <ClubColumnItem
-        number={1} 
-        title="Discounts" 
-        body={discounts}/>
-      <ClubColumnItem
-        number={2} 
-        title="Other Benefits" 
-        body={otherBenefits}/>
-      <ClubColumnItem
-        number={1} 
-        title="Avg. Price" 
-        body={avgPrice}/>
+      <ScrollView>
+        <ClubColumnItem
+          number={1} 
+          title="Club" 
+          body={name}/>
+        <ClubColumnItem
+          number={2}
+          title="Winery" 
+          body={winery}/>
+        <ClubColumnItem
+          number={1} 
+          title="Tastings" 
+          body={tastings}/>
+        <ClubColumnItem
+          number={2} 
+          title="Pickups/Shipments" 
+          body={shipments}/>
+        <ClubColumnItem
+          number={1} 
+          title="Discounts" 
+          body={discounts}/>
+        <ClubColumnItem
+          number={2} 
+          title="Other Benefits" 
+          body={otherBenefits}/>
+        <ClubColumnItem
+          number={1} 
+          title="Avg. Price" 
+          body={avgPrice}/>
+      </ScrollView>
     </View>
   )
 }
