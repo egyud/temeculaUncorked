@@ -130,19 +130,19 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
     // axios.post('http://localhost:5000/api/images', data)
   }
 
-  let postCommentBtn = (
+  let postReviewBtn = (
     <Button
-      style={styles.btnText}
+      style={styles.postReviewBtn}
       onPress={() => navigation.navigate('NewReview', { wineryData, user, avgRating: calculateAverage(wineryData.avgRating, wineryData.reviewCount) })}>
       <Icon
         type="FontAwesome"
         name='plus' />
-      <Text style={styles.btnText}>Add a new comment</Text>
+      <Text style={styles.postReviewBtnText}>Add a new review</Text>
     </Button>
   )
 
   if (!isAuthenticated) {
-    postCommentBtn = null
+    postReviewBtn = null
   }
 
   return (
@@ -168,7 +168,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
             heading="Reviews" 
             activeTextStyle={{color: '#89012c'}}
           >
-            {postCommentBtn}
+            {postReviewBtn}
             <ReviewList 
               reviews={filteredReviews}
               navigation={navigation}/>
@@ -269,6 +269,13 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     color: '#614d36',
     fontWeight: '500'
+  },
+  postReviewBtn: {
+    backgroundColor: '#614d36',
+    justifyContent: 'center',
+  },
+  postReviewBtnText: {
+    textAlign: 'center',
   }
 })
 

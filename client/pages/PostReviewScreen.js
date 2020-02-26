@@ -26,22 +26,25 @@ export default PostReviewScreen = ({ navigation }) => {
   }
 
   return (
-    <View>
-      <Text>Post a new review</Text>
-      <Form>
-        <Rating 
+    <View style={styles.postReviewScreen}>
+      <Form style={{ alignItems: 'center' }}>
+        <Rating
+          style={styles.rating} 
           imageSize={40}
           startingValue={avgRating}
           onFinishRating={(rating) => updateRating(rating)}
           type="custom"
           ratingColor="#99ff99" />
-        <Textarea 
-          rowSpan={5} 
+        <Textarea
+          style={styles.textArea} 
+          rowSpan={10} 
           bordered
           placeholder="Type your review here"
           onChangeText={(text) => updateReviewText(text)} />
-        <Button onPress={() => postReview()}>
-          <Text>Submit</Text>
+        <Button
+          style={styles.submitBtn} 
+          onPress={() => postReview()}>
+          <Text style={styles.submitBtnText}>Submit</Text>
         </Button>
       </Form>
     </View>
@@ -52,9 +55,35 @@ PostReviewScreen.navigationOptions = {
   title: 'Post a Review',
   headerStyle: {
     backgroundColor: '#99ff99'
-  }
+  },
 }
 
 const styles = StyleSheet.create({
-
+  postReviewScreen: {
+    backgroundColor: '#fff',
+    height: '100%'
+  },
+  submitBtn: {
+    backgroundColor: '#99ff99',
+    width: 150,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    justifyContent: 'center',
+    marginTop: 25,
+    borderColor: '#614d36',
+    borderWidth: 1
+  },
+  submitBtnText: {
+    color: '#614d36',
+    fontWeight: 'bold'
+  },
+  textArea: {
+    borderColor: '#614d36',
+    width: '90%',
+    backgroundColor: '#e6ffe6',
+    borderRadius: 20
+  },
+  rating: {
+    marginVertical: 30
+  },
 })
