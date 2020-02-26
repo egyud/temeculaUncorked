@@ -29,8 +29,8 @@ const EventSchema = new mongoose.Schema({
   membersOnly: {
     type: Boolean
   },
-  ageRequirement: {
-    type: String
+  adultsOnly: {
+    type: Boolean
   },
   price: {
     type: String

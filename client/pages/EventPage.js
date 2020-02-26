@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Image } from 'react-native'
-import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs } from 'native-base'
+import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
 import CommentList from '../components/CommentList'
 
 const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
   const event = navigation.getParam('event')
-  const { title, winery, date, time, price, attending, whoCanAttend, description, address, _id } = event
+  const { title, winery, date, time, price, attending, membersOnly, adultsOnly, description, address, _id } = event
 
   useEffect(() => {
     getComments()
@@ -36,6 +36,19 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
 
   if (!isAuthenticated) {
     postCommentBtn = null
+  }
+
+  let membersOnlyText, adultsOnlyText
+  if (membersOnly) {
+    membersOnlyText = 'Members Only'
+  } else {
+    membersOnlyText = 'Open to the public'
+  }
+
+  if (adultsOnly) {
+    adultsOnlyText = '21 and over'
+  } else {
+    adultsOnlyText = 'All ages welcome'
   }
 
   return (
@@ -93,7 +106,7 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
           style={styles.tabs}
           tabBarUnderlineStyle={{backgroundColor: '#89012c'}}>
           <Tab
-            heading="Discussion"
+            heading="Comments"
             activeTextStyle={{color: '#89012c'}}>
             {postCommentBtn}
             <CommentList comments={comments}/>
@@ -101,7 +114,15 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
           <Tab
             heading="More Details"
             activeTextStyle={{color: '#89012c'}}>
-            <Text>Hello world</Text>
+            <ListItem>
+              <Text>Price: {price}</Text>
+            </ListItem>
+            <ListItem>
+              <Text>{adultsOnlyText}</Text>
+            </ListItem>
+            <ListItem>
+              <Text>{membersOnlyText}</Text>
+            </ListItem>
           </Tab>
         </Tabs>
       </View>

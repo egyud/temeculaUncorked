@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { ListItem, Right, Body } from 'native-base'
 import Event from './Event'
 
 export default EventList = ({ events, navigation }) => {
