@@ -25,6 +25,15 @@ const EventSchema = new mongoose.Schema({
   }],
   description: {
     type: String
+  },
+  membersOnly: {
+    type: Boolean
+  },
+  ageRequirement: {
+    type: String
+  },
+  price: {
+    type: String
   }
 })
 
