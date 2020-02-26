@@ -197,3 +197,25 @@ exports.updatePassword = async (req, res) => {
     return res.status(400).end()
   }
 }
+
+exports.postLink = async (req, res) => {
+  const { userId, link } = req.body
+  try {
+    const user = await User.updateOne({ _id: userId }, { $set: { link } })
+    return res.send({ user })
+  } catch (error) {
+    console.error(error)
+    return res.send({ message: 'Error updating your link' })
+  }
+}
+
+exports.postBio = async (req, res) => {
+  const { userId, bio } = req.body
+  try {
+    const user = await User.updateOne({ _id: userId }, { $set: { bio } })
+    return res.send({ user })
+  } catch (error) {
+    console.error(error)
+    return res.send({ message: 'Error updating your bio' })
+  }
+}

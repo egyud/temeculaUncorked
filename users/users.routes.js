@@ -28,22 +28,10 @@ router.post('/update-email', UsersController.updateEmail)
 // post /users/update-password
 router.post('/update-password', UsersController.updatePassword)
 
-// // post /users/authenticate
-// router.post('/authenticate', UsersController.authenticate)
+// post /users/bio
+router.post('/bio', UsersController.postBio)
 
-// // get /users/
-// router.get('/', UsersController.getAll)
-
-// // get /users/current
-// router.get('/current', UsersController.getCurrent)
-
-// // get /users/:id
-// router.get('/:id', UsersController.getById)
-
-// // put /users/:id
-// router.put('/:id', UsersController.update)
-
-// // delete /users/:id
-// router.delete('/:id', UsersController._delete)
+// post /users/link
+router.post('/link', UsersController.postLink)
 
 module.exports = router

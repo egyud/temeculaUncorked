@@ -5,6 +5,15 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 
 export default FollowingList = ({ navigation, users }) => {
+
+  if (users.length === 0) {
+    return (
+      <View>
+        <Text>You are not following any users</Text>
+      </View>
+    )
+  }
+
   return (
     <List>
       {users.map(user => (
