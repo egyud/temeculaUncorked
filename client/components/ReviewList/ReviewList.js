@@ -4,12 +4,13 @@ import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import Review from '../Review'
 
 
-export default ReviewList = ({ reviews, navigation }) => {
+export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
   return (
     <View>
       <ScrollView>
         {reviews.map(review => (
-          <Review 
+          <Review
+            isProfileScreen={isProfileScreen} 
             key={review._id}
             review={review}
             navigation={navigation}/>

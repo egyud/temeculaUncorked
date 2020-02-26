@@ -5,8 +5,13 @@ import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings' 
 import moment from 'moment'
 
-export default Review = ({ review, navigation, activeUserId }) => {
+export default Review = ({ review, navigation, activeUserId, isProfileScreen }) => {
   const { _id, text, rating, likes, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
+
+  let wineryLine
+  if (isProfileScreen) {
+    wineryLine = <Text>{winery}</Text>
+  }
 
   console.log(review.userId)
 
@@ -41,6 +46,7 @@ export default Review = ({ review, navigation, activeUserId }) => {
             </Body>
           </Left>
           <Right>
+            {wineryLine}
             <Rating 
               startingValue={rating}
               imageSize={25}

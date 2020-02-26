@@ -113,10 +113,22 @@ const ProfilePage = ({ activeUser, navigation }) => {
         <View style={styles.reviewsHeader}>
           <Text>Winery Review History</Text>
         </View>
-        <ReviewList reviews={userReviews}/>
+        <ReviewList 
+          reviews={userReviews}
+          isProfileScreen={true}/>
         <View style={styles.reviewsHeader}>
           <Text>Wine Rating History</Text>
         </View>
+        {/* <View>
+          <ScrollView>
+            {userRatings.map(rating => (
+              <Review 
+                key={review._id}
+                review={review}
+                navigation={navigation}/>
+            ))}
+          </ScrollView>
+        </View> */}
       </View>
       
     </View>
