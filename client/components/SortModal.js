@@ -16,11 +16,12 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
   return (
     <View>
       <Modal
+        // style={{ marginTop: 22 }}
         animationType="slide"
         transparent={false}
         visible={modalVisible}>
-        <View>
-          <ListItem header>
+        <View style={{ marginTop: 30 }}>
+          <ListItem itemDivider>
             <Text>Sort By</Text>
           </ListItem>
           {sortVals.map(option => (
@@ -38,11 +39,11 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
           <Button
             style={styles.modalBtn}
             onPress={close}>
-            <Text>Close</Text>
+            <Text style={styles.closeBtnText}>Close</Text>
           </Button>
         </View>
       </Modal>
-    </View>
+   </View>
   )
 }
 
@@ -57,5 +58,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: '#614d36',
     borderWidth: 1
+  },
+  closeBtnText: {
+    color: 'black'
   }
 })

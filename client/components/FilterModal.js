@@ -7,6 +7,7 @@ export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen
   return (
     <View>
       <Modal
+        style={{ marginTop: 22 }}
         animationType="slide"
         transparent={false}
         visible={modalVisible}>
