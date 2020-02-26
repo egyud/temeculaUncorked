@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import Review from '../Review'
 
@@ -7,12 +7,14 @@ import Review from '../Review'
 export default ReviewList = ({ reviews, navigation }) => {
   return (
     <View>
-      {reviews.map(review => (
-        <Review 
-          key={review._id}
-          review={review}
-          navigation={navigation}/>
-      ))}
+      <ScrollView>
+        {reviews.map(review => (
+          <Review 
+            key={review._id}
+            review={review}
+            navigation={navigation}/>
+        ))}
+      </ScrollView>
     </View>
   )
 }

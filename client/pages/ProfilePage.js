@@ -3,7 +3,8 @@ import axios from 'axios'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { View, StyleSheet, ImageBackground } from 'react-native'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base'
+import { Linking } from 'expo'
 import ReviewList from '../components/ReviewList/ReviewList'
 
 
@@ -18,6 +19,10 @@ const ProfilePage = ({ activeUser, navigation }) => {
     getUserInfo()
     getUserReviews()
   }, [])
+
+  function openInBrowser(url) {
+    Linking.openURL(url)
+  }
 
   function getUserInfo() {
     axios.get(`http://localhost:5000/api/users/${userId}`)
@@ -78,16 +83,22 @@ const ProfilePage = ({ activeUser, navigation }) => {
           <Card>
             <CardItem>
               <Left>
-                <Thumbnail source={{ uri: currentUser.avatar.url }}/>
+                <Body>
+                  <Text>{currentUser.name}</Text>
+                  <Text note>Joined: {moment(currentUser.date).format('LL')}</Text>
+                  <Text 
+                    note
+                    onPress={() => openInBrowser(currentUser.link)}>{currentUser.link}</Text>
+                </Body>
               </Left>
-              <Body>
-                <Text>{currentUser.name}</Text>
-                <Text note>Joined: {moment(currentUser.date).format('LL')}</Text>
-              </Body>
+              <Right>
+                <Thumbnail source={{ uri: currentUser.avatar.url }}/>
+              </Right>
             </CardItem>
             <CardItem>
               <Left>
-                <Text>Member at {currentUser.memberOf.length} wineries</Text>
+                {/* <Text>Member at {currentUser.memberOf.length} wineries</Text> */}
+                <Text>"{currentUser.bio}"</Text>
               </Left>
               <Right>
                 <Button onPress={() => followUser()}>
