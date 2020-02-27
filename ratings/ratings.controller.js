@@ -35,7 +35,7 @@ exports.postWineRating = async (req, res) => {
 exports.getUserWineRatings = async (req, res) => {
   const { userId } = req.params
   try {
-    const ratings = await Rating.find({ userId }).populate('userId', 'name').populate('wineId')
+    const ratings = await Rating.find({ userId }).populate('userId', 'name').populate('wineId', 'name winery')
     return res.status(200).send({ ratings })
   } catch(error) {
     console.error(error)

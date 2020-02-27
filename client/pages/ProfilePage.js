@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { View, StyleSheet, ImageBackground } from 'react-native'
+import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native'
 import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base'
 import { Linking } from 'expo'
 import ReviewList from '../components/ReviewList/ReviewList'
+import RatingsList from '../components/RatingsList'
 
 
 const ProfilePage = ({ activeUser, navigation }) => {
@@ -18,6 +19,7 @@ const ProfilePage = ({ activeUser, navigation }) => {
   useEffect(() => {
     getUserInfo()
     getUserReviews()
+    getUserRatings()
   }, [])
 
   function openInBrowser(url) {
@@ -27,7 +29,7 @@ const ProfilePage = ({ activeUser, navigation }) => {
   function getUserInfo() {
     axios.get(`http://localhost:5000/api/users/${userId}`)
       .then(res => {
-        console.log(res.data.user)
+        // console.log(res.data.user)
         updateCurrentUser(res.data.user)
       })
       .catch(err => console.error(err))
@@ -36,15 +38,15 @@ const ProfilePage = ({ activeUser, navigation }) => {
   function getUserReviews() {
     axios.get(`http://localhost:5000/api/reviews/${userId}`)
       .then(res => {
-        console.log(res.data.reviews)
         updateUserReviews(res.data.reviews)
       })
       .catch(err => console.error(err))
   }
 
-  function getUserRatings(id) {
-    axios.get(`http://localhost:5000/api/ratings/${id}`)
+  function getUserRatings() {
+    axios.get(`http://localhost:5000/api/ratings/${userId}`)
       .then(res => {
+        console.log('wine ratings here *********')
         console.log(res.data.ratings)
         updateUserRatings(res.data.ratings)
       })
@@ -74,7 +76,7 @@ const ProfilePage = ({ activeUser, navigation }) => {
   console.log(currentUser)
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <View>
         <ImageBackground
           source={require('../assets/wineGlasses.jpg')}
@@ -109,27 +111,20 @@ const ProfilePage = ({ activeUser, navigation }) => {
           </Card>
         </ImageBackground>
       </View>
-      <View>
-        <View style={styles.reviewsHeader}>
-          <Text>Winery Review History</Text>
+      <ScrollView>
+        <View style={{ paddingBottom: 40 }}>
+          <View style={styles.reviewsHeader}>
+            <Text>Winery Review History</Text>
+          </View>
+          <ReviewList 
+            reviews={userReviews}
+            isProfileScreen={true}/>
+          <View style={styles.reviewsHeader}>
+            <Text>Wine Rating History</Text>
+          </View>
+          <RatingsList ratings={userRatings}/>
         </View>
-        <ReviewList 
-          reviews={userReviews}
-          isProfileScreen={true}/>
-        <View style={styles.reviewsHeader}>
-          <Text>Wine Rating History</Text>
-        </View>
-        {/* <View>
-          <ScrollView>
-            {userRatings.map(rating => (
-              <Review 
-                key={review._id}
-                review={review}
-                navigation={navigation}/>
-            ))}
-          </ScrollView>
-        </View> */}
-      </View>
+      </ScrollView>
       
     </View>
   )

@@ -47,7 +47,8 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen }) 
           </Left>
           <Right>
             {wineryLine}
-            <Rating 
+            <Rating
+              readonly={true} 
               startingValue={rating}
               imageSize={25}
               type="custom"

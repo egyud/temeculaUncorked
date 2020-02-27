@@ -7,7 +7,7 @@ import Review from '../Review'
 export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
   return (
     <View>
-      <ScrollView>
+      {/* <ScrollView> */}
         {reviews.map(review => (
           <Review
             isProfileScreen={isProfileScreen} 
@@ -15,7 +15,7 @@ export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
             review={review}
             navigation={navigation}/>
         ))}
-      </ScrollView>
+      {/* </ScrollView> */}
     </View>
   )
 }
