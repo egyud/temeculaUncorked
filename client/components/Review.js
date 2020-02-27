@@ -8,9 +8,18 @@ import moment from 'moment'
 export default Review = ({ review, navigation, activeUserId, isProfileScreen }) => {
   const { _id, text, rating, likes, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
 
-  let wineryLine
+  let topLeft
   if (isProfileScreen) {
-    wineryLine = <Text>{winery}</Text>
+    topLeft = <Text>{winery}</Text>
+  } else {
+    topLeft = (
+      <>
+        <Thumbnail source={{ uri: avatar.url }}/> 
+        <Body>
+          <Text onPress={() => navigation.navigate('Profile', { userId: userId })}>{userName}</Text>
+        </Body>
+      </>
+    )
   }
 
   console.log(review.userId)
@@ -40,13 +49,9 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen }) 
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail source={{ uri: avatar.url }}/> 
-            <Body>
-              <Text onPress={() => navigation.navigate('Profile', { userId: userId })}>{userName}</Text>
-            </Body>
+            {topLeft}
           </Left>
           <Right>
-            {wineryLine}
             <Rating
               readonly={true} 
               startingValue={rating}
