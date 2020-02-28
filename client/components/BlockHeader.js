@@ -28,23 +28,15 @@ export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPh
             onPress={openGallery}
             style={styles.photoButton}>
             <Icon 
-              type="FontAwesome"
-              name="image"
-              style={styles.icon}/>
-          </Button>
-          <Button
-            onPress={choosePhoto}
-            style={styles.photoButton}>
-            <Icon 
-              type="FontAwesome" 
-              name="plus"
+              type="Entypo"
+              name="images"
               style={styles.icon}/>
           </Button>
           <Button 
-            onPress={submitPhoto}
+            onPress={choosePhoto}
             style={styles.photoButton}>
             <Icon 
-              type="FontAwesome"
+              type="Entypo"
               name="upload"
               style={styles.icon}/>
           </Button>

@@ -1,16 +1,16 @@
 const Image = require('./image.model')
 
 exports.postImage = async (req, res) => {
-  const { activeUserId, caption, wineryId } = req.body
-  console.log(req.file)
+  // console.log(req.body)
+  const { activeUserId, wineryId, url } = req.body
+  // console.log(req.file)
   try {
-    const { url, public_id } = req.file
+    // const { url } = req.file
     const image = await Image.create({
       user: activeUserId,
       winery: wineryId,
       url,
-      public_id,
-      caption
+      // public_id
     })
     return res.status(200).send({ image, message: 'Image successfully submitted' })
   } catch (error) {
