@@ -78,45 +78,41 @@ const ProfilePage = ({ activeUser, navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View>
-        <ImageBackground
-          source={require('../assets/wineGlasses.jpg')}
-          style={styles.imageBackground}
-        >
-          <Card>
-            <CardItem>
-              <Left>
-                <Body>
-                  <Text>{currentUser.name}</Text>
-                  <Text note>Joined: {moment(currentUser.date).format('LL')}</Text>
-                  <Text 
-                    note
-                    onPress={() => openInBrowser(currentUser.link)}>{currentUser.link}</Text>
-                </Body>
-              </Left>
-              <Right>
-                <Thumbnail source={{ uri: currentUser.avatar.url }}/>
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Left>
-                {/* <Text>Member at {currentUser.memberOf.length} wineries</Text> */}
-                <Text>"{currentUser.bio}"</Text>
-              </Left>
-              <Right>
-                <Button onPress={() => followUser()}>
-                  <Text>Follow</Text>
-                </Button>
-              </Right>
-            </CardItem>
-          </Card>
-        </ImageBackground>
+        <Card style={styles.headerCard}>
+          <CardItem>
+            <Left>
+              <Body>
+                <Text>{currentUser.name}</Text>
+                <Text note>Joined: {moment(currentUser.date).format('LL')}</Text>
+                <Text 
+                  note
+                  onPress={() => openInBrowser(currentUser.link)}>Website: {currentUser.link}</Text>
+              </Body>
+            </Left>
+            <Right>
+              <Thumbnail source={{ uri: currentUser.avatar.url }}/>
+            </Right>
+          </CardItem>
+          <CardItem>
+            <Left>
+              {/* <Text>Member at {currentUser.memberOf.length} wineries</Text> */}
+              <Text>"{currentUser.bio}"</Text>
+            </Left>
+            <Right>
+              <Button onPress={() => followUser()}>
+                <Text>Follow</Text>
+              </Button>
+            </Right>
+          </CardItem>
+        </Card>
       </View>
       <ScrollView>
         <View style={{ paddingBottom: 40 }}>
           <View style={styles.reviewsHeader}>
             <Text>Winery Review History</Text>
           </View>
-          <ReviewList 
+          <ReviewList
+            navigation={navigation} 
             reviews={userReviews}
             isProfileScreen={true}/>
           <View style={styles.reviewsHeader}>
@@ -138,12 +134,10 @@ ProfilePage.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-  imageBackground: {
-    width: '100%', 
-    // paddingVertical: 40,
-    height: 250,
-    // justifyContent: 'center',
-    // alignItems: 'center'
+  headerCard: {
+    // flex: 1,
+    width: '100%',
+    height: 200
   },
   reviewsHeader: {
     borderBottomWidth: 1,
