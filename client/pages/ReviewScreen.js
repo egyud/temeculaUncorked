@@ -31,12 +31,12 @@ const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
 
   let postCommentBtn = (
     <Button
-      style={styles.btnText}
+      style={styles.postCommentBtn}
       onPress={() => navigation.navigate('NewComment', { review, activeUser, type: 'review' })}>
       <Icon
         type="FontAwesome"
         name='plus' />
-      <Text style={styles.btnText}>Add a new comment</Text>
+      <Text style={styles.postCommentBtnText}>Add a new comment</Text>
     </Button>
   )
 
@@ -75,8 +75,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#e6ffe6'
   },
-  btnText: {
-    textAlign: 'center'
+  postCommentBtn: {
+    backgroundColor: '#614d36',
+    justifyContent: 'center',
+  },
+  postCommentBtnText: {
+    textAlign: 'center',
   }
 })
 

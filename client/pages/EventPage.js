@@ -25,12 +25,12 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
 
   let postCommentBtn = (
     <Button
-      style={styles.btnText}
+      style={styles.postCommentBtn}
       onPress={() => navigation.navigate('NewComment', { event, activeUser, type: 'event' })}>
       <Icon
         type="FontAwesome"
         name='plus' />
-      <Text style={styles.btnText}>Add a new comment</Text>
+      <Text style={styles.postCommentBtnText}>Add a new comment</Text>
     </Button>
   )
 
@@ -151,6 +151,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#89012c'
+  },
+  postCommentBtn: {
+    backgroundColor: '#614d36',
+    justifyContent: 'center',
+  },
+  postCommentBtnText: {
+    textAlign: 'center',
   }
 })
 
