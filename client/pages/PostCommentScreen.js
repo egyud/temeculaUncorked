@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
+import SuccessModal from '../components/SuccessModal'
 
 export default PostCommentScreen = ({ navigation }) => {
   const [commentText, updateCommentText] = useState('')
+  const [successModalVisible, updateSuccessModalVisible] = useState(false)
 
   const activeUser = navigation.getParam('activeUser')
   const review = navigation.getParam('review')
@@ -19,8 +21,8 @@ export default PostCommentScreen = ({ navigation }) => {
         reviewId: review._id
       })
         .then(res => {
-          console.log(res.data)
-          navigation.navigate('Review', { review })
+          // console.log(res.data)
+          updateSuccessModalVisible(true)
         })
         .catch(err => console.error(err))
     } else if (type === 'event') {
@@ -30,24 +32,42 @@ export default PostCommentScreen = ({ navigation }) => {
         eventId: event._id
       })
         .then(res => {
-          console.log(res.data)
-          navigation.navigate('Event', { event })
+          // console.log(res.data)
+          updateSuccessModalVisible(true)
         })
         .catch(err => console.error(err))
     }
   }
 
+  function closeModal() {
+    updateSuccessModalVisible(false)
+    if (type === 'review') {
+      navigation.navigate('Review', { review })
+    } else if (type === 'event') {
+      navigation.navigate('Event', { event })
+    }
+  }
+
   return (
-    <View>
+    <View style={styles.postCommentScreen}>
+      <SuccessModal 
+        close={() => closeModal()}
+        modalVisible={successModalVisible}
+        commentText={commentText}
+        type={type}
+      />
       <Text>Post a new comment</Text>
-      <Form>
+      <Form style={{ alignItems: 'center' }}>
         <Textarea 
           rowSpan={5} 
           bordered
           placeholder="Type your comment here"
-          onChangeText={(text) => updateCommentText(text)} />
-        <Button onPress={() => postComment()}>
-          <Text>Submit</Text>
+          onChangeText={(text) => updateCommentText(text)}
+          style={styles.textArea} />
+        <Button 
+          onPress={() => postComment()}
+          style={styles.submitBtn}>
+          <Text style={styles.submitBtnText}>Submit</Text>
         </Button>
       </Form>
     </View>
@@ -62,5 +82,28 @@ PostCommentScreen.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-
+  postCommentScreen: {
+    backgroundColor: '#fff',
+    height: '100%'
+  },
+  submitBtn: {
+    backgroundColor: '#99ff99',
+    width: 150,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    justifyContent: 'center',
+    marginTop: 25,
+    borderColor: '#614d36',
+    borderWidth: 1
+  },
+  submitBtnText: {
+    color: '#614d36',
+    fontWeight: 'bold'
+  },
+  textArea: {
+    borderColor: '#614d36',
+    width: '90%',
+    backgroundColor: '#e6ffe6',
+    borderRadius: 20
+  },
 })
