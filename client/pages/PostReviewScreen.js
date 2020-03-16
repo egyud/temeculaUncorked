@@ -3,10 +3,12 @@ import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
 import { Rating } from 'react-native-ratings'
+import SuccessModal from '../components/SuccessModal'
 
 export default PostReviewScreen = ({ navigation }) => {
   const [reviewText, updateReviewText] = useState('')
   const [rating, updateRating] = useState(0)
+  const [successModalVisible, updateSuccessModalVisible] = useState(false)
 
   const user = navigation.getParam('user')
   const wineryData = navigation.getParam('wineryData')
@@ -20,13 +22,30 @@ export default PostReviewScreen = ({ navigation }) => {
       rating
     })
       .then(res => {
-        console.log(res.data)
-        navigation.navigate('Winery', { winery: wineryData.name })
+        updateSuccessModalVisible(true)
+        // console.log(res.data)
       })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+    
+  function closeModal() {
+    updateSuccessModalVisible(false)
+    navigation.navigate('Winery', { winery: wineryData.name })
   }
 
   return (
     <View style={styles.postReviewScreen}>
+      <SuccessModal 
+          close={() => closeModal()}
+          modalVisible={successModalVisible}
+          review={{
+            text: reviewText,
+            rating,
+            winery: wineryData.name
+          }}
+      />
       <Form style={{ alignItems: 'center' }}>
         <Rating
           style={styles.rating} 
@@ -47,6 +66,7 @@ export default PostReviewScreen = ({ navigation }) => {
           <Text style={styles.submitBtnText}>Submit</Text>
         </Button>
       </Form>
+      
     </View>
   )
 }
