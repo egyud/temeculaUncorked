@@ -98,7 +98,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
               submitPhoto={() => handleUploadPhoto()}
               data={wineryData} 
               rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
-              choosePhoto={() => navigation.navigate('PhotoPicker', { wineryData, user })}
+              choosePhoto={isAuthenticated ? () => navigation.navigate('PhotoPicker', { wineryData, user }) : null}
             />
           </ImageBackground>
         </View>

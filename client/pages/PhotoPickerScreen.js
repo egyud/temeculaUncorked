@@ -14,13 +14,8 @@ export default PhotoPickerScreen = ({ navigation }) => {
 
   useEffect(() => {
     openImagePicker()
+    getPhotoLibrary()
   }, [])
-
-  useEffect(() => {
-    if(photo !== null) {
-      savePhoto()
-    }
-  }, [photo])
 
   async function openImagePicker() {
     try {   
@@ -81,32 +76,12 @@ export default PhotoPickerScreen = ({ navigation }) => {
       wineryId: wineryData._id,
       url: photo
     })
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data)
+        navigation.navigate('Winery', { winery: wineryData.name })
+      })
       .catch(err => console.error(err))
   }
-
-  // function handleUploadPhoto() {
-  //   if (!user) {
-  //     console.log('you must be logged in to do that')
-  //     return
-  //   }
-  //   console.log('image')
-  //   console.log(image)
-  //   let formData = new FormData()
-  //   formData.append('image', { uri: image.uri, type: image.type, name: '' })
-  //   formData.append('activeUserId', user._id)
-  //   formData.append('winery', wineryData._id)
-
-  //   if (image) {
-  //     axios.post(`http://localhost:5000/api/images`, formData, {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data'
-  //       }
-  //     })
-  //         .then(res => console.log(res))
-  //         .catch(err => console.error(err))
-  //   }
-  // }
 
   if (cameraRollPermissions === null) {
     return <View />
@@ -117,28 +92,32 @@ export default PhotoPickerScreen = ({ navigation }) => {
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           {photo ? (
-            <Image 
-              source={{ uri: photo }}
-              style={{ flex: 1 }}/>
+            <>
+              <Button
+              style={styles.btn} 
+              onPress={() => savePhoto()}>
+                <Text>Upload Photo</Text>
+              </Button>
+              <Image 
+                source={{ uri: photo }}
+                style={{ flex: 1 }}/>
+            </>
           ) : (
             <View />
           )}
         </View>
-        <View>
-          <Button onPress={() => getPhotoLibrary()}>
-            <Text>Photo Picker Screen</Text>
-          </Button>
-          {photo ? (
-            <Button onPress={() => handleUploadPhoto()}>
-              <Text>Upload Photo</Text>
-            </Button>
-          ) : null}
-        </View>
+        
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-
+  btn: {
+    backgroundColor: '#614d36',
+    justifyContent: 'center',
+  },
+  btnText: {
+    textAlign: 'center',
+  }
 })
