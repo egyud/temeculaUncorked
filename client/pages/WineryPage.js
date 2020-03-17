@@ -3,15 +3,12 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { Tabs, Tab, Text, Icon, Button, Content } from 'native-base'
-import ImagePicker from 'expo-image-picker'
 import EventList from '../components/EventList'
 import BlockHeader from '../components/BlockHeader'
-import WineList from '../components/WineList'
 import WineryInfo from '../components/WineryInfo'
 import ReviewList from '../components/ReviewList/ReviewList'
 import ClubList from '../components/ClubList'
 import WineryWineList from '../components/WineryWineList'
-
 
 const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   const [wineryData, updateWineryData] = useState({})
@@ -19,7 +16,6 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   const [eventsArray, updateEventsArray] = useState([])
   const [wineryImages, updateWineryImages] = useState([])
   const [filteredReviews, updatedFilteredReviews] = useState([])
-  const [selectedImage, updateSelectedImage] = useState(null)
   const winery = navigation.getParam('winery')
 
   useEffect(() => {
@@ -32,14 +28,14 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   }, [wineryData])
 
   useEffect(() => {
-    console.log(reviews)
+    // console.log(reviews)
     filterReviews()
   }, [reviews])
 
   function getWineryData(selectedWinery) {
     axios.get(`http://localhost:5000/api/wineries/page/${selectedWinery}`)
       .then(res => {
-        console.log(res.data.winery)
+        // console.log(res.data.winery)
         updateWineryData(res.data.winery)
         updateWineListData(res.data.wines)
       })
@@ -49,7 +45,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   function getEventsData(selectedWinery) {
     axios.get(`http://localhost:5000/api/events/winery/${selectedWinery}`)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         updateEventsArray(res.data.events)
       })
       .catch(err => console.error(err))
@@ -70,64 +66,9 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
 
   function filterReviews() {
     if (reviews) {
-      console.log('in filterReviews')
-      console.log(reviews.reviews)
       const filtered = reviews.reviews.filter(review => winery === review.reviewedId.name)
       updatedFilteredReviews(filtered)
     }
-  }
-
-  async function openImagePickerAsync () {
-    try {
-      // let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync()
-  
-      // if (permissionResult.granted === false) {
-      //   alert('Permission to access camera roll is required!')
-      //   return
-      // }
-  
-      let result = await ImagePicker.launchImageLibraryAsync()
-  
-      if (result.cancelled) {
-        return
-      }
-      updateSelectedImage({ localUri: result.uri, filename: localUri.split('/').pop() })
-    } catch(err) {
-      console.error(err)
-    }
-
-  }
-
-  function createFormData(photo, body) {      
-    const data = new FormData()
-    data.append('photo', {
-      name: photo.fileName,
-      type: photo.type,
-      uri:
-        Platform.OS === 'android' ? photo.uri : photo.uri.replace('file://', ''),
-    })
-    Object.keys(body).forEach(key => {
-      data.append(key, body[key])
-    })
-    return data
-  }
-
-  function handleUploadPhoto() {
-    console.log('in handleUploadPhoto()')
-    let formData = FormDa
-    formData.append('image', selectedImage)
-    formData.append('activeUserId', user._id)
-    formData.append('winery', wineryData._id)
-    if (selectedImage) {
-      axios.post(`http://localhost:5000/api/images`, formData)
-        .then(res => console.log(res))
-        .catch(err => console.error(err))
-    }
-    // let data = createFormData(selectedImage, {
-    //   activeUserId: user._id,
-    //   wineryId: wineryData._id
-    // })
-    // axios.post('http://localhost:5000/api/images', data)
   }
 
   let postReviewBtn = (
@@ -153,7 +94,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
             source={require('../assets/wineGlasses.jpg')}
             style={styles.imageBackground}>
             <BlockHeader 
-              openGallery={() => navigation.navigate('UploadPhoto')}
+              openGallery={() => navigation.navigate('Gallery', { images: wineryImages })}
               submitPhoto={() => handleUploadPhoto()}
               data={wineryData} 
               rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
@@ -181,9 +122,6 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
               wineArray={wineListData}
               navigation={navigation}
             />
-            {/* <WineList 
-              wines={wineListData}
-              navigation={navigation}/> */}
           </Tab>
           <Tab 
             heading="Wine Clubs" 

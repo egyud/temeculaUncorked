@@ -12,6 +12,7 @@ import ProfilePage from '../pages/ProfilePage'
 import WineSearch from '../pages/WineSearch'
 import ReviewScreen from '../pages/ReviewScreen'
 import ImageGallery from '../pages/ImageGallery'
+import Gallery from '../pages/Gallery'
 import LoginScreen from '../pages/LoginScreen'
 import RegisterScreen from '../pages/RegisterScreen'
 import PostCommentScreen from '../pages/PostCommentScreen'
@@ -21,6 +22,7 @@ import AccountPage from '../pages/AccountPage'
 import UploadPhotoScreen from '../pages/UploadPhotoScreen'
 import ClubListScreen from '../pages/ClubListScreen'
 import ClubScreen from '../pages/ClubScreen'
+import PhotoPickerScreen from '../pages/PhotoPickerScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -51,7 +53,7 @@ const StackNavigator = createStackNavigator({
     screen: ReviewScreen
   },
   Gallery: {
-    screen: ImageGallery
+    screen: Gallery
   },
   Register: {
     screen: RegisterScreen
@@ -79,6 +81,9 @@ const StackNavigator = createStackNavigator({
   },
   Club: {
     screen: ClubScreen
+  },
+  PhotoPicker: {
+    screen: PhotoPickerScreen
   }
 },
 {
@@ -99,7 +104,7 @@ const SearchNav = createStackNavigator({
     screen: EventPage
   },
   Gallery: {
-    screen: ImageGallery
+    screen: Gallery
   },
   NewComment: {
     screen: PostCommentScreen
