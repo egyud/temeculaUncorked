@@ -22,7 +22,6 @@ export default ImageGallery = ({ navigation }) => {
   // }
   function createDataArray() {
     let dataArray = []
-    console.log('IDIOT')
     console.log(images)
     images.forEach(image => {
       let imageObj = {
