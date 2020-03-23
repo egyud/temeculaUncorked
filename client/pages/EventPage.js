@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { View, StyleSheet, Image } from 'react-native'
+import { Share, View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
 import CommentList from '../components/CommentList'
 
@@ -13,6 +13,23 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
   useEffect(() => {
     getComments()
   }, [event])
+
+  async function shareEvent() {
+    try {
+      const result = await Share.share({
+        message: `${title} - ${description}`,
+        title: `Check out this event from Temecula Uncorked`
+      })
+
+      if (result.action === Share.sharedAction) {
+        alert('Post Shared')
+      } else if (result.action === Share.dismissedAction) {
+        alert('Post cancelled')
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   function getComments() {
     axios.get(`http://localhost:5000/api/comments/event/${_id}`)
@@ -93,13 +110,24 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
               >
                 <Text>Attend</Text>
               </Button>
-              <Text>{attending.length} people are going</Text>
             </Left>
+            <Body>
+              <Button 
+                style={styles.button}
+                onPress={() => shareEvent()}>
+                <Text>Share</Text>
+              </Button>
+            </Body>
             <Right>
               <Button style={styles.button}>
                 <Text>Photos</Text>
               </Button>
             </Right>
+          </CardItem>
+          <CardItem>
+            <Left>
+              <Text>{attending.length} people are going</Text>
+            </Left>
           </CardItem>
         </Card>
         <Tabs
