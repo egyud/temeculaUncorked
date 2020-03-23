@@ -55,6 +55,7 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
     <>
       <Text>Your Rating</Text>
       <UserRating
+        disabled={false}
         size={25} 
         value={userRating}
         rateFunc={(rate) => updateWineRating(rate)}/>
