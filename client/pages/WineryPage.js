@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { View, StyleSheet, ImageBackground } from 'react-native'
-import { Tabs, Tab, Text, Icon, Button, Content } from 'native-base'
+import { Tabs, Tab, Text, Icon, Button, Content, Spinner } from 'native-base'
 import EventList from '../components/EventList'
 import BlockHeader from '../components/BlockHeader'
 import WineryInfo from '../components/WineryInfo'
@@ -16,6 +16,8 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   const [eventsArray, updateEventsArray] = useState([])
   const [wineryImages, updateWineryImages] = useState([])
   const [filteredReviews, updatedFilteredReviews] = useState([])
+  const [userRating, updateUserRating] = useState(0)
+  const [isLoading, updateIsLoading] = useState(true)
   const winery = navigation.getParam('winery')
 
   useEffect(() => {
@@ -24,18 +26,17 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   }, [navigation])
 
   useEffect(() => {
+    getUserRating()
     getWineryImages(wineryData._id)
   }, [wineryData])
 
   useEffect(() => {
-    // console.log(reviews)
     filterReviews()
   }, [reviews])
 
   function getWineryData(selectedWinery) {
     axios.get(`http://localhost:5000/api/wineries/page/${selectedWinery}`)
       .then(res => {
-        // console.log(res.data.winery)
         updateWineryData(res.data.winery)
         updateWineListData(res.data.wines)
       })
@@ -45,7 +46,6 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   function getEventsData(selectedWinery) {
     axios.get(`http://localhost:5000/api/events/winery/${selectedWinery}`)
       .then(res => {
-        // console.log(res.data)
         updateEventsArray(res.data.events)
       })
       .catch(err => console.error(err))
@@ -54,10 +54,19 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   function getWineryImages(selectedWinery) {
     axios.get(`http://localhost:5000/api/images/${selectedWinery}`)
       .then(res => {
-        console.log(res.data.images)
         updateWineryImages(res.data.images)
       })
       .catch(err => console.error(err))
+  }
+
+  function getUserRating() {
+    if (isAuthenticated) {
+      axios.get(`http:/localhost:5000/api/reviews/${wineryData._id}/${user._id}`)
+        .then(res => updateUserRating(res.data.review))
+        .then(res => updateIsLoading(false))
+        .catch(err => console.error(err))
+    }
+    updateIsLoading(false)
   }
 
   function calculateAverage(totalValue, reviewCount) {
@@ -86,6 +95,10 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
     postReviewBtn = null
   }
 
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
     <Content>
       <View>
@@ -99,6 +112,8 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
               data={wineryData} 
               rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
               choosePhoto={isAuthenticated ? () => navigation.navigate('PhotoPicker', { wineryData, user }) : null}
+              userRating={userRating}
+              isAuthenticated={isAuthenticated}
             />
           </ImageBackground>
         </View>

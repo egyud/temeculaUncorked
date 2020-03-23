@@ -15,6 +15,8 @@ router.get('/:userId', ReviewsController.getUserWineryReviews)
 
 router.post('/like', ReviewsController.postLike)
 
+router.get('/:wineryId/:userId', ReviewsController.getUserReview)
+
 // router.get('/winery/:name', ReviewsController.getWineryReviews)
 
 // // post reviews/wine/:winery/:name

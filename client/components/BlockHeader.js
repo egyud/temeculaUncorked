@@ -2,9 +2,21 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings'
+import UserRating from '../components/UserRating'
 
-export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPhoto }) => {
+export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPhoto, userRating, isAuthenticated }) => {
   const { name, phone, reviewCount } = data
+
+  let uRate = (
+    <>
+      <UserRating
+            disabled={true} 
+            size={25}
+            value={userRating}
+      />
+      <Text>Your rating</Text>
+    </>
+  )
   return (
     <Card style={styles.block}>
       <CardItem>
@@ -14,12 +26,14 @@ export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPh
           </Body>
         </Left>
         <Right>
-          <Rating 
+          <Rating
+            readonly={true}
             imageSize={25} 
             startingValue={rating}
             type="custom"
             ratingColor="#99ff99" />
           <Text>{reviewCount} Reviews</Text>
+          {isAuthenticated ? uRate : null}
         </Right>
       </CardItem>
       <CardItem>

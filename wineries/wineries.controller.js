@@ -181,31 +181,6 @@ exports.getEventsForOne = async (req, res) => {
   }
 }
 
-// update the rating for a wine
-// exports.updateWineRating = async (req, res) => {
-//   try {
-//     const name = req.params.name.replace(/%20/g, ' ')
-//     const wine = req.params.wine.replace(/%20/g, ' ') 
-//     const rating = req.params.rating.replace(/%20/g, ' ')
-//     const wineDoc = await Winery.findOneAndUpdate({ name, "wines.name": wine }, { $inc: { `wines.rating.$.[${rating}]`: 1 } }, { returnNewDocument: true })
-//   } catch(error) {
-//     console.error(error)
-//     return res.status(400).end()
-//   }
-// }
-
-// exports.updateWineRating = async (req, res) => {
-//   try {
-//     const name = req.params.name.replace(/%20/g, ' ')
-//     const wine = req.params.wine.replace(/%20/g, ' ') 
-//     const rating = req.params.rating.replace(/%20/g, ' ')
-//     const winery = await Winery.findOne({ name })
-//   } catch(error) {
-//     console.error(error)
-//     return res.status(400).end()
-//   }
-// }
-
 exports.getWineRating = async (req, res) => {
   try {
     const name = req.params.name.replace(/%20/g, ' ')

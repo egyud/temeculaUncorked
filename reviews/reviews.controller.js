@@ -97,3 +97,14 @@ exports.postLike = async (req, res) => {
     return res.status(400).end()
   }
 }
+
+exports.getUserReview = async (req, res) => {
+  const { wineryId, userId } = req.params
+  try {
+    const review = await Review.findOne({ reviewedId: wineryId, userId }, 'rating')
+    console.log(review.rating)
+    return res.status(200).send({ review: review.rating })
+  } catch (error) {
+    return res.end()
+  }
+}
