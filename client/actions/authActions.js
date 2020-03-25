@@ -3,6 +3,8 @@ import setAuthToken from '../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
 import deviceStorage from '../utils/deviceStorage'
 
+import { showMessage, hideMessage } from 'react-native-flash-message'
+
 export const GET_ERRORS = "GET_ERRORS"
 export const USER_LOADING = "USER_LOADING"
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
@@ -13,10 +15,18 @@ export const registerUser = (userData, navigation) => async (dispatch) => {
   try {
     const response = await axios.post('http://localhost:5000/api/users/register', userData)
     if (response) {
+      showMessage({
+        message: 'Registration successful! You can now log in.',
+        type: 'success'
+      })
       // if registration is successful, redirect to login drawer
       return navigation.navigate('Login')
     }
   } catch(err) {
+    showMessage({
+      message: err.response.data.message || err.response.data.errors[0][Object.keys(err.response.data.errors[0])[0]],
+      type: 'warning'
+    })
     return dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -37,9 +47,17 @@ export const loginUser = (userData, navigation) => async (dispatch) => {
       const decoded = jwt_decode(token)
       // Set current user
       dispatch(setCurrentUser(decoded, user))
-      return navigation.navigate('Home')
+      navigation.navigate('Home')
+      return showMessage({
+        message: "You are now logged in",
+        type: "success"
+      })
     }
   } catch(err) {
+    showMessage({
+      message: err.response.data.message || err.response.data.errors[0][Object.keys(err.response.data.errors[0])[0]],
+      type: 'warning'
+    })
     return dispatch({
       type: GET_ERRORS,
       payload: err.response.data

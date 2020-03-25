@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const multerUploads = require('../middleware/multer').multerUploads
+const { userValidationRules, userRegistrationRules, validate } = require('./validator')
 
 const UsersController = require('./users.controllers')
 
 // post /users/register
-router.post('/register', UsersController.registerUser)
+router.post('/register', userRegistrationRules(), validate, UsersController.registerUser)
 
 // post /users/login
-router.post('/login', UsersController.loginUser)
+router.post('/login', userValidationRules(), validate, UsersController.loginUser)
 
 // get /users/:userId
 router.get('/:userId', UsersController.getUserInfo)

@@ -1,7 +1,6 @@
 const User = require('./user.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { registerValidation, loginValidation } = require('./validation')
 const dataUri = require('../middleware/multer').dataUri
 const uploader = require('../config/cloudinaryConfig').uploader
 
@@ -12,13 +11,6 @@ require('dotenv').config()
 exports.registerUser = async (req, res, next) => {
   const { name, email, password, password2 } = req.body
   try {
-
-    // validate data
-    const { error } = registerValidation(req.body)
-    if (error) {
-      return res.status(400).send(error.details[0].message)
-    }
-    console.log('in registerUser')
   
     if (password !== password2) {
       return res.status(400).send({message: 'Your passwords must match'})
@@ -49,13 +41,17 @@ exports.registerUser = async (req, res, next) => {
                   res.status(200).json({ data: user })
                   // redirect to login form
                 })
-                .catch(err => console.error(err))
+                .catch(err => {
+                  console.error(err)
+                  return res.send({ messasge: 'There was an error saving user to database' })
+                })
             })
           })      
         }
       })
   } catch (err) {
     console.error(err)
+    return res.send({ message: 'There was an error with your registration' })
   }
 }
 
@@ -63,12 +59,6 @@ exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body
   console.log(email)
   console.log(password)
-
-  // const { error } = loginValidation(req.body)
-  // const valid = error == null
-  // if(!valid) {
-  //   return res.status(400).send(error.details[0].message)
-  // }
 
   const user = await User.findOne({ email })
     .populate('memberOf', 'name')
@@ -97,10 +87,10 @@ exports.loginUser = async (req, res, next) => {
         user: data
       })
     } else {
-      res.status(400).send({message: 'Passwords do not match'})
+      res.status(400).send({message: 'The password you entered was incorrect'})
     }
   } catch(error) {
-    res.status(500).send({ error })
+    res.status(500).send({ message: 'There was an error logging in.  Please check your email and password.' })
   }
 
 }
