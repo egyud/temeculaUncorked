@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, List, ListItem, Spinner } from 'native-base'
 import { Rating } from 'react-native-ratings'
+import { showMessage } from 'react-native-flash-message'
 import UserRating from '../components/UserRating'
 
 const WineScreen = ({ navigation, user, isAuthenticated }) => {
@@ -40,8 +41,18 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
         wineId,
         rating: wineRating 
       })
-        .then(res => console.log(res.data))
-        .catch(err => console.error(err))
+        .then(res => {
+          showMessage({
+            message: res.data.message,
+            type: 'success'
+          })
+        })
+        .catch(err => {
+          showMessage({
+            message: err.response.data.message,
+            type: 'danger'
+          })
+        })
     }
   }
 

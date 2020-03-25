@@ -39,7 +39,7 @@ const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
               <Rating 
                 startingValue={rating}
                 imageSize={25}
-                readonly={!isAuthenticated}
+                readonly={true}
                 onFinishRating={(rate) => updateWineRating(rate)}
                 type="custom"
                 ratingColor="#99ff99" />

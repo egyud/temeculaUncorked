@@ -19,16 +19,22 @@ exports.postWineRating = async (req, res) => {
       // update the existing rating
       const updatedRating = await Rating.updateOne({userId, wineId}, { $set: { rating } })
       const updatedWine = await Wine.updateOne({ _id: wineId }, { $inc: { avgRating: ratingDif } })
-      return res.status(200).send({ updatedRating, updatedWine })
+      return res.status(200).send({ 
+        updatedRating, 
+        updatedWine,
+        message: 'Your rating for this wine has been successfully updated.' })
     } else {
       // create a new rating and save it
       const newRating = await Rating.create({ wineId, ...req.body })
       const updatedWine = await Wine.updateOne({ _id: wineId }, { $inc: { ratingCount: 1, avgRating: rating } })
-      return res.status(201).send({ newRating, updatedWine })
+      return res.status(201).send({ 
+        newRating, 
+        updatedWine,
+        message: 'Your rating for this wine has been successfully added.' })
     }
   } catch(error) {
     console.error(error)
-    return res.status(400).end()
+    return res.status(400).send({ message: 'There was an error submitting your rating.' })
   }
 }
 
