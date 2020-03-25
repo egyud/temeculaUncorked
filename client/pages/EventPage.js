@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { Share, View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
+import { showMessage, hideMessage } from 'react-native-flash-message'
 import CommentList from '../components/CommentList'
 
 const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
@@ -13,6 +14,25 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
   useEffect(() => {
     getComments()
   }, [event])
+
+  function attendEvent() {
+    axios.post('http://localhost:5000/api/events/attend', {
+      userId: activeUser._id,
+      eventId: _id
+    })
+      .then(res => {
+        showMessage({
+          message: res.data.message,
+          type: 'success'
+        })
+      })
+      .catch(err => {
+        showMessage({
+          message: err.response.data.message,
+          type: 'danger'
+        })
+      })
+  }
 
   async function shareEvent() {
     try {
@@ -51,8 +71,29 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
     </Button>
   )
 
+  let attendShareBtns = (
+    <>
+      <Left>
+        <Button 
+          style={styles.button}
+          onPress={() => attendEvent()}
+        >
+          <Text>Attend</Text>
+        </Button>
+      </Left>
+      <Body>
+        <Button 
+          style={styles.button}
+          onPress={() => shareEvent()}>
+          <Text>Share</Text>
+        </Button>
+      </Body>
+    </>
+  )
+
   if (!isAuthenticated) {
     postCommentBtn = null
+    attendShareBtns = null
   }
 
   let membersOnlyText, adultsOnlyText
@@ -104,20 +145,7 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
             </Body>
           </CardItem>
           <CardItem>
-            <Left>
-              <Button 
-                style={styles.button}
-              >
-                <Text>Attend</Text>
-              </Button>
-            </Left>
-            <Body>
-              <Button 
-                style={styles.button}
-                onPress={() => shareEvent()}>
-                <Text>Share</Text>
-              </Button>
-            </Body>
+            {attendShareBtns}
             <Right>
               <Button style={styles.button}>
                 <Text>Photos</Text>
