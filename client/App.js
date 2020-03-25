@@ -18,7 +18,7 @@ export default App = () => {
     <Provider store={store}>
       <Container style={styles.container}>
         <StackNav />
-        <FlashMessage position="center"/>
+        <FlashMessage position="top"/>
       </Container>
     </Provider>
   );
