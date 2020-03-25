@@ -29,23 +29,31 @@ export default ActivityFeed = ({ navigation }) => {
 
   return (
     <List>
-      {reviews.map(review => (
-        <ListItem 
-          avatar style={styles.listItem} 
-          onPress={() => navigation.navigate('Review', { review })} 
-          key={review._id}>
-          <Left>
-            <Thumbnail source={{ uri: review.userId.avatar.url }}/>
-          </Left>
-          <Body>
-            <Text>{review.userId.name}</Text>
-            <Text note>Reviewed {review.reviewedId.name}</Text>
-          </Body>
-          <Right>
-            <Text note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
-          </Right>
-        </ListItem>
-      ))}
+      {reviews.map(review => {
+        let avatar = null
+        if (review.userId.avatar !== undefined) {
+          avatar = <Thumbnail source={{ uri: review.userId.avatar.url }}/>
+        }
+
+        return (
+          <ListItem 
+            avatar 
+            style={styles.listItem} 
+            onPress={() => navigation.navigate('Review', { review })} 
+            key={review._id}>
+            <Left>
+              {avatar}
+            </Left>
+            <Body>
+              <Text>{review.userId.name}</Text>
+              <Text note>Reviewed {review.reviewedId.name}</Text>
+            </Body>
+            <Right>
+              <Text note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
+            </Right>
+          </ListItem>
+        )
+      })}
     </List>
   )
 }
