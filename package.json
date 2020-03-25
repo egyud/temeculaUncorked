@@ -19,6 +19,7 @@
     "concurrently": "^5.0.0",
     "datauri": "^2.0.0",
     "dotenv": "^8.2.0",
+    "expo-cli": "^3.15.5",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
