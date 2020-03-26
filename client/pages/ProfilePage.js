@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native'
 import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base'
 import { Linking } from 'expo'
+import { showMessage } from 'react-native-flash-message'
 import ReviewList from '../components/ReviewList/ReviewList'
 import RatingsList from '../components/RatingsList'
 
@@ -59,8 +60,18 @@ const ProfilePage = ({ activeUser, navigation }) => {
         userIdToFollow: userId,
         activeUser
       })
-        .then(res => console.log(res.data))
-        .catch(err => console.error(err))
+        .then(res => {
+          showMessage({
+            message: res.data.message,
+            type: 'success'
+          })
+        })
+        .catch(err => {
+          showMessage({
+            message: err.response.data.message,
+            type: 'danger'
+          })
+        })
     }
   }
 

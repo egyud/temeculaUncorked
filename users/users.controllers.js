@@ -118,12 +118,15 @@ exports.followUser = async (req, res) => {
     // check to see if user is already following, and make sure that the user isn't trying to follow themself
     if (!activeUser.following.includes(userIdToFollow) && userIdToFollow !== activeUser._id ) {
       let updatedUser = await User.updateOne({ _id: activeUser._id }, { $push: { following: userIdToFollow } })
-      return res.status(200).send({ updatedUser })
+      return res.status(200).send({ 
+        updatedUser,
+        message: `Success! You are now following this user`
+      })
     }
     return res.send({ message: 'You already follow this user' })
   } catch(error) {
     console.error(error)
-    res.status(400).end()
+    res.status(400).send({ message: 'There was an error submitting your follow request.' })
   }
 }
 
