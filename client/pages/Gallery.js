@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dimensions, View, StyleSheet, Text } from 'react-native'
+import { Dimensions, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { Spinner } from 'native-base'
 import ImageView from 'react-native-image-viewing'
 import GalleryImage from '../components/GalleryImage'
@@ -10,6 +10,9 @@ export default Gallery = ({ navigation }) => {
   const [imgList, updateImgList] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
   const images = navigation.getParam('images')
+  const wineryData = navigation.getParam('wineryData')
+  const user = navigation.getParam('user')
+  const isAuthenticated = navigation.getParam('isAuthenticated')
   let imageArray = []
 
   // create an array of just the urls for each image
@@ -23,6 +26,12 @@ export default Gallery = ({ navigation }) => {
     }
   }, [])
 
+  const openPhotoPicker = () => {
+    if (isAuthenticated) {
+      navigation.navigate('PhotoPicker', { wineryData, user })
+    }
+  }
+
   const openLightBox = (i) => {
     updateIndex(i),
     updateShown(true)
@@ -32,6 +41,7 @@ export default Gallery = ({ navigation }) => {
     updateIndex(0)
     updateShown(false)
   }
+
 
   if (isLoading) {
     return (
@@ -44,6 +54,11 @@ export default Gallery = ({ navigation }) => {
   console.log(imgList)
   return (
     <View style={styles.gallery}>
+      <TouchableOpacity
+        onPress={() => openPhotoPicker()} 
+        style={styles.upload}>
+        <Text style={{ color: 'white', fontWeight: 'bold'}}>Upload Photos</Text>
+      </TouchableOpacity>
       {imgList.map((image, idx) => (
         <GalleryImage
           uri={image.uri} 
@@ -67,5 +82,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     flex: 1
+  },
+  upload: {
+    width: '100%',
+    height: 40,
+    backgroundColor: '#89012c',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })

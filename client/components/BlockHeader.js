@@ -4,7 +4,7 @@ import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings'
 import UserRating from '../components/UserRating'
 
-export default BlockHeader = ({ data, rating, choosePhoto, submitPhoto, userRating, isAuthenticated }) => {
+export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => {
   const { name, phone, reviewCount } = data
 
   let uRate = (

@@ -104,7 +104,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
       <View>
         <View>
           <TouchableOpacity 
-            onPress={() => navigation.navigate('Gallery', { images: wineryImages })}>
+            onPress={() => navigation.navigate('Gallery', { images: wineryImages, wineryData, user, isAuthenticated })}>
             <ImageBackground 
               source={require('../assets/wineGlasses.jpg')}
               style={styles.imageBackground}>
@@ -112,10 +112,8 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
             </ImageBackground>
           </TouchableOpacity>
           <BlockHeader 
-            submitPhoto={() => handleUploadPhoto()}
             data={wineryData} 
             rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
-            choosePhoto={isAuthenticated ? () => navigation.navigate('PhotoPicker', { wineryData, user }) : null}
             userRating={userRating}
             isAuthenticated={isAuthenticated}
           />
