@@ -8,10 +8,15 @@ exports.postComment = async (req, res) => {
       reviewId,
       text
     })
-    return res.status(200).send({ comment })
+    return res.status(200).send({ 
+      comment,
+      message: 'Your comment was successfully submitted.  It may take a few minutes to appear.'
+    })
   } catch (error) {
     console.error(error)
-    return res.status(400).send({ message: 'Error creating the comment' })
+    return res.status(400).send({ 
+      message: 'There was an error submitting your comment.'
+    })
   }
 }
 
@@ -23,10 +28,13 @@ exports.postCommentForEvent = async (req, res) => {
       eventId,
       text
     })
-    return res.status(200).send({ comment })
+    return res.status(200).send({ 
+      comment,
+      message: 'Your comment was successfully submitted.  It may take a few minutes to appear.'
+    })
   } catch (error) {
     console.error(error)
-    return res.status(400).send({ message: 'Error creating the comment' })
+    return res.status(400).send({ message: 'There was an error submitting your comment.' })
   }
 }
 

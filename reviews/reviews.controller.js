@@ -22,12 +22,16 @@ exports.postWineryReview = async (req, res) => {
       const updatedWinery = await Winery.updateOne({ _id: wineryId }, { $inc: { avgRating: rating, reviewCount: 1 } })
   
   
-      return res.status(200).send({ review, updatedWinery })
+      return res.status(200).send({ 
+        review, 
+        updatedWinery,
+        message: 'Your review was successfully submitted.  It may take a few minutes to appear.' 
+      })
     }
 
   } catch(error) {
     console.error(error)
-    return res.status(400).send({ message: 'Error creating the post' })
+    return res.status(400).send({ message: 'There was an error submitting your review.' })
   }
 }
 

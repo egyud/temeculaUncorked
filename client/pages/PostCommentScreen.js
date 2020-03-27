@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
-import SuccessModal from '../components/SuccessModal'
+import { showMessage } from 'react-native-flash-message'
 
 export default PostCommentScreen = ({ navigation }) => {
   const [commentText, updateCommentText] = useState('')
-  const [successModalVisible, updateSuccessModalVisible] = useState(false)
 
   const activeUser = navigation.getParam('activeUser')
   const review = navigation.getParam('review')
@@ -21,10 +20,18 @@ export default PostCommentScreen = ({ navigation }) => {
         reviewId: review._id
       })
         .then(res => {
-          // console.log(res.data)
-          updateSuccessModalVisible(true)
+          showMessage({
+            message: res.data.message,
+            type: 'success'
+          })
+          navigation.navigate('Review', { review })
         })
-        .catch(err => console.error(err))
+        .catch(err => {
+          showMessage({
+            message: err.response.data.message,
+            type: 'warning'
+          })
+        })
     } else if (type === 'event') {
       axios.post(`http://localhost:5000/api/comments/event`, {
         text: commentText,
@@ -32,30 +39,23 @@ export default PostCommentScreen = ({ navigation }) => {
         eventId: event._id
       })
         .then(res => {
-          // console.log(res.data)
-          updateSuccessModalVisible(true)
+          showMessage({
+            message: res.data.message,
+            type: 'success'
+          })
         })
-        .catch(err => console.error(err))
-    }
-  }
-
-  function closeModal() {
-    updateSuccessModalVisible(false)
-    if (type === 'review') {
-      navigation.navigate('Review', { review })
-    } else if (type === 'event') {
-      navigation.navigate('Event', { event })
+        .catch(err => {
+          showMessage({
+            message: err.response.data.message,
+            type: 'warning'
+          })
+          navigation.navigate('Event', { event })
+        })
     }
   }
 
   return (
     <View style={styles.postCommentScreen}>
-      <SuccessModal 
-        close={() => closeModal()}
-        modalVisible={successModalVisible}
-        commentText={commentText}
-        type={type}
-      />
       <Text>Post a new comment</Text>
       <Form style={{ alignItems: 'center' }}>
         <Textarea 
