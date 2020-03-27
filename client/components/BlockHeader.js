@@ -4,25 +4,25 @@ import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings'
 import UserRating from '../components/UserRating'
 
-export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPhoto, userRating, isAuthenticated }) => {
+export default BlockHeader = ({ data, rating, choosePhoto, submitPhoto, userRating, isAuthenticated }) => {
   const { name, phone, reviewCount } = data
 
   let uRate = (
     <>
       <UserRating
-            disabled={true} 
-            size={25}
-            value={userRating}
+        disabled={true} 
+        size={25}
+        value={userRating}
       />
       <Text>Your rating</Text>
     </>
   )
   return (
     <Card style={styles.block}>
-      <CardItem>
+      <CardItem >
         <Left>
           <Body>
-            <Text>{name}</Text>
+            <Text style={styles.wineryName}>{name}</Text>
           </Body>
         </Left>
         <Right>
@@ -38,28 +38,10 @@ export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPh
       </CardItem>
       <CardItem>
         <Left>
-          <Button 
-            onPress={openGallery}
-            style={styles.photoButton}>
-            <Icon 
-              type="Entypo"
-              name="images"
-              style={styles.icon}/>
-          </Button>
-          <Button 
-            onPress={choosePhoto}
-            style={styles.photoButton}>
-            <Icon 
-              type="Entypo"
-              name="upload"
-              style={styles.icon}/>
-          </Button>
-        </Left>
-        <Right>
           <Button style={styles.callButton}>
             <Text style={styles.callText}>{phone}</Text>
           </Button>
-        </Right>
+        </Left>
       </CardItem>
     </Card>
   )
@@ -67,15 +49,21 @@ export default BlockHeader = ({ data, rating, openGallery, choosePhoto, submitPh
 
 const styles = StyleSheet.create({
   block: {
-    width: '85%',
-    marginVertical: 0,
-    marginHorizontal: 'auto'
+    width: '100%',
+    height: 200,
+    backgroundColor: '#fff'
+  },
+  wineryName: {
+    fontSize: 25,
+    fontWeight: 'bold'
   },
   callButton: {
-    backgroundColor: 'white',
+    backgroundColor: '#f1f1d4'
   },
   callText: {
-    color: '#89012c'
+    color: '#89012c',
+    fontWeight: '700',
+    fontSize: 20
   },
   photoButton: {
     backgroundColor: '#99ff99',

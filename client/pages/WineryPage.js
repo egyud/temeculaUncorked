@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { View, StyleSheet, ImageBackground } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
 import { Tabs, Tab, Text, Icon, Button, Content, Spinner } from 'native-base'
 import EventList from '../components/EventList'
 import BlockHeader from '../components/BlockHeader'
@@ -103,19 +103,22 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
     <Content>
       <View>
         <View>
-          <ImageBackground 
-            source={require('../assets/wineGlasses.jpg')}
-            style={styles.imageBackground}>
-            <BlockHeader 
-              openGallery={() => navigation.navigate('Gallery', { images: wineryImages })}
-              submitPhoto={() => handleUploadPhoto()}
-              data={wineryData} 
-              rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
-              choosePhoto={isAuthenticated ? () => navigation.navigate('PhotoPicker', { wineryData, user }) : null}
-              userRating={userRating}
-              isAuthenticated={isAuthenticated}
-            />
-          </ImageBackground>
+          <TouchableOpacity 
+            onPress={() => navigation.navigate('Gallery', { images: wineryImages })}>
+            <ImageBackground 
+              source={require('../assets/wineGlasses.jpg')}
+              style={styles.imageBackground}>
+              <Text style={styles.imageText}>See all images</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+          <BlockHeader 
+            submitPhoto={() => handleUploadPhoto()}
+            data={wineryData} 
+            rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
+            choosePhoto={isAuthenticated ? () => navigation.navigate('PhotoPicker', { wineryData, user }) : null}
+            userRating={userRating}
+            isAuthenticated={isAuthenticated}
+          />
         </View>
         <Tabs 
           style={styles.tabs}
@@ -181,18 +184,18 @@ WineryPage.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-  headerBox: {
-    backgroundColor: 'white',
-    width: '80%',
-    alignItems: 'center',
-    paddingVertical: 50
-  },
   imageBackground: {
     width: '100%', 
     paddingVertical: 40,
-    height: 250,
-    justifyContent: 'center',
-    alignItems: 'center'
+    height: 200,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
+  },
+  imageText: {
+    backgroundColor: 'white',
+    marginRight: 10,
+    paddingVertical: 2,
+    paddingHorizontal: 4
   },
   tabs: {
     backgroundColor: '#99ff99'
