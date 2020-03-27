@@ -16,7 +16,7 @@ export default Gallery = ({ navigation }) => {
   useEffect(() => {
     if (images) {
       images.forEach(img => {
-        imageArray.push(img.url)
+        imageArray.push({ uri: img.url })
       })
       updateImgList(imageArray)
       updateIsLoading(false)
@@ -46,7 +46,7 @@ export default Gallery = ({ navigation }) => {
     <View style={styles.gallery}>
       {imgList.map((image, idx) => (
         <GalleryImage
-          uri={image} 
+          uri={image.uri} 
           index={idx}
           key={idx}
           onPress={openLightBox}
