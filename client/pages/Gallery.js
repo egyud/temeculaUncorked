@@ -1,39 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Dimensions, View, StyleSheet, Text } from 'react-native'
+import { Spinner } from 'native-base'
 import ImageView from 'react-native-image-viewing'
 import GalleryImage from '../components/GalleryImage'
 
 export default Gallery = ({ navigation }) => {
   const [index, updateIndex] = useState(0)
   const [shown, updateShown] = useState(false)
-  // const [imgList, updateImgList] = useState([])
+  const [imgList, updateImgList] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
   const images = navigation.getParam('images')
   let imageArray = []
-
-  // console.log('imageArray')
-  // console.log(imageArray)
 
   // create an array of just the urls for each image
   useEffect(() => {
     if (images) {
       images.forEach(img => {
-        // let uri = img.url
         imageArray.push(img.url)
-        console.log('imageArray')
-        console.log(imageArray)
-        // updateImgList(prevList => [...prevList, img.url])
-        // console.log('image list')
-        // console.log(imgList)
       })
-    }
-  }, [])
-
-  useEffect(() => {
-    if (imageArray.length > 0) {
+      updateImgList(imageArray)
       updateIsLoading(false)
     }
-  }, [imageArray])
+  }, [])
 
   const openLightBox = (i) => {
     updateIndex(i),
@@ -48,15 +36,15 @@ export default Gallery = ({ navigation }) => {
   if (isLoading) {
     return (
       <View>
-        <Text>Loading Images...</Text>
+        <Spinner />
       </View>
     )
   }
 
-  console.log('right before return')
+  console.log(imgList)
   return (
     <View style={styles.gallery}>
-      {imageArray.map((image, idx) => (
+      {imgList.map((image, idx) => (
         <GalleryImage
           uri={image} 
           index={idx}
@@ -65,7 +53,7 @@ export default Gallery = ({ navigation }) => {
         />
       ))}
       <ImageView
-        images={imageArray} 
+        images={imgList} 
         visible={shown}
         imageIndex={index}
         onRequestClose={() => hideLightBox()}

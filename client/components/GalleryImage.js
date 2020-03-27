@@ -18,7 +18,7 @@ export default GalleryImage = ({ uri, index, onPress }) => {
         animation={'bounceIn'}
         delay={100 * index}
         duration={500}
-        source={uri}
+        source={{ uri: uri }}
         style={styles.image}
       />
     </Button>
