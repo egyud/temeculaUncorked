@@ -16,23 +16,28 @@ export default FollowingList = ({ navigation, users }) => {
 
   return (
     <List>
-      {users.map(user => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Profile', { userId: user._id })}
-          key={user._id}
-        >
-        <ListItem 
-          avatar
-          style={styles.listItem}>
-          <Left>
-            <Thumbnail source={{ uri: user.avatar.url }}/>
-          </Left>
-          <Body>
-            <Text>{user.name}</Text>
-          </Body>
-        </ListItem>
-        </TouchableOpacity>
-      ))}
+      {users.map(user =>  {
+        let thumbnail
+        if (user.avatar === undefined) {
+          thumbnail = null
+        } else {
+          thumbnail = <Thumbnail source={{ uri: user.avatar.url }}/>
+        }
+        return (
+          <ListItem
+            key={user._id}
+            onPress={() => navigation.navigate('Profile', { userId: user._id })}
+            avatar
+            style={styles.listItem}>
+            <Left>
+              {thumbnail}
+            </Left>
+            <Body>
+              <Text>{user.name}</Text>
+            </Body>
+          </ListItem>
+        )
+      })}
     </List>
   )
 }
