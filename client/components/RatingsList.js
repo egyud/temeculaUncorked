@@ -15,7 +15,9 @@ export default RatingsList = ({ ratings }) => {
   return (
     <List style={styles.ratingListItem}>
       {ratings.map(rating => (
-        <ListItem style={styles.ratingListItem}>
+        <ListItem
+          key={`${rating.wineId}-${rating.rating}`} 
+          style={styles.ratingListItem}>
           <Left>
             <Text>{rating.wineId.name}-{rating.wineId.winery}</Text>
           </Left>
