@@ -23,7 +23,6 @@ exports.getWinery = async (req, res) => {
     const wines = await Wine.find({ winery: name })
     return res.status(200).send({ winery, wines })
   } catch(error) {
-    console.error(error)
     return res.status(400).end()
   }
 } 

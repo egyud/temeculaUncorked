@@ -76,7 +76,6 @@ exports.getUserWineryReviews = async (req, res) => {
       .sort({ timestamp: -1 })
     return res.status(200).send({ reviews })
   } catch(error) {
-    console.error(error)
     return res.status(400).end()
   }
 }

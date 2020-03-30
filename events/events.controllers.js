@@ -41,7 +41,7 @@ exports.getEventsForWinery = async (req, res) => {
     const events = await Event.find({ winery: name })
     return res.status(200).send({ events })
   } catch(error) {
-    console.error(error)
+    console.log('ERROR IN getEVENTS')
     return res.status(400).send({ error })
   }
 }
