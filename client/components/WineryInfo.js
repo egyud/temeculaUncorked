@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { List, ListItem } from 'native-base'
 import { Linking } from 'expo'
+import openMap from 'react-native-open-maps'
 
 export default WineryInfo = ({ info }) => {
   const { address, hours, url } = info
@@ -14,7 +15,7 @@ export default WineryInfo = ({ info }) => {
     <List>
       <Text>Address</Text>
       <ListItem>
-        <Text>{address}</Text>
+        <Text onPress={() => openMap({ query: address })}>{address}</Text>
       </ListItem>
       <Text>Bio</Text>
       <ListItem>

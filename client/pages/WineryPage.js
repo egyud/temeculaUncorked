@@ -9,6 +9,7 @@ import WineryInfo from '../components/WineryInfo'
 import ReviewList from '../components/ReviewList/ReviewList'
 import ClubList from '../components/ClubList'
 import WineryWineList from '../components/WineryWineList'
+import calculateAverage from '../utils/average'
 
 const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   const [wineryData, updateWineryData] = useState({})
@@ -67,10 +68,6 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
         .catch(err => console.error(err))
     }
     updateIsLoading(false)
-  }
-
-  function calculateAverage(totalValue, reviewCount) {
-    return Number((totalValue / reviewCount).toFixed(1)) || 0
   }
 
   function filterReviews() {
