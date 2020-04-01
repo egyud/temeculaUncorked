@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineryList } from '../actions/wineActions'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { ListItem, Right, Body, Header, Item, Icon, Input } from 'native-base'
 import { Rating } from 'react-native-ratings' 
+import calculateAverage from '../utils/average'
 
 
 const WineryList = ({ list, fetchWineries, navigation }) => {
@@ -18,13 +19,6 @@ const WineryList = ({ list, fetchWineries, navigation }) => {
   if (searchInput.length > 0) {
     filteredWineryList = filterMatches()
   } 
-  // else {
-  //   filteredWineryList = list
-  // }
-
-  function calculateAverage(totalValue, reviewCount) {
-    return Number((totalValue / reviewCount).toFixed(1)) || 0
-  }
 
   function filterMatches() {
     return list.filter(winery => {
@@ -44,7 +38,7 @@ const WineryList = ({ list, fetchWineries, navigation }) => {
             onChangeText={(text) => updateSearchInput(text)} />
         </Item>
       </Header>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {filteredWineryList.map(winery => (
           <ListItem 
             key={winery._id}
@@ -65,7 +59,7 @@ const WineryList = ({ list, fetchWineries, navigation }) => {
             </Right>
           </ListItem>
         ))}
-      </View>
+      </ScrollView>
       
     </View>
   )
