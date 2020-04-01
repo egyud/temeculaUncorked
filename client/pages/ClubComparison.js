@@ -57,11 +57,14 @@ const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
           modalVisible={modalVisible}
           clubList={clubList}
           changeClubValue={changeClubValue}
-          />
+        />
         <View>
-          <Text
-            onPress={() => navigation.navigate('ClubList')} 
-            style={styles.compareLink}>View a complete list of wine clubs</Text>
+          <Button
+            onPress={() => navigation.navigate('ClubList')}
+            style={styles.compareLink} 
+          >
+            <Text style={styles.compareLinkText}>View a complete list of wine clubs</Text>
+          </Button>
         </View>
         <View style={styles.clubSelectionBtnWrapper}>
           <Button
@@ -149,25 +152,36 @@ const styles = StyleSheet.create({
   },
   compareLink: {
     textAlign: 'center',
-    color: '#e6ffe6',
     backgroundColor: '#614d36',
     paddingVertical: 15,
-    fontWeight: '600'
+    width: '80%',
+    alignSelf: 'center',
+    borderRadius: 30,
+    borderColor: '#99ff99',
+    borderWidth: 5,
+    justifyContent: 'center',
+    marginTop: 10
+  },
+  compareLinkText: {
+    fontWeight: 'bold',
+    color: '#e6ffe6',
   },
   clubSelectionBtn: {
     backgroundColor: '#614d36',
-    width: 220,
+    width: 200,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    // borderColor: '#99ff99',
-    // borderWidth: 3,
-    paddingVertical: 20
+    borderColor: '#99ff99',
+    borderWidth: 5,
+    paddingVertical: 20,
+    borderRadius: 20
   },
   clubSelectionBtnWrapper: {
     flexDirection: 'row',
-    marginVertical: 30
+    marginVertical: 30,
+    // width: '50%'
   },
   selectBtnText: {
     color: '#fff',
