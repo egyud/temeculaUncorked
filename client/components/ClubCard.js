@@ -5,7 +5,7 @@ import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from
 export default ClubCard = ({ club, navigation }) => {
   
   return (
-    <Card style={styles.clubCard}>
+    <Card style={styles.clubCard} testID="club-card">
       <CardItem>
         <Left>
           <Body>

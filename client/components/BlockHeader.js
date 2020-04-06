@@ -14,7 +14,7 @@ export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => 
         size={25}
         value={userRating}
       />
-      <Text>Your rating</Text>
+      <Text testID="user-rating-text">Your rating</Text>
     </>
   )
   return (
