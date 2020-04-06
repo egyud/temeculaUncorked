@@ -25,7 +25,7 @@ export default CommentListItem = ({ comment, navigation, activeUserId }) => {
   }
 
   return (
-    <View>
+    <View testID="comment-list-item">
       <Card>
         <CardItem>
           <Left>
