@@ -11,7 +11,6 @@ import EventPage from '../pages/EventPage'
 import ProfilePage from '../pages/ProfilePage'
 import WineSearch from '../pages/WineSearch'
 import ReviewScreen from '../pages/ReviewScreen'
-import ImageGallery from '../pages/ImageGallery'
 import Gallery from '../pages/Gallery'
 import LoginScreen from '../pages/LoginScreen'
 import RegisterScreen from '../pages/RegisterScreen'
@@ -19,7 +18,6 @@ import PostCommentScreen from '../pages/PostCommentScreen'
 import PostReviewScreen from '../pages/PostReviewScreen'
 import WineScreen from '../pages/WineScreen'
 import AccountPage from '../pages/AccountPage'
-import UploadPhotoScreen from '../pages/UploadPhotoScreen'
 import ClubListScreen from '../pages/ClubListScreen'
 import ClubScreen from '../pages/ClubScreen'
 import PhotoPickerScreen from '../pages/PhotoPickerScreen'
@@ -72,9 +70,6 @@ const StackNavigator = createStackNavigator({
   },
   Account: {
     screen: AccountPage
-  },
-  UploadPhoto: {
-    screen: UploadPhotoScreen
   },
   ClubList: {
     screen: ClubListScreen
