@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 
-const ClubCard = ({ club, navigation }) => {
+export default ClubCard = ({ club, navigation }) => {
   
   return (
     <Card style={styles.clubCard}>
@@ -47,5 +45,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#614D36'
   }
 })
-
-export default connect(null)(ClubCard)
