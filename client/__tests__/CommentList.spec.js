@@ -54,6 +54,13 @@ describe('CommentList', () => {
     expect(element).not.toBeNull()
   })
 
+  it('should display a message if the comments array is empty', () => {
+    const { queryByText } = render(<CommentList comments={[]}/>)
+    const element = queryByText('No comments to display')
+
+    expect(element).not.toBeNull()
+  })
+
   it('should not display the "no comment" message if there are comments', () => {
     const { queryByText } = render(<CommentList comments={comments}/>)
     const element = queryByText('No comments to display')

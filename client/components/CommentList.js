@@ -6,7 +6,7 @@ import CommentListItem from './CommentListItem'
 
 export default CommentList = ({ comments, activeUserId }) => {
 
-  if (comments) {
+  if (comments && comments.length > 0) {
     return (
       <View style={styles.container}>
         {comments.map(comment => (

@@ -4,7 +4,7 @@ import Event from './Event'
 
 export default EventList = ({ events, navigation }) => {
 
-  if (events) {
+  if (events && events.length > 0) {
     return (
       <View>
         {events.map(event => (

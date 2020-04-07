@@ -49,6 +49,13 @@ describe('EventList', () => {
     expect(element).not.toBeNull()
   })
 
+  it('should display a message if the events array is empty', () => {
+    const { queryByText } = render(<EventList events={[]}/>)
+    const element = queryByText('No events to display')
+
+    expect(element).not.toBeNull()
+  })
+
   it('should not display the no events message if there are events', () => {
     const { queryByText } = render(<EventList events={events}/>)
     const element = queryByText('No events to display')
