@@ -11,7 +11,9 @@ export default WineFilterItem = ({ text, addToFilters }) => {
   }
 
   return (
-    <Content style={styles.wineFilterItem}>
+    <Content
+      testID="wine-filter-item" 
+      style={styles.wineFilterItem}>
       <ListItem>
         <CheckBox 
           checked={checked}

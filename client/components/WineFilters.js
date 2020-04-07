@@ -11,7 +11,9 @@ const WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
   if (!isWineryScreen) {
     wineryFilters = (
       <>
-        <ListItem itemDivider>
+        <ListItem 
+          itemDivider
+          testID="winery-divider">
           <Text>Winery</Text>
         </ListItem>
         {wineryList.map(winery => (
