@@ -6,7 +6,35 @@ import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 
 export default FollowingList = ({ navigation, users }) => {
 
-  if (users.length === 0) {
+  if (users && users.length > 0) {
+    return (
+      <List>
+        {users.map(user =>  {
+          let thumbnail
+          if (user.avatar === undefined) {
+            thumbnail = null
+          } else {
+            thumbnail = <Thumbnail testID="thumbnail-avatar" source={{ uri: user.avatar.url }}/>
+          }
+          return (
+            <ListItem
+              testID="following-list-item"
+              key={user._id}
+              onPress={() => navigation.navigate('Profile', { userId: user._id })}
+              avatar
+              style={styles.listItem}>
+              <Left>
+                {thumbnail}
+              </Left>
+              <Body>
+                <Text>{user.name}</Text>
+              </Body>
+            </ListItem>
+          )
+        })}
+      </List>
+    )
+  } else {
     return (
       <View>
         <Text>You are not following any users</Text>
@@ -14,32 +42,6 @@ export default FollowingList = ({ navigation, users }) => {
     )
   }
 
-  return (
-    <List>
-      {users.map(user =>  {
-        let thumbnail
-        if (user.avatar === undefined) {
-          thumbnail = null
-        } else {
-          thumbnail = <Thumbnail source={{ uri: user.avatar.url }}/>
-        }
-        return (
-          <ListItem
-            key={user._id}
-            onPress={() => navigation.navigate('Profile', { userId: user._id })}
-            avatar
-            style={styles.listItem}>
-            <Left>
-              {thumbnail}
-            </Left>
-            <Body>
-              <Text>{user.name}</Text>
-            </Body>
-          </ListItem>
-        )
-      })}
-    </List>
-  )
 }
 
 const styles = StyleSheet.create({
