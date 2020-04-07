@@ -7,6 +7,7 @@ export default Event = ({ event, navigation }) => {
   return (
     <Card 
       style={styles.event}
+      testID="event-card"
     >
       <CardItem>
         <Left>
