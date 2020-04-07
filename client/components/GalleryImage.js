@@ -6,15 +6,14 @@ import { Image } from 'react-native-animatable'
 const WIDTH = Dimensions.get('window').width
 
 export default GalleryImage = ({ uri, index, onPress }) => {
-  console.log('GALLERY IMAGE RENDERED')
-  console.log('image uri')
-  console.log(uri)
+
   return (
     <Button
       onPress={() => onPress(index)}
       style={styles.imageBtn}
     >
-      <Image 
+      <Image
+        testID="gallery-image" 
         animation={'bounceIn'}
         delay={100 * index}
         duration={500}
