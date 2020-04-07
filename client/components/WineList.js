@@ -1,7 +1,5 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { ListItem, Right, Body } from 'native-base'
-import { Rating } from 'react-native-ratings' 
 import WineCard from './WineCard'
 
 export default WineList = ({ wines, navigation }) => {

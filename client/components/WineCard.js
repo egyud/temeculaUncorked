@@ -26,7 +26,7 @@ const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   }
 
   return (
-    <Card style={styles.card}>
+    <Card testID="wine-card" style={styles.card}>
       <CardItem>
         <Left>
           <Body>
