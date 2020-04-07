@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-native-testing-library'
 import RatingsList from '../components/RatingsList'
-import { exportDefaultDeclaration } from '@babel/types';
 
 const ratings = [
   {

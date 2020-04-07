@@ -14,7 +14,9 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen }) 
   } else {
     topLeft = (
       <>
-        <Thumbnail source={{ uri: avatar.url }}/> 
+        <Thumbnail
+          testID="review-thumbnail" 
+          source={{ uri: avatar.url }}/> 
         <Body>
           <Text onPress={() => navigation.navigate('Profile', { userId: userId })}>{userName}</Text>
         </Body>
