@@ -42,7 +42,8 @@ export default CommentListItem = ({ comment, navigation, activeUserId }) => {
         </CardItem>
         <CardItem>
           <Left>
-            <Button 
+            <Button
+              testID="add-like-btn" 
               transparent
               onPress={() => addLike()}>
               <Icon

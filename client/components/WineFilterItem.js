@@ -10,8 +10,6 @@ export default WineFilterItem = ({ text, addToFilters }) => {
     updateChecked(!checked)
   }
 
-  console.log(text)
-
   return (
     <Content style={styles.wineFilterItem}>
       <ListItem>
