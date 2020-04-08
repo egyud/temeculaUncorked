@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 
-const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
+export const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   const [wineRating, updateWineRating] = useState(0)
   const { name, rating, winery, ratingCount, price, _id: wineId } = wine
 
