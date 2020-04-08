@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from 'react-native-testing-library'
+import { render, cleanup, fireEvent } from 'react-native-testing-library'
 import { WineCard } from '../components/WineCard'
 
 const wine = {
@@ -39,5 +39,16 @@ describe('WineCard', () => {
     const element = queryByText('12 ratings')
 
     expect(element).not.toBeNull()
+  })
+
+  it('calls the navigation function when More button is clicked', () => {
+    const nav = {
+      navigate: jest.fn()
+    }
+    const { queryByTestId } = render(<WineCard user={user} isAuthenticated={true} wine={wine} navigation={nav}/>)
+    const element = queryByTestId('more-button')
+    fireEvent.press(element)
+
+    expect(nav.navigate).toHaveBeenCalledTimes(1)
   })
 })

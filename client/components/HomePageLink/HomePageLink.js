@@ -4,7 +4,8 @@ import { Icon } from 'native-base'
 
 export default HomePageLink = ({ linkText, nav, iconName, typeName }) => {
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
+      testID="home-page-link" 
       style={styles.btn}
       onPress={() => nav()}>
       <Text>

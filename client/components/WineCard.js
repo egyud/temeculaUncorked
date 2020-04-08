@@ -50,6 +50,7 @@ export const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
       <CardItem>
         <Left>
           <Button
+            testID="more-button"
             style={styles.moreBtn} 
             onPress={() => navigation.navigate('Wine', { wine })}>
             <Text>More</Text>
