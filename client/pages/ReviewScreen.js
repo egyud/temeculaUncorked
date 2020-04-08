@@ -5,6 +5,7 @@ import { View, StyleSheet } from 'react-native'
 import { Icon, Text, Button } from 'native-base'
 import Review from '../components/Review'
 import CommentList from '../components/CommentList'
+import addLike from '../utils/addLike'
 
 const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [commentsList, updateCommentsList] = useState([])
@@ -54,7 +55,8 @@ const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
         review={review} 
         navigation={navigation}
         activeUserId={activeUserId}
-        style={{ paddingBottom: 0 }}/>
+        style={{ paddingBottom: 0 }}
+        addLike={addLike}/>
       {postCommentBtn}
       <CommentList
         activeUserId={activeUserId}

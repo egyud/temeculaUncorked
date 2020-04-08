@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, fireEvent } from 'react-native-testing-library'
 import Review from '../components/Review'
 
 const review = {
@@ -54,5 +54,14 @@ describe('Review', () => {
     const element = queryByText('3 Likes')
 
     expect(element).not.toBeNull()
+  })
+
+  it('calls the addLike function when button is pressed', () => {
+    const addLikeHandler = jest.fn()
+    const { queryByTestId } = render(<Review isProfileScreen={true} review={review} addLike={addLikeHandler}/>)
+    const element = queryByTestId('add-like-button')
+
+    fireEvent.press(element)
+    expect(addLikeHandler).toHaveBeenCalledTimes(1)
   })
 })

@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import Review from '../Review'
+import addLike from '../../utils/addLike'
 
 
 export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
@@ -13,7 +14,8 @@ export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
             isProfileScreen={isProfileScreen} 
             key={review._id}
             review={review}
-            navigation={navigation}/>
+            navigation={navigation}
+            addLike={addLike}/>
         ))}
       {/* </ScrollView> */}
     </View>

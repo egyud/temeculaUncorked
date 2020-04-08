@@ -3,9 +3,10 @@ import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
+import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
 
-export default Review = ({ review, navigation, activeUserId, isProfileScreen }) => {
+export default Review = ({ review, navigation, activeUserId, isProfileScreen, addLike }) => {
   const { _id, text, rating, likes, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
 
   let topLeft
@@ -22,28 +23,6 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen }) 
         </Body>
       </>
     )
-  }
-
-  console.log(review.userId)
-
-  function addLike() {
-    axios.post('http://localhost:5000/api/reviews/like', {
-      userId: activeUserId,
-      reviewId: _id
-    })
-      .then(res => console.log(res))
-      .catch(err => console.error(err))
-
-  }
-
-  const modifyTimestamp = () => {
-    let newTime = timestamp
-      .slice(0, 10)
-      .split('-')
-      .map(num => Number(num))
-    // need to remove one from the month to get right date, as moment starts from index 0
-    newTime[1]--
-    return newTime
   }
 
   return (
@@ -69,9 +48,10 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen }) 
         </CardItem>
         <CardItem>
           <Left>
-            <Button 
+            <Button
+              testID="add-like-button" 
               transparent
-              onPress={() => addLike()}>
+              onPress={() => addLike('reviews', activeUserId, _id)}>
               <Icon
                 style={styles.btns} 
                 active name="thumbs-up" />
@@ -89,7 +69,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen }) 
             </Button>
           </Body>
           <Right>
-            <Text>{moment(modifyTimestamp()).fromNow()}</Text>
+            <Text>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
           </Right>
         </CardItem>
       </Card>

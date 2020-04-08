@@ -19,13 +19,12 @@ const comment = {
 describe('CommentListItem', () => {
   describe('clicking like button', () => {
     it('calls the addLike function', () => {
-      const { getByTestId } = render(<CommentListItem comment={comment}/>)
+      const addLikeHandler = jest.fn()
+      const { getByTestId } = render(<CommentListItem comment={comment} addLike={addLikeHandler}/>)
       const element = getByTestId('add-like-btn')
-      const spy = jest.spyOn(CommentListItem, 'modifyTimestamp')
-      spy.mockImpl
 
       fireEvent.press(element)
-      expect(spy).toHaveBeenCalledTimes(3)
+      expect(addLikeHandler).toHaveBeenCalledTimes(1)
       
     })
   })
