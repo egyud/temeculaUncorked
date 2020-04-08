@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native'
 import { Container, Header, Content, ListItem, CheckBox, Text, Body, Button } from 'native-base'
 import WineFilterItem from './WineFilterItem'
 
-const WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
+export const WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
   const types = ['red', 'white', 'rosé', 'sparkling', 'dessert']
   let wineryFilters
 
