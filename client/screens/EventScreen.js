@@ -6,7 +6,7 @@ import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Ta
 import { showMessage, hideMessage } from 'react-native-flash-message'
 import CommentList from '../components/CommentList'
 
-const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
+export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
   const event = navigation.getParam('event')
   const { title, winery, date, time, price, attending, membersOnly, adultsOnly, description, address, _id } = event
@@ -62,6 +62,7 @@ const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
 
   let postCommentBtn = (
     <Button
+      testID="post-comment-btn"
       style={styles.postCommentBtn}
       onPress={() => navigation.navigate('NewComment', { event, activeUser, type: 'event' })}>
       <Icon
@@ -74,7 +75,8 @@ const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   let attendShareBtns = (
     <>
       <Left>
-        <Button 
+        <Button
+          testID="attend-btn" 
           style={styles.button}
           onPress={() => attendEvent()}
         >

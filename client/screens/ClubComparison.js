@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
 import { View, StyleSheet, Text, ScrollView } from 'react-native'
-import { Button } from 'native-base'
+import { Button, Spinner } from 'native-base'
 import ClubColumn from '../components/ClubColumn'
 import ClubModal from '../components/ClubModal'
 
-const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
+export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubList, updateClubList] = useState([])
   const [firstClub, updateFirstClub] = useState('')
   const [secondClub, updateSecondClub] = useState('')
@@ -60,6 +60,7 @@ const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
         />
         <View>
           <Button
+            testID="compare-link"
             onPress={() => navigation.navigate('ClubList')}
             style={styles.compareLink} 
           >
@@ -68,6 +69,7 @@ const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
         </View>
         <View style={styles.clubSelectionBtnWrapper}>
           <Button
+            testID="open-modal-1"
             style={styles.clubSelectionBtn}
             onPress={() => {
               updateSelectedClubNumber(1)
@@ -93,7 +95,7 @@ const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   }
   return (
     <View>
-      <Text>Loading...</Text>
+      <Spinner testID="spinner"/>
     </View>
   )
 

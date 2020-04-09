@@ -6,7 +6,9 @@ export default ClubColumn = ({ club }) => {
   const { name, winery, tastings, shipments, discounts, otherBenefits, avgPrice } = club
  
   return (
-    <View style={styles.column}>
+    <View 
+      testID="club-column"
+      style={styles.column}>
       <ScrollView>
         <ClubColumnItem
           number={1} 

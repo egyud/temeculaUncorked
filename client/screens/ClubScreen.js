@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
 
-const ClubScreen = ({ navigation }) => {
+export const ClubScreen = ({ navigation }) => {
   const club = navigation.getParam('club')
   const { name, winery, discounts, otherBenefits, tastings, shipments, avgPrice } = club
 
