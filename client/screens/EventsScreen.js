@@ -3,7 +3,7 @@ import axios from 'axios'
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native'
 import EventList from '../components/EventList'
 
-export default EventsPage = ({ navigation }) => {
+export default EventsScreen = ({ navigation }) => {
   const [events, updateEvents] = useState([])
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default EventsPage = ({ navigation }) => {
   )
 }
 
-EventsPage.navigationOptions = {
+EventsScreen.navigationOptions = {
   title: 'Events',
   headerStyle: {
     backgroundColor: '#99ff99'

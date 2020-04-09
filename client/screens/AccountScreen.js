@@ -8,7 +8,7 @@ import FollowingWineryList from '../components/FollowingWineryList'
 import FollowingList from '../components/FollowingList'
 import Settings from '../components/Settings'
 
-const AccountPage = ({ user, isAuthenticated, userEvents, wineryList, navigation }) => {
+const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, navigation }) => {
 
   const { events: eventsList } = userEvents
   const { memberOf, following } = user
@@ -61,7 +61,7 @@ const AccountPage = ({ user, isAuthenticated, userEvents, wineryList, navigation
   )
 }
 
-AccountPage.navigationOptions = {
+AccountScreen.navigationOptions = {
   title: 'Your Account',
   headerStyle: {
     backgroundColor: '#99ff99'
@@ -84,4 +84,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(AccountPage)
+export default connect(mapStateToProps)(AccountScreen)

@@ -11,7 +11,7 @@ import ClubList from '../components/ClubList'
 import WineryWineList from '../components/WineryWineList'
 import calculateAverage from '../utils/average'
 
-const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
+const WineryScreen = ({ navigation, reviews, user, isAuthenticated }) => {
   const [wineryData, updateWineryData] = useState({})
   const [wineListData, updateWineListData] = useState([])
   const [eventsArray, updateEventsArray] = useState([])
@@ -171,7 +171,7 @@ const WineryPage = ({ navigation, reviews, user, isAuthenticated }) => {
   )
 }
 
-WineryPage.navigationOptions = {
+WineryScreen.navigationOptions = {
   title: 'Winery Name',
   headerStyle: {
     backgroundColor: '#99ff99'
@@ -238,4 +238,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(WineryPage)
+export default connect(mapStateToProps)(WineryScreen)

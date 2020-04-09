@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment from 'moment'
+import modifyTimestamp from '../utils/modifyTimestamp'
 import { View, StyleSheet } from 'react-native'
-import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
+import { List, ListItem, Left, Right, Body, Thumbnail, Text, Spinner } from 'native-base'
 
 export default ActivityFeed = ({ navigation }) => {
   const [reviews, updateReviews] = useState([])
+  const [isLoading, updateIsLoading] = useState(true)
 
   useEffect(() => {
     getReviews()
@@ -13,18 +15,15 @@ export default ActivityFeed = ({ navigation }) => {
 
   function getReviews() {
     axios.get('http://localhost:5000/api/reviews/winery/recent')
-      .then(res => updateReviews(res.data.reviews))
+      .then(res => {
+        updateReviews(res.data.reviews)
+        updateIsLoading(false)
+      })
       .catch(err => console.error(err))
   }
 
-  function modifyTimestamp(timestamp) {
-    let newTime = timestamp
-      .slice(0, 10)
-      .split('-')
-      .map(num => Number(num))
-    // need to remove one from the month to get right date, as moment starts from index 0
-    newTime[1]--
-    return newTime
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
@@ -36,7 +35,8 @@ export default ActivityFeed = ({ navigation }) => {
         }
 
         return (
-          <ListItem 
+          <ListItem
+            testID="activity-feed-item" 
             avatar 
             style={styles.listItem} 
             onPress={() => navigation.navigate('Review', { review })} 

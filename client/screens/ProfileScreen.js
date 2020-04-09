@@ -10,7 +10,7 @@ import ReviewList from '../components/ReviewList/ReviewList'
 import RatingsList from '../components/RatingsList'
 
 
-const ProfilePage = ({ activeUser, navigation }) => {
+const ProfileScreen = ({ activeUser, navigation }) => {
   const [currentUser, updateCurrentUser] = useState({})
   const [userReviews, updateUserReviews] = useState([])
   const [userRatings, updateUserRatings] = useState([])
@@ -137,7 +137,7 @@ const ProfilePage = ({ activeUser, navigation }) => {
   )
 }
 
-ProfilePage.navigationOptions = {
+ProfileScreen.navigationOptions = {
   title: 'Profile',
   headerStyle: {
     backgroundColor: '#99ff99'
@@ -167,4 +167,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(ProfilePage)
+export default connect(mapStateToProps)(ProfileScreen)

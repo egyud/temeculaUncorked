@@ -2,25 +2,25 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import Home from '../pages/Home'
-import ClubComparison from '../pages/ClubComparison'
-import WineryList from '../pages/WineryList'
-import WineryPage from '../pages/WineryPage'
-import EventsPage from '../pages/EventsPage'
-import EventPage from '../pages/EventPage'
-import ProfilePage from '../pages/ProfilePage'
-import WineSearch from '../pages/WineSearch'
-import ReviewScreen from '../pages/ReviewScreen'
-import Gallery from '../pages/Gallery'
-import LoginScreen from '../pages/LoginScreen'
-import RegisterScreen from '../pages/RegisterScreen'
-import PostCommentScreen from '../pages/PostCommentScreen'
-import PostReviewScreen from '../pages/PostReviewScreen'
-import WineScreen from '../pages/WineScreen'
-import AccountPage from '../pages/AccountPage'
-import ClubListScreen from '../pages/ClubListScreen'
-import ClubScreen from '../pages/ClubScreen'
-import PhotoPickerScreen from '../pages/PhotoPickerScreen'
+import Home from '../screens/Home'
+import ClubComparison from '../screens/ClubComparison'
+import WineryList from '../screens/WineryList'
+import WineryScreen from '../screens/WineryScreen'
+import EventsScreen from '../screens/EventsScreen'
+import EventScreen from '../screens/EventScreen'
+import ProfileScreen from '../screens/ProfileScreen'
+import WineSearch from '../screens/WineSearch'
+import ReviewScreen from '../screens/ReviewScreen'
+import Gallery from '../screens/Gallery'
+import LoginScreen from '../screens/LoginScreen'
+import RegisterScreen from '../screens/RegisterScreen'
+import PostCommentScreen from '../screens/PostCommentScreen'
+import PostReviewScreen from '../screens/PostReviewScreen'
+import WineScreen from '../screens/WineScreen'
+import AccountScreen from '../screens/AccountScreen'
+import ClubListScreen from '../screens/ClubListScreen'
+import ClubScreen from '../screens/ClubScreen'
+import PhotoPickerScreen from '../screens/PhotoPickerScreen'
 
 const StackNavigator = createStackNavigator({
   Home: { 
@@ -33,16 +33,16 @@ const StackNavigator = createStackNavigator({
     screen: WineryList
   },
   Events: {
-    screen: EventsPage
+    screen: EventsScreen
   },
   Profile: {
-    screen: ProfilePage
+    screen: ProfileScreen
   },
   Winery: {
-    screen: WineryPage
+    screen: WineryScreen
   },
   Event: {
-    screen: EventPage
+    screen: EventScreen
   },
   WineSearch: {
     screen: WineSearch
@@ -69,7 +69,7 @@ const StackNavigator = createStackNavigator({
     screen: WineScreen
   },
   Account: {
-    screen: AccountPage
+    screen: AccountScreen
   },
   ClubList: {
     screen: ClubListScreen
@@ -93,10 +93,10 @@ const SearchNav = createStackNavigator({
     screen: ReviewScreen
   },
   Profile: {
-    screen: ProfilePage
+    screen: ProfileScreen
   },
   Event: {
-    screen: EventPage
+    screen: EventScreen
   },
   Gallery: {
     screen: Gallery
@@ -120,7 +120,7 @@ const ClubNav = createStackNavigator({
 
 const AccountNav = createStackNavigator({
   Account: {
-    screen: AccountPage
+    screen: AccountScreen
   },
   Register: {
     screen: RegisterScreen

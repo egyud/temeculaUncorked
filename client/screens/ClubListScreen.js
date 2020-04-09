@@ -8,6 +8,8 @@ import ClubList from '../components/ClubList'
 
 const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubsList, updateClubsList] = useState([])
+  const [modalVisible, updateModalVisible] = useState(false)
+  const [sortBy, updateSortBy] = useState('ratingD')
 
   useEffect(() => {
     fetchWineClubs()
@@ -46,6 +48,9 @@ const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
             onPress={() => navigation.navigate('Comparison')} 
             style={styles.compareLink}>Compare wine club benefits</Text>
         </View>
+        {/* <Button style={styles.compareLink}>
+          <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>Sort Clubs</Text>
+        </Button> */}
       </View>
       <ScrollView>
         <ClubList 

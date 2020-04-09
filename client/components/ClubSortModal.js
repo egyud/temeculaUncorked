@@ -2,7 +2,14 @@ import React from 'react'
 import { View, StyleSheet, Modal } from 'react-native'
 import { Button, ListItem, Text } from 'native-base'
 
-export default ClubModal = ({ close, modalVisible, clubList, removeClubNumber, clubNumber, changeClubValue }) => {
+export default SortModal = ({ close, modalVisible, updateSortBy }) => {
+
+  const sortVals = [
+    {label: 'numTastingsA', value: '# of tastings up'},
+    {label: 'numTastingsD', value: '# of tastings down'},
+    {label: 'priceA', value: 'price up'},
+    {label: 'priceD', value: 'price down'},
+  ]
 
   return (
     <View>
@@ -10,19 +17,18 @@ export default ClubModal = ({ close, modalVisible, clubList, removeClubNumber, c
         animationType="slide"
         transparent={false}
         visible={modalVisible}>
-        <View>
-          <ListItem header>
-            <Text>Select a Club</Text>
+        <View style={{ marginTop: 30 }}>
+          <ListItem itemDivider>
+            <Text>Sort By</Text>
           </ListItem>
-          {clubList.map(club => (
+          {sortVals.map(option => (
             <ListItem 
               onPress={() => {
-                changeClubValue(club.name, clubNumber)
-                removeClubNumber()
+                updateSortBy(option.label)
                 close()
               }}
-              key={club.name}>
-              <Text>{club.name} - {club.winery}</Text>
+              key={option.label}>
+              <Text>{option.value}</Text>
             </ListItem>
           ))}
         </View>
@@ -30,11 +36,11 @@ export default ClubModal = ({ close, modalVisible, clubList, removeClubNumber, c
           <Button
             style={styles.modalBtn}
             onPress={close}>
-            <Text>Close</Text>
+            <Text style={styles.closeBtnText}>Close</Text>
           </Button>
         </View>
       </Modal>
-    </View>
+   </View>
   )
 }
 
@@ -49,5 +55,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: '#614d36',
     borderWidth: 1
+  },
+  closeBtnText: {
+    color: 'black'
   }
 })

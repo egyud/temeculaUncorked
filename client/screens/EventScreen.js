@@ -6,7 +6,7 @@ import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Ta
 import { showMessage, hideMessage } from 'react-native-flash-message'
 import CommentList from '../components/CommentList'
 
-const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
+const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
   const event = navigation.getParam('event')
   const { title, winery, date, time, price, attending, membersOnly, adultsOnly, description, address, _id } = event
@@ -186,7 +186,7 @@ const EventPage = ({ navigation, activeUser, isAuthenticated }) => {
   )
 }
 
-EventPage.navigationOptions = {
+EventScreen.navigationOptions = {
   title: 'Event Info',
   headerStyle: {
     backgroundColor: '#99ff99'
@@ -224,4 +224,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(EventPage)
+export default connect(mapStateToProps)(EventScreen)
