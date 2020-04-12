@@ -11,7 +11,7 @@ import ClubList from '../components/ClubList'
 import WineryWineList from '../components/WineryWineList'
 import calculateAverage from '../utils/average'
 
-const WineryScreen = ({ navigation, reviews, user, isAuthenticated }) => {
+export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, wineryList }) => {
   const [wineryData, updateWineryData] = useState({})
   const [wineListData, updateWineListData] = useState([])
   const [eventsArray, updateEventsArray] = useState([])
@@ -131,7 +131,10 @@ const WineryScreen = ({ navigation, reviews, user, isAuthenticated }) => {
             heading="Wines" 
             activeTextStyle={{color: '#89012c'}}
           >
-            <WineryWineList 
+            <WineryWineList
+              user={user}
+              isAuthenticated={isAuthenticated}
+              wineryList={wineryList} 
               wineArray={wineListData}
               navigation={navigation}
             />
@@ -234,7 +237,8 @@ const mapStateToProps = (state) => {
   return {
     reviews: state.reviewReducer.reviews.data,
     user: state.authReducer.user.user,
-    isAuthenticated: state.authReducer.isAuthenticated
+    isAuthenticated: state.authReducer.isAuthenticated,
+    wineryList: state.wineReducer.wineriesList
   }
 }
 

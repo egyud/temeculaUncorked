@@ -7,7 +7,7 @@ import Review from '../components/Review'
 import CommentList from '../components/CommentList'
 import addLike from '../utils/addLike'
 
-const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
+export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [commentsList, updateCommentsList] = useState([])
   // const reviewId = navigation.getParam('reviewId')
   const review = navigation.getParam('review')
@@ -32,6 +32,7 @@ const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
 
   let postCommentBtn = (
     <Button
+      testID="post-comment-btn"
       style={styles.postCommentBtn}
       onPress={() => navigation.navigate('NewComment', { review, activeUser, type: 'review' })}>
       <Icon

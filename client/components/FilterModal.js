@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Modal } from 'react-native'
 import { Button } from 'native-base'
 import WineFilters from './WineFilters'
 
-export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen, modalVisible }) => {
+export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen, modalVisible, wineryList }) => {
   return (
     <View>
       <Modal
@@ -14,7 +14,8 @@ export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen
         <WineFilters
           filterWines={filterWines} 
           addToFilters={(val) => addToFilters(val)}
-          isWineryScreen={isWineryScreen} />
+          isWineryScreen={isWineryScreen}
+          wineryList={wineryList} />
         <View style={styles.modalBtnWrapper}>
           <Button
             style={styles.modalBtn}

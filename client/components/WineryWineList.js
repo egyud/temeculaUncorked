@@ -5,7 +5,7 @@ import WineList from './WineList'
 import FilterModal from './FilterModal'
 import SortModal from './SortModal'
 
-export default WineryWineList = ({ wineArray, navigation }) => {
+export default WineryWineList = ({ wineArray, navigation, user, isAuthenticated, wineryList }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
   const [filters, updateFilters] = useState([])
   const [wineList, updateWineList] = useState([])
@@ -74,6 +74,7 @@ export default WineryWineList = ({ wineArray, navigation }) => {
           addToFilters={addToFilters}
           isWineryScreen={true}
           modalVisible={modalVisible}
+          wineryList={wineryList}
         />
         <SortModal 
           close={() => updateSortModalVisible(false)}
@@ -100,6 +101,8 @@ export default WineryWineList = ({ wineArray, navigation }) => {
       <WineList 
         wines={wineList}
         navigation={navigation}
+        user={user}
+        isAuthenticated={isAuthenticated}
       />
     </View>
   )

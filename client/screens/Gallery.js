@@ -46,7 +46,7 @@ export default Gallery = ({ navigation }) => {
   if (isLoading) {
     return (
       <View>
-        <Spinner />
+        <Spinner testID="spinner"/>
       </View>
     )
   }

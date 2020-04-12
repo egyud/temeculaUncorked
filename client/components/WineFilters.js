@@ -1,17 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { View, StyleSheet } from 'react-native'
 import { Container, Header, Content, ListItem, CheckBox, Text, Body, Button } from 'native-base'
 import WineFilterItem from './WineFilterItem'
 
-export const WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
+export default WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
   const types = ['red', 'white', 'rosé', 'sparkling', 'dessert']
   let wineryFilters
 
   if (!isWineryScreen) {
     wineryFilters = (
       <>
-        <ListItem 
+        <ListItem
           itemDivider
           testID="winery-divider">
           <Text>Winery</Text>
@@ -49,11 +48,3 @@ const styles = StyleSheet.create({
     flex: 1
   }
 })
-
-const mapStateToProps = (state) => {
-  return {
-    wineryList: state.wineReducer.wineriesList
-  }
-}
-
-export default connect(mapStateToProps)(WineFilters)

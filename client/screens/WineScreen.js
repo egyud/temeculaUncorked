@@ -7,7 +7,7 @@ import { Rating } from 'react-native-ratings'
 import { showMessage } from 'react-native-flash-message'
 import UserRating from '../components/UserRating'
 
-const WineScreen = ({ navigation, user, isAuthenticated }) => {
+export const WineScreen = ({ navigation, user, isAuthenticated }) => {
   const [wineRating, updateWineRating] = useState(0)
   const [recentRatings, updateRecentRatings] = useState([])
   const [userRating, updateUserRating] = useState(0)
@@ -66,6 +66,7 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
     <>
       <Text>Your Rating</Text>
       <UserRating
+        testID="user-rating"
         disabled={false}
         size={25} 
         value={userRating}
@@ -75,7 +76,7 @@ const WineScreen = ({ navigation, user, isAuthenticated }) => {
   
   if (isLoading === true) {
     return (
-      <Spinner />
+      <Spinner testID="spinner"/>
     )
   }
   return (

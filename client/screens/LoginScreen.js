@@ -5,7 +5,7 @@ import { loginUser } from '../actions/authActions'
 import { View, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
 
-const LoginScreen = ({ loginUser, navigation }) => {
+export const LoginScreen = ({ loginUser, navigation }) => {
   const [email, updateEmail] = useState('')
   const [password, updatePassword] = useState('')
 
@@ -13,7 +13,7 @@ const LoginScreen = ({ loginUser, navigation }) => {
     console.log('in onSubmitHandler for login')
     console.log(email)
     console.log(password)
-    e.preventDefault()
+    // e.preventDefault()
     loginUser({
       email,
       password
@@ -26,17 +26,20 @@ const LoginScreen = ({ loginUser, navigation }) => {
         <Item stackedLabel>
           <Label>Email</Label>
           <Input
+            testID="email-input"
             autoCapitalize="none" 
             onChangeText={(text) => updateEmail(text)}/>
         </Item>
         <Item stackedLabel last>
           <Label>Password</Label>
           <Input
+            testID="password-input"
             autoCapitalize="none" 
             secureTextEntry={true}
             onChangeText={(text) => updatePassword(text)}/>
         </Item>
-        <Button 
+        <Button
+          testID="submit-btn" 
           style={styles.loginBtn}
           onPress={(event) => onSubmitHandler(event)}>
           <Text style={styles.loginBtnText}>Login</Text>

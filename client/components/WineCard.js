@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { connect } from 'react-redux'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 
-export const WineCard = ({ wine, isAuthenticated, user, navigation }) => {
+export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   const [wineRating, updateWineRating] = useState(0)
   const { name, rating, winery, ratingCount, price, _id: wineId } = wine
 
@@ -74,12 +73,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5'
   }
 })
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.authReducer.user.user,
-    isAuthenticated: state.authReducer.isAuthenticated
-  }
-}
-
-export default connect(mapStateToProps)(WineCard)

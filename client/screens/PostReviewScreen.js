@@ -39,6 +39,7 @@ export default PostReviewScreen = ({ navigation }) => {
     <View style={styles.postReviewScreen}>
       <Form style={{ alignItems: 'center' }}>
         <Rating
+          testID="review-rating"
           style={styles.rating} 
           imageSize={40}
           startingValue={avgRating}
@@ -46,6 +47,7 @@ export default PostReviewScreen = ({ navigation }) => {
           type="custom"
           ratingColor="#99ff99" />
         <Textarea
+          testID="review-text-area"
           style={styles.textArea} 
           rowSpan={10} 
           bordered

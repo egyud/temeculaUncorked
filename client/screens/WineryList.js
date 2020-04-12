@@ -8,7 +8,7 @@ import { Rating } from 'react-native-ratings'
 import calculateAverage from '../utils/average'
 
 
-const WineryList = ({ list, fetchWineries, navigation }) => {
+export const WineryList = ({ list, fetchWineries, navigation }) => {
   const [searchInput, updateSearchInput] = useState('')
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const WineryList = ({ list, fetchWineries, navigation }) => {
 
   return (
     <View>
-      <Header searchBar>
+      <Header searchBar testID="search-bar">
         <Item>
           <Icon name="ios-search" />
           <Input 

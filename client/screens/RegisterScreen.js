@@ -5,7 +5,7 @@ import { registerUser } from '../actions/authActions'
 import { View, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
 
-const RegisterScreen = ({ registerUser, navigation }) => {
+export const RegisterScreen = ({ registerUser, navigation }) => {
   const [email, updateEmail] = useState('')
   const [name, updateName] = useState('')
   const [password, updatePassword] = useState('')
@@ -28,18 +28,21 @@ const RegisterScreen = ({ registerUser, navigation }) => {
         <Item stackedLabel>
           <Label>Email</Label>
           <Input
+            testID="email"
             autoCapitalize="none" 
             onChangeText={(text) => updateEmail(text)}/>
         </Item>
         <Item stackedLabel>
           <Label>Name(displayed publicly)</Label>
           <Input
+            testID="name"
             autoCapitalize="none" 
             onChangeText={(text) => updateName(text)}/>
         </Item>
         <Item stackedLabel>
           <Label>Password</Label>
           <Input
+            testID="password"
             autoCapitalize="none"
             secureTextEntry={true}
             onChangeText={(text) => updatePassword(text)}/>
@@ -47,6 +50,7 @@ const RegisterScreen = ({ registerUser, navigation }) => {
         <Item stackedLabel last>
           <Label>Enter Password Again</Label>
           <Input
+            testID="password2"
             autoCapitalize="none" 
             secureTextEntry={true}
             onChangeText={(text) => updatePassword2(text)}/>

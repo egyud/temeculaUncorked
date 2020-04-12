@@ -3,17 +3,18 @@ import axios from 'axios'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base'
+import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Spinner } from 'native-base'
 import { Linking } from 'expo'
 import { showMessage } from 'react-native-flash-message'
 import ReviewList from '../components/ReviewList/ReviewList'
 import RatingsList from '../components/RatingsList'
 
 
-const ProfileScreen = ({ activeUser, navigation }) => {
+export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
   const [currentUser, updateCurrentUser] = useState({})
   const [userReviews, updateUserReviews] = useState([])
   const [userRatings, updateUserRatings] = useState([])
+  const [isLoading, updateIsLoading] = useState(true)
 
   const userId = navigation.getParam('userId')
 
@@ -22,6 +23,12 @@ const ProfileScreen = ({ activeUser, navigation }) => {
     getUserReviews()
     getUserRatings()
   }, [])
+
+  useEffect(() => {
+    updateIsLoading(false)
+  }, [currentUser])
+
+  
 
   function openInBrowser(url) {
     Linking.openURL(url)
@@ -75,13 +82,21 @@ const ProfileScreen = ({ activeUser, navigation }) => {
     }
   }
 
-  if (!currentUser.avatar) {
+  if (isLoading) {
     return (
       <View>
-        <Text>Loading...</Text>
+        <Spinner testID="spinner"/>
       </View>
     )
   }
+
+  const followButton = (
+    <Button
+      testID="follow-btn" 
+      onPress={() => followUser()}>
+      <Text>Follow</Text>
+    </Button>
+  )
 
   console.log('currentUser')
   console.log(currentUser)
@@ -110,9 +125,7 @@ const ProfileScreen = ({ activeUser, navigation }) => {
               <Text>"{currentUser.bio}"</Text>
             </Left>
             <Right>
-              <Button onPress={() => followUser()}>
-                <Text>Follow</Text>
-              </Button>
+              {isAuthenticated ? followButton : null}
             </Right>
           </CardItem>
         </Card>
@@ -163,7 +176,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    activeUser: state.authReducer.user.user
+    activeUser: state.authReducer.user.user,
+    isAuthenticated: state.authReducer.isAuthenticated
   }
 }
 

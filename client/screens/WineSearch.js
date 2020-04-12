@@ -9,7 +9,7 @@ import FilterModal from '../components/FilterModal'
 import SortModal from '../components/SortModal'
 
 
-const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
+export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthenticated }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
   const [filters, updateFilters] = useState([])
   const [wineList, updateWineList] = useState([])
@@ -105,7 +105,9 @@ const WineSearch = ({ wineArray, fetchWineList, navigation }) => {
             </Button>
           </View>
         </View>
-        <WineList 
+        <WineList
+          user={user}
+          isAuthenticated={isAuthenticated} 
           wines={wineList} 
           navigation={navigation}/>
         
@@ -152,7 +154,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    wineArray: state.wineReducer.wineList
+    wineArray: state.wineReducer.wineList,
+    user: state.authReducer.user.user,
+    isAuthenticated: state.authReducer.isAuthenticated
   }
 }
 
