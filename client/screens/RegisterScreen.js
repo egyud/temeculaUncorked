@@ -11,8 +11,10 @@ export const RegisterScreen = ({ registerUser, navigation }) => {
   const [password, updatePassword] = useState('')
   const [password2, updatePassword2] = useState('')
 
-  function onSubmitHandler(e) {
-    e.preventDefault()
+  function onSubmitHandler() {
+    if (email.length === 0 || name.length === 0 || password.length === 0 || password2.length === 0) {
+      return
+    }
     registerUser({
       email,
       name,
@@ -37,7 +39,8 @@ export const RegisterScreen = ({ registerUser, navigation }) => {
           <Input
             testID="name"
             autoCapitalize="none" 
-            onChangeText={(text) => updateName(text)}/>
+            onChangeText={(text) => updateName(text)}
+            value={email}/>
         </Item>
         <Item stackedLabel>
           <Label>Password</Label>
@@ -45,7 +48,8 @@ export const RegisterScreen = ({ registerUser, navigation }) => {
             testID="password"
             autoCapitalize="none"
             secureTextEntry={true}
-            onChangeText={(text) => updatePassword(text)}/>
+            onChangeText={(text) => updatePassword(text)}
+            value={password}/>
         </Item>
         <Item stackedLabel last>
           <Label>Enter Password Again</Label>
@@ -53,14 +57,17 @@ export const RegisterScreen = ({ registerUser, navigation }) => {
             testID="password2"
             autoCapitalize="none" 
             secureTextEntry={true}
-            onChangeText={(text) => updatePassword2(text)}/>
+            onChangeText={(text) => updatePassword2(text)}
+            value={password2}/>
         </Item>
-        <Button 
+        <Button
+          testID="submit" 
           style={styles.registerBtn}
-          onPress={(event) => onSubmitHandler(event)}>
+          onPress={() => onSubmitHandler()}>
           <Text style={styles.registerBtnText}>Register</Text>
         </Button>
         <Text
+          testID="login-link"
           style={styles.loginLink} 
           onPress={() => navigation.navigate('Login')}>Already have an account? Login here</Text>
       </Form>

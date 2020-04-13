@@ -9,11 +9,10 @@ export const LoginScreen = ({ loginUser, navigation }) => {
   const [email, updateEmail] = useState('')
   const [password, updatePassword] = useState('')
 
-  function onSubmitHandler(e) {
-    console.log('in onSubmitHandler for login')
-    console.log(email)
-    console.log(password)
-    // e.preventDefault()
+  function onSubmitHandler() {
+    if (email.length === 0 || password.length === 0) {
+      return
+    }
     loginUser({
       email,
       password
@@ -28,7 +27,8 @@ export const LoginScreen = ({ loginUser, navigation }) => {
           <Input
             testID="email-input"
             autoCapitalize="none" 
-            onChangeText={(text) => updateEmail(text)}/>
+            onChangeText={(text) => updateEmail(text)}
+            value={email}/>
         </Item>
         <Item stackedLabel last>
           <Label>Password</Label>
@@ -36,15 +36,17 @@ export const LoginScreen = ({ loginUser, navigation }) => {
             testID="password-input"
             autoCapitalize="none" 
             secureTextEntry={true}
-            onChangeText={(text) => updatePassword(text)}/>
+            onChangeText={(text) => updatePassword(text)}
+            value={password}/>
         </Item>
         <Button
           testID="submit-btn" 
           style={styles.loginBtn}
-          onPress={(event) => onSubmitHandler(event)}>
+          onPress={() => onSubmitHandler()}>
           <Text style={styles.loginBtnText}>Login</Text>
         </Button>
-        <Text 
+        <Text
+          testID="register-link" 
           onPress={() => navigation.navigate('Register')}
           style={styles.registerLink}>Don't have an account? Click here to register</Text>
       </Form>
