@@ -3,6 +3,7 @@ import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
 import { showMessage } from 'react-native-flash-message'
+import { postEventComment, postReviewComment } from '../utils/postComment'
 
 export default PostCommentScreen = ({ navigation }) => {
   const [commentText, updateCommentText] = useState('')
@@ -13,12 +14,16 @@ export default PostCommentScreen = ({ navigation }) => {
   const type = navigation.getParam('type')
 
   function postComment() {
-    if (type === 'review') {
-      axios.post(`http://localhost:5000/api/comments`, {
-        text: commentText,
-        userId: activeUser._id,
-        reviewId: review._id
+    if (commentText.length === 0) {
+      showMessage({
+        mesage: 'Please fill out the comment form',
+        type: 'warning'
       })
+      return
+    }
+
+    if (type === 'review') {
+      postReviewComment(commentText, activeUser._id, review._id)
         .then(res => {
           showMessage({
             message: res.data.message,
@@ -33,11 +38,7 @@ export default PostCommentScreen = ({ navigation }) => {
           })
         })
     } else if (type === 'event') {
-      axios.post(`http://localhost:5000/api/comments/event`, {
-        text: commentText,
-        userId: activeUser._id,
-        eventId: event._id
-      })
+      postEventComment(commentText, activeUser._id, event._id)
         .then(res => {
           showMessage({
             message: res.data.message,
@@ -58,13 +59,16 @@ export default PostCommentScreen = ({ navigation }) => {
     <View style={styles.postCommentScreen}>
       <Text>Post a new comment</Text>
       <Form style={{ alignItems: 'center' }}>
-        <Textarea 
+        <Textarea
+          testID="text-area" 
           rowSpan={5} 
           bordered
           placeholder="Type your comment here"
           onChangeText={(text) => updateCommentText(text)}
-          style={styles.textArea} />
-        <Button 
+          style={styles.textArea}
+          value={commentText} />
+        <Button
+          testID="submit-button" 
           onPress={() => postComment()}
           style={styles.submitBtn}>
           <Text style={styles.submitBtnText}>Submit</Text>
@@ -77,7 +81,7 @@ export default PostCommentScreen = ({ navigation }) => {
 PostCommentScreen.navigationOptions = {
   title: 'Post a new comment',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#9A8BE7'
   }
 }
 
@@ -87,21 +91,21 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   submitBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#9A8BE7',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#614d36',
+    borderColor: '#620014',
     borderWidth: 1
   },
   submitBtnText: {
-    color: '#614d36',
+    color: '#620014',
     fontWeight: 'bold'
   },
   textArea: {
-    borderColor: '#614d36',
+    borderColor: '#620014',
     width: '90%',
     backgroundColor: '#e6ffe6',
     borderRadius: 20
