@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
 import { Rating } from 'react-native-ratings'
 import { showMessage } from 'react-native-flash-message'
+import postReview from '../utils/postReview'
 
 export default PostReviewScreen = ({ navigation }) => {
   const [reviewText, updateReviewText] = useState('')
@@ -13,26 +14,11 @@ export default PostReviewScreen = ({ navigation }) => {
   const wineryData = navigation.getParam('wineryData')
   const avgRating = navigation.getParam('avgRating')
 
-  function postReview() {
-    axios.post(`http://localhost:5000/api/reviews/winery`, {
-      winery: wineryData.name,
-      user,
-      reviewText,
-      rating
-    })
-      .then(res => {
-        showMessage({
-          message: res.data.message,
-          type: 'success'
-        })
-        navigation.navigate('Winery', { winery: wineryData.name })
-      })
-      .catch(err => {
-        showMessage({
-          message: err.response.data.message,
-          type: 'warning'
-        })
-      })
+  function submit() {
+    if (reviewText.length > 0 && rating > 0) {
+      postReview(wineryData.name, user, reviewText, rating)
+    }
+    return
   }
 
   return (
@@ -45,17 +31,19 @@ export default PostReviewScreen = ({ navigation }) => {
           startingValue={avgRating}
           onFinishRating={(rating) => updateRating(rating)}
           type="custom"
-          ratingColor="#99ff99" />
+          ratingColor="#9A8BE7" />
         <Textarea
           testID="review-text-area"
           style={styles.textArea} 
           rowSpan={10} 
           bordered
           placeholder="Type your review here"
-          onChangeText={(text) => updateReviewText(text)} />
+          onChangeText={(text) => updateReviewText(text)}
+          value={reviewText} />
         <Button
+          testID="submit"
           style={styles.submitBtn} 
-          onPress={() => postReview()}>
+          onPress={() => submit()}>
           <Text style={styles.submitBtnText}>Submit</Text>
         </Button>
       </Form>
@@ -67,7 +55,7 @@ export default PostReviewScreen = ({ navigation }) => {
 PostReviewScreen.navigationOptions = {
   title: 'Post a Review',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#9A8BE7'
   },
 }
 
@@ -77,21 +65,21 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   submitBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#9A8BE7',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#614d36',
+    borderColor: '#620014',
     borderWidth: 1
   },
   submitBtnText: {
-    color: '#614d36',
+    color: '#620014',
     fontWeight: 'bold'
   },
   textArea: {
-    borderColor: '#614d36',
+    borderColor: '#620014',
     width: '90%',
     backgroundColor: '#e6ffe6',
     borderRadius: 20
