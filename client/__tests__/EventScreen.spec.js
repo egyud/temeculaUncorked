@@ -1,6 +1,8 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup, fireEvent } from 'react-native-testing-library'
 import { EventScreen } from '../screens/EventScreen'
+import getComments from '../utils/getCommentsEvent'
+import attendEvent from '../utils/attendEvent'
 
 const event = {
   title: 'Cool event',
@@ -28,32 +30,107 @@ const props = {
   isAuthenticated: true
 }
 
+jest.mock('../utils/getCommentsEvent.js', () => {
+  const comments = [
+    {
+      _id: 1,
+      text: 'Hello',
+      likes: [],
+      timestamp: '123',
+      reviewId: 1,
+      userId: {
+        _id: 1,
+        avatar: { url: null },
+        name: 'andy'
+      }
+    },
+    {
+      _id: 2,
+      text: 'World',
+      likes: [],
+      timestamp: '456',
+      reviewId: 1,
+      userId: {
+        _id: 2,
+        avatar: { url: null },
+        name: 'john'
+      }
+    },
+  ]
+  return jest.fn(() => Promise.resolve({ data: { comments } }))
+})
+
+jest.mock('../utils/attendEvent.js', () => {
+  return jest.fn(() => Promise.resolve({ data: {} }))
+})
+
+afterEach(cleanup)
+
 describe('EventScreen', () => {
-  it('renders the post comment button if the user is authenticated', () => {
+  it('renders the post comment button and attend button if the user is authenticated', () => {
     const { queryByTestId } = render(<EventScreen {...props}/>)
-    const element = queryByTestId('post-comment-btn')
+    const commentBtn = queryByTestId('post-comment-btn')
+    const attendBtn = queryByTestId('attend-btn')
 
-    expect(element).not.toBeNull()
+    expect(commentBtn).not.toBeNull()
+    expect(attendBtn).not.toBeNull()
   })
 
-  it('does not render the post comment button if the user is not authenticated', () => {
+  it('does not render the post comment button/attend button if the user is not authenticated', () => {
     const { queryByTestId } = render(<EventScreen navigation={props.navigation}/>)
-    const element = queryByTestId('post-comment-btn')
+    const commentBtn = queryByTestId('post-comment-btn')
+    const attendBtn = queryByTestId('attend-btn')
 
-    expect(element).toBeNull()
+    expect(commentBtn).toBeNull()
+    expect(attendBtn).toBeNull()
   })
 
-  it('renders the attend button if the user is authenticated', () => {
+  it('calls the getComments func on page load', () => {
+    render(<EventScreen navigation={props.navigation}/>)
+
+    expect(getComments).toHaveBeenCalled()
+  })
+
+  it('displays the relevant data about the event', () => {
+    const { queryByText } = render(<EventScreen navigation={props.navigation}/>)
+
+    const title = queryByText(event.title)
+    const winery = queryByText(event.winery)
+    const date = queryByText(event.date)
+    const time = queryByText(event.time)
+    const description = queryByText(event.description)
+    const address = queryByText(event.address)
+
+    expect(title).not.toBeNull()
+    expect(winery).not.toBeNull()
+    expect(date).not.toBeNull()
+    expect(time).not.toBeNull()
+    expect(description).not.toBeNull()
+    expect(address).not.toBeNull()
+  })
+
+  it('calls the attendEvent func when attend button is pressed', () => {
     const { queryByTestId } = render(<EventScreen {...props}/>)
-    const element = queryByTestId('attend-btn')
+    const attendBtn = queryByTestId('attend-btn')
 
-    expect(element).not.toBeNull()
+    fireEvent.press(attendBtn)
+
+    expect(attendEvent).toHaveBeenCalled()
   })
 
-  it('does not render the attend button if the user is not authenticated', () => {
-    const { queryByTestId } = render(<EventScreen navigation={props.navigation}/>)
-    const element = queryByTestId('attend-btn')
+  it('calls navigate function when post comment button is pressed', () => {
+    const { queryByTestId } = render(<EventScreen {...props}/>)
+    const postCommentBtn = queryByTestId('post-comment-btn')
 
-    expect(element).toBeNull()
+    fireEvent.press(postCommentBtn)
+
+    expect(props.navigation.navigate).toHaveBeenCalled()
+  })
+
+  it('displays the comment list component', () => {
+    const { queryByTestId } = render(<EventScreen {...props}/>)
+    const commentList = queryByTestId('comment-list')
+
+    expect(commentList).not.toBeNull()
   })
 })
