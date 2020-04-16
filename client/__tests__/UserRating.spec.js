@@ -10,13 +10,12 @@ describe('UserRating', () => {
     expect(element).not.toBeNull()
   })
 
-  // it('should call rateFunc when clicked', () => {
-  //   const rateMock = jest.fn()
-  //   const { queryByTestId } = render(<UserRating value={4} size={20} rateFunc={() => rateMock()}/>)
-  //   const element = queryByTestId('rating')
+  it('should call rateFunc when clicked', () => {
+    const rate = jest.fn()
+    const { queryByTestId } = render(<UserRating value={4} size={20} rateFunc={() => rate()}/>)
+    const element = queryByTestId('rating')
 
-
-  //   fireEvent.press(element)
-  //   expect(rateMock).toHaveBeenCalledTimes(3)
-  // })
+    fireEvent(element, 'onFinishRating')
+    expect(rate).toHaveBeenCalled()
+  })
 })
