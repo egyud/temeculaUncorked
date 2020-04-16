@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup } from 'react-native-testing-library'
 import CommentList from '../components/CommentList'
 
 const comments = [
@@ -45,6 +45,8 @@ const comments = [
 
   }
 ]
+
+afterEach(cleanup)
 
 describe('CommentList', () => {
   it('should display a message if there are no comments', () => {
