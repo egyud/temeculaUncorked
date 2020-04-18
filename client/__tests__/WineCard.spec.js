@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, cleanup, fireEvent } from 'react-native-testing-library'
-import { WineCard } from '../components/WineCard'
+import WineCard from '../components/WineCard'
+import postRating from '../utils/postRating'
 
 const wine = {
   name: '2017 Syrah',
@@ -16,6 +17,10 @@ const user = {
   name: 'andy',
   email: 'andy@test.com',
 }
+
+jest.mock('../utils/postRating.js', () => {
+  return jest.fn(() => Promise.resolve({ data }))
+})
 
 afterEach(cleanup)
 

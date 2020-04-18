@@ -20,33 +20,27 @@ const review = {
   }
 }
 
+const navigation = {
+  navigate: jest.fn()
+}
+
 describe('Review', () => {
-  it('should render a Thumbnail if it is not on the profile screen', () => {
-    const { queryByTestId } = render(<Review isProfileScreen={false} review={review}/>)
-    const element = queryByTestId('review-thumbnail')
+  it('should render a Thumbnail and users name if it is not on the profile screen', () => {
+    const { queryByTestId, queryByText } = render(<Review isProfileScreen={false} review={review}/>)
+    const thumbnail = queryByTestId('review-thumbnail')
+    const name = queryByText('Joe')
 
-    expect(element).not.toBeNull()
+    expect(thumbnail).not.toBeNull()
+    expect(name).not.toBeNull()
   })
 
-  it('should not render a Thumbnail if it is on the profile screen', () => {
-    const { queryByTestId } = render(<Review isProfileScreen={true} review={review}/>)
-    const element = queryByTestId('review-thumbnail')
+  it('should not render a Thumbnail/users name if it is on the profile screen', () => {
+    const { queryByTestId, queryByText } = render(<Review isProfileScreen={true} review={review}/>)
+    const thumbnail = queryByTestId('review-thumbnail')
+    const name = queryByText('Joe')
 
-    expect(element).toBeNull()
-  })
-
-  it('should render the users name if it is on the profile screen', () => {
-    const { queryByText } = render(<Review isProfileScreen={false} review={review}/>)
-    const element = queryByText('Joe')
-
-    expect(element).not.toBeNull()
-  })
-
-  it('should render the users name if it is on the profile screen', () => {
-    const { queryByText } = render(<Review isProfileScreen={true} review={review}/>)
-    const element = queryByText('Joe')
-
-    expect(element).toBeNull()
+    expect(thumbnail).toBeNull()
+    expect(name).toBeNull()
   })
 
   it('should render the correct number of likes', () => {
@@ -63,5 +57,16 @@ describe('Review', () => {
 
     fireEvent.press(element)
     expect(addLikeHandler).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls navigate when user name or view comments button is pressed', () => {
+    const { queryByTestId } = render(<Review isProfileScreen={false} review={review} navigation={navigation}/>)
+    const name = queryByTestId('user-name')
+    const button = queryByTestId('view-comments')
+
+    fireEvent.press(name)
+    fireEvent.press(button)
+
+    expect(navigation.navigate).toHaveBeenCalledTimes(2)
   })
 })

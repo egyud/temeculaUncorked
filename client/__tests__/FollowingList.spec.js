@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup } from 'react-native-testing-library'
 import FollowingList from '../components/FollowingList'
 
 const users = [
@@ -22,6 +22,8 @@ const users = [
     }
   }
 ]
+
+afterEach(cleanup)
 
 describe('FollowingList', () => {
   it('should display a message if there are no users passed in', () => {

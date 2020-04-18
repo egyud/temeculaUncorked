@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup, fireEvent } from 'react-native-testing-library'
 import Event from '../components/Event'
 
 const event = {
@@ -14,41 +14,35 @@ const event = {
   attending: []
 }
 
+const navigation = {
+  navigate: jest.fn()
+}
+
+afterEach(cleanup)
+
 describe('Event', () => {
-  it('should render the event title passed in', () => {
+  it('displays the relevant data for the Event', () => {
     const { queryByText } = render(<Event event={event}/>)
-    const element = queryByText('Band playing live')
+    const title = queryByText('Band playing live')
+    const date = queryByText('2020-04-01')
+    const price = queryByText('$10')
+    const time = queryByText('8pm')
+    const attendees = queryByText('0 going')
 
-    expect(element).not.toBeNull()
-
+    expect(title).not.toBeNull()
+    expect(date).not.toBeNull()
+    expect(price).not.toBeNull()
+    expect(time).not.toBeNull()
+    expect(attendees).not.toBeNull()
   })
 
-  it('should render the event date passed in', () => {
-    const { queryByText } = render(<Event event={event}/>)
-    const element = queryByText('2020-04-01')
+  it('calls navigate when More button is clicked', () => {
+    const { queryByTestId } = render(<Event event={event} navigation={navigation}/>)
+    const button = queryByTestId('more-btn')
 
-    expect(element).not.toBeNull()
+    fireEvent.press(button)
 
+    expect(navigation.navigate).toHaveBeenCalled()
   })
-
-  it('should render the event price passed in', () => {
-    const { queryByText } = render(<Event event={event}/>)
-    const element = queryByText('$10')
-
-    expect(element).not.toBeNull()
-  })
-
-  it('should render the event time passed in', () => {
-    const { queryByText } = render(<Event event={event}/>)
-    const element = queryByText('8pm')
-
-    expect(element).not.toBeNull()
-  })
-
-  it('should render the correct number of attendees', () => {
-    const { queryByText } = render(<Event event={event}/>)
-    const element = queryByText('0 going')
-
-    expect(element).not.toBeNull()
-  })
+  
 })

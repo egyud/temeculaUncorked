@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup } from 'react-native-testing-library'
 import ClubColumn from '../components/ClubColumn'
 
 const club = {
@@ -12,8 +12,13 @@ const club = {
   discounts: ["20% off Red Wine", "15% off shirts"]
 }
 
+afterEach(cleanup)
+
 describe('ClubColumn', () => {
-  it('returns 0', () => {
-    expect(0).toEqual(0)
+  it('renders 7 ClubColumnItem components', () => {
+    const { queryAllByTestId } = render(<ClubColumn club={club}/>)
+    const items = queryAllByTestId('column-item')
+
+    expect(items.length).toBe(7)
   })
 })

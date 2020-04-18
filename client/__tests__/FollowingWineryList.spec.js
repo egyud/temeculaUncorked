@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup } from 'react-native-testing-library'
 import FollowingWineryList from '../components/FollowingWineryList'
 
 const wineries = [
@@ -12,6 +12,8 @@ const wineries = [
     _id: 2
   }
 ]
+
+afterEach(cleanup)
 
 describe('FollowingList', () => {
   it('should display a message if there are no wineries passed in', () => {

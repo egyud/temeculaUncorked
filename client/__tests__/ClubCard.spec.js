@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup, fireEvent } from 'react-native-testing-library'
 import ClubCard from '../components/ClubCard'
 
 const club = {
@@ -9,32 +9,32 @@ const club = {
   winery: "Akash Winery"
 }
 
+const navigation = {
+  navigate: jest.fn()
+}
+
+afterEach(cleanup)
+
 describe('ClubCard', () => {
-  it('displays the name of the club', () => {
+  it('displays the relevant data for the club', () => {
     const { queryByText } = render(<ClubCard club={club}/>)
-    const element = queryByText('Awesome Wine Club')
+    const name = queryByText('Awesome Wine Club')
+    const winery = queryByText('Akash Winery')
+    const shipments = queryByText('3 bottles quarterly')
+    const tastings = queryByText('12 per month')
 
-    expect(element).not.toBeNull()
+    expect(name).not.toBeNull()
+    expect(winery).not.toBeNull()
+    expect(shipments).not.toBeNull()
+    expect(tastings).not.toBeNull()
   })
 
-  it('displays the name of the winery', () => {
-    const { queryByText } = render(<ClubCard club={club}/>)
-    const element = queryByText('Akash Winery')
+  it('calls navigate when clicking on More button', () => {
+    const { queryByTestId } = render(<ClubCard navigation={navigation} club={club}/>)
+    const button = queryByTestId('more-btn')
 
-    expect(element).not.toBeNull()
-  })
+    fireEvent.press(button)
 
-  it('displays the number of shipments', () => {
-    const { queryByText } = render(<ClubCard club={club}/>)
-    const element = queryByText('3 bottles quarterly')
-
-    expect(element).not.toBeNull()
-  })
-
-  it('displays the number of tastings', () => {
-    const { queryByText } = render(<ClubCard club={club}/>)
-    const element = queryByText('12 per month')
-
-    expect(element).not.toBeNull()
+    expect(navigation.navigate).toHaveBeenCalled()
   })
 })

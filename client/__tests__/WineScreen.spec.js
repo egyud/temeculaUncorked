@@ -1,8 +1,9 @@
 import React from 'react'
-import { render, cleanup } from 'react-native-testing-library'
+import { render, cleanup, fireEvent } from 'react-native-testing-library'
 import { WineScreen } from '../screens/WineScreen'
 import getUserWineRating from '../utils/getUserWineRating'
 import getRecentRatings from '../utils/getRecentRatings'
+import postRating from '../utils/postRating'
 
 afterEach(cleanup)
 
@@ -55,6 +56,10 @@ jest.mock('../utils/getRecentRatings.js', () => {
   return jest.fn(() => Promise.resolve({ data: { ratings: recentRatings } }))
 })
 
+jest.mock('../utils/postRating.js', () => {
+  return jest.fn(() => Promise.resolve({ data: {} }))
+})
+
 describe('WineScreen', () => {
   it('renders the UserRating component if user is authenticated', () => {
     const { queryByTestId } = render(<WineScreen user={user} navigation={navigation} isAuthenticated={true}/>)
@@ -98,5 +103,13 @@ describe('WineScreen', () => {
     expect(name).not.toBeNull()
     expect(price).not.toBeNull()
     expect(clubPrice).not.toBeNull()
+  })
+
+  it('calls postRating on rating change if user is authenticated', () => {
+    const { queryByTestId } = render(<WineScreen user={user} navigation={navigation} isAuthenticated={true}/>)
+    const rating = queryByTestId('user-rating')
+
+    fireEvent(rating, 'rateFunc', 4)
+    expect(postRating).toHaveBeenCalled()
   })
 })

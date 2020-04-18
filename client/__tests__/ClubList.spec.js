@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup } from 'react-native-testing-library'
 import ClubList from '../components/ClubList'
 
 const clubs = [
@@ -26,8 +26,10 @@ const clubs = [
   }
 ]
 
+afterEach(cleanup)
+
 describe('ClubList', () => {
-  it('should render a club card for every club that is passed as a prop', () => {
+  it('displays a club card for every club that is passed as a prop', () => {
     const { queryAllByTestId } = render(<ClubList clubs={clubs}/>)
     const elements = queryAllByTestId('club-card')
 

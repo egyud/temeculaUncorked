@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, cleanup } from 'react-native-testing-library'
-import { WineFilters } from '../components/WineFilters'
+import WineFilters from '../components/WineFilters'
 
 const wineryList = [
   {
@@ -33,4 +33,5 @@ describe('WineFilters', () => {
 
     expect(element).toBeNull()
   })
+
 })

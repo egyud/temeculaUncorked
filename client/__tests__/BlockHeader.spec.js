@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup } from 'react-native-testing-library'
 import BlockHeader from '../components/BlockHeader'
 
 const data = {
@@ -8,8 +8,10 @@ const data = {
   reviewCount: 12
 }
 
+afterEach(cleanup)
+
 describe('BlockHeader', () => {
-  it('UserRating renders if is user is Authenticated', () => {
+  it('renders UserRating if user is Authenticated', () => {
     const { queryByTestId } = render(<BlockHeader isAuthenticated={true} data={data} userRating={5} rating={3}/>)
     const element = queryByTestId("user-rating-text")
 
@@ -30,17 +32,12 @@ describe('BlockHeader', () => {
     expect(element).not.toBeNull()
   })
 
-  it('should display the passed in phone number', () => {
+  it('should display the passed in data', () => {
     const { queryByText } = render(<BlockHeader isAuthenticated={true} data={data} userRating={5} rating={3}/>)
-    const element = queryByText("123-456-7890")
+    const phone = queryByText("123-456-7890")
+    const winery = queryByText("Wiens Family Cellars")
 
-    expect(element).not.toBeNull()
-  })
-
-  it('should display the winery name', () => {
-    const { queryByText } = render(<BlockHeader isAuthenticated={true} data={data} userRating={5} rating={3}/>)
-    const element = queryByText("Wiens Family Cellars")
-
-    expect(element).not.toBeNull()
+    expect(phone).not.toBeNull()
+    expect(winery).not.toBeNull()
   })
 })

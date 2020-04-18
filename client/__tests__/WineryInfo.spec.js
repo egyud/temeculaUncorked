@@ -12,17 +12,13 @@ const info = {
 }
 
 describe('WineryInfo', () => {
-  it('renders the url passed to it', () => {
+  it('renders relevant data passed to it', () => {
     const { queryByText } = render(<WineryInfo info={info}/>)
-    const element = queryByText('www.winery.com')
+    const url = queryByText('www.winery.com')
+    const address = queryByText(info.address)
 
-    expect(element).not.toBeNull()
+    expect(url).not.toBeNull()
+    expect(address).not.toBeNull()
   })
 
-  it('renders the address of the winery', () => {
-    const { queryByText } = render(<WineryInfo info={info}/>)
-    const element = queryByText(info.address)
-
-    expect(element).not.toBeNull()
-  })
 })

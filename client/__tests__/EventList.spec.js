@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, cleanup } from 'react-native-testing-library'
 import EventList from '../components/EventList'
 
 const events = [
@@ -40,6 +40,8 @@ const events = [
     _id: 3
   }
 ]
+
+afterEach(cleanup)
 
 describe('EventList', () => {
   it('should display a message if there are no events passed in', () => {

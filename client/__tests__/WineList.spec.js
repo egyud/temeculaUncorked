@@ -17,10 +17,9 @@ afterEach(cleanup)
 
 describe('WineList', () => {
   it('renders the same amount of WineCards as there are wines passed as props', () => {
-  //   const { queryAllByTestId } = render(<WineList wines={wines}/>)
-  //   const elements = queryAllByTestId('wine-card')
+    const { queryAllByTestId } = render(<WineList wines={wines}/>)
+    const elements = queryAllByTestId('wine-card')
 
-  //   expect(elements.length).toEqual(wines.length)
-    expect(0).toEqual(0)
+    expect(elements.length).toEqual(wines.length)
   })
 })

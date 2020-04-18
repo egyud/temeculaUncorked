@@ -73,10 +73,10 @@ describe('ClubComparison', () => {
     expect(props.navigation.navigate).toHaveBeenCalled()
   })
 
-  // it('opens the modal when clicking on select club button', () => {
-  //   const { queryByTestId } = render(<ClubComparison {...props}/>)
-  //   const element = queryByTestId('open-modal-1')
-  //   fireEvent.press(element)
-    
-  // })
+  it('renders two ClubColumn components', () => {
+    const { queryAllByTestId } = render(<ClubComparison {...props}/>)
+    const columns = queryAllByTestId('club-column')
+
+    expect(columns.length).toBe(2)
+  })
 })
