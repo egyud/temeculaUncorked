@@ -6,6 +6,7 @@ import { Icon, Text, Button } from 'native-base'
 import Review from '../components/Review'
 import CommentList from '../components/CommentList'
 import addLike from '../utils/addLike'
+import getComments from '../utils/getCommentsReview'
 
 export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [commentsList, updateCommentsList] = useState([])
@@ -14,21 +15,10 @@ export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const { _id: reviewId } = review 
 
   useEffect(() => {
-    getComments()
-  }, [])
-
-  console.log('in reviewScreen')
-  console.log(review)
-  console.log(commentsList)
-
-  function getComments() {
-    axios.get(`http://localhost:5000/api/comments/review/${reviewId}`)
+    getComments(reviewId)
       .then(res => updateCommentsList(res.data.comments))
       .catch(err => console.error(err))
-  }
-
-  console.log('REVIEW SCREEN RENDERED')
-  console.log(activeUser)
+  }, [])
 
   let postCommentBtn = (
     <Button
@@ -69,7 +59,7 @@ export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
 ReviewScreen.navigationOptions = {
   title: 'Review',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -79,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e6ffe6'
   },
   postCommentBtn: {
-    backgroundColor: '#614d36',
+    backgroundColor: '#ede1c4',
     justifyContent: 'center',
   },
   postCommentBtnText: {

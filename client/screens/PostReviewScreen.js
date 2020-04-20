@@ -31,7 +31,7 @@ export default PostReviewScreen = ({ navigation }) => {
           startingValue={avgRating}
           onFinishRating={(rating) => updateRating(rating)}
           type="custom"
-          ratingColor="#9A8BE7" />
+          ratingColor='#fcf1d2' />
         <Textarea
           testID="review-text-area"
           style={styles.textArea} 
@@ -55,7 +55,7 @@ export default PostReviewScreen = ({ navigation }) => {
 PostReviewScreen.navigationOptions = {
   title: 'Post a Review',
   headerStyle: {
-    backgroundColor: '#9A8BE7'
+    backgroundColor: '#fcf1d2'
   },
 }
 
@@ -65,21 +65,21 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   submitBtn: {
-    backgroundColor: '#9A8BE7',
+    backgroundColor: '#ede1c4',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#620014',
+    borderColor: '#ede1c4',
     borderWidth: 1
   },
   submitBtnText: {
-    color: '#620014',
+    color: '#ede1c4',
     fontWeight: 'bold'
   },
   textArea: {
-    borderColor: '#620014',
+    borderColor: '#ede1c4',
     width: '90%',
     backgroundColor: '#e6ffe6',
     borderRadius: 20

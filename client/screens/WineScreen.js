@@ -6,6 +6,9 @@ import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Rig
 import { Rating } from 'react-native-ratings'
 import { showMessage } from 'react-native-flash-message'
 import UserRating from '../components/UserRating'
+import getUserWineRating from '../utils/getUserWineRating'
+import getRecentRatings from '../utils/getRecentRatings'
+import postRating from '../utils/postRating'
 
 export const WineScreen = ({ navigation, user, isAuthenticated }) => {
   const [wineRating, updateWineRating] = useState(0)
@@ -16,31 +19,15 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
   const { name, rating, winery, ratingCount, price, clubPrice, _id: wineId, description } = wine
 
   useEffect(() => {
-    getRecentRatings()
+    getRecentRatings(wineId)
+      .then(res => updateRecentRatings(res.data.ratings))
+      .catch(err => console.error(err))
     getUserRating()
   }, [])
 
   useEffect(() => {
-    postRating()
-  }, [wineRating])
-
-  function getUserRating() {
-    if (isAuthenticated) {
-      axios.get(`http://localhost:5000/api/ratings/${wineId}/${user._id}`)
-        .then(res => updateUserRating(res.data.rating))
-        .then(res => updateIsLoading(false))
-        .catch(err => console.error(err))
-    }
-    updateIsLoading(false)
-  }
-
-  function postRating() {
     if (isAuthenticated && wineRating > 0) {
-      axios.post('http://localhost:5000/api/ratings', {
-        userId: user._id,
-        wineId,
-        rating: wineRating 
-      })
+      postRating()
         .then(res => {
           showMessage({
             message: res.data.message,
@@ -54,15 +41,19 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
           })
         })
     }
+  }, [wineRating])
+
+  function getUserRating() {
+    if (isAuthenticated) {
+      getUserWineRating(wineId, user._id)
+        .then(res => updateUserRating(res.data.rating))
+        .then(res => updateIsLoading(false))
+        .catch(err => console.error(err))
+    }
+    updateIsLoading(false)
   }
 
-  function getRecentRatings() {
-    axios.get(`http://localhost:5000/api/ratings/recent/${wineId}`)
-      .then(res => updateRecentRatings(res.data.ratings))
-      .catch(err => console.error(err))
-  }
-
-  const uRate = (
+ const uRate = (
     <>
       <Text>Your Rating</Text>
       <UserRating
@@ -114,7 +105,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
                   startingValue={rating}
                   readonly={true}
                   type="custom"
-                  ratingColor="#99ff99" />
+                  ratingColor='#fcf1d2' />
               {/* </Body> */}
             </Left>
             <Right>
@@ -128,9 +119,10 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
           </CardItem>
         </Card>
         <Text>Recent Ratings</Text>
-        <List>
+        <List testID="recent-ratings">
           {recentRatings.map(rate => (
             <ListItem
+              testID="rating-item"
               key={rate.userId._id} 
               onPress={() => navigation.navigate('Profile', { userId: rate.userId._id })}>
               <Left>
@@ -143,7 +135,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
                   startingValue={rate.rating}
                   imageSize={25}
                   type="custom"
-                  ratingColor="#99ff99" />
+                  ratingColor='#fcf1d2' />
               </Body>
               <Right>
               </Right>
@@ -158,7 +150,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
 WineScreen.navigationOptions = {
   title: 'Wine',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 

@@ -2,19 +2,16 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native'
 import EventList from '../components/EventList'
+import getEvents from '../utils/getEvents'
 
 export default EventsScreen = ({ navigation }) => {
   const [events, updateEvents] = useState([])
 
   useEffect(() => {
     getEvents()
-  }, [])
-
-  function getEvents() {
-    axios.get('http://localhost:5000/api/events')
       .then(res => updateEvents(res.data.events))
       .catch(err => console.error(err))
-  }
+  }, [])
 
   return (
     <ScrollView>
@@ -38,7 +35,7 @@ export default EventsScreen = ({ navigation }) => {
 EventsScreen.navigationOptions = {
   title: 'Events',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 

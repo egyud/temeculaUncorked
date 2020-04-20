@@ -10,6 +10,10 @@ import ReviewList from '../components/ReviewList/ReviewList'
 import ClubList from '../components/ClubList'
 import WineryWineList from '../components/WineryWineList'
 import calculateAverage from '../utils/average'
+import getUserRating from '../utils/getUserRating'
+import getWineryImages from '../utils/getWineryImages'
+import getEventsData from '../utils/getEventsData'
+import getWineryData from '../utils/getWineryData'
 
 export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, wineryList }) => {
   const [wineryData, updateWineryData] = useState({})
@@ -23,48 +27,36 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
 
   useEffect(() => {
     getWineryData(winery)
+      .then(res => {
+        updateWineryData(res.data.winery)
+        updateWineListData(res.data.wines)
+      })
+      .catch(err => console.error(err))
     getEventsData(winery)
+      .then(res => {
+        updateEventsArray(res.data.events)
+      })
+      .catch(err => console.error(err))
   }, [navigation])
 
   useEffect(() => {
-    getUserRating()
+    getUserRatingHandler()
     getWineryImages(wineryData._id)
+      .then(res => {
+        updateWineryImages(res.data.images)
+      })
+      .catch(err => console.error(err))
   }, [wineryData])
 
   useEffect(() => {
     filterReviews()
   }, [reviews])
 
-  function getWineryData(selectedWinery) {
-    axios.get(`http://localhost:5000/api/wineries/page/${selectedWinery}`)
-      .then(res => {
-        updateWineryData(res.data.winery)
-        updateWineListData(res.data.wines)
-      })
-      .catch(err => console.error(err))
-  }
-
-  function getEventsData(selectedWinery) {
-    axios.get(`http://localhost:5000/api/events/winery/${selectedWinery}`)
-      .then(res => {
-        updateEventsArray(res.data.events)
-      })
-      .catch(err => console.error(err))
-  }
-
-  function getWineryImages(selectedWinery) {
-    axios.get(`http://localhost:5000/api/images/${selectedWinery}`)
-      .then(res => {
-        updateWineryImages(res.data.images)
-      })
-      .catch(err => console.error(err))
-  }
-
-  function getUserRating() {
+  function getUserRatingHandler() {
     if (isAuthenticated) {
-      axios.get(`http:/localhost:5000/api/reviews/${wineryData._id}/${user._id}`)
+      getUserRating()
         .then(res => updateUserRating(res.data.review))
-        .then(res => updateIsLoading(false))
+        .then(() => updateIsLoading(false))
         .catch(err => console.error(err))
     }
     updateIsLoading(false)
@@ -72,13 +64,14 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
 
   function filterReviews() {
     if (reviews) {
-      const filtered = reviews.reviews.filter(review => winery === review.reviewedId.name)
+      const filtered = reviews.filter(review => winery === review.reviewedId.name)
       updatedFilteredReviews(filtered)
     }
   }
 
   let postReviewBtn = (
     <Button
+      testID="post-review-btn"
       style={styles.postReviewBtn}
       onPress={() => navigation.navigate('NewReview', { wineryData, user, avgRating: calculateAverage(wineryData.avgRating, wineryData.reviewCount) })}>
       <Icon
@@ -100,7 +93,8 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
     <Content>
       <View>
         <View>
-          <TouchableOpacity 
+          <TouchableOpacity
+            testID="gallery-link" 
             onPress={() => navigation.navigate('Gallery', { images: wineryImages, wineryData, user, isAuthenticated })}>
             <ImageBackground 
               source={require('../assets/wineGlasses.jpg')}
@@ -145,6 +139,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
           >
             <View>
               <Text
+                testID="club-link"
                 onPress={() => navigation.navigate('Comparison')} 
                 style={styles.compareLink}>
                 Compare wine club benefits
@@ -177,7 +172,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
 WineryScreen.navigationOptions = {
   title: 'Winery Name',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -196,7 +191,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4
   },
   tabs: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#ede1c4'
   },
   block: {
     width: '80%',
@@ -207,25 +202,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   callText: {
-    color: '#614D36'
+    color: '#ede1c4'
   },
   photoButton: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     marginRight: 4
     // backgroundColor: '#89012c'
   },
   photoButtonText: {
-    color: '#614D36'
+    color: '#ede1c4'
   },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     paddingVertical: 15,
-    color: '#614d36',
+    color: '#ede1c4',
     fontWeight: '500'
   },
   postReviewBtn: {
-    backgroundColor: '#614d36',
+    backgroundColor: '#ede1c4',
     justifyContent: 'center',
   },
   postReviewBtnText: {
@@ -235,7 +230,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    reviews: state.reviewReducer.reviews.data,
+    reviews: state.reviewReducer.reviews.data.reviews,
     user: state.authReducer.user.user,
     isAuthenticated: state.authReducer.isAuthenticated,
     wineryList: state.wineReducer.wineriesList

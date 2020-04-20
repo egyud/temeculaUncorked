@@ -19,10 +19,10 @@ export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   }, [])
 
   useEffect(() => {
-    createTableDataArray()
+    createClubDataArray()
   }, [wineClubs])
 
-  function createTableDataArray() {
+  function createClubDataArray() {
     let clubListArray = []
     wineClubs.forEach(winery => {
       let { wineClubs: clubs } = winery
@@ -104,7 +104,7 @@ export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
 ClubComparison.navigationOptions = {
   title: 'Compare Wine Clubs',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   head: {  
     height: 40,  
-    backgroundColor: '#99ff99'  
+    backgroundColor: '#ede1c4'  
   },
   wrapper: { 
     flexDirection: 'row' 
@@ -154,12 +154,12 @@ const styles = StyleSheet.create({
   },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#614d36',
+    backgroundColor: '#ede1c4',
     paddingVertical: 15,
     width: '80%',
     alignSelf: 'center',
     borderRadius: 30,
-    borderColor: '#99ff99',
+    borderColor: '#ede1c4',
     borderWidth: 5,
     justifyContent: 'center',
     marginTop: 10
@@ -169,13 +169,13 @@ const styles = StyleSheet.create({
     color: '#e6ffe6',
   },
   clubSelectionBtn: {
-    backgroundColor: '#614d36',
+    backgroundColor: '#ede1c4',
     width: 200,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#99ff99',
+    borderColor: '#ede1c4',
     borderWidth: 5,
     paddingVertical: 20,
     borderRadius: 20

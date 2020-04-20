@@ -76,7 +76,7 @@ export const ClubScreen = ({ navigation }) => {
 ClubScreen.navigationOptions = {
   title: 'Club Info',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 

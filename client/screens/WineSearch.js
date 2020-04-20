@@ -9,7 +9,7 @@ import FilterModal from '../components/FilterModal'
 import SortModal from '../components/SortModal'
 
 
-export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthenticated }) => {
+export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthenticated, wineryList }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
   const [filters, updateFilters] = useState([])
   const [wineList, updateWineList] = useState([])
@@ -82,6 +82,7 @@ export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthe
             addToFilters={addToFilters}
             isWineryScreen={false}
             modalVisible={modalVisible}
+            wineryList={wineryList}
           />
           <SortModal 
             close={() => updateSortModalVisible(false)}
@@ -119,7 +120,7 @@ export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthe
 WineSearch.navigationOptions = {
   title: 'Wines',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: {  
     height: 40,  
-    backgroundColor: '#99ff99'  
+    backgroundColor: '#ede1c4'  
   },
   text: { 
     textAlign: 'center',
@@ -137,13 +138,13 @@ const styles = StyleSheet.create({
     marginVertical: 0,
   },
   filterBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#614d36',
+    borderColor: '#ede1c4',
     borderWidth: 1
   },
   btnWrapper: {
@@ -156,7 +157,8 @@ const mapStateToProps = (state) => {
   return {
     wineArray: state.wineReducer.wineList,
     user: state.authReducer.user.user,
-    isAuthenticated: state.authReducer.isAuthenticated
+    isAuthenticated: state.authReducer.isAuthenticated,
+    wineryList: state.wineReducers.wineriesList
   }
 }
 

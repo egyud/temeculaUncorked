@@ -57,7 +57,7 @@ export const LoginScreen = ({ loginUser, navigation }) => {
 LoginScreen.navigationOptions = {
   title: 'Login',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -70,17 +70,17 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   loginBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#614d36',
+    borderColor: '#ede1c4',
     borderWidth: 1
   },
   loginBtnText: {
-    color: '#614d36',
+    color: '#ede1c4',
     fontWeight: 'bold'
   }
 })

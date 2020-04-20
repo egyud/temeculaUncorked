@@ -6,7 +6,7 @@ import { View, StyleSheet, ImageBackground, Text, Modal, ScrollView } from 'reac
 import { Form, Picker, Button } from 'native-base'
 import ClubList from '../components/ClubList'
 
-const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
+export const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubsList, updateClubsList] = useState([])
   const [modalVisible, updateModalVisible] = useState(false)
   const [sortBy, updateSortBy] = useState('ratingD')
@@ -45,12 +45,10 @@ const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
         </ImageBackground>
         <View>
           <Text
+            testID="compare-link"
             onPress={() => navigation.navigate('Comparison')} 
             style={styles.compareLink}>Compare wine club benefits</Text>
         </View>
-        {/* <Button style={styles.compareLink}>
-          <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>Sort Clubs</Text>
-        </Button> */}
       </View>
       <ScrollView>
         <ClubList 
@@ -64,7 +62,7 @@ const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
 ClubListScreen.navigationOptions = {
   title: 'Wine Clubs',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -90,9 +88,9 @@ const styles = StyleSheet.create({
   },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     paddingVertical: 15,
-    color: '#614d36',
+    color: '#ede1c4',
     fontWeight: '500'
   }
 })

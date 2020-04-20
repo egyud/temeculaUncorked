@@ -56,7 +56,7 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
             testID="account-tab"
             heading="Settings"
             activeTextStyle={{color: '#89012c'}}>
-            <Settings />
+            <Settings user={user}/>
           </Tab>
         </Tabs>
         
@@ -67,7 +67,7 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
 AccountScreen.navigationOptions = {
   title: 'Your Account',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 

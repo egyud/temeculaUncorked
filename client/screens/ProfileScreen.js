@@ -8,6 +8,10 @@ import { Linking } from 'expo'
 import { showMessage } from 'react-native-flash-message'
 import ReviewList from '../components/ReviewList/ReviewList'
 import RatingsList from '../components/RatingsList'
+import getUserInfo from '../utils/getUserInfo'
+import getUserReviews from '../utils/getUserReviews'
+import getUserRatings from '../utils/getUserRatings'
+import followUser from '../utils/followUser'
 
 
 export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
@@ -19,9 +23,15 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
   const userId = navigation.getParam('userId')
 
   useEffect(() => {
-    getUserInfo()
-    getUserReviews()
-    getUserRatings()
+    getUserInfo(userId)
+      .then(res => updateCurrentUser(res.data.user))
+      .catch(err => console.error(err))
+    getUserReviews(userId)
+      .then(res => updateUserReviews(res.data.reviews))
+      .catch(err => console.error(err))
+    getUserRatings(userId)
+      .then(res => updateUserRatings(res.data.ratings))
+      .catch(err => console.error(err))
   }, [])
 
   useEffect(() => {
@@ -34,39 +44,9 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
     Linking.openURL(url)
   }
 
-  function getUserInfo() {
-    axios.get(`http://localhost:5000/api/users/${userId}`)
-      .then(res => {
-        // console.log(res.data.user)
-        updateCurrentUser(res.data.user)
-      })
-      .catch(err => console.error(err))
-  }
-
-  function getUserReviews() {
-    axios.get(`http://localhost:5000/api/reviews/${userId}`)
-      .then(res => {
-        updateUserReviews(res.data.reviews)
-      })
-      .catch(err => console.error(err))
-  }
-
-  function getUserRatings() {
-    axios.get(`http://localhost:5000/api/ratings/${userId}`)
-      .then(res => {
-        console.log('wine ratings here *********')
-        console.log(res.data.ratings)
-        updateUserRatings(res.data.ratings)
-      })
-      .catch(err => console.error(err))
-  }
-
-  function followUser() {
+  function followHandler() {
     if (activeUser) {
-      axios.post(`http://localhost:5000/api/users/follow`, {
-        userIdToFollow: userId,
-        activeUser
-      })
+      followUser(userId, activeUser)
         .then(res => {
           showMessage({
             message: res.data.message,
@@ -90,10 +70,16 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
     )
   }
 
+
+  let thumbnail = null
+  if (currentUser.avatar) {
+    thumbnail = <Thumbnail source={{ uri: currentUser.avatar.url }}/>
+  }
+
   const followButton = (
     <Button
       testID="follow-btn" 
-      onPress={() => followUser()}>
+      onPress={() => followHandler()}>
       <Text>Follow</Text>
     </Button>
   )
@@ -102,7 +88,9 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
   console.log(currentUser)
 
   return (
-    <View style={{ flex: 1 }}>
+    <View
+      testID="profile-screen" 
+      style={{ flex: 1 }}>
       <View>
         <Card style={styles.headerCard}>
           <CardItem>
@@ -116,7 +104,7 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
               </Body>
             </Left>
             <Right>
-              <Thumbnail source={{ uri: currentUser.avatar.url }}/>
+              {thumbnail}
             </Right>
           </CardItem>
           <CardItem>
@@ -153,7 +141,7 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
 ProfileScreen.navigationOptions = {
   title: 'Profile',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -165,7 +153,7 @@ const styles = StyleSheet.create({
   },
   reviewsHeader: {
     borderBottomWidth: 1,
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     textAlign: 'center',
     width: '100%',
     paddingTop: 12,

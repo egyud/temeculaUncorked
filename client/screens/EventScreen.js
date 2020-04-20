@@ -5,6 +5,8 @@ import { Share, View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
 import { showMessage, hideMessage } from 'react-native-flash-message'
 import CommentList from '../components/CommentList'
+import getComments from '../utils/getCommentsEvent'
+import attendEvent from '../utils/attendEvent'
 
 export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
@@ -12,14 +14,13 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const { title, winery, date, time, price, attending, membersOnly, adultsOnly, description, address, _id } = event
 
   useEffect(() => {
-    getComments()
+    getComments(_id)
+      .then(res => updateComments(res.data.comments))
+      .catch(err => console.error(err))
   }, [event])
 
-  function attendEvent() {
-    axios.post('http://localhost:5000/api/events/attend', {
-      userId: activeUser._id,
-      eventId: _id
-    })
+  function attendEventHandler() {
+    attendEvent(activeUser._id, _id)
       .then(res => {
         showMessage({
           message: res.data.message,
@@ -34,31 +35,22 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
       })
   }
 
-  async function shareEvent() {
-    try {
-      const result = await Share.share({
-        message: `${title} - ${description}`,
-        title: `Check out this event from Temecula Uncorked`
-      })
+  // async function shareEvent() {
+  //   try {
+  //     const result = await Share.share({
+  //       message: `${title} - ${description}`,
+  //       title: `Check out this event from Temecula Uncorked`
+  //     })
 
-      if (result.action === Share.sharedAction) {
-        alert('Post Shared')
-      } else if (result.action === Share.dismissedAction) {
-        alert('Post cancelled')
-      }
-    } catch (error) {
-      alert(error.message)
-    }
-  }
-
-  function getComments() {
-    axios.get(`http://localhost:5000/api/comments/event/${_id}`)
-      .then(res => {
-        updateComments(res.data.comments)
-        console.log(res.data.comments)
-      })
-      .catch(err => console.error(err))
-  }
+  //     if (result.action === Share.sharedAction) {
+  //       alert('Post Shared')
+  //     } else if (result.action === Share.dismissedAction) {
+  //       alert('Post cancelled')
+  //     }
+  //   } catch (error) {
+  //     alert(error.message)
+  //   }
+  // }
 
   let postCommentBtn = (
     <Button
@@ -78,7 +70,7 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
         <Button
           testID="attend-btn" 
           style={styles.button}
-          onPress={() => attendEvent()}
+          onPress={() => attendEventHandler()}
         >
           <Text>Attend</Text>
         </Button>
@@ -191,7 +183,7 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
 EventScreen.navigationOptions = {
   title: 'Event Info',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -211,7 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#89012c'
   },
   postCommentBtn: {
-    backgroundColor: '#614d36',
+    backgroundColor: '#ede1c4',
     justifyContent: 'center',
   },
   postCommentBtnText: {

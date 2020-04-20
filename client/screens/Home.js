@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineryList } from '../actions/wineActions' 
 import { fetchAllReviews } from '../actions/reviewActions'
 import { getUserEvents } from '../actions/authActions'
 import { StyleSheet, View, Text, ImageBackground, TextInput } from 'react-native'
-import { Header, Input, Icon, Item } from 'native-base'
 import HomePageLink from '../components/HomePageLink/HomePageLink'
 import ActivityFeed from '../components/ActivityFeed'
+import getReviews from '../utils/getReviewsRecent'
 
 
-const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAuthenticated, user }) => {
+export const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAuthenticated, user }) => {
+  const [recentReviews, updateRecentReviews] = useState([])
+  const [isLoading, updateIsLoading] = useState(true)
 
   useEffect(() => {
-    console.log('HOME PAGE LOADED')
     fetchWineries()
     fetchAllReviews()
+    getReviews()
+      .then(res => {
+        updateRecentReviews(res.data.reviews)
+        updateIsLoading(false)
+      })
+      .catch(err => console.error(err))
   }, [])
 
   useEffect(() => {
@@ -93,7 +99,10 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
         <View style={styles.lastestActivity}>
           <Text>Latest Activity</Text>
         </View>
-        <ActivityFeed navigation={navigation}/>
+        <ActivityFeed
+          isLoading={isLoading}
+          reviews={recentReviews} 
+          navigation={navigation}/>
       </View>
       
     </View>
@@ -103,7 +112,7 @@ const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews, isAut
 Home.navigationOptions = {
   title: 'Uncorked',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
@@ -117,7 +126,7 @@ const styles = StyleSheet.create({
   },
   lastestActivity: {
     borderBottomWidth: 1,
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     textAlign: 'center',
     width: '100%',
     paddingTop: 18,

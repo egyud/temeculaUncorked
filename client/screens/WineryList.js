@@ -40,22 +40,25 @@ export const WineryList = ({ list, fetchWineries, navigation }) => {
       </Header>
       <ScrollView style={styles.container}>
         {filteredWineryList.map(winery => (
-          <ListItem 
+          <ListItem
+            testID="list-item" 
             key={winery._id}
             style={styles.listItem}>
             <Body>
               <Text
+                testID="winery-name"
                 onPress={() => navigation.navigate('Winery', { winery: winery.name })}
               >
                 {winery.name}
               </Text>
             </Body>
             <Right>
-              <Rating 
+              <Rating
+                testID="winery-rating"
                 startingValue={calculateAverage(winery.avgRating, winery.reviewCount)}
                 imageSize={25}
                 type="custom"
-                ratingColor="#99ff99" />
+                ratingColor='#fcf1d2' />
             </Right>
           </ListItem>
         ))}
@@ -68,7 +71,7 @@ export const WineryList = ({ list, fetchWineries, navigation }) => {
 WineryList.navigationOptions = {
   title: 'Wineries',
   headerStyle: {
-    backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2'
   }
 }
 
