@@ -7,6 +7,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers/index'
 import StackNav from './navigation/Navigation'
 import FlashMessage from 'react-native-flash-message'
+import ErrorBoundary from 'react-native-error-boundary'
 
 const store = createStore(
   rootReducer,
@@ -15,12 +16,14 @@ const store = createStore(
 
 export default App = () => {
   return (
-    <Provider store={store}>
-      <Container style={styles.container}>
-        <StackNav />
-        <FlashMessage position="top"/>
-      </Container>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Container style={styles.container}>
+          <StackNav />
+          <FlashMessage position="top"/>
+        </Container>
+      </Provider>
+    </ErrorBoundary>
   );
 }
 
