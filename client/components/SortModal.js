@@ -25,7 +25,8 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
             <Text>Sort By</Text>
           </ListItem>
           {sortVals.map(option => (
-            <ListItem 
+            <ListItem
+              testID="sort-value" 
               onPress={() => {
                 updateSortBy(option.label)
                 close()
@@ -37,6 +38,7 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
         </View>
         <View style={styles.modalBtnWrapper}>
           <Button
+            testID="close-btn"
             style={styles.modalBtn}
             onPress={close}>
             <Text style={styles.closeBtnText}>Close</Text>
@@ -53,13 +55,13 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   modalBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#fcf1d2',
     flex: 1,
     justifyContent: 'center',
-    borderColor: '#614d36',
+    borderColor: '#fcf1d2',
     borderWidth: 1
   },
   closeBtnText: {
-    color: 'black'
+    color: '#620014'
   }
 })

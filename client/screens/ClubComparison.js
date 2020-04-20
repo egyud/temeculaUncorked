@@ -116,21 +116,6 @@ const styles = StyleSheet.create({
     // backgroundColor: '#e6ffe6'
     // backgroundColor: '#f5f5f5'
   },
-  head: {  
-    height: 40,  
-    backgroundColor: '#ede1c4'  
-  },
-  wrapper: { 
-    flexDirection: 'row' 
-  },
-  row: {  
-    height: 80,
-    justifyContent: 'center',
-    backgroundColor: '#e6ffe6'
-  },
-  picker: {
-    marginVertical: 0,
-  },
   columnWrapper: {
     flex: 1,
     flexDirection: 'row',
@@ -144,38 +129,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  headline: {
-    fontSize: 30,
-    fontWeight: '700',
-    color: '#fff',
-    backgroundColor: '#89012c',
-    paddingVertical: 25,
-    paddingHorizontal: 40
-  },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#fcf1d2',
     paddingVertical: 15,
     width: '80%',
     alignSelf: 'center',
     borderRadius: 30,
-    borderColor: '#ede1c4',
+    borderColor: '#620014',
     borderWidth: 5,
     justifyContent: 'center',
     marginTop: 10
   },
   compareLinkText: {
     fontWeight: 'bold',
-    color: '#e6ffe6',
+    color: '#620014',
   },
   clubSelectionBtn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#620014',
+    // backgroundColor: '#AA8248',
     width: 200,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#ede1c4',
+    borderColor: '#fcf1d2',
     borderWidth: 5,
     paddingVertical: 20,
     borderRadius: 20

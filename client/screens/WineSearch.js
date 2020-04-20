@@ -97,12 +97,12 @@ export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthe
                 updateModalVisible(true)
                 updateFilters([])
               }}>
-              <Text>Filter Wines</Text>
+              <Text style={styles.filterBtnText}>Filter Wines</Text>
             </Button>
             <Button
               style={styles.filterBtn}
               onPress={() => updateSortModalVisible(true)}>
-              <Text>Sort Wines</Text>
+              <Text style={styles.filterBtnText}>Sort Wines</Text>
             </Button>
           </View>
         </View>
@@ -126,26 +126,19 @@ WineSearch.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: {  
-    height: 40,  
-    backgroundColor: '#ede1c4'  
-  },
-  text: { 
-    textAlign: 'center',
-    marginBottom: 0
-  },
-  picker: {
-    marginVertical: 0,
-  },
   filterBtn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#fcf1d2',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#ede1c4',
+    borderColor: '#620014',
     borderWidth: 1
+  },
+  filterBtnText: {
+    color: '#620014',
+    fontWeight: 'bold'
   },
   btnWrapper: {
     flexDirection: 'row',
@@ -158,7 +151,7 @@ const mapStateToProps = (state) => {
     wineArray: state.wineReducer.wineList,
     user: state.authReducer.user.user,
     isAuthenticated: state.authReducer.isAuthenticated,
-    wineryList: state.wineReducers.wineriesList
+    wineryList: state.wineReducer.wineriesList
   }
 }
 

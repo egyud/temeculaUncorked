@@ -8,12 +8,17 @@ import moment from 'moment'
 export default CommentListItem = ({ comment, navigation, activeUserId, addLike }) => {
   const { _id, timestamp, text, likes, userId: { name: userName, _id: userId, avatar } } = comment
 
+  let avatarThumbnail = null
+  if (avatar !== undefined) {
+    avatarThumbnail = <Thumbnail source={{ uri: avatar.url }}/>
+  }
+
   return (
     <View testID="comment-list-item">
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail source={{ uri: avatar.url }}/> 
+            {avatarThumbnail}
             <Body>
               <Text>{userName}</Text>
             </Body>
@@ -49,6 +54,6 @@ export default CommentListItem = ({ comment, navigation, activeUserId, addLike }
 
 const styles = StyleSheet.create({
   icons: {
-    color: '#614D36'
+    color: '#620014'
   }
 })

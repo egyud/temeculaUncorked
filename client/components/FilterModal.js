@@ -18,11 +18,13 @@ export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen
           wineryList={wineryList} />
         <View style={styles.modalBtnWrapper}>
           <Button
+            testID="filter-btn"
             style={styles.modalBtn}
             onPress={filterWines}>
             <Text>Apply Filters</Text>
           </Button>
           <Button
+            testID="close-btn"
             style={styles.modalBtn}
             onPress={close}>
             <Text>Close</Text>
@@ -39,10 +41,10 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   modalBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#fcf1d2',
     flex: 1,
     justifyContent: 'center',
-    borderColor: '#614d36',
+    borderColor: '#fcf1d2',
     borderWidth: 1
   }
 })

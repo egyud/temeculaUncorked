@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   modalBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#ede1c4',
     flex: 1,
     justifyContent: 'center',
-    borderColor: '#614d36',
+    borderColor: '#ede1c4',
     borderWidth: 1
   },
   closeBtnText: {

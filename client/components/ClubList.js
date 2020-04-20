@@ -4,7 +4,9 @@ import ClubCard from './ClubCard'
 
 export default ClubList = ({ clubs, navigation }) => {
   return (
-    <View style={styles.container}>
+    <View 
+      testID="club-list"
+      style={styles.container}>
       {clubs.map(club => (
         <ClubCard 
           key={club._id}

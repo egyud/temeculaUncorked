@@ -70,17 +70,17 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   loginBtn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#620014',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#ede1c4',
+    borderColor: '#fcf1d2',
     borderWidth: 1
   },
   loginBtnText: {
-    color: '#ede1c4',
+    color: '#fcf1d2',
     fontWeight: 'bold'
   }
 })

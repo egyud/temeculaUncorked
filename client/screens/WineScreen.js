@@ -119,11 +119,14 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
           </CardItem>
         </Card>
         <Text>Recent Ratings</Text>
-        <List testID="recent-ratings">
+        <List 
+          testID="recent-ratings"
+          style={{ backgroundColor: '#fff' }}>
           {recentRatings.map(rate => (
             <ListItem
               testID="rating-item"
               key={rate.userId._id} 
+              style={{ backgroundColor: '#fff' }}
               onPress={() => navigation.navigate('Profile', { userId: rate.userId._id })}>
               <Left>
                 <Thumbnail source={{ uri: rate.userId.avatar.url }}/>
@@ -163,9 +166,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25
   },
-  button: {
-    backgroundColor: '#89012c'
-  }
 })
 
 const mapStateToProps = (state) => {

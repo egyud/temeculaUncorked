@@ -26,7 +26,9 @@ export default WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
   }
 
   return (
-    <Content style={styles.wineFilters}>
+    <Content 
+      testID="wine-filters"
+      style={styles.wineFilters}>
       <View>
         <ListItem itemDivider>
           <Text>Type</Text>

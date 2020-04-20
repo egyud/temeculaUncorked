@@ -22,6 +22,7 @@ export default ClubCard = ({ club, navigation }) => {
       <CardItem>
         <Left>
           <Button
+            testID="more-btn"
             style={styles.moreBtn} 
             onPress={() => navigation.navigate('Club', { club })}>
             <Text>More</Text>
@@ -42,6 +43,6 @@ const styles = StyleSheet.create({
   //   flex: 1
   // }
   moreBtn: {
-    backgroundColor: '#614D36'
+    backgroundColor: '#620014'
   }
 })

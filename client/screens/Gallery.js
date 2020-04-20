@@ -77,6 +77,13 @@ export default Gallery = ({ navigation }) => {
   )
 }
 
+Gallery.navigationOptions = {
+  title: 'Gallery',
+  headerStyle: {
+    backgroundColor: '#fcf1d2'
+  }
+}
+
 const styles = StyleSheet.create({
   gallery: {
     flexDirection: 'row',

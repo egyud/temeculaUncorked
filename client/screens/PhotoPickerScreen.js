@@ -114,7 +114,7 @@ export default PhotoPickerScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#620014',
     justifyContent: 'center',
   },
   btnText: {

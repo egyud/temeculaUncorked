@@ -7,7 +7,7 @@ import addLike from '../../utils/addLike'
 
 export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
   return (
-    <View>
+    <View testID="review-list">
       {/* <ScrollView> */}
         {reviews.map(review => (
           <Review
@@ -23,7 +23,5 @@ export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
 }
 
 const styles = StyleSheet.create({
-  listItem: {
-    backgroundColor: '#e6ffe6'
-  }
+
 })

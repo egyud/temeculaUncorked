@@ -18,7 +18,9 @@ export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => 
     </>
   )
   return (
-    <Card style={styles.block}>
+    <Card
+      testID="block-header" 
+      style={styles.block}>
       <CardItem >
         <Left>
           <Body>
@@ -31,7 +33,7 @@ export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => 
             imageSize={25} 
             startingValue={rating}
             type="custom"
-            ratingColor="#99ff99" />
+            ratingColor='#fcf1d2' />
           <Text>{reviewCount} Reviews</Text>
           {isAuthenticated ? uRate : null}
         </Right>
@@ -58,22 +60,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   callButton: {
-    backgroundColor: '#f1f1d4'
+    backgroundColor: '#fcf1d2'
   },
   callText: {
-    color: '#89012c',
+    color: '#620014',
     fontWeight: '700',
     fontSize: 20
   },
-  photoButton: {
-    backgroundColor: '#99ff99',
-    marginRight: 4
-    // backgroundColor: '#89012c'
-  },
-  photoButtonText: {
-    color: '#89012c'
-  },
-  icon: {
-    color: '#614D36'
-  }
 })

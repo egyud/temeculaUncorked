@@ -9,7 +9,7 @@ export default UserRating = ({ value, rateFunc, size, disabled }) => {
       imageSize={size} 
       startingValue={value}
       type="custom"
-      ratingColor="#614d36"
+      ratingColor="#620014"
       onFinishRating={rateFunc} 
     />
   )

@@ -46,6 +46,6 @@ export default FollowingList = ({ navigation, users }) => {
 
 const styles = StyleSheet.create({
   listItem: {
-    backgroundColor: '#e6ffe6'
+    backgroundColor: '#fcf1d2'
   }
 })

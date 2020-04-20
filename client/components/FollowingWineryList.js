@@ -32,6 +32,6 @@ export default FollowingWineryList = ({ navigation, wineries }) => {
 
 const styles = StyleSheet.create({
   listItem: {
-    backgroundColor: '#e6ffe6'
+    backgroundColor: '#fcf1d2'
   }
 })

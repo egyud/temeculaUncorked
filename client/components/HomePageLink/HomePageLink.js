@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: 'black',
-    backgroundColor: '#99ff99',
+    backgroundColor: '#fcf1d2',
     justifyContent: 'center',
     alignItems: 'center'
     // overflow: 'hidden'
   },
   icon: {
-    color: '#614D36'
+    color: '#620014'
   }
 })

@@ -82,15 +82,15 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: '700',
     color: '#fff',
-    backgroundColor: '#89012c',
+    backgroundColor: '#620014',
     paddingVertical: 25,
     paddingHorizontal: 40
   },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#fcf1d2',
     paddingVertical: 15,
-    color: '#ede1c4',
+    color: '#620014',
     fontWeight: '500'
   }
 })

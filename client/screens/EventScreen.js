@@ -154,16 +154,16 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
         </Card>
         <Tabs
           style={styles.tabs}
-          tabBarUnderlineStyle={{backgroundColor: '#89012c'}}>
+          tabBarUnderlineStyle={{backgroundColor: '#620014'}}>
           <Tab
             heading="Comments"
-            activeTextStyle={{color: '#89012c'}}>
+            activeTextStyle={{color: '#620014'}}>
             {postCommentBtn}
             <CommentList comments={comments}/>
           </Tab>
           <Tab
             heading="More Details"
-            activeTextStyle={{color: '#89012c'}}>
+            activeTextStyle={{color: '#620014'}}>
             <ListItem>
               <Text>Price: {price}</Text>
             </ListItem>
@@ -200,10 +200,10 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   button: {
-    backgroundColor: '#89012c'
+    backgroundColor: '#620014'
   },
   postCommentBtn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#620014',
     justifyContent: 'center',
   },
   postCommentBtnText: {

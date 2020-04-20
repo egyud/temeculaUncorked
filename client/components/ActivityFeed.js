@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 import moment from 'moment'
 import modifyTimestamp from '../utils/modifyTimestamp'
 import { View, StyleSheet } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text, Spinner } from 'native-base'
 
-export default ActivityFeed = ({ navigation }) => {
-  const [reviews, updateReviews] = useState([])
-  const [isLoading, updateIsLoading] = useState(true)
-
-  useEffect(() => {
-    getReviews()
-  }, [])
-
-  function getReviews() {
-    axios.get('http://localhost:5000/api/reviews/winery/recent')
-      .then(res => {
-        updateReviews(res.data.reviews)
-        updateIsLoading(false)
-      })
-      .catch(err => console.error(err))
-  }
+export default ActivityFeed = ({ navigation, reviews, isLoading }) => {
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner testID="spinner"/>
   }
 
   return (
-    <List>
+    <List testID="activity-feed">
       {reviews.map(review => {
         let avatar = null
         if (review.userId.avatar !== undefined) {
@@ -60,6 +44,6 @@ export default ActivityFeed = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   listItem: {
-    backgroundColor: '#e6ffe6'
+    backgroundColor: '#ede1c4'
   }
 })

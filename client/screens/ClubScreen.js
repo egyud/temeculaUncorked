@@ -48,10 +48,10 @@ export const ClubScreen = ({ navigation }) => {
         </Card>
         <Tabs
           style={styles.tabs}
-          tabBarUnderlineStyle={{backgroundColor: '#89012c'}}>
+          tabBarUnderlineStyle={{backgroundColor: '#620014'}}>
           <Tab
             heading="Discounts"
-            activeTextStyle={{color: '#89012c'}}>
+            activeTextStyle={{color: '#620014'}}>
             {discounts.map(discount => (
               <ListItem key={discount}>
                 <Text>{discount}</Text>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   button: {
-    backgroundColor: '#89012c'
+    backgroundColor: '#620014'
   }
 })
 

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   submitBtn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#620014',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   submitBtnText: {
-    color: '#ede1c4',
+    color: '#fff',
     fontWeight: 'bold'
   },
   textArea: {
-    borderColor: '#ede1c4',
+    borderColor: '#fcf1d2',
     width: '90%',
-    backgroundColor: '#e6ffe6',
+    backgroundColor: '#fcf1d2',
     borderRadius: 20
   },
   rating: {

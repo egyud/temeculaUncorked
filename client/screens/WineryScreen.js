@@ -111,10 +111,10 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
         </View>
         <Tabs 
           style={styles.tabs}
-          tabBarUnderlineStyle={{backgroundColor: '#89012c'}}>
+          tabBarUnderlineStyle={{backgroundColor: '#620014'}}>
           <Tab 
             heading="Reviews" 
-            activeTextStyle={{color: '#89012c'}}
+            activeTextStyle={{color: '#620014'}}
           >
             {postReviewBtn}
             <ReviewList 
@@ -123,7 +123,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
           </Tab>
           <Tab 
             heading="Wines" 
-            activeTextStyle={{color: '#89012c'}}
+            activeTextStyle={{color: '#620014'}}
           >
             <WineryWineList
               user={user}
@@ -135,7 +135,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
           </Tab>
           <Tab 
             heading="Wine Clubs" 
-            activeTextStyle={{color: '#89012c'}}
+            activeTextStyle={{color: '#620014'}}
           >
             <View>
               <Text
@@ -151,7 +151,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
           </Tab>
           <Tab 
             heading="Events" 
-            activeTextStyle={{color: '#89012c'}}
+            activeTextStyle={{color: '#620014'}}
           >
             <EventList 
               events={eventsArray}
@@ -159,7 +159,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
           </Tab>
           <Tab 
             heading="Info" 
-            activeTextStyle={{color: '#89012c'}}
+            activeTextStyle={{color: '#620014'}}
           >
             <WineryInfo info={wineryData}/>
           </Tab>
@@ -198,29 +198,15 @@ const styles = StyleSheet.create({
     marginVertical: 0,
     marginHorizontal: 'auto'
   },
-  callButton: {
-    backgroundColor: 'white',
-  },
-  callText: {
-    color: '#ede1c4'
-  },
-  photoButton: {
-    backgroundColor: '#ede1c4',
-    marginRight: 4
-    // backgroundColor: '#89012c'
-  },
-  photoButtonText: {
-    color: '#ede1c4'
-  },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#fcf1d2',
     paddingVertical: 15,
-    color: '#ede1c4',
+    color: '#620014',
     fontWeight: '500'
   },
   postReviewBtn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#620014',
     justifyContent: 'center',
   },
   postReviewBtnText: {

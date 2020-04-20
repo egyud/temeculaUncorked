@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   lastestActivity: {
     borderBottomWidth: 1,
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#fcf1d2',
     textAlign: 'center',
     width: '100%',
     paddingTop: 18,

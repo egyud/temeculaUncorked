@@ -4,7 +4,7 @@ import WineCard from './WineCard'
 
 export default WineList = ({ wines, navigation, user, isAuthenticated }) => {
   return (
-    <View>
+    <View testID="wine-list">
       {wines.map(wine => (
         <WineCard
           user={user}

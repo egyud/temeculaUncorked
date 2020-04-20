@@ -22,7 +22,8 @@ export default Event = ({ event, navigation }) => {
       </CardItem>
       <CardItem>
         <Left>
-          <Button 
+          <Button
+            testID="more-btn" 
             style={styles.moreButton}
             onPress={() => navigation.navigate('Event', { event: event })}>
             <Text>More</Text>
@@ -42,9 +43,8 @@ export default Event = ({ event, navigation }) => {
 
 const styles = StyleSheet.create({
   event: {
-    backgroundColor: '#99ff99'
   },
   moreButton: {
-    backgroundColor: '#89012c'
+    backgroundColor: '#620014'
   }
 })

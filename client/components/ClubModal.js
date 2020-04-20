@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   modalBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#620014',
     flex: 1,
     justifyContent: 'center',
-    borderColor: '#614d36',
+    borderColor: '#620014',
     borderWidth: 1
   }
 })

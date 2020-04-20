@@ -84,17 +84,19 @@ export default WineryWineList = ({ wineArray, navigation, user, isAuthenticated,
         />
         <View style={styles.btnWrapper}>
           <Button
+            testID="filter-btn"
             style={styles.filterBtn} 
             onPress={() => {
               updateModalVisible(true)
               updateFilters([])
             }}>
-            <Text>Filter Wine List</Text>
+            <Text style={{ color: '#620014' }}>Filter Wine List</Text>
           </Button>
           <Button
+            testID="sort-btn"
             style={styles.filterBtn}
             onPress={() => updateSortModalVisible(true)}>
-            <Text>Sort Wines</Text>
+            <Text style={{ color: '#620014' }}>Sort Wines</Text>
           </Button>
         </View>
       </View>
@@ -110,25 +112,14 @@ export default WineryWineList = ({ wineArray, navigation, user, isAuthenticated,
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: {  
-    height: 40,  
-    backgroundColor: '#99ff99'  
-  },
-  text: { 
-    textAlign: 'center',
-    marginBottom: 0
-  },
-  picker: {
-    marginVertical: 0,
-  },
   filterBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#fcf1d2',
     width: 150,
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#614d36',
+    borderColor: '#fcf1d2',
     borderWidth: 1
   },
   modalBtnWrapper: {
@@ -136,10 +127,10 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   modalBtn: {
-    backgroundColor: '#99ff99',
+    backgroundColor: '#fcf1d2',
     flex: 1,
     justifyContent: 'center',
-    borderColor: '#614d36',
+    borderColor: '#fcf1d2',
     borderWidth: 1
   },
   btnWrapper: {

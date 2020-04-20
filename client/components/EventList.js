@@ -6,7 +6,7 @@ export default EventList = ({ events, navigation }) => {
 
   if (events && events.length > 0) {
     return (
-      <View>
+      <View testID="event-list">
         {events.map(event => (
           <Event 
             key={event._id} 
@@ -17,7 +17,7 @@ export default EventList = ({ events, navigation }) => {
     )
   } else {
     return (
-      <View>
+      <View testID="no-events-msg">
         <Text>No events to display</Text>
       </View>
     )

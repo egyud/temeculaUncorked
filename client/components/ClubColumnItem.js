@@ -19,7 +19,9 @@ export default ClubColumnItem = ({ title, body, number }) => {
   }
   
   return (
-    <View style={[rowStyle, number === 1 ? styles.dark : styles.light]}>
+    <View
+      testID="column-item" 
+      style={[rowStyle, number === 1 ? styles.dark : styles.light]}>
       <Text note style={{ alignSelf: 'center' }}>{title}</Text>
       {bodyContent}
     </View>
@@ -53,12 +55,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   light: {
-    backgroundColor: '#ccffcc',
-    // backgroundColor: '#99ff99'
+    backgroundColor: '#fcf1d2',
+    // backgroundColor: '#ede1c4'
   },
   dark: {
-    // backgroundColor: '#614d36',
-    backgroundColor: '#99ff99'
+    // backgroundColor: '#ede1c4',
+    backgroundColor: '#f9e8c0'
   },
   lightText: {
     // color: '#e6ffe6',

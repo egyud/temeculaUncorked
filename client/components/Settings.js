@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { View, StyleSheet, ScrollView } from 'react-native'
 import { Text, Button, Icon, List, ListItem, Form, Input, Label, Item } from 'native-base'
+import updateEmail from '../utils/updateEmail'
+import updatePassword from '../utils/updatePassword'
+import updateLink from '../utils/updateLink'
+import updateBio from '../utils/updateBio'
 
-export default Settings = () => {
+export default Settings = ({ user }) => {
   const [setting, updateSetting] = useState(null)
   const [newEmail, updateNewEmail] = useState('')
   const [newPassword, updateNewPassword] = useState('')
@@ -11,34 +14,25 @@ export default Settings = () => {
   const [newBio, updateNewBio] = useState('')
 
   const updateEmailSubmitHandler = () => {
-    axios.post('http://localhost:5000/api/users/update-email', {
-      newEmail,
-      userId: user._id
-    })
-    .then(res => {
-      console.log(res)
-      updateNewEmail('')
-    })
+    updateEmail(newEmail, user._id)
+      .then(res => {
+        console.log(res)
+        updateNewEmail('')
+      })
       .catch(err => console.error(err))
   }
 
   const updatePasswordSubmitHandler = () => {
-    axios.post('http://localhost:5000/api/users/update-password', {
-      newPassword,
-      userId: user._id
-    })
-    .then(res => {
-      console.log(res)
-      updateNewPassword('')
-    })
+    updatePassword(newPassword, user._id)
+      .then(res => {
+        console.log(res)
+        updateNewPassword('')
+      })
       .catch(err => console.error(err))
   }
 
   const updateLinkSubmitHandler = () => {
-    axios.post('http://localhost:5000/api/users/link', {
-      link: newLink,
-      userId: user._id
-    })
+    updateLink(newLink, user._id)
       .then(res => {
         console.log(res)
         updateNewLink('')
@@ -47,10 +41,7 @@ export default Settings = () => {
   }
 
   const updateBioSubmitHandler = () => {
-    axios.post('http://localhost:5000/api/users/bio', {
-      bio: newBio,
-      userId: user._id
-    })
+    updateBio(newBio, user._id)
       .then(res => {
         console.log(res)
         updateNewBio('')
@@ -62,20 +53,30 @@ export default Settings = () => {
     return (
       <View>
         <List>
-          <ListItem onPress={() => updateSetting('email')}>
+          <ListItem 
+            testID="email-setting"
+            onPress={() => updateSetting('email')}>
             <Text>Update Email</Text>
           </ListItem>
-          <ListItem onPress={() => updateSetting('password')}>
+          <ListItem 
+            testID="password-setting"
+            onPress={() => updateSetting('password')}>
             <Text>Update Password</Text>
           </ListItem>
-          <ListItem onPress={() => updateSetting('avatar')}>
+          <ListItem 
+            testID="avatar-setting"
+            onPress={() => updateSetting('avatar')}>
             <Text>Update Avatar</Text>
           </ListItem>
-          <ListItem onPress={() => updateSetting('bio')}>
+          <ListItem 
+            testID="bio-setting"
+            onPress={() => updateSetting('bio')}>
             <Text>Update Bio</Text>
           </ListItem>
-          <ListItem onPress={() => updateSetting('link')}>
-            <Text>Update Homepage Social Link</Text>
+          <ListItem 
+            testID="link-setting"
+            onPress={() => updateSetting('link')}>
+            <Text>Update Homepage/Social Link</Text>
           </ListItem>
         </List>
       </View>
@@ -85,7 +86,7 @@ export default Settings = () => {
     switch (setting) {
       case 'email': 
         display = (
-          <Form>
+          <Form testID="email-form">
             <Item stackedLabel>
               <Label>Update Email</Label>
               <Input 
@@ -95,6 +96,7 @@ export default Settings = () => {
               />
             </Item>
             <Button
+              testID="submit-btn"
               style={styles.submitBtns}
               primary
               onPress={() => {
@@ -120,6 +122,7 @@ export default Settings = () => {
               />
             </Item>
             <Button
+              testID="submit-btn"
               style={styles.submitBtns}
               primary
               onPress={() => {
@@ -144,6 +147,7 @@ export default Settings = () => {
             />
             </Item>
             <Button
+              testID="submit-btn"
               style={styles.submitBtns}
               onPress={() => {
                 updateBioSubmitHandler()
@@ -167,6 +171,7 @@ export default Settings = () => {
             />
             </Item>
             <Button
+              testID="submit-btn"
               style={styles.submitBtns}
               onPress={() => {
                 updateLinkSubmitHandler()
@@ -186,7 +191,9 @@ export default Settings = () => {
     }
     return (
       <View>
-        <Button onPress={() => updateSetting(null)}>
+        <Button 
+          style={styles.backBtn}
+          onPress={() => updateSetting(null)}>
           <Text>Back to Settings List</Text>
         </Button>
         {display}
@@ -199,15 +206,19 @@ const styles = StyleSheet.create({
   submitBtns: {
     width: '40%',
     justifyContent: 'center',
-    backgroundColor: '#99ff99',
-    borderColor: '#614d36',
+    backgroundColor: '#620014',
+    borderColor: '#620014',
     borderWidth: 2,
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 25
   },
   submitBtnText: {
-    color: '#614d36',
+    color: '#fcf1d2',
     fontWeight: 'bold'
+  },
+  backBtn: {
+    backgroundColor: '#620014',
+    justifyContent: 'center'
   }
 })

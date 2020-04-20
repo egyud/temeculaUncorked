@@ -19,14 +19,16 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
           testID="review-thumbnail" 
           source={{ uri: avatar.url }}/> 
         <Body>
-          <Text onPress={() => navigation.navigate('Profile', { userId: userId })}>{userName}</Text>
+          <Text
+            testID="user-name" 
+            onPress={() => navigation.navigate('Profile', { userId: userId })}>{userName}</Text>
         </Body>
       </>
     )
   }
 
   return (
-    <View>
+    <View testID="review">
       <Card>
         <CardItem>
           <Left>
@@ -38,7 +40,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
               startingValue={rating}
               imageSize={25}
               type="custom"
-              ratingColor="#99ff99" />
+              ratingColor='#fcf1d2' />
           </Right>
         </CardItem>
         <CardItem cardBody>
@@ -59,7 +61,8 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
             </Button>
           </Left>
           <Body>
-            <Button 
+            <Button
+              testID="view-comments" 
               transparent
               onPress={() => navigation.navigate('Review', { review: review })}>
               <Icon
@@ -79,6 +82,6 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
 
 const styles = StyleSheet.create({
   btns: {
-    color: '#614D36'
+    color: '#620014'
   }
 })

@@ -9,7 +9,7 @@ export default CommentList = ({ comments, activeUserId }) => {
 
   if (comments && comments.length > 0) {
     return (
-      <View style={styles.container}>
+      <View testID="comment-list" style={styles.container}>
         {comments.map(comment => (
           <CommentListItem 
             key={comment._id}
@@ -21,7 +21,7 @@ export default CommentList = ({ comments, activeUserId }) => {
     )
   } else {
     return (
-      <View style={styles.container}>
+      <View testID="comment-list" style={styles.container}>
         <Text>No comments to display</Text>
       </View>
     )

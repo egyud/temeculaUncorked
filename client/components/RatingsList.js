@@ -7,7 +7,7 @@ export default RatingsList = ({ ratings }) => {
 
   if (ratings && ratings.length > 0) {
     return (
-      <List style={styles.ratingListItem}>
+      <List testID="ratings-list" style={styles.ratingListItem}>
         {ratings.map(rating => (
           <ListItem
             testID="ratings-list-item"
@@ -22,7 +22,7 @@ export default RatingsList = ({ ratings }) => {
                 startingValue={rating.rating}
                 imageSize={18}
                 type="custom"
-                ratingColor="#99ff99"
+                ratingColor='#fcf1d2'
               />
             </Right>
           </ListItem>

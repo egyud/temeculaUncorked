@@ -3,26 +3,30 @@ import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
+import { showMessage } from 'react-native-flash-message'
+import postRating from '../utils/postRating'
 
 export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   const [wineRating, updateWineRating] = useState(0)
   const { name, rating, winery, ratingCount, price, _id: wineId } = wine
 
   useEffect(() => {
-    postRating()
-  }, [wineRating])
-
-  function postRating() {
     if (isAuthenticated && wineRating > 0) {
-      axios.post('http://localhost:5000/api/ratings', {
-        userId: user._id,
-        wineId,
-        rating: wineRating 
-      })
-        .then(res => console.log(res.data))
-        .catch(err => console.error(err))
+      postRating(user._id, wineId, wineRating)
+        .then(res => {
+          showMessage({
+            message: res.data.message,
+            type: 'success'
+          })
+        })
+        .catch(err => {
+          showMessage({
+            message: err.response.data.message,
+            type: 'danger'
+          })
+        })
     }
-  }
+  }, [wineRating])
 
   return (
     <Card testID="wine-card" style={styles.card}>
@@ -35,13 +39,14 @@ export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
         </Left>
           <Right>
             <Body>
-              <Rating 
+              <Rating
                 startingValue={rating}
                 imageSize={25}
                 readonly={true}
                 onFinishRating={(rate) => updateWineRating(rate)}
                 type="custom"
-                ratingColor="#99ff99" />
+                ratingColor='#fcf1d2'
+             />
               <Text note>{ratingCount} ratings</Text>
             </Body>
           </Right>
@@ -67,7 +72,7 @@ export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
 
 const styles = StyleSheet.create({
   moreBtn: {
-    backgroundColor: '#614D36'
+    backgroundColor: '#620014'
   },
   card: {
     backgroundColor: '#f5f5f5'
