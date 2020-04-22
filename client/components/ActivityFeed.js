@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import modifyTimestamp from '../utils/modifyTimestamp'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TouchableHighlight } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text, Spinner } from 'native-base'
 
 export default ActivityFeed = ({ navigation, reviews, isLoading }) => {
@@ -19,23 +19,27 @@ export default ActivityFeed = ({ navigation, reviews, isLoading }) => {
         }
 
         return (
-          <ListItem
-            testID="activity-feed-item" 
-            avatar 
+          <TouchableHighlight
             style={styles.listItem} 
             onPress={() => navigation.navigate('Review', { review })} 
-            key={review._id}>
-            <Left>
-              {avatar}
-            </Left>
-            <Body>
-              <Text>{review.userId.name}</Text>
-              <Text note>Reviewed {review.reviewedId.name}</Text>
-            </Body>
-            <Right>
-              <Text note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
-            </Right>
-          </ListItem>
+            key={review._id}
+          >
+            <ListItem
+              testID="activity-feed-item" 
+              avatar  
+            >
+              <Left>
+                {avatar}
+              </Left>
+              <Body>
+                <Text>{review.userId.name}</Text>
+                <Text note>Reviewed {review.reviewedId.name}</Text>
+              </Body>
+              <Right>
+                <Text note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
+              </Right>
+            </ListItem>
+          </TouchableHighlight>
         )
       })}
     </List>

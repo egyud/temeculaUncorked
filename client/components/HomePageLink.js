@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { Icon } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default HomePageLink = ({ linkText, nav, iconName, typeName }) => {
   return (
@@ -21,8 +22,8 @@ export default HomePageLink = ({ linkText, nav, iconName, typeName }) => {
 
 const styles = StyleSheet.create({
   btn: {
-    width: 100,
-    height: 100,
+    width: wp('24%'),
+    height: hp('12%'),
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: 'black',

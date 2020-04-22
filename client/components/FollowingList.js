@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment from 'moment'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableHighlight } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 
 export default FollowingList = ({ navigation, users }) => {
@@ -17,19 +17,23 @@ export default FollowingList = ({ navigation, users }) => {
             thumbnail = <Thumbnail testID="thumbnail-avatar" source={{ uri: user.avatar.url }}/>
           }
           return (
-            <ListItem
-              testID="following-list-item"
+            <TouchableHighlight
               key={user._id}
               onPress={() => navigation.navigate('Profile', { userId: user._id })}
-              avatar
-              style={styles.listItem}>
-              <Left>
-                {thumbnail}
-              </Left>
-              <Body>
-                <Text>{user.name}</Text>
-              </Body>
-            </ListItem>
+              style={styles.listItem}
+            >
+              <ListItem
+                testID="following-list-item"
+
+                avatar>
+                <Left>
+                  {thumbnail}
+                </Left>
+                <Body>
+                  <Text>{user.name}</Text>
+                </Body>
+              </ListItem>
+            </TouchableHighlight>
           )
         })}
       </List>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableHighlight } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 
 export default FollowingWineryList = ({ navigation, wineries }) => {
@@ -8,15 +8,16 @@ export default FollowingWineryList = ({ navigation, wineries }) => {
     return (
       <List>
         {wineries.map(winery => (
-          <ListItem
-            testID="following-winery-item"
+          <TouchableHighlight
+            style={styles.listItem} 
             key={winery._id}
-            onPress={() => navigation.navigate('Winery', { winery: winery.name })}
-            style={styles.listItem}>
-            <Body>
-              <Text>{winery.name}</Text>
-            </Body>
-          </ListItem>
+            onPress={() => navigation.navigate('Winery', { winery: winery.name })}>
+            <ListItem testID="following-winery-item">
+              <Body>
+                <Text>{winery.name}</Text>
+              </Body>
+            </ListItem>
+          </TouchableHighlight>
         ))}
       </List>
     )
@@ -32,6 +33,6 @@ export default FollowingWineryList = ({ navigation, wineries }) => {
 
 const styles = StyleSheet.create({
   listItem: {
-    backgroundColor: '#fcf1d2'
+    backgroundColor: '#fcf1d2',
   }
 })

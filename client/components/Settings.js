@@ -5,6 +5,7 @@ import updateEmail from '../utils/updateEmail'
 import updatePassword from '../utils/updatePassword'
 import updateLink from '../utils/updateLink'
 import updateBio from '../utils/updateBio'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default Settings = ({ user }) => {
   const [setting, updateSetting] = useState(null)
@@ -86,7 +87,7 @@ export default Settings = ({ user }) => {
     switch (setting) {
       case 'email': 
         display = (
-          <Form testID="email-form">
+          <Form style={styles.form} testID="email-form">
             <Item stackedLabel>
               <Label>Update Email</Label>
               <Input 
@@ -111,7 +112,7 @@ export default Settings = ({ user }) => {
         break
       case 'password':
         display = (
-          <Form>
+          <Form style={styles.form}>
             <Item stackedLabel>
               <Label>Update Password</Label>
               <Input 
@@ -137,7 +138,7 @@ export default Settings = ({ user }) => {
         break
       case 'bio': 
         display = (
-          <Form>
+          <Form style={styles.form}>
             <Item stackedLabel>
             <Label>Update Your Bio</Label>
             <Input 
@@ -161,7 +162,7 @@ export default Settings = ({ user }) => {
         break
       case 'link':
         display = (
-          <Form>
+          <Form style={styles.form}>
             <Item stackedLabel>
             <Label>Update Your Homepage/Social Media Link</Label>
             <Input 
@@ -204,9 +205,9 @@ export default Settings = ({ user }) => {
 
 const styles = StyleSheet.create({
   submitBtns: {
-    width: '40%',
+    width: wp('40%'),
     justifyContent: 'center',
-    backgroundColor: '#620014',
+    backgroundColor: '#fcf1d2',
     borderColor: '#620014',
     borderWidth: 2,
     marginLeft: 'auto',
@@ -214,11 +215,16 @@ const styles = StyleSheet.create({
     marginTop: 25
   },
   submitBtnText: {
-    color: '#fcf1d2',
+    color: '#620014',
     fontWeight: 'bold'
   },
   backBtn: {
     backgroundColor: '#620014',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: hp('5%')
+  },
+  form: {
+    alignSelf: 'center',
+    width: wp('80%')
   }
 })

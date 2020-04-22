@@ -14,13 +14,6 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
   
   return (
       <Content>
-        <Card>
-          <CardItem>
-            <Body>
-              <Text style={styles.headerText}>{user.name}'s account</Text>
-            </Body>
-          </CardItem>
-        </Card>
         <Tabs
           tabBarUnderlineStyle={{backgroundColor: '#89012c'}}>
           <Tab
@@ -72,10 +65,6 @@ AccountScreen.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-  headerText: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
 })
 
 const mapStateToProps = state => {
