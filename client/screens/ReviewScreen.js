@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#e6ffe6'
   },
   postCommentBtn: {
-    backgroundColor: '#ede1c4',
+    backgroundColor: '#620014',
+    // backgroundColor: '#ede1c4',
     justifyContent: 'center',
   },
   postCommentBtnText: {

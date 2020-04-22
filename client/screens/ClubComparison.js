@@ -6,6 +6,7 @@ import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import { Button, Spinner } from 'native-base'
 import ClubColumn from '../components/ClubColumn'
 import ClubModal from '../components/ClubModal'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubList, updateClubList] = useState([])
@@ -66,6 +67,9 @@ export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
           >
             <Text style={styles.compareLinkText}>View a complete list of wine clubs</Text>
           </Button>
+          <View style={styles.explain}>
+            <Text style={styles.explainText}>Use this page to compare any two wine clubs at a time.  The buttons below allow you to select which clubs you're comparing.</Text>
+          </View>
         </View>
         <View style={styles.clubSelectionBtnWrapper}>
           <Button
@@ -75,7 +79,7 @@ export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
               updateSelectedClubNumber(1)
               updateModalVisible(true)
             }}>
-            <Text style={styles.selectBtnText}>Pick a club to compare</Text>
+            <Text style={styles.selectBtnText}>Pick a club</Text>
           </Button>
           <Button
             style={styles.clubSelectionBtn}
@@ -83,7 +87,7 @@ export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
               updateSelectedClubNumber(2)
               updateModalVisible(true)
             }}>
-            <Text style={styles.selectBtnText}>Pick a 2nd club to compare</Text>
+            <Text style={styles.selectBtnText}>Pick a 2nd club</Text>
           </Button>
         </View>
         <View style={styles.columnWrapper}>
@@ -131,29 +135,28 @@ const styles = StyleSheet.create({
   },
   compareLink: {
     textAlign: 'center',
-    backgroundColor: '#fcf1d2',
-    paddingVertical: 15,
-    width: '80%',
+    backgroundColor: '#620014',
+    paddingVertical: 20,
+    width: wp('80%'),
     alignSelf: 'center',
     borderRadius: 30,
-    borderColor: '#620014',
+    borderColor: '#fcf1d2',
     borderWidth: 5,
     justifyContent: 'center',
     marginTop: 10
   },
   compareLinkText: {
     fontWeight: 'bold',
-    color: '#620014',
+    color: '#fff',
   },
   clubSelectionBtn: {
-    backgroundColor: '#620014',
-    // backgroundColor: '#AA8248',
-    width: 200,
+    backgroundColor: '#fcf1d2',
+    borderColor: '#620014',
+    width: wp('33%'),
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#fcf1d2',
     borderWidth: 5,
     paddingVertical: 20,
     borderRadius: 20
@@ -164,8 +167,16 @@ const styles = StyleSheet.create({
     // width: '50%'
   },
   selectBtnText: {
-    color: '#fff',
+    color: '#620014',
     fontWeight: 'bold',
+  },
+  explain: {
+    width: wp('75%'),
+    alignSelf: 'center',
+    marginTop: wp('3%')
+  },
+  explainText: {
+    textAlign: 'center'
   }
 })
 

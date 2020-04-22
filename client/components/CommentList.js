@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import addLike from '../utils/addLike'
 import CommentListItem from './CommentListItem'
-
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default CommentList = ({ comments, activeUserId }) => {
 
@@ -31,7 +31,7 @@ export default CommentList = ({ comments, activeUserId }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 25,
+    marginLeft: wp('8%'),
     marginTop: 0,
   }
 })

@@ -8,12 +8,12 @@ export default ClubColumnItem = ({ title, body, number }) => {
   let rowStyle
   if (title !== 'Discounts' && title !== 'Other Benefits') {
     rowStyle = styles.row
-    bodyContent = <Text style={number === 1 ? styles.lightText : null}>{body}</Text>
+    bodyContent = <Text>{body}</Text>
   } else {
     rowStyle = styles.rowTall
     bodyContent = (
       <>
-        {body.map(el => <Text key={el} style={number === 1 ? styles.lightText : null}>-{el}</Text>)}
+        {body.map(el => <Text key={el} style={{ alignSelf: 'center' }}>-{el}</Text>)}
       </>
     )
   }
