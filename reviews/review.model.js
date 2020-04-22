@@ -7,12 +7,13 @@ const ReviewSchema = new mongoose.Schema({
   userId: {
     type: ObjectId, 
     ref: 'User',
-    required: true
+    required: true,
+    index: true
   },
   reviewedId: {
     type: ObjectId,
     ref: 'Winery',
-    required: true
+    required: true,
   },
   rating: {
     type: Number,

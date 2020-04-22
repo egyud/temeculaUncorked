@@ -16,7 +16,10 @@ const WineSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  winery: String,
+  winery: {
+    type: String,
+    index: true
+  },
   description: String,
   category: String
 })

@@ -5,7 +5,8 @@ const ImageSchema = new mongoose.Schema({
   winery: {
     type: ObjectId,
     ref: 'Winery',
-    trim: true
+    trim: true,
+    index: true
   },
   user: {
     type: ObjectId,

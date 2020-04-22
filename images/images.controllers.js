@@ -27,6 +27,6 @@ exports.getWineryImages = async (req, res) => {
       .populate('user', 'name')
     return res.status(200).send({ images })
   } catch (error) {
-    return res.status(400).send({ message: 'Error in retrieving the images' })
+    return res.send({ message: 'Error in retrieving the images' })
   }
 }
