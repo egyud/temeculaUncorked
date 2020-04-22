@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { Share, View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
@@ -7,6 +6,7 @@ import { showMessage, hideMessage } from 'react-native-flash-message'
 import CommentList from '../components/CommentList'
 import getComments from '../utils/getCommentsEvent'
 import attendEvent from '../utils/attendEvent'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
@@ -107,7 +107,7 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
     <Content>
       <View>
         <Card>
-          <CardItem>
+          <CardItem style={styles.topCardItem}>
             <Left>
               <Body>
                 <Text style={styles.title}>{title}</Text>
@@ -141,9 +141,9 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           <CardItem>
             {attendShareBtns}
             <Right>
-              <Button style={styles.button}>
+              {/* <Button style={styles.button}>
                 <Text>Photos</Text>
-              </Button>
+              </Button> */}
             </Right>
           </CardItem>
           <CardItem>
@@ -208,7 +208,10 @@ const styles = StyleSheet.create({
   },
   postCommentBtnText: {
     textAlign: 'center',
-  }
+  },
+  topCardItem: {
+    marginVertical: hp('2%')
+  },
 })
 
 const mapStateToProps = (state) => {

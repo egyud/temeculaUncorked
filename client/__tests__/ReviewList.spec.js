@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, cleanup } from 'react-native-testing-library'
-import ReviewList from '../components/ReviewList/ReviewList'
+import ReviewList from '../components/ReviewList'
 
 afterEach(cleanup)
 

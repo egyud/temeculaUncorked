@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, List, ListItem, Spinner } from 'native-base'
@@ -9,6 +8,7 @@ import UserRating from '../components/UserRating'
 import getUserWineRating from '../utils/getUserWineRating'
 import getRecentRatings from '../utils/getRecentRatings'
 import postRating from '../utils/postRating'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const WineScreen = ({ navigation, user, isAuthenticated }) => {
   const [wineRating, updateWineRating] = useState(0)
@@ -74,7 +74,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
     <Content>
       <View>
         <Card>
-          <CardItem>
+          <CardItem style={styles.topCardItem}>
             <Left>
               <Body>
                 <Text style={styles.title}>{name}</Text>
@@ -95,7 +95,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
                 style={styles.image}/>
             </Body>
           </CardItem>
-          <CardItem>
+          <CardItem style={styles.topCardItem}>
             <Left style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
               {/* <Body style={{ marginLeft: 0 }}> */}
                 <Text style={{ alignSelf: 'flex-start' }}>Avg. Rating</Text>
@@ -112,13 +112,13 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
               {isAuthenticated ? uRate : null}
             </Right>
           </CardItem>
-          <CardItem>
+          <CardItem style={styles.topCardItem}>
             <Body>
               <Text>Next level aesthetic tbh, polaroid beard 8-bit YOLO. Artisan tumblr copper mug craft beer hashtag everyday carry iPhone you probably haven't heard of them vegan normcore ugh. Umami roof party williamsburg trust fund stumptown yr, godard swag.</Text>
             </Body>
           </CardItem>
         </Card>
-        <Text>Recent Ratings</Text>
+        <Text style={styles.recentTitle}>Recent Ratings</Text>
         <List 
           testID="recent-ratings"
           style={{ backgroundColor: '#fff' }}>
@@ -166,6 +166,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25
   },
+  topCardItem: {
+    marginVertical: hp('2%')
+  },
+  recentTitle: {
+    marginVertical: hp('2%'),
+    paddingLeft: wp('2%')
+  }
 })
 
 const mapStateToProps = (state) => {

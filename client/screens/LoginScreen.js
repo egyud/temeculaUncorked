@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { loginUser } from '../actions/authActions'
 import { View, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const LoginScreen = ({ loginUser, navigation }) => {
   const [email, updateEmail] = useState('')
@@ -63,7 +64,9 @@ LoginScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   loginForm: {
-    marginTop: 50
+    marginTop: 50,
+    alignSelf: 'center',
+    width: wp('80%')
   }, 
   registerLink: {
     paddingTop: 25,

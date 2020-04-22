@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
-import Review from '../Review'
-import addLike from '../../utils/addLike'
+import Review from './Review'
+import addLike from '../utils/addLike'
 
 
 export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {

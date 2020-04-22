@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default ClubCard = ({ club, navigation }) => {
   
@@ -15,7 +16,7 @@ export default ClubCard = ({ club, navigation }) => {
         </Left>
         <Right>
           <Body>
-            <Text>{club.tastings}</Text>
+            <Text>Tastings</Text>
           </Body>
         </Right>
       </CardItem>
@@ -30,7 +31,7 @@ export default ClubCard = ({ club, navigation }) => {
         </Left>
         <Right>
           <Body>
-            <Text>{club.shipments}</Text>
+            <Text>{club.tastings}</Text>
           </Body>
         </Right>
       </CardItem>
@@ -39,9 +40,11 @@ export default ClubCard = ({ club, navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  // clubCard: {
-  //   flex: 1
-  // }
+  clubCard: {
+    // flex: 1,
+    width: '100%',
+    paddingHorizontal: wp('7%')
+  },
   moreBtn: {
     backgroundColor: '#620014'
   }

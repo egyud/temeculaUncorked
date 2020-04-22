@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { registerUser } from '../actions/authActions'
 import { View, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const RegisterScreen = ({ registerUser, navigation }) => {
   const [email, updateEmail] = useState('')
@@ -84,7 +85,9 @@ RegisterScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   registerForm: {
-    marginTop: 50
+    marginTop: 50,
+    alignSelf: 'center',
+    width: wp('80%')
   },
   registerBtn: {
     backgroundColor: '#fcf1d2',

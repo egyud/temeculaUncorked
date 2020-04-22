@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { List, ListItem } from 'native-base'
 import { Linking } from 'expo'
 import openMap from 'react-native-open-maps'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default WineryInfo = ({ info }) => {
   const { address, hours, url } = info
@@ -12,7 +13,7 @@ export default WineryInfo = ({ info }) => {
   }
 
   return (
-    <List>
+    <List style={styles.container}>
       <Text>Address</Text>
       <ListItem>
         <Text onPress={() => openMap({ query: address })}>{address}</Text>
@@ -54,5 +55,8 @@ export default WineryInfo = ({ info }) => {
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    paddingHorizontal: wp('2%'),
+    paddingTop: hp('1%')
+  }
 })

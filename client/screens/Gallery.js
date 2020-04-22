@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dimensions, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { Dimensions, View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Spinner } from 'native-base'
 import ImageView from 'react-native-image-viewing'
 import GalleryImage from '../components/GalleryImage'
@@ -59,14 +59,16 @@ export default Gallery = ({ navigation }) => {
         style={styles.upload}>
         <Text style={{ color: 'white', fontWeight: 'bold'}}>Upload Photos</Text>
       </TouchableOpacity>
-      {imgList.map((image, idx) => (
-        <GalleryImage
-          uri={image.uri} 
-          index={idx}
-          key={idx}
-          onPress={openLightBox}
-        />
-      ))}
+      <ScrollView>
+        {imgList.map((image, idx) => (
+          <GalleryImage
+            uri={image.uri} 
+            index={idx}
+            key={idx}
+            onPress={openLightBox}
+          />
+        ))}
+      </ScrollView>
       <ImageView
         images={imgList} 
         visible={shown}

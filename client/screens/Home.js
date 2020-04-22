@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux'
 import { fetchWineryList } from '../actions/wineActions' 
 import { fetchAllReviews } from '../actions/reviewActions'
 import { getUserEvents } from '../actions/authActions'
-import { StyleSheet, View, Text, ImageBackground, TextInput } from 'react-native'
-import HomePageLink from '../components/HomePageLink/HomePageLink'
+import { StyleSheet, View, Text, ImageBackground, ScrollView } from 'react-native'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import HomePageLink from '../components/HomePageLink'
 import ActivityFeed from '../components/ActivityFeed'
 import getReviews from '../utils/getReviewsRecent'
 
@@ -99,10 +100,12 @@ export const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews
         <View style={styles.lastestActivity}>
           <Text>Latest Activity</Text>
         </View>
-        <ActivityFeed
-          isLoading={isLoading}
-          reviews={recentReviews} 
-          navigation={navigation}/>
+        <ScrollView>
+          <ActivityFeed
+            isLoading={isLoading}
+            reviews={recentReviews} 
+            navigation={navigation}/>
+        </ScrollView>
       </View>
       
     </View>
@@ -118,7 +121,7 @@ Home.navigationOptions = {
 
 const styles = StyleSheet.create({
   linkContainer: {
-    width: '80%',
+    width: wp('80%'),
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -139,7 +142,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-  
 })
 
 const mapStateToProps = (state) => {

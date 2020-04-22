@@ -5,6 +5,7 @@ import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings' 
 import { showMessage } from 'react-native-flash-message'
 import postRating from '../utils/postRating'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   const [wineRating, updateWineRating] = useState(0)
@@ -46,6 +47,7 @@ export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
                 onFinishRating={(rate) => updateWineRating(rate)}
                 type="custom"
                 ratingColor='#fcf1d2'
+                style={{ paddingRight: 0, marginRight: 0 }}
              />
               <Text note>{ratingCount} ratings</Text>
             </Body>
@@ -75,6 +77,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#620014'
   },
   card: {
-    backgroundColor: '#f5f5f5'
+    // backgroundColor: '#f5f5f5',
+    width: '100%',
+    paddingHorizontal: wp('7%')
   }
 })

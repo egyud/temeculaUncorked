@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
   imageBtn: {
     backgroundColor: 'transparent',
     borderRadius: 0,
-    height: 80,
+    height: WIDTH / 3,
     width: WIDTH / 3,
   },
   image: {
-    height: 80,
+    height: WIDTH / 3,
     left: 0,
     position: 'absolute',
     resizeMode: 'cover',

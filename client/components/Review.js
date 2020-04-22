@@ -5,6 +5,7 @@ import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings' 
 import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default Review = ({ review, navigation, activeUserId, isProfileScreen, addLike }) => {
   const { _id, text, rating, likes, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
@@ -29,7 +30,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
 
   return (
     <View testID="review">
-      <Card>
+      <Card style={styles.reviewCard}>
         <CardItem>
           <Left>
             {topLeft}
@@ -63,6 +64,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
           <Body>
             <Button
               testID="view-comments" 
+              style={styles.viewCommentsWrapper}
               transparent
               onPress={() => navigation.navigate('Review', { review: review })}>
               <Icon
@@ -82,6 +84,13 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
 
 const styles = StyleSheet.create({
   btns: {
-    color: '#620014'
+    color: '#620014',
+    paddingHorizontal: 0,
+  },
+  viewCommentsWrapper: {
+    justifyContent: 'center',
+  },
+  reviewCard: {
+    paddingHorizontal: wp('5%')
   }
 })

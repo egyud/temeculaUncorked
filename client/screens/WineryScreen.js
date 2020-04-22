@@ -6,7 +6,7 @@ import { Tabs, Tab, Text, Icon, Button, Content, Spinner } from 'native-base'
 import EventList from '../components/EventList'
 import BlockHeader from '../components/BlockHeader'
 import WineryInfo from '../components/WineryInfo'
-import ReviewList from '../components/ReviewList/ReviewList'
+import ReviewList from '../components/ReviewList'
 import ClubList from '../components/ClubList'
 import WineryWineList from '../components/WineryWineList'
 import calculateAverage from '../utils/average'
@@ -54,7 +54,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
 
   function getUserRatingHandler() {
     if (isAuthenticated) {
-      getUserRating()
+      getUserRating(wineryData._id, user._id)
         .then(res => updateUserRating(res.data.review))
         .then(() => updateIsLoading(false))
         .catch(err => console.error(err))
