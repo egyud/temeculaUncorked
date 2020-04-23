@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
 import { showMessage } from 'react-native-flash-message'
 import { postEventComment, postReviewComment } from '../utils/postComment'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default PostCommentScreen = ({ navigation }) => {
   const [commentText, updateCommentText] = useState('')
@@ -102,12 +103,14 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     color: '#fff',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: hp('1.6%')
   },
   textArea: {
     borderColor: '#fcf1d2',
-    width: '90%',
+    width: wp('90%'),
     backgroundColor: '#fcf1d2',
-    borderRadius: 20
+    borderRadius: 20,
+    fontSize: hp('1.6%')
   },
 })

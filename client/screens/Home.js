@@ -98,7 +98,7 @@ export const Home = ({ navigation, getUserEvents, fetchWineries, fetchAllReviews
       </View>
       <View>
         <View style={styles.lastestActivity}>
-          <Text>Latest Activity</Text>
+          <Text style={styles.text}>Latest Activity</Text>
         </View>
         <ScrollView>
           <ActivityFeed
@@ -142,6 +142,9 @@ const styles = StyleSheet.create({
     // height: 300,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })
 

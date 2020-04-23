@@ -3,6 +3,7 @@ import { Dimensions, View, StyleSheet, Text, TouchableOpacity, ScrollView } from
 import { Spinner } from 'native-base'
 import ImageView from 'react-native-image-viewing'
 import GalleryImage from '../components/GalleryImage'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default Gallery = ({ navigation }) => {
   const [index, updateIndex] = useState(0)
@@ -57,7 +58,7 @@ export default Gallery = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => openPhotoPicker()} 
         style={styles.upload}>
-        <Text style={{ color: 'white', fontWeight: 'bold'}}>Upload Photos</Text>
+        <Text style={{ color: 'white', fontWeight: 'bold', fontSize: hp('1.6%')}}>Upload Photos</Text>
       </TouchableOpacity>
       <ScrollView>
         {imgList.map((image, idx) => (

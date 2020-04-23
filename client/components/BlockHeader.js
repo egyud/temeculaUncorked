@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings'
 import UserRating from '../components/UserRating'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => {
   const { name, phone, reviewCount } = data
@@ -34,7 +35,7 @@ export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => 
             startingValue={rating}
             type="custom"
             ratingColor='#fcf1d2' />
-          <Text>{reviewCount} Reviews</Text>
+          <Text style={styles.reviewCount}>{reviewCount} Reviews</Text>
           {isAuthenticated ? uRate : null}
         </Right>
       </CardItem>
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   wineryName: {
-    fontSize: 25,
+    fontSize: hp('3%'),
     fontWeight: 'bold'
   },
   callButton: {
@@ -65,6 +66,9 @@ const styles = StyleSheet.create({
   callText: {
     color: '#620014',
     fontWeight: '700',
-    fontSize: 20
+    fontSize: hp('3%')
   },
+  reviewCount: {
+    fontSize: hp('1.7%')
+  }
 })

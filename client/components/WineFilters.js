@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Container, Header, Content, ListItem, CheckBox, Text, Body, Button } from 'native-base'
 import WineFilterItem from './WineFilterItem'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
   const types = ['red', 'white', 'rosé', 'sparkling', 'dessert']
@@ -13,7 +14,7 @@ export default WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
         <ListItem
           itemDivider
           testID="winery-divider">
-          <Text>Winery</Text>
+          <Text style={{ fontSize: hp('1.6%') }}>Winery</Text>
         </ListItem>
         {wineryList.map(winery => (
             <WineFilterItem

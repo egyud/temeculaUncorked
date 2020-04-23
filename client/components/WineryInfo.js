@@ -14,41 +14,41 @@ export default WineryInfo = ({ info }) => {
 
   return (
     <List style={styles.container}>
-      <Text>Address</Text>
+      <Text style={styles.text}>Address</Text>
       <ListItem>
-        <Text onPress={() => openMap({ query: address })}>{address}</Text>
+        <Text style={styles.text} onPress={() => openMap({ query: address })}>{address}</Text>
       </ListItem>
-      <Text>Bio</Text>
+      <Text style={styles.text}>Bio</Text>
       <ListItem>
-        <Text>
+        <Text style={styles.text}>
           Lorem ipsum dolor amet brooklyn synth salvia hammock art party cornhole taxidermy retro. Truffaut DIY taiyaki, flexitarian butcher trust fund selvage bespoke. Taiyaki readymade bicycle rights, bitters bespoke banh mi single-origin coffee humblebrag asymmetrical echo park tousled.
         </Text> 
       </ListItem>
-      <Text>Hours</Text>
+      <Text style={styles.text}>Hours</Text>
       <ListItem>
-        <Text>Monday: {hours.Monday}</Text>
+        <Text style={styles.text}>Monday: {hours.Monday}</Text>
       </ListItem>
       <ListItem>
-        <Text>Tuesday: {hours.Tuesday}</Text>
+        <Text style={styles.text}>Tuesday: {hours.Tuesday}</Text>
       </ListItem>
       <ListItem>
-        <Text>Wednesday: {hours.Wednesday}</Text>
+        <Text style={styles.text}>Wednesday: {hours.Wednesday}</Text>
       </ListItem>
       <ListItem>
-        <Text>Thursday: {hours.Thursday}</Text>
+        <Text style={styles.text}>Thursday: {hours.Thursday}</Text>
       </ListItem>
       <ListItem>
-        <Text>Friday: {hours.Friday}</Text>
+        <Text style={styles.text}>Friday: {hours.Friday}</Text>
       </ListItem>
       <ListItem>
-        <Text>Saturday: {hours.Saturday}</Text>
+        <Text style={styles.text}>Saturday: {hours.Saturday}</Text>
       </ListItem>
       <ListItem>
-        <Text>Sunday: {hours.Sunday}</Text>
+        <Text style={styles.text}>Sunday: {hours.Sunday}</Text>
       </ListItem>
-      <Text>Website</Text>
+      <Text style={styles.text}>Website</Text>
       <ListItem>
-        <Text onPress={() => openInBrowser()}>{url}</Text>
+        <Text style={styles.text} onPress={() => openInBrowser()}>{url}</Text>
       </ListItem>
     </List>
   )
@@ -58,5 +58,8 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: wp('2%'),
     paddingTop: hp('1%')
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

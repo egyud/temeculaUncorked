@@ -5,7 +5,7 @@ import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings' 
 import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default Review = ({ review, navigation, activeUserId, isProfileScreen, addLike }) => {
   const { _id, text, rating, likes, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
@@ -21,6 +21,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
           source={{ uri: avatar.url }}/> 
         <Body>
           <Text
+            style={styles.text}
             testID="user-name" 
             onPress={() => navigation.navigate('Profile', { userId: userId })}>{userName}</Text>
         </Body>
@@ -46,7 +47,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
         </CardItem>
         <CardItem cardBody>
           <Body>
-            <Text>{text}</Text>
+            <Text style={styles.text}>{text}</Text>
           </Body>
         </CardItem>
         <CardItem>
@@ -74,7 +75,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
             </Button>
           </Body>
           <Right>
-            <Text>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
+            <Text style={styles.text}>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
           </Right>
         </CardItem>
       </Card>
@@ -86,11 +87,15 @@ const styles = StyleSheet.create({
   btns: {
     color: '#620014',
     paddingHorizontal: 0,
+    fontSize: hp('1.5%')
   },
   viewCommentsWrapper: {
     justifyContent: 'center',
   },
   reviewCard: {
     paddingHorizontal: wp('5%')
+  },
+  text: {
+    fontSize: hp('1.7%')
   }
 })

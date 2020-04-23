@@ -14,6 +14,7 @@ import getUserRating from '../utils/getUserRating'
 import getWineryImages from '../utils/getWineryImages'
 import getEventsData from '../utils/getEventsData'
 import getWineryData from '../utils/getWineryData'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, wineryList }) => {
   const [wineryData, updateWineryData] = useState({})
@@ -186,9 +187,10 @@ const styles = StyleSheet.create({
   },
   imageText: {
     backgroundColor: 'white',
-    marginRight: 10,
+    marginRight: wp('2%'),
     paddingVertical: 2,
-    paddingHorizontal: 4
+    paddingHorizontal: 4,
+    fontSize: hp('1.6%')
   },
   tabs: {
     backgroundColor: '#ede1c4'
@@ -203,7 +205,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fcf1d2',
     paddingVertical: 15,
     color: '#620014',
-    fontWeight: '500'
+    fontWeight: '500',
+    fontSize: hp('1.6%')
   },
   postReviewBtn: {
     backgroundColor: '#620014',
@@ -211,6 +214,7 @@ const styles = StyleSheet.create({
   },
   postReviewBtnText: {
     textAlign: 'center',
+    fontSize: hp('1.6%')
   }
 })
 

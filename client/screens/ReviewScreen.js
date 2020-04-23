@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { View, StyleSheet } from 'react-native'
 import { Icon, Text, Button } from 'native-base'
@@ -7,6 +6,7 @@ import Review from '../components/Review'
 import CommentList from '../components/CommentList'
 import addLike from '../utils/addLike'
 import getComments from '../utils/getCommentsReview'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [commentsList, updateCommentsList] = useState([])
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   },
   postCommentBtnText: {
     textAlign: 'center',
+    fontSize: hp('1.6%')
   }
 })
 

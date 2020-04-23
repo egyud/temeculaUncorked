@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
 import { View, StyleSheet, ImageBackground, Text, Modal, ScrollView } from 'react-native'
-import { Form, Picker, Button } from 'native-base'
 import ClubList from '../components/ClubList'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubsList, updateClubsList] = useState([])
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fcf1d2',
     paddingVertical: 15,
     color: '#620014',
-    fontWeight: '500'
+    fontWeight: '500',
+    fontSize: hp('1.6%')
   }
 })
 

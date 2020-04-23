@@ -5,6 +5,7 @@ import { Textarea, Form, Button, Text } from 'native-base'
 import { Rating } from 'react-native-ratings'
 import { showMessage } from 'react-native-flash-message'
 import postReview from '../utils/postReview'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default PostReviewScreen = ({ navigation }) => {
   const [reviewText, updateReviewText] = useState('')
@@ -76,13 +77,15 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     color: '#fff',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: hp('1.6%')
   },
   textArea: {
     borderColor: '#fcf1d2',
-    width: '90%',
+    width: wp('90%'),
     backgroundColor: '#fcf1d2',
-    borderRadius: 20
+    borderRadius: 20,
+    fontSize: hp('1.6%')
   },
   rating: {
     marginVertical: 30

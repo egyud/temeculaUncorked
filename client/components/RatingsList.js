@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import { Rating } from 'react-native-ratings' 
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default RatingsList = ({ ratings }) => {
 
@@ -14,7 +15,7 @@ export default RatingsList = ({ ratings }) => {
             key={`${rating.wineId.name}-${rating.rating}`} 
             style={styles.ratingListItem}>
             <Left>
-              <Text>{rating.wineId.name}-{rating.wineId.winery}</Text>
+              <Text style={styles.text}>{rating.wineId.name}-{rating.wineId.winery}</Text>
             </Left>
             <Right>
               <Rating
@@ -32,7 +33,7 @@ export default RatingsList = ({ ratings }) => {
   } else {
     return (
       <View>
-        <Text>This user has no ratings to display</Text>
+        <Text style={styles.text}>This user has no ratings to display</Text>
       </View>
     )
   }
@@ -44,5 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingLeft: 0,
     marginLeft: 2
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

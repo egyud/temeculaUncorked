@@ -12,7 +12,7 @@ import getUserInfo from '../utils/getUserInfo'
 import getUserReviews from '../utils/getUserReviews'
 import getUserRatings from '../utils/getUserRatings'
 import followUser from '../utils/followUser'
-
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
   const [currentUser, updateCurrentUser] = useState({})
@@ -80,7 +80,7 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
     <Button
       testID="follow-btn" 
       onPress={() => followHandler()}>
-      <Text>Follow</Text>
+      <Text style={styles.text}>Follow</Text>
     </Button>
   )
 
@@ -96,9 +96,10 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
           <CardItem>
             <Left>
               <Body>
-                <Text>{currentUser.name}</Text>
-                <Text note>Joined: {moment(currentUser.date).format('LL')}</Text>
-                <Text 
+                <Text style={styles.text}>{currentUser.name}</Text>
+                <Text style={styles.text} note>Joined: {moment(currentUser.date).format('LL')}</Text>
+                <Text
+                  style={styles.text} 
                   note
                   onPress={() => openInBrowser(currentUser.link)}>Website: {currentUser.link}</Text>
               </Body>
@@ -110,7 +111,7 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
           <CardItem>
             <Left>
               {/* <Text>Member at {currentUser.memberOf.length} wineries</Text> */}
-              <Text>"{currentUser.bio}"</Text>
+              <Text style={styles.text}>"{currentUser.bio}"</Text>
             </Left>
             <Right>
               {isAuthenticated ? followButton : null}
@@ -121,14 +122,14 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
       <ScrollView>
         <View style={{ paddingBottom: 40 }}>
           <View style={styles.reviewsHeader}>
-            <Text>Winery Review History</Text>
+            <Text style={styles.text}>Winery Review History</Text>
           </View>
           <ReviewList
             navigation={navigation} 
             reviews={userReviews}
             isProfileScreen={true}/>
           <View style={styles.reviewsHeader}>
-            <Text>Wine Rating History</Text>
+            <Text style={styles.text}>Wine Rating History</Text>
           </View>
           <RatingsList ratings={userRatings}/>
         </View>
@@ -159,6 +160,9 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     paddingLeft: 10
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })
 

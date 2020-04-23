@@ -4,7 +4,6 @@ import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
 import Review from './Review'
 import addLike from '../utils/addLike'
 
-
 export default ReviewList = ({ reviews, navigation, isProfileScreen }) => {
   return (
     <View testID="review-list">

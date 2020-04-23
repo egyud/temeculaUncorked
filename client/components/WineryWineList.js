@@ -4,6 +4,7 @@ import { Form, Picker, Button } from 'native-base'
 import WineList from './WineList'
 import FilterModal from './FilterModal'
 import SortModal from './SortModal'
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default WineryWineList = ({ wineArray, navigation, user, isAuthenticated, wineryList }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
@@ -90,13 +91,13 @@ export default WineryWineList = ({ wineArray, navigation, user, isAuthenticated,
               updateModalVisible(true)
               updateFilters([])
             }}>
-            <Text style={{ color: '#620014' }}>Filter Wine List</Text>
+            <Text style={styles.filterBtnText}>Filter Wine List</Text>
           </Button>
           <Button
             testID="sort-btn"
             style={styles.filterBtn}
             onPress={() => updateSortModalVisible(true)}>
-            <Text style={{ color: '#620014' }}>Sort Wines</Text>
+            <Text style={styles.filterBtnText}>Sort Wines</Text>
           </Button>
         </View>
       </View>
@@ -135,5 +136,9 @@ const styles = StyleSheet.create({
   },
   btnWrapper: {
     flexDirection: 'row',
+  },
+  filterBtnText: {
+    color: '#620014',
+    fontSize: hp('1.6%')
   }
 })

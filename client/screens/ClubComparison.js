@@ -6,7 +6,7 @@ import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import { Button, Spinner } from 'native-base'
 import ClubColumn from '../components/ClubColumn'
 import ClubModal from '../components/ClubModal'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubList, updateClubList] = useState([])
@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
   compareLinkText: {
     fontWeight: 'bold',
     color: '#fff',
+    fontSize: hp('1.6%')
   },
   clubSelectionBtn: {
     backgroundColor: '#fcf1d2',
@@ -169,6 +170,7 @@ const styles = StyleSheet.create({
   selectBtnText: {
     color: '#620014',
     fontWeight: 'bold',
+    fontSize: hp('1.6%')
   },
   explain: {
     width: wp('75%'),
@@ -176,7 +178,8 @@ const styles = StyleSheet.create({
     marginTop: wp('3%')
   },
   explainText: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: hp('1.6%')
   }
 })
 

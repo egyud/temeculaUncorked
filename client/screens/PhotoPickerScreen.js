@@ -3,6 +3,7 @@ import axios from 'axios'
 import * as ImagePicker from 'expo-image-picker'
 import { View, StyleSheet, Image } from 'react-native'
 import { Button, Text } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default PhotoPickerScreen = ({ navigation }) => {
   const [cameraRollPermissions, updateCameraRollPermissions] = useState(null)
@@ -86,7 +87,7 @@ export default PhotoPickerScreen = ({ navigation }) => {
   if (cameraRollPermissions === null) {
     return <View />
   } else if (cameraRollPermissions === false) {
-    return <Text>Access to camera has been denied.</Text>
+    return <Text style={styles.text}>Access to camera has been denied.</Text>
   } else {
     return (
       <View style={{ flex: 1 }}>
@@ -96,7 +97,7 @@ export default PhotoPickerScreen = ({ navigation }) => {
               <Button
               style={styles.btn} 
               onPress={() => savePhoto()}>
-                <Text>Upload Photo</Text>
+                <Text style={styles.text}>Upload Photo</Text>
               </Button>
               <Image 
                 source={{ uri: photo }}
@@ -119,5 +120,9 @@ const styles = StyleSheet.create({
   },
   btnText: {
     textAlign: 'center',
+    fontSize: hp('1.6%')
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

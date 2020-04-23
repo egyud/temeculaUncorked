@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default CommentListItem = ({ comment, navigation, activeUserId, addLike }) => {
   const { _id, timestamp, text, likes, userId: { name: userName, _id: userId, avatar } } = comment
@@ -15,18 +16,18 @@ export default CommentListItem = ({ comment, navigation, activeUserId, addLike }
 
   return (
     <View testID="comment-list-item">
-      <Card>
+      <Card style={styles.card}>
         <CardItem>
           <Left>
             {avatarThumbnail}
             <Body>
-              <Text>{userName}</Text>
+              <Text style={styles.text}>{userName}</Text>
             </Body>
           </Left>
         </CardItem>
         <CardItem cardBody>
           <Body>
-            <Text>{text}</Text>
+            <Text style={styles.text}>{text}</Text>
           </Body>
         </CardItem>
         <CardItem>
@@ -44,7 +45,7 @@ export default CommentListItem = ({ comment, navigation, activeUserId, addLike }
             </Button>
           </Left>
           <Right>
-            <Text>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
+            <Text style={styles.text}>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
           </Right>
         </CardItem>
       </Card>
@@ -54,6 +55,13 @@ export default CommentListItem = ({ comment, navigation, activeUserId, addLike }
 
 const styles = StyleSheet.create({
   icons: {
-    color: '#620014'
+    color: '#620014',
+    fontSize: hp('1.5%')
+  },
+  text: {
+    fontSize: hp('1.7%')
+  },
+  card: {
+    paddingLeft: wp('5%')
   }
 })

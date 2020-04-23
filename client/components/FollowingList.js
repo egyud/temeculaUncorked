@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import moment from 'moment'
 import { View, StyleSheet, TouchableHighlight } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default FollowingList = ({ navigation, users }) => {
 
@@ -30,7 +29,7 @@ export default FollowingList = ({ navigation, users }) => {
                   {thumbnail}
                 </Left>
                 <Body>
-                  <Text>{user.name}</Text>
+                  <Text style={styles.text}>{user.name}</Text>
                 </Body>
               </ListItem>
             </TouchableHighlight>
@@ -41,7 +40,7 @@ export default FollowingList = ({ navigation, users }) => {
   } else {
     return (
       <View>
-        <Text>You are not following any users</Text>
+        <Text style={styles.text}>You are not following any users</Text>
       </View>
     )
   }
@@ -51,5 +50,8 @@ export default FollowingList = ({ navigation, users }) => {
 const styles = StyleSheet.create({
   listItem: {
     backgroundColor: '#fcf1d2'
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

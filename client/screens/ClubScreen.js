@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const ClubScreen = ({ navigation }) => {
   const club = navigation.getParam('club')
@@ -16,13 +17,13 @@ export const ClubScreen = ({ navigation }) => {
             <Left>
               <Body>
                 <Text style={styles.title}>{name}</Text>
-                <Text note>{winery}</Text>
+                <Text style={styles.text} note>{winery}</Text>
               </Body>
             </Left>
             <Right>
               <Body>
-                <Text>{avgPrice}</Text>
-                <Text note>Avg. Cost</Text>
+                <Text style={styles.text}>{avgPrice}</Text>
+                <Text style={styles.text} note>Avg. Cost</Text>
               </Body>
             </Right>
           </CardItem>
@@ -35,14 +36,14 @@ export const ClubScreen = ({ navigation }) => {
           </CardItem>
           <CardItem>
             <Body>
-              <Text>Free Tastings</Text>
-              <Text>{tastings}</Text>
+              <Text style={styles.text}>Free Tastings</Text>
+              <Text style={styles.text}>{tastings}</Text>
             </Body>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>Shipments/Pickups</Text>
-              <Text>{shipments}</Text>
+              <Text style={styles.text}>Shipments/Pickups</Text>
+              <Text style={styles.text}>{shipments}</Text>
             </Body>
           </CardItem>
         </Card>
@@ -54,7 +55,7 @@ export const ClubScreen = ({ navigation }) => {
             activeTextStyle={{color: '#620014'}}>
             {discounts.map(discount => (
               <ListItem key={discount}>
-                <Text>{discount}</Text>
+                <Text style={styles.text}>{discount}</Text>
               </ListItem>
             ))}
           </Tab>
@@ -63,7 +64,7 @@ export const ClubScreen = ({ navigation }) => {
             activeTextStyle={{color: '#89012c'}}>
             {otherBenefits.map(benefit => (
               <ListItem key={benefit}>
-                <Text>{benefit}</Text>
+                <Text style={styles.text}>{benefit}</Text>
               </ListItem>
             ))}
           </Tab>
@@ -87,10 +88,13 @@ const styles = StyleSheet.create({
     // flex: 1
   },
   title: {
-    fontSize: 25
+    fontSize: hp('2.7%')
   },
   button: {
     backgroundColor: '#620014'
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })
 

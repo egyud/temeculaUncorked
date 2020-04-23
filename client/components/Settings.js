@@ -57,27 +57,27 @@ export default Settings = ({ user }) => {
           <ListItem 
             testID="email-setting"
             onPress={() => updateSetting('email')}>
-            <Text>Update Email</Text>
+            <Text style={styles.text}>Update Email</Text>
           </ListItem>
           <ListItem 
             testID="password-setting"
             onPress={() => updateSetting('password')}>
-            <Text>Update Password</Text>
+            <Text style={styles.text}>Update Password</Text>
           </ListItem>
           <ListItem 
             testID="avatar-setting"
             onPress={() => updateSetting('avatar')}>
-            <Text>Update Avatar</Text>
+            <Text style={styles.text}>Update Avatar</Text>
           </ListItem>
           <ListItem 
             testID="bio-setting"
             onPress={() => updateSetting('bio')}>
-            <Text>Update Bio</Text>
+            <Text style={styles.text}>Update Bio</Text>
           </ListItem>
           <ListItem 
             testID="link-setting"
             onPress={() => updateSetting('link')}>
-            <Text>Update Homepage/Social Link</Text>
+            <Text style={styles.text}>Update Homepage/Social Link</Text>
           </ListItem>
         </List>
       </View>
@@ -89,8 +89,9 @@ export default Settings = ({ user }) => {
         display = (
           <Form style={styles.form} testID="email-form">
             <Item stackedLabel>
-              <Label>Update Email</Label>
-              <Input 
+              <Label style={styles.text}>Update Email</Label>
+              <Input
+                style={styles.text} 
                 autoCapitalize="none"
                 onChangeText={(text) => updateNewEmail(text)}
                 value={newEmail}
@@ -114,8 +115,9 @@ export default Settings = ({ user }) => {
         display = (
           <Form style={styles.form}>
             <Item stackedLabel>
-              <Label>Update Password</Label>
-              <Input 
+              <Label style={styles.text}>Update Password</Label>
+              <Input
+                style={styles.text} 
                 autoCapitalize="none"
                 secureTextEntry={true}
                 onChangeText={(text) => updateNewPassword(text)}
@@ -140,8 +142,9 @@ export default Settings = ({ user }) => {
         display = (
           <Form style={styles.form}>
             <Item stackedLabel>
-            <Label>Update Your Bio</Label>
-            <Input 
+            <Label style={styles.text}>Update Your Bio</Label>
+            <Input
+              style={styles.text} 
               autoCapitalize="none"
               onChangeText={(text) => updateNewBio(text)}
               value={newBio}
@@ -164,8 +167,9 @@ export default Settings = ({ user }) => {
         display = (
           <Form style={styles.form}>
             <Item stackedLabel>
-            <Label>Update Your Homepage/Social Media Link</Label>
-            <Input 
+            <Label style={styles.text}>Update Your Homepage/Social Media Link</Label>
+            <Input
+              style={styles.text} 
               autoCapitalize="none"
               onChangeText={(text) => updateNewLink(text)}
               value={newLink}
@@ -186,7 +190,7 @@ export default Settings = ({ user }) => {
       default:
         display = (
           <View>
-            <Text>Error</Text>
+            <Text style={styles.text}>Error</Text>
           </View>
         )
     }
@@ -195,7 +199,7 @@ export default Settings = ({ user }) => {
         <Button 
           style={styles.backBtn}
           onPress={() => updateSetting(null)}>
-          <Text>Back to Settings List</Text>
+          <Text style={styles.text}>Back to Settings List</Text>
         </Button>
         {display}
       </View>
@@ -216,7 +220,8 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     color: '#620014',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: hp('1.6%')
   },
   backBtn: {
     backgroundColor: '#620014',
@@ -226,5 +231,8 @@ const styles = StyleSheet.create({
   form: {
     alignSelf: 'center',
     width: wp('80%')
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

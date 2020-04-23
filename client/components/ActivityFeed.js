@@ -3,6 +3,7 @@ import moment from 'moment'
 import modifyTimestamp from '../utils/modifyTimestamp'
 import { View, StyleSheet, TouchableHighlight } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text, Spinner } from 'native-base'
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default ActivityFeed = ({ navigation, reviews, isLoading }) => {
 
@@ -32,11 +33,11 @@ export default ActivityFeed = ({ navigation, reviews, isLoading }) => {
                 {avatar}
               </Left>
               <Body>
-                <Text>{review.userId.name}</Text>
-                <Text note>Reviewed {review.reviewedId.name}</Text>
+                <Text style={styles.text}>{review.userId.name}</Text>
+                <Text style={styles.text} note>Reviewed {review.reviewedId.name}</Text>
               </Body>
               <Right>
-                <Text note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
+                <Text style={styles.text} note>{moment(modifyTimestamp(review.timestamp)).fromNow()}</Text>
               </Right>
             </ListItem>
           </TouchableHighlight>
@@ -49,5 +50,8 @@ export default ActivityFeed = ({ navigation, reviews, isLoading }) => {
 const styles = StyleSheet.create({
   listItem: {
     backgroundColor: '#ede1c4'
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

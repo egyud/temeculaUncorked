@@ -55,7 +55,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
 
  const uRate = (
     <>
-      <Text>Your Rating</Text>
+      <Text style={styles.text}>Your Rating</Text>
       <UserRating
         testID="user-rating"
         disabled={false}
@@ -78,13 +78,13 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
             <Left>
               <Body>
                 <Text style={styles.title}>{name}</Text>
-                <Text note>{winery}</Text>
+                <Text style={styles.text} note>{winery}</Text>
               </Body>
             </Left>
             <Right>
               <Body>
-                <Text>{price}</Text>
-                <Text>Members price {clubPrice}</Text>
+                <Text style={styles.text}>{price}</Text>
+                <Text style={styles.text}>Members price {clubPrice}</Text>
               </Body>
             </Right>
           </CardItem>
@@ -98,7 +98,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
           <CardItem style={styles.topCardItem}>
             <Left style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
               {/* <Body style={{ marginLeft: 0 }}> */}
-                <Text style={{ alignSelf: 'flex-start' }}>Avg. Rating</Text>
+                <Text style={{ alignSelf: 'flex-start', fontSize: hp('1.6%') }}>Avg. Rating</Text>
                 <Rating
                   style={{ marginLeft: 0, paddingLeft: 0 }}
                   imageSize={isAuthenticated ? 25 : 40} 
@@ -114,7 +114,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
           </CardItem>
           <CardItem style={styles.topCardItem}>
             <Body>
-              <Text>Next level aesthetic tbh, polaroid beard 8-bit YOLO. Artisan tumblr copper mug craft beer hashtag everyday carry iPhone you probably haven't heard of them vegan normcore ugh. Umami roof party williamsburg trust fund stumptown yr, godard swag.</Text>
+              <Text style={styles.text}>Next level aesthetic tbh, polaroid beard 8-bit YOLO. Artisan tumblr copper mug craft beer hashtag everyday carry iPhone you probably haven't heard of them vegan normcore ugh. Umami roof party williamsburg trust fund stumptown yr, godard swag.</Text>
             </Body>
           </CardItem>
         </Card>
@@ -130,7 +130,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
               onPress={() => navigation.navigate('Profile', { userId: rate.userId._id })}>
               <Left>
                 <Thumbnail source={{ uri: rate.userId.avatar.url }}/>
-                <Text>{rate.userId.name}</Text>
+                <Text style={styles.text}>{rate.userId.name}</Text>
               </Left>
               <Body>
                 <Rating
@@ -164,14 +164,18 @@ const styles = StyleSheet.create({
     // flex: 1
   },
   title: {
-    fontSize: 25
+    fontSize: hp('2.7%')
   },
   topCardItem: {
     marginVertical: hp('2%')
   },
   recentTitle: {
     marginVertical: hp('2%'),
-    paddingLeft: wp('2%')
+    paddingLeft: wp('2%'),
+    fontSize: hp('1.6%')
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Event from './Event'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default EventList = ({ events, navigation }) => {
 
@@ -18,12 +19,14 @@ export default EventList = ({ events, navigation }) => {
   } else {
     return (
       <View testID="no-events-msg">
-        <Text>No events to display</Text>
+        <Text style={styles.text}>No events to display</Text>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-
+  text: {
+    fontSize: hp('1.6%')
+  }
 })

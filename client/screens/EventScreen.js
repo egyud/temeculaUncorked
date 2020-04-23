@@ -7,11 +7,18 @@ import CommentList from '../components/CommentList'
 import getComments from '../utils/getCommentsEvent'
 import attendEvent from '../utils/attendEvent'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import * as Font from 'expo-font'
 
 export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
   const event = navigation.getParam('event')
   const { title, winery, date, time, price, attending, membersOnly, adultsOnly, description, address, _id } = event
+
+  // useEffect(async () => {
+  //   await Font.loadAsync({
+  //     'lemon-milk-light': require('../assets/fonts/LemonMilklight.otf')
+  //   })
+  // }, [])
 
   useEffect(() => {
     getComments(_id)
@@ -110,14 +117,14 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           <CardItem style={styles.topCardItem}>
             <Left>
               <Body>
-                <Text style={styles.title}>{title}</Text>
-                <Text note>{winery}</Text>
+                <Text  style={styles.text}style={styles.title}>{title}</Text>
+                <Text  style={styles.text}note>{winery}</Text>
               </Body>
             </Left>
             <Right>
               <Body>
-                <Text>{date}</Text>
-                <Text note>{time}</Text>
+                <Text style={styles.text}>{date}</Text>
+                <Text style={styles.text}note>{time}</Text>
               </Body>
             </Right>
           </CardItem>
@@ -130,12 +137,12 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           </CardItem>
           <CardItem>
             <Left>
-              <Text note>{address}</Text>
+              <Text style={styles.text}note>{address}</Text>
             </Left>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>{description}</Text>
+              <Text style={styles.text}>{description}</Text>
             </Body>
           </CardItem>
           <CardItem>
@@ -148,7 +155,7 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           </CardItem>
           <CardItem>
             <Left>
-              <Text>{attending.length} people are going</Text>
+              <Text style={styles.text}>{attending.length} people are going</Text>
             </Left>
           </CardItem>
         </Card>
@@ -212,6 +219,10 @@ const styles = StyleSheet.create({
   topCardItem: {
     marginVertical: hp('2%')
   },
+  text: {
+    // fontFamily: 'lemon-milk-light'
+    fontSize: hp('1.6%')
+  }
 })
 
 const mapStateToProps = (state) => {

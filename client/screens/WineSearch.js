@@ -7,7 +7,7 @@ import { Form, Picker, Button } from 'native-base'
 import WineList from '../components/WineList'
 import FilterModal from '../components/FilterModal'
 import SortModal from '../components/SortModal'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthenticated, wineryList }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
@@ -138,7 +138,8 @@ const styles = StyleSheet.create({
   },
   filterBtnText: {
     color: '#620014',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: hp('1.6%')
   },
   btnWrapper: {
     flexDirection: 'row',

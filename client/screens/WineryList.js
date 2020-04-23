@@ -6,6 +6,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { ListItem, Right, Body, Header, Item, Icon, Input } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 import calculateAverage from '../utils/average'
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
 export const WineryList = ({ list, fetchWineries, navigation }) => {
@@ -48,6 +49,7 @@ export const WineryList = ({ list, fetchWineries, navigation }) => {
               <Text
                 testID="winery-name"
                 onPress={() => navigation.navigate('Winery', { winery: winery.name })}
+                style={styles.text}
               >
                 {winery.name}
               </Text>
@@ -81,6 +83,9 @@ const styles = StyleSheet.create({
   },
   listItem: {
     backgroundColor: '#fff'
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })
 

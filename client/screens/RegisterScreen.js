@@ -29,23 +29,26 @@ export const RegisterScreen = ({ registerUser, navigation }) => {
     <Content>
       <Form style={styles.registerForm}>
         <Item stackedLabel>
-          <Label>Email</Label>
+          <Label style={styles.label}>Email</Label>
           <Input
+            style={styles.input}
             testID="email"
             autoCapitalize="none" 
             onChangeText={(text) => updateEmail(text)}/>
         </Item>
         <Item stackedLabel>
-          <Label>Name(displayed publicly)</Label>
+          <Label style={styles.label}>Name(displayed publicly)</Label>
           <Input
+            style={styles.input}
             testID="name"
             autoCapitalize="none" 
             onChangeText={(text) => updateName(text)}
-            value={email}/>
+            value={name}/>
         </Item>
         <Item stackedLabel>
-          <Label>Password</Label>
+          <Label style={styles.label}>Password</Label>
           <Input
+            style={styles.input}
             testID="password"
             autoCapitalize="none"
             secureTextEntry={true}
@@ -53,8 +56,9 @@ export const RegisterScreen = ({ registerUser, navigation }) => {
             value={password}/>
         </Item>
         <Item stackedLabel last>
-          <Label>Enter Password Again</Label>
+          <Label style={styles.label}>Enter Password Again</Label>
           <Input
+            style={styles.input}
             testID="password2"
             autoCapitalize="none" 
             secureTextEntry={true}
@@ -101,12 +105,20 @@ const styles = StyleSheet.create({
   },
   registerBtnText: {
     color: '#620014',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: hp('1.6%')
   },
   loginLink: {
     paddingTop: 25,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: hp('1.6%')
   },
+  label: {
+    fontSize: hp('1.6%')
+  },
+  input: {
+    fontSize: hp('1.6%')
+  }
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

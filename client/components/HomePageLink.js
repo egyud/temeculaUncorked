@@ -9,7 +9,7 @@ export default HomePageLink = ({ linkText, nav, iconName, typeName }) => {
       testID="home-page-link" 
       style={styles.btn}
       onPress={() => nav()}>
-      <Text>
+      <Text style={styles.text}>
         {linkText}
       </Text>
       <Icon
@@ -34,5 +34,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#620014'
+  },
+  text: {
+    fontSize: hp('1.7%')
   }
 })

@@ -24,16 +24,18 @@ export const LoginScreen = ({ loginUser, navigation }) => {
     <Content>
       <Form style={styles.loginForm}>
         <Item stackedLabel>
-          <Label>Email</Label>
+          <Label style={styles.label}>Email</Label>
           <Input
+            style={styles.input}
             testID="email-input"
             autoCapitalize="none" 
             onChangeText={(text) => updateEmail(text)}
             value={email}/>
         </Item>
         <Item stackedLabel last>
-          <Label>Password</Label>
+          <Label style={styles.label}>Password</Label>
           <Input
+            style={styles.input}
             testID="password-input"
             autoCapitalize="none" 
             secureTextEntry={true}
@@ -70,7 +72,8 @@ const styles = StyleSheet.create({
   }, 
   registerLink: {
     paddingTop: 25,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: hp('1.6%')
   },
   loginBtn: {
     backgroundColor: '#fcf1d2',
@@ -84,7 +87,14 @@ const styles = StyleSheet.create({
   },
   loginBtnText: {
     color: '#620014',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: hp('1.6%')
+  },
+  label: {
+    fontSize: hp('1.6%')
+  },
+  input: {
+    fontSize: hp('1.6%')
   }
 })
 

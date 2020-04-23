@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text, Modal } from 'react-native'
 import { Button } from 'native-base'
 import WineFilters from './WineFilters'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen, modalVisible, wineryList }) => {
   return (
@@ -21,13 +22,13 @@ export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen
             testID="filter-btn"
             style={styles.modalBtn}
             onPress={filterWines}>
-            <Text>Apply Filters</Text>
+            <Text style={styles.text}>Apply Filters</Text>
           </Button>
           <Button
             testID="close-btn"
             style={styles.modalBtn}
             onPress={close}>
-            <Text>Close</Text>
+            <Text style={styles.text}>Close</Text>
           </Button>
         </View>
       </Modal>
@@ -46,5 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: '#fcf1d2',
     borderWidth: 1
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

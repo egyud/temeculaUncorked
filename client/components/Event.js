@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Button, Left, Right, Body } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default Event = ({ event, navigation }) => {
   // event will have props: winery, date, time, title, attending, price, whoCanAttend
@@ -12,12 +13,12 @@ export default Event = ({ event, navigation }) => {
       <CardItem>
         <Left>
           <Body>
-            <Text>{event.title}</Text>
-            <Text note>{event.date}</Text>
+            <Text style={styles.text}>{event.title}</Text>
+            <Text style={styles.text} note>{event.date}</Text>
           </Body>
         </Left>
         <Right>
-          <Text>{event.winery}</Text>
+          <Text style={styles.text}>{event.winery}</Text>
         </Right>
       </CardItem>
       <CardItem>
@@ -26,14 +27,14 @@ export default Event = ({ event, navigation }) => {
             testID="more-btn" 
             style={styles.moreButton}
             onPress={() => navigation.navigate('Event', { event: event })}>
-            <Text>More</Text>
+            <Text style={styles.text}>More</Text>
           </Button>
-          <Text>{event.attending.length} going</Text>
+          <Text style={styles.text}>{event.attending.length} going</Text>
         </Left>
         <Right>
-          <Text>{event.time}</Text>
-          <Text>{event.whoCanAttend}</Text>
-          <Text>{event.price}</Text>
+          <Text style={styles.text}>{event.time}</Text>
+          <Text style={styles.text}>{event.whoCanAttend}</Text>
+          <Text style={styles.text}>{event.price}</Text>
         </Right>
       </CardItem>
     </Card>
@@ -46,5 +47,8 @@ const styles = StyleSheet.create({
   },
   moreButton: {
     backgroundColor: '#620014'
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, TouchableHighlight } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default FollowingWineryList = ({ navigation, wineries }) => {
 
@@ -14,7 +15,7 @@ export default FollowingWineryList = ({ navigation, wineries }) => {
             onPress={() => navigation.navigate('Winery', { winery: winery.name })}>
             <ListItem testID="following-winery-item">
               <Body>
-                <Text>{winery.name}</Text>
+                <Text style={styles.text}>{winery.name}</Text>
               </Body>
             </ListItem>
           </TouchableHighlight>
@@ -24,7 +25,7 @@ export default FollowingWineryList = ({ navigation, wineries }) => {
   } else {
     return (
       <View>
-        <Text>You are not following any wineries.</Text>
+        <Text style={styles.text}>You are not following any wineries.</Text>
       </View>
     )
   }
@@ -34,5 +35,8 @@ export default FollowingWineryList = ({ navigation, wineries }) => {
 const styles = StyleSheet.create({
   listItem: {
     backgroundColor: '#fcf1d2',
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

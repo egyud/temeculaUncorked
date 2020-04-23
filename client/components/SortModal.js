@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Modal } from 'react-native'
 import { Button, ListItem, Text } from 'native-base'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default SortModal = ({ close, modalVisible, updateSortBy }) => {
 
@@ -22,7 +23,7 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
         visible={modalVisible}>
         <View style={{ marginTop: 30 }}>
           <ListItem itemDivider>
-            <Text>Sort By</Text>
+            <Text style={styles.text}>Sort By</Text>
           </ListItem>
           {sortVals.map(option => (
             <ListItem
@@ -32,7 +33,7 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
                 close()
               }}
               key={option.label}>
-              <Text>{option.value}</Text>
+              <Text style={styles.text}>{option.value}</Text>
             </ListItem>
           ))}
         </View>
@@ -62,6 +63,10 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   closeBtnText: {
-    color: '#620014'
+    color: '#620014',
+    fontSize: hp('1.6%')
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })

@@ -5,7 +5,7 @@ import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings' 
 import { showMessage } from 'react-native-flash-message'
 import postRating from '../utils/postRating'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   const [wineRating, updateWineRating] = useState(0)
@@ -34,8 +34,8 @@ export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
       <CardItem>
         <Left>
           <Body>
-            <Text>{name}</Text>
-            <Text note>{winery}</Text>
+            <Text style={styles.text}>{name}</Text>
+            <Text style={styles.text} note>{winery}</Text>
           </Body>
         </Left>
           <Right>
@@ -49,7 +49,7 @@ export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
                 ratingColor='#fcf1d2'
                 style={{ paddingRight: 0, marginRight: 0 }}
              />
-              <Text note>{ratingCount} ratings</Text>
+              <Text style={styles.text} note>{ratingCount} ratings</Text>
             </Body>
           </Right>
       </CardItem>
@@ -59,12 +59,12 @@ export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
             testID="more-button"
             style={styles.moreBtn} 
             onPress={() => navigation.navigate('Wine', { wine })}>
-            <Text>More</Text>
+            <Text style={styles.text}>More</Text>
           </Button>
         </Left>
         <Right>
           <Body>
-            <Text>{price}</Text>
+            <Text style={styles.text}>{price}</Text>
           </Body>
         </Right>
       </CardItem>
@@ -80,5 +80,8 @@ const styles = StyleSheet.create({
     // backgroundColor: '#f5f5f5',
     width: '100%',
     paddingHorizontal: wp('7%')
+  },
+  text: {
+    fontSize: hp('1.6%')
   }
 })
