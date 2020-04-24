@@ -64,9 +64,6 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
       testID="post-comment-btn"
       style={styles.postCommentBtn}
       onPress={() => navigation.navigate('NewComment', { event, activeUser, type: 'event' })}>
-      <Icon
-        type="FontAwesome"
-        name='plus' />
       <Text style={styles.postCommentBtnText}>Add a new comment</Text>
     </Button>
   )
@@ -76,19 +73,19 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
       <Left>
         <Button
           testID="attend-btn" 
-          style={styles.button}
+          style={styles.postCommentBtn}
           onPress={() => attendEventHandler()}
         >
-          <Text>Attend</Text>
+          <Text style={styles.postCommentBtnText}>Attend</Text>
         </Button>
       </Left>
-      <Body>
+      {/* <Body>
         <Button 
           style={styles.button}
           onPress={() => shareEvent()}>
           <Text>Share</Text>
         </Button>
-      </Body>
+      </Body> */}
     </>
   )
 
@@ -148,9 +145,7 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           <CardItem>
             {attendShareBtns}
             <Right>
-              {/* <Button style={styles.button}>
-                <Text>Photos</Text>
-              </Button> */}
+              {postCommentBtn}
             </Right>
           </CardItem>
           <CardItem>
@@ -165,7 +160,6 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           <Tab
             heading="Comments"
             activeTextStyle={{color: '#620014'}}>
-            {postCommentBtn}
             <CommentList comments={comments}/>
           </Tab>
           <Tab
@@ -210,11 +204,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#620014'
   },
   postCommentBtn: {
-    backgroundColor: '#620014',
+    backgroundColor: '#fcf1d2',
+    borderColor: '#620014',
+    borderWidth: 3,
     justifyContent: 'center',
+    width: wp('45%')
   },
   postCommentBtnText: {
     textAlign: 'center',
+    fontSize: hp('1.6%'),
+    color: '#620014',
+    fontWeight: 'bold',
   },
   topCardItem: {
     marginVertical: hp('2%')

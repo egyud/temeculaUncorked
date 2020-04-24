@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: hp('12%'),
     borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#620014',
     backgroundColor: '#fcf1d2',
     justifyContent: 'center',
     alignItems: 'center'
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     color: '#620014'
   },
   text: {
-    fontSize: hp('1.7%')
+    fontSize: hp('1.7%'),
+    color: '#620014'
   }
 })

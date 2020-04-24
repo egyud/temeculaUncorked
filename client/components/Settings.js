@@ -199,7 +199,7 @@ export default Settings = ({ user }) => {
         <Button 
           style={styles.backBtn}
           onPress={() => updateSetting(null)}>
-          <Text style={styles.text}>Back to Settings List</Text>
+          <Text style={styles.backBtnText}>Back to Settings List</Text>
         </Button>
         {display}
       </View>
@@ -224,9 +224,19 @@ const styles = StyleSheet.create({
     fontSize: hp('1.6%')
   },
   backBtn: {
-    backgroundColor: '#620014',
+    backgroundColor: '#fcf1d2',
+    borderColor: '#620014',
+    borderWidth: 3,
     justifyContent: 'center',
-    marginBottom: hp('5%')
+    marginTop: hp('1%'),
+    marginBottom: hp('5%'),
+    width: wp('80%'),
+    alignSelf: 'center'
+  },
+  backBtnText: {
+    fontSize: hp('1.6%'),
+    fontWeight: 'bold',
+    color: '#620014'
   },
   form: {
     alignSelf: 'center',

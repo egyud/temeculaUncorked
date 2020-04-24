@@ -4,7 +4,7 @@ import { Form, Picker, Button } from 'native-base'
 import WineList from './WineList'
 import FilterModal from './FilterModal'
 import SortModal from './SortModal'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default WineryWineList = ({ wineArray, navigation, user, isAuthenticated, wineryList }) => {
   const [sortBy, updateSortBy] = useState('ratingD')
@@ -115,13 +115,13 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   filterBtn: {
     backgroundColor: '#fcf1d2',
-    width: 150,
+    width: wp('33%'),
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderColor: '#fcf1d2',
-    borderWidth: 1
+    borderColor: '#620014',
+    borderWidth: 3
   },
   modalBtnWrapper: {
     flexDirection: 'row',

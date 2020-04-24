@@ -11,13 +11,13 @@ export default ClubColumn = ({ club }) => {
       style={styles.column}>
       <ScrollView>
         <ClubColumnItem
-          number={1} 
-          title="Club" 
-          body={name}/>
-        <ClubColumnItem
-          number={2}
+          number={1}
           title="Winery" 
           body={winery}/>
+        <ClubColumnItem
+          number={2} 
+          title="Club" 
+          body={name}/>
         <ClubColumnItem
           number={1} 
           title="Tastings" 

@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 25,
     borderColor: '#620014',
-    borderWidth: 1
+    borderWidth: 3
   },
   filterBtnText: {
     color: '#620014',

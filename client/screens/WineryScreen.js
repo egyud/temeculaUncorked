@@ -70,22 +70,6 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
     }
   }
 
-  let postReviewBtn = (
-    <Button
-      testID="post-review-btn"
-      style={styles.postReviewBtn}
-      onPress={() => navigation.navigate('NewReview', { wineryData, user, avgRating: calculateAverage(wineryData.avgRating, wineryData.reviewCount) })}>
-      <Icon
-        type="FontAwesome"
-        name='plus' />
-      <Text style={styles.postReviewBtnText}>Add a new review</Text>
-    </Button>
-  )
-
-  if (!isAuthenticated) {
-    postReviewBtn = null
-  }
-
   if (isLoading) {
     return <Spinner />
   }
@@ -117,7 +101,6 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
             heading="Reviews" 
             activeTextStyle={{color: '#620014'}}
           >
-            {postReviewBtn}
             <ReviewList 
               reviews={filteredReviews}
               navigation={navigation}/>
@@ -206,16 +189,13 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     color: '#620014',
     fontWeight: '500',
-    fontSize: hp('1.6%')
+    fontSize: hp('1.6%'),
+    width: wp('80%'),
+    alignSelf: 'center',
+    borderColor: '#620014',
+    borderWidth: 2,
+    marginVertical: hp('1%')
   },
-  postReviewBtn: {
-    backgroundColor: '#620014',
-    justifyContent: 'center',
-  },
-  postReviewBtnText: {
-    textAlign: 'center',
-    fontSize: hp('1.6%')
-  }
 })
 
 const mapStateToProps = (state) => {

@@ -78,9 +78,10 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
 
   const followButton = (
     <Button
+      style={styles.followBtn}
       testID="follow-btn" 
       onPress={() => followHandler()}>
-      <Text style={styles.text}>Follow</Text>
+      <Text style={styles.followBtnText}>Follow</Text>
     </Button>
   )
 
@@ -163,6 +164,16 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: hp('1.6%')
+  },
+  followBtn: {
+    backgroundColor: '#fcf1d2',
+    borderColor: '#620014',
+    borderWidth: 3
+  },
+  followBtnText: {
+    fontSize: hp('1.6%'),
+    color: '#620014',
+    fontWeight: 'bold'
   }
 })
 

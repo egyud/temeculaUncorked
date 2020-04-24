@@ -18,6 +18,12 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
           tabBarUnderlineStyle={{backgroundColor: '#89012c'}}>
           <Tab
             testID="account-tab"
+            heading="Settings"
+            activeTextStyle={{color: '#89012c'}}>
+            <Settings user={user}/>
+          </Tab>
+          <Tab
+            testID="account-tab"
             heading="Wineries Followed"
             activeTextStyle={{color: '#89012c'}}>
             <FollowingWineryList
@@ -36,7 +42,6 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
               />
             </View>
           </Tab>
-         
           <Tab
             testID="account-tab"
             heading="Following"
@@ -45,12 +50,7 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
               navigation={navigation} 
               users={following}/>
           </Tab>
-          <Tab
-            testID="account-tab"
-            heading="Settings"
-            activeTextStyle={{color: '#89012c'}}>
-            <Settings user={user}/>
-          </Tab>
+          
         </Tabs>
         
       </Content>
