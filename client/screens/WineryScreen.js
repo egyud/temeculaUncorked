@@ -188,12 +188,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fcf1d2',
     paddingVertical: 15,
     color: '#620014',
-    fontWeight: '500',
+    fontWeight: 'bold',
     fontSize: hp('1.6%'),
     width: wp('80%'),
     alignSelf: 'center',
     borderColor: '#620014',
-    borderWidth: 2,
+    borderWidth: 3,
     marginVertical: hp('1%')
   },
 })

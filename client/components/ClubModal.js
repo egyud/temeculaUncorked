@@ -8,6 +8,7 @@ export default ClubModal = ({ close, modalVisible, clubList, removeClubNumber, c
   return (
     <View>
       <Modal
+        style={styles.modal}
         animationType="slide"
         transparent={false}
         visible={modalVisible}>
@@ -53,5 +54,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: hp('1.6%')
+  },
+  modal: {
+    marginTop: hp('10%')
   }
 })

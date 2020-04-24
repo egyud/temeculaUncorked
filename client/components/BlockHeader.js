@@ -81,7 +81,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   callButton: {
-    backgroundColor: '#fcf1d2'
+    backgroundColor: '#fcf1d2',
+    borderColor: '#620014',
+    borderWidth: 3,
   },
   callText: {
     color: '#620014',

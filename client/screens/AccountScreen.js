@@ -24,16 +24,7 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
           </Tab>
           <Tab
             testID="account-tab"
-            heading="Wineries Followed"
-            activeTextStyle={{color: '#89012c'}}>
-            <FollowingWineryList
-              navigation={navigation}
-              wineries={memberOf}
-              wineryList={wineryList}/>
-          </Tab>
-          <Tab
-            testID="account-tab"
-            heading="Events"
+            heading="My Events"
             activeTextStyle={{color: '#89012c'}}>
             <View>
               <EventList 
@@ -44,7 +35,16 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
           </Tab>
           <Tab
             testID="account-tab"
-            heading="Following"
+            heading="Wineries Followed"
+            activeTextStyle={{color: '#89012c'}}>
+            <FollowingWineryList
+              navigation={navigation}
+              wineries={memberOf}
+              wineryList={wineryList}/>
+          </Tab>
+          <Tab
+            testID="account-tab"
+            heading="Users Followed"
             activeTextStyle={{color: '#89012c'}}>
             <FollowingList
               navigation={navigation} 
