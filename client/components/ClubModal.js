@@ -6,12 +6,12 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 export default ClubModal = ({ close, modalVisible, clubList, removeClubNumber, clubNumber, changeClubValue }) => {
 
   return (
-    <View>
-      <Modal
-        style={styles.modal}
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}>
+    <Modal
+      style={styles.modal}
+      animationType="slide"
+      transparent={false}
+      visible={modalVisible}>
+      <View style={styles.wrapper}>
         <View>
           <ListItem header>
             <Text style={styles.text}>Select a Club</Text>
@@ -32,30 +32,38 @@ export default ClubModal = ({ close, modalVisible, clubList, removeClubNumber, c
           <Button
             style={styles.modalBtn}
             onPress={close}>
-            <Text style={styles.text}>Close</Text>
+            <Text style={styles.modalBtnText}>Close</Text>
           </Button>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   )
 }
 
 const styles = StyleSheet.create({
   modalBtnWrapper: {
     flexDirection: 'row',
-    width: '100%'
+    width: '100%',
+    justifyContent: 'center',
+    marginTop: hp('3%')
   },
   modalBtn: {
-    backgroundColor: '#620014',
-    flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#fcf1d2',
     borderColor: '#620014',
-    borderWidth: 1
+    borderWidth: 3,
+    // flex: 1,
+    justifyContent: 'center',
+    width: wp('80%'),
+  },
+  modalBtnText: {
+    fontSize: hp('1.6%'),
+    color: '#620014',
+    fontWeight: 'bold'
   },
   text: {
     fontSize: hp('1.6%')
   },
-  modal: {
-    marginTop: hp('10%')
+  wrapper: {
+    marginTop: hp('5%')
   }
 })

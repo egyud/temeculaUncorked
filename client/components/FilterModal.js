@@ -6,12 +6,11 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen, modalVisible, wineryList }) => {
   return (
-    <View>
-      <Modal
-        style={{ marginTop: 22 }}
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}>
+    <Modal
+      animationType="slide"
+      transparent={false}
+      visible={modalVisible}>
+      <View style={styles.wrapper}>
         <WineFilters
           filterWines={filterWines} 
           addToFilters={(val) => addToFilters(val)}
@@ -31,8 +30,8 @@ export default FilterModal = ({ close, filterWines, addToFilters, isWineryScreen
             <Text style={styles.text}>Close</Text>
           </Button>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   )
 }
 
@@ -50,5 +49,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: hp('1.6%')
-  }
+  },
+  // wrapper: {
+  //   marginTop: hp('5%')
+  // }
 })

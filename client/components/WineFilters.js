@@ -27,27 +27,25 @@ export default WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
   }
 
   return (
-    <Content 
+    <View
       testID="wine-filters"
       style={styles.wineFilters}>
-      <View>
-        <ListItem itemDivider>
-          <Text>Type</Text>
-        </ListItem>
-        {types.map(type => (
-          <WineFilterItem
-            key={type}
-            addToFilters={addToFilters} 
-            text={type}/>
-        ))}
-        {wineryFilters}
-      </View>
-    </Content>
+      <ListItem itemDivider>
+        <Text>Type</Text>
+      </ListItem>
+      {types.map(type => (
+        <WineFilterItem
+          key={type}
+          addToFilters={addToFilters} 
+          text={type}/>
+      ))}
+      {wineryFilters}
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   wineFilters: {
-    flex: 1
+    // flex: 1
   }
 })

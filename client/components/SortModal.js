@@ -15,13 +15,12 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
   ]
 
   return (
-    <View>
-      <Modal
-        // style={{ marginTop: 22 }}
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}>
-        <View style={{ marginTop: 30 }}>
+    <Modal
+      animationType="slide"
+      transparent={false}
+      visible={modalVisible}>
+      <View style={styles.wrapper}>
+        <View>
           <ListItem itemDivider>
             <Text style={styles.text}>Sort By</Text>
           </ListItem>
@@ -42,25 +41,32 @@ export default SortModal = ({ close, modalVisible, updateSortBy }) => {
             testID="close-btn"
             style={styles.modalBtn}
             onPress={close}>
-            <Text style={styles.closeBtnText}>Close</Text>
+            <Text style={styles.modalBtnText}>Close</Text>
           </Button>
         </View>
-      </Modal>
-   </View>
+      </View>
+    </Modal>
   )
 }
 
 const styles = StyleSheet.create({
   modalBtnWrapper: {
     flexDirection: 'row',
-    width: '100%'
+    width: '100%',
+    justifyContent: 'center',
+    marginTop: hp('3%')
   },
   modalBtn: {
     backgroundColor: '#fcf1d2',
-    flex: 1,
+    borderColor: '#620014',
+    borderWidth: 3,
     justifyContent: 'center',
-    borderColor: '#fcf1d2',
-    borderWidth: 1
+    width: wp('80%'),
+  },
+  modalBtnText: {
+    fontSize: hp('1.6%'),
+    color: '#620014',
+    fontWeight: 'bold'
   },
   closeBtnText: {
     color: '#620014',
@@ -68,5 +74,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: hp('1.6%')
+  },
+  wrapper: {
+    marginTop: hp('5%')
   }
 })
