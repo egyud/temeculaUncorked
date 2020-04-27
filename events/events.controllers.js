@@ -47,9 +47,15 @@ exports.getEventsForWinery = async (req, res) => {
 }
 
 exports.postEvent = async (req, res) => {
-  // const { winery, title, date, time } = req.body
+  const { winery, title, date, time } = req.body
   try {
-    const event = await Event.create({ ...req.body })
+    const eventDate = new Date(date)
+    const event = await Event.create({
+      winery,
+      title,
+      date: eventDate,
+      time
+    })
     return res.status(200).send({ event })
   } catch(error) {
     console.error(error)
