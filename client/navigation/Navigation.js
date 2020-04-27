@@ -134,7 +134,7 @@ const TabNavigator = createBottomTabNavigator({
   Home: {
     screen: StackNavigator,
   },
-  Search: {
+  Wineries: {
     screen: SearchNav
   },
   Clubs: {

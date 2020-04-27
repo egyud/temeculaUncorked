@@ -2,6 +2,8 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Button, Left, Right, Body } from 'native-base'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import moment from 'moment'
+import modifyTimestamp from '../utils/modifyTimestamp'
 
 export default Event = ({ event, navigation }) => {
   // event will have props: winery, date, time, title, attending, price, whoCanAttend
@@ -14,7 +16,7 @@ export default Event = ({ event, navigation }) => {
         <Left>
           <Body>
             <Text style={styles.text}>{event.title}</Text>
-            <Text style={styles.text} note>{event.date}</Text>
+            <Text style={styles.text} note>{moment(modifyTimestamp(event.date)).format('MMMM Do YYYY')}</Text>
           </Body>
         </Left>
         <Right>

@@ -7,7 +7,8 @@ import CommentList from '../components/CommentList'
 import getComments from '../utils/getCommentsEvent'
 import attendEvent from '../utils/attendEvent'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import * as Font from 'expo-font'
+import moment from 'moment'
+import modifyTimestamp from '../utils/modifyTimestamp'
 
 export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
@@ -120,7 +121,7 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
             </Left>
             <Right>
               <Body>
-                <Text style={styles.text}>{date}</Text>
+                <Text style={styles.text}>{moment(modifyTimestamp(date)).format('MMMM Do')}</Text>
                 <Text style={styles.text}note>{time}</Text>
               </Body>
             </Right>
