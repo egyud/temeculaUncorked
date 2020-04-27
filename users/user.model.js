@@ -34,7 +34,10 @@ const UserSchema = new mongoose.Schema({
     ref: 'User'
   }],
   avatar: {
-    url: String,
+    url: {
+      type: String,
+      default: 'https://res.cloudinary.com/dkoz1ezfx/image/upload/v1588011814/default-avatar_yrc67m.jpg'
+    },
     public_id: String
   }
 })
