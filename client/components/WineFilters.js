@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Container, Header, Content, ListItem, CheckBox, Text, Body, Button } from 'native-base'
+import { ListItem, Text } from 'native-base'
 import WineFilterItem from './WineFilterItem'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 

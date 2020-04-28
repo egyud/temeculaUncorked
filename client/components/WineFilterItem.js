@@ -12,7 +12,7 @@ export default WineFilterItem = ({ text, addToFilters }) => {
   }
 
   return (
-    <Content
+    <View
       testID="wine-filter-item" 
       style={styles.wineFilterItem}>
       <ListItem>
@@ -23,13 +23,13 @@ export default WineFilterItem = ({ text, addToFilters }) => {
           <Text style={styles.text}>{text}</Text>
         </Body>
       </ListItem>
-    </Content>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   wineFilterItem: {
-    flex: 1
+    // flex: 1
   },
   text: {
     fontSize: hp('1.6%')
