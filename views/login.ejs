@@ -1,0 +1,17 @@
+<%- include('partials/head.ejs') %>
+
+<div class="page-wrapper">
+  <form action="http://localhost:5000/api/login" method="post">
+    <div class="input-wrapper">
+      <label for="winery">Winery</label>
+      <input type="text" name="winery" id="winery">
+    </div>
+    <div class="input-wrapper">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <button type="submit">Log In</button>
+  </form>
+</div>
+
+<%- include('partials/footer.ejs') %>

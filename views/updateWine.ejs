@@ -1,0 +1,25 @@
+<%- include('partials/head.ejs') %>
+
+<div>
+  <form action="" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="price">Price</label>
+    <input type="text" name="price" id="price">
+    <label for="clubPrice">Club Price</label>
+    <input type="text" name="clubPrice" id="clubPrice">
+    <label for="type">Type</label>
+    <select id="type" name="type">
+      <option value="red">Red</option>
+      <option value="white">White</option>
+      <option value="rosé">Rosé</option>
+      <option value="sparkling">Sparkling</option>
+      <option value="dessert">Dessert</option>
+    </select>
+    <label for="description">Description/Tasting Notes</label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <button>Submit</button>
+  </form>
+</div>
+
+<%- include('partials/footer.ejs') %>

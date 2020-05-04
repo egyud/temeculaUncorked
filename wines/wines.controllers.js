@@ -23,7 +23,7 @@ exports.getAllWines = async (req, res) => {
 
 // get wine for a specific winery
 exports.getWines = async (req, res) => {
-  const { winery } = req.body
+  const { winery } = req.params
   try {
     let wines = await Wine.find({ winery }).lean()
     wines = wines.map(wine => {
