@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
-import { View, StyleSheet, ImageBackground, Text, Modal, ScrollView } from 'react-native'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import ClubList from '../components/ClubList'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
@@ -37,18 +37,10 @@ export const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   return (
     <View style={styles.container}>
       <View>
-        <ImageBackground
-          source={require('../assets/wineGlasses.jpg')}
-          style={styles.imageBackground}
-          >
-          <Text style={styles.headline}>Wine Clubs</Text>
-        </ImageBackground>
-        <View>
-          <Text
-            testID="compare-link"
-            onPress={() => navigation.navigate('Comparison')} 
-            style={styles.compareLink}>Compare wine club benefits</Text>
-        </View>
+        <Text
+          testID="compare-link"
+          onPress={() => navigation.navigate('Comparison')} 
+          style={styles.compareLink}>Compare wine club benefits</Text>
       </View>
       <ScrollView>
         <ClubList 
