@@ -49,7 +49,7 @@ export default CommentListItem = ({ comment, navigation, activeUserId, addLike }
             </Button>
           </Left>
           <Right>
-            <ReportBtn />
+            <ReportBtn body={text} userName={userName} userId={userId}/>
           </Right>
         </CardItem>
       </Card>

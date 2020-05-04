@@ -81,7 +81,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
             </Button>
           </Body>
           <Right>
-            <ReportBtn />
+            <ReportBtn body={text} userName={userName} userId={userId}/>
           </Right>
         </CardItem>
       </Card>

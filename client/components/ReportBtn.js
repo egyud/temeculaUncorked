@@ -1,15 +1,14 @@
 import React from 'react'
 import { View, StyleSheet, Linking } from 'react-native'
 import { Button, Text, Icon } from 'native-base'
-import { Rating } from 'react-native-ratings' 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
-export default ReportBtn = () => {
+export default ReportBtn = ({ body, userName, userId }) => {
   return (
     <Button
       transparent
       style={styles.btn} 
-      onPress={() => Linking.openURL('mailto:support@temeculauncorked.com')}>
+      onPress={() => Linking.openURL(`mailto:support@temeculauncorked.com?subject=Report Content&body=${userName}-${userId}-${body}`, )}>
       <Icon
         style={styles.btnText} 
         active name="flag" />
