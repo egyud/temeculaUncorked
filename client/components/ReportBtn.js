@@ -8,7 +8,7 @@ export default ReportBtn = ({ body, userName, userId }) => {
     <Button
       transparent
       style={styles.btn} 
-      onPress={() => Linking.openURL(`mailto:support@temeculauncorked.com?subject=Report Content&body=${userName}-${userId}-${body}`, )}>
+      onPress={() => Linking.openURL(`mailto:support@temeculauncorked.com?subject=Report Content&body=${userName}-${userId}-${body}`)}>
       <Icon
         style={styles.btnText} 
         active name="flag" />
