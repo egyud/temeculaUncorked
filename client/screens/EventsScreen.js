@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import EventList from '../components/EventList'
 import getEvents from '../utils/getEvents'
 
@@ -16,14 +15,6 @@ export default EventsScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <View>
-        <View>
-          <ImageBackground
-            source={require('../assets/wineGlasses.jpg')}
-            style={styles.imageBackground}
-          >
-            <Text style={styles.headline}>Upcoming Events</Text>
-          </ImageBackground>
-        </View>
         <EventList 
           events={events}
           navigation={navigation}/>

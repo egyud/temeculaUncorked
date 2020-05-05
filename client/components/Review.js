@@ -3,6 +3,7 @@ import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
+import ReportBtn from './ReportBtn'
 import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
@@ -37,13 +38,18 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
             {topLeft}
           </Left>
           <Right>
+            <Text style={styles.text}>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Left>
             <Rating
               readonly={true} 
               startingValue={rating}
               imageSize={25}
               type="custom"
               ratingColor='#fcf1d2' />
-          </Right>
+          </Left>
         </CardItem>
         <CardItem cardBody>
           <Body>
@@ -75,7 +81,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
             </Button>
           </Body>
           <Right>
-            <Text style={styles.text}>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
+            <ReportBtn body={text} userName={userName} userId={userId}/>
           </Right>
         </CardItem>
       </Card>

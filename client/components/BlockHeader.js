@@ -59,7 +59,7 @@ export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => 
       <CardItem>
         <Left>
           <Button style={styles.callButton}>
-            <Text style={styles.callText}>{phone}</Text>
+            <Text style={styles.callText}>Call: {phone}</Text>
           </Button>
         </Left>
         <Right>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   callText: {
     color: '#620014',
     fontWeight: '700',
-    fontSize: hp('2%')
+    fontSize: hp('1.8%')
   },
   reviewCount: {
     fontSize: hp('1.7%')

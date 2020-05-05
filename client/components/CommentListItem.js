@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
+import ReportBtn from './ReportBtn'
 import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
@@ -24,6 +25,9 @@ export default CommentListItem = ({ comment, navigation, activeUserId, addLike }
               <Text style={styles.text}>{userName}</Text>
             </Body>
           </Left>
+          <Right>
+            <Text style={styles.text}>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
+          </Right>
         </CardItem>
         <CardItem cardBody>
           <Body>
@@ -45,7 +49,7 @@ export default CommentListItem = ({ comment, navigation, activeUserId, addLike }
             </Button>
           </Left>
           <Right>
-            <Text style={styles.text}>{moment(modifyTimestamp(timestamp)).fromNow()}</Text>
+            <ReportBtn body={text} userName={userName} userId={userId}/>
           </Right>
         </CardItem>
       </Card>

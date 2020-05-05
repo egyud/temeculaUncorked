@@ -143,6 +143,13 @@ const TabNavigator = createBottomTabNavigator({
   Account: {
     screen: AccountNav
   }
+}, {
+  tabBarOptions: {
+    style: {
+      backgroundColor: '#fcf1d2',
+    },
+    activeTintColor: '#620014'
+  }
 })
 
 export default StackNav = createAppContainer(TabNavigator)
