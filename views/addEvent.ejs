@@ -1,7 +1,16 @@
 <%- include('partials/head.ejs') %>
 
 <div class="form-wrapper">
-  <form action="" method="post">
+  <form action="http://localhost:5000/api/" method="post">
+    <div class="input-wrapper">
+      <label for="winery">Winery</label>
+      <br>
+      <select name="winery" id="winery">
+        <% for (let i = 0; i < wineryList.length; i++ )  { %> 
+          <option value="<%= wineryList[i] %>"><%= wineryList[i] %></option>
+        <% } %>
+      </select>
+    </div>
     <div class="input-wrapper">
       <label for="title">Title</label>
       <br>
