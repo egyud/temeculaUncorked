@@ -1,24 +1,39 @@
 <%- include('partials/head.ejs') %>
 
-<div>
+<div class="form-wrapper">
   <form action="" method="post">
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name">
-    <label for="price">Price</label>
-    <input type="text" name="price" id="price">
-    <label for="clubPrice">Club Price</label>
-    <input type="text" name="clubPrice" id="clubPrice">
-    <label for="type">Type</label>
-    <select id="type" name="type">
-      <option value="red">Red</option>
-      <option value="white">White</option>
-      <option value="rosé">Rosé</option>
-      <option value="sparkling">Sparkling</option>
-      <option value="dessert">Dessert</option>
-    </select>
-    <label for="description">Description/Tasting Notes</label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    <button>Submit</button>
+    <div class="input-wrapper">
+      <label for="name">Name</label>
+      <br>
+      <input type="text" name="name" id="name" class="input-text">
+    </div>
+    <div class="input-wrapper">
+      <label for="price">Price</label>
+      <br>
+      <input type="text" name="price" id="price" class="input-text">
+    </div>
+    <div class="input-wrapper">
+      <label for="clubPrice">Club Price</label>
+      <br>
+      <input type="text" name="clubPrice" id="clubPrice" class="input-text">
+    </div>
+    <div class="input-wrapper">
+      <label for="type">Type</label>
+      <br>
+      <select id="type" name="type">
+        <option value="red">Red</option>
+        <option value="white">White</option>
+        <option value="rosé">Rosé</option>
+        <option value="sparkling">Sparkling</option>
+        <option value="dessert">Dessert</option>
+      </select>
+    </div>
+    <div class="input-wrapper">
+      <label for="description">Description/Tasting Notes</label>
+      <br>
+      <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    </div>
+    <button class="submit-btn">Submit</button>
   </form>
 </div>
 

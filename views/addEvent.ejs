@@ -1,14 +1,23 @@
 <%- include('partials/head.ejs') %>
 
-<div>
+<div class="form-wrapper">
   <form action="" method="post">
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title">
-    <label for="date">Date (format: YYYY-DD-MM)</label>
-    <input type="text" name="date" id="date">
-    <label for="time">Time</label>
-    <input type="text" name="time" id="time">
-    <button>Submit</button>
+    <div class="input-wrapper">
+      <label for="title">Title</label>
+      <br>
+      <input type="text" name="date" id="date" class="input-text">
+    </div>
+    <div class="input-wrapper">
+      <label for="date">Date (format: YYYY-DD-MM)</label>
+      <br>
+      <input type="text" name="title" id="title" class="input-text">
+    </div>
+    <div class="input-wrapper">
+      <label for="time">Time</label>
+      <br>
+      <input type="text" name="time" id="time" class="input-text">
+    </div>
+    <button class="submit-btn">Submit</button>
   </form>
 </div>
 

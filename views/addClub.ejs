@@ -1,18 +1,33 @@
 <%- include('partials/head.ejs') %>
 
-  <div>
+  <div class="form-wrapper">
     <form action="" method="post">
-      <label for="name">Title</label>
-      <input type="text" name="name" id="name">
-      <label for="tastings">Tastings(number and frequency)</label>
-      <input type="text" name="tastings" id="tastings">
-      <label for="discounts">Discounts</label>
-      <input type="text" name="discounts" id="discounts">
-      <label for="otherBenefits">Other Benefits</label>
-      <input type="text" name="otherBenefits" id="otherBenefits">
-      <label for="avgPrice">Avg Price</label>
-      <input type="text" name="avgPrice" id="avgPrice">
-      <button>Submit</button>
+      <div class="input-wrapper">
+        <label for="name">Title</label>
+        <br>
+        <input type="text" name="name" id="name" class="input-text">
+      </div>
+      <div class="input-wrapper">
+        <label for="tastings">Tastings(number and frequency)</label>
+        <br>
+        <input type="text" name="tastings" id="tastings" class="input-text">
+      </div>
+      <div class="input-wrapper">
+        <label for="discounts">Discounts</label>
+        <br>
+        <input type="text" name="discounts" id="discounts" class="input-text">
+      </div>
+      <div class="input-wrapper">
+        <label for="otherBenefits">Other Benefits</label>
+        <br>
+        <input type="text" name="otherBenefits" id="otherBenefits"> class="input-text"
+      </div>
+      <div class="input-wrapper">
+        <label for="avgPrice">Avg Price</label>
+        <br>
+        <input type="text" name="avgPrice" id="avgPrice" class="input-text">
+      </div>
+      <button class="submit-btn">Submit</button>
     </form>
   </div>
 

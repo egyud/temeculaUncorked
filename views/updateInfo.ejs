@@ -1,12 +1,18 @@
 <%- include('partials/head.ejs') %>
 
-<div>
+<div class="form-wrapper">
   <form action="" method="post">
-    <label for="phone">Phone Number</label>
-    <input type="text" name="phone" id="phone">
-    <label for="url">Website</label>
-    <input type="text" name="url" id="url">
-    <button>Submit</button>
+    <div class="input-wrapper">
+      <label for="phone">Phone Number</label>
+      <br>
+      <input type="text" name="phone" id="phone" class="input-text">
+    </div>
+    <div class="input-wrapper">
+      <label for="url">Website</label>
+      <br>
+      <input type="text" name="url" id="url" class="input-text">
+    </div>
+    <button class="submit-btn">Submit</button>
   </form>
 </div>
 
