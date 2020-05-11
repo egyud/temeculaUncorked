@@ -67,14 +67,11 @@ exports.postWines = async (req, res) => {
 }
 
 exports.postWine = async (req, res) => {
-  const { winery } = req.params
-  // req.body will include name, price, clubPrice
   try {
-    const wine = await Wine.create({
-      winery,
-      ...req.body
-    })
-    return res.status(201).send({ wine })
+    console.log(req.body)
+    console.log('in postWine')
+    const wine = await Wine.create({ ...req.body })
+    return res.status(201).redirect('http://localhost:5000/')
   } catch(error) {
     console.error(error)
     return res.status(400).end()

@@ -12,7 +12,7 @@ router.get('/:winery', WineController.getWines)
 // get /api/wines/:winery/:name
 router.get('/:winery/:name', WineController.getWine)
 
-// post /api/wines/:winery/
-router.post('/:winery', WineController.postWine)
+// post /api/wines
+router.post('/', WineController.postWine)
 
 module.exports = router

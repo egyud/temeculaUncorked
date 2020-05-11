@@ -47,16 +47,27 @@ exports.getEventsForWinery = async (req, res) => {
 }
 
 exports.postEvent = async (req, res) => {
-  const { winery, title, date, time } = req.body
+  let { winery, title, date, time, description, price, membersOnly, adultsOnly } = req.body
+
   try {
+    if (membersOnly) {
+      membersOnly = true
+    }
+    if (adultsOnly) {
+      adultsOnly = true
+    }
     const eventDate = new Date(date)
-    const event = await Event.create({
+    await Event.create({
       winery,
       title,
       date: eventDate,
-      time
+      time,
+      membersOnly,
+      adultsOnly,
+      price,
+      description
     })
-    return res.status(200).send({ event })
+    return res.status(200).redirect('http://localhost:5000/')
   } catch(error) {
     console.error(error)
     return res.status(400).send({ error })

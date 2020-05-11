@@ -1,6 +1,3 @@
-const { getWines } = require('../utils/getWines') 
-const { getClubs } = require('../utils/getClubs') 
-const { getEvents } = require('../utils/getEvents') 
 const wineryList = require('../data/wineryList')
 
 exports.getLoginPage = (req, res) => {

@@ -15,8 +15,8 @@ router.get('/wines', WineriesController.getAllWines)
 // put /api/wineries/keys/:name
 router.put('/keys/:name', WineriesController.postKeywords) 
 
-// post /api/wineries/club/:name
-router.post('/club/:name', WineriesController.postWineClub)
+// post /api/wineries/club
+router.post('/club', WineriesController.postWineClub)
 
 // post /api/wineries/music/:name
 router.post('/music/:name', WineriesController.postLiveMusic)

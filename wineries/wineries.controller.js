@@ -76,10 +76,23 @@ exports.postWines = async (req, res) => {
 
 // add wine club details for winery entry
 exports.postWineClub = async (req, res) => {
-  const { name } = req.params
+  const { winery, discounts, otherBenefits, name, tastings, avgPrice, shipments } = req.body
+
+  // convert the strings off benefits/discounts to arrays
+  let discountsList = discounts.split('; ')
+  let benefitsList = otherBenefits.split('; ')
+
+
   try {
-    const winery = await Winery.updateOne({ name }, { $push: { wineClubs: req.body } })
-    return res.status(201).send({ data: winery })
+    await Winery.updateOne({ name: winery }, { $push: { wineClubs: {
+      name,
+      tastings,
+      discounts: discountsList,
+      otherBenefits: benefitsList,
+      avgPrice,
+      shipments
+    } } })
+    return res.status(201).redirect('http://localhost:5000/')
   } catch(error) {
     console.error(error)
     return res.status(400).end()

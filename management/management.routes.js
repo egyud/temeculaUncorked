@@ -3,11 +3,8 @@ const router = express.Router()
 
 const ManagementController = require('./management.controller')
 
-// log-in page
-router.get('/', ManagementController.getLoginPage)
-
 // index page
-router.get('/index', ManagementController.getIndexPage)
+router.get('/', ManagementController.getIndexPage)
 
 // add event form
 router.get('/addEvent', ManagementController.getAddEventForm)
