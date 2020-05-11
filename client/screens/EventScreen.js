@@ -183,7 +183,7 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
 }
 
 EventScreen.navigationOptions = {
-  title: 'Event Info',
+  title: '',
   headerStyle: {
     backgroundColor: '#fcf1d2'
   }

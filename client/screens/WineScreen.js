@@ -151,7 +151,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
 }
 
 WineScreen.navigationOptions = {
-  title: 'Wine',
+  title: '',
   headerStyle: {
     backgroundColor: '#fcf1d2'
   }

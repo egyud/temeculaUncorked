@@ -154,7 +154,7 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
 }
 
 WineryScreen.navigationOptions = {
-  title: 'Winery Name',
+  title: '',
   headerStyle: {
     backgroundColor: '#fcf1d2'
   }
