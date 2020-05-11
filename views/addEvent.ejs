@@ -1,33 +1,53 @@
 <%- include('partials/head.ejs') %>
 
-<div class="form-wrapper">
-  <form action="http://localhost:5000/api/" method="post">
-    <div class="input-wrapper">
-      <label for="winery">Winery</label>
-      <br>
-      <select name="winery" id="winery">
-        <% for (let i = 0; i < wineryList.length; i++ )  { %> 
-          <option value="<%= wineryList[i] %>"><%= wineryList[i] %></option>
-        <% } %>
-      </select>
-    </div>
-    <div class="input-wrapper">
-      <label for="title">Title</label>
-      <br>
-      <input type="text" name="date" id="date" class="input-text">
-    </div>
-    <div class="input-wrapper">
-      <label for="date">Date (format: YYYY-DD-MM)</label>
-      <br>
-      <input type="text" name="title" id="title" class="input-text">
-    </div>
-    <div class="input-wrapper">
-      <label for="time">Time</label>
-      <br>
-      <input type="text" name="time" id="time" class="input-text">
-    </div>
-    <button class="submit-btn">Submit</button>
-  </form>
+<div class="page-wrapper">
+  <div class="form-wrapper">
+    <form action="http://localhost:5000/api/events" method="post">
+      <div class="input-wrapper">
+        <label for="winery">Winery</label>
+        <br>
+        <select name="winery" id="winery">
+          <% for (let i = 0; i < wineryList.length; i++ )  { %> 
+            <option value="<%= wineryList[i] %>"><%= wineryList[i] %></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="input-wrapper">
+        <label for="title">Title</label>
+        <br>
+        <input type="text" name="title" id="title" class="input-text" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="date">Date (format: YYYY-MM-DD)</label>
+        <br>
+        <input type="text" name="date" id="date" class="input-text" required pattern="\d\d\d\d-\d\d-\d\d">
+      </div>
+      <div class="input-wrapper">
+        <label for="time">Time</label>
+        <br>
+        <input type="text" name="time" id="time" class="input-text" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="description">Event Description</label>
+        <br>
+        <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+      </div>
+      <div class="input-wrapper">
+        <label for="price">Price(if no cost, type "free")</label>
+        <br>
+        <input type="text" name="price" id="price" class="input-text" required>
+      </div>
+      <div class="input-wrapper">
+        <p>Check all that apply</p>
+        <input type="checkbox" name="adultsOnly" id="adultsOnly">
+        <label for="adultsOnly">This event is 21+ only</label>
+        <br>
+        <input type="checkbox" name="membersOnly" id="membersOnly">
+        <label for="membersOnly">This event is for members only</label>
+      </div>
+      <button class="submit-btn">Submit</button>
+    </form>
+  </div>
 </div>
 
 <%- include('partials/footer.ejs') %>

@@ -1,49 +1,51 @@
 <%- include('partials/head.ejs') %>
 
-<div class="form-wrapper">
-  <form action="http://localhost:5000/api/wines/" method="post">
-    <div class="input-wrapper">
-      <label for="winery">Winery</label>
-      <br>
-      <select name="winery" id="winery">
-        <% for (let i = 0; i < wineryList.length; i++ )  { %> 
-          <option value="<%= wineryList[i] %>"><%= wineryList[i] %></option>
-        <% } %>
-      </select>
-    </div>
-    <div class="input-wrapper">
-      <label for="name">Name</label>
-      <br>
-      <input type="text" name="name" id="name" class="input-text">
-    </div>
-    <div class="input-wrapper">
-      <label for="price">Price</label>
-      <br>
-      <input type="text" name="price" id="price" class="input-text">
-    </div>
-    <div class="input-wrapper">
-      <label for="clubPrice">Club Price</label>
-      <br>
-      <input type="text" name="clubPrice" id="clubPrice" class="input-text">
-    </div>
-    <div class="input-wrapper">
-      <label for="category">Type</label>
-      <br>
-      <select id="category" name="category">
-        <option value="red">Red</option>
-        <option value="white">White</option>
-        <option value="rosé">Rosé</option>
-        <option value="sparkling">Sparkling</option>
-        <option value="dessert">Dessert</option>
-      </select>
-    </div>
-    <div class="input-wrapper">
-      <label for="description">Description/Tasting Notes</label>
-      <br>
-      <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    </div>
-    <button class="submit-btn">Submit</button>
-  </form>
+<div class="page-wrapper">
+  <div class="form-wrapper">
+    <form action="http://localhost:5000/api/wines" method="post">
+      <div class="input-wrapper">
+        <label for="winery">Winery</label>
+        <br>
+        <select name="winery" id="winery">
+          <% for (let i = 0; i < wineryList.length; i++ )  { %> 
+            <option value="<%= wineryList[i] %>"><%= wineryList[i] %></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="input-wrapper">
+        <label for="name">Name</label>
+        <br>
+        <input type="text" name="name" id="name" class="input-text" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="price">Price</label>
+        <br>
+        <input type="text" name="price" id="price" class="input-text" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="clubPrice">Club Price</label>
+        <br>
+        <input type="text" name="clubPrice" id="clubPrice" class="input-text" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="category">Type</label>
+        <br>
+        <select id="category" name="category">
+          <option value="red">Red</option>
+          <option value="white">White</option>
+          <option value="rosé">Rosé</option>
+          <option value="sparkling">Sparkling</option>
+          <option value="dessert">Dessert</option>
+        </select>
+      </div>
+      <div class="input-wrapper">
+        <label for="description">Description/Tasting Notes</label>
+        <br>
+        <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+      </div>
+      <button class="submit-btn">Submit</button>
+    </form>
+  </div>
 </div>
 
 <%- include('partials/footer.ejs') %>
