@@ -17,7 +17,7 @@ export default PostReviewScreen = ({ navigation }) => {
 
   function submit() {
     if (reviewText.length > 0 && rating > 0) {
-      postReview(wineryData.name, user, reviewText, rating)
+      postReview(wineryData.name, user, reviewText, rating, navigation)
     }
     return
   }

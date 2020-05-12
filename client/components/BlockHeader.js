@@ -4,15 +4,16 @@ import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from
 import { Rating } from 'react-native-ratings'
 import UserRating from '../components/UserRating'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import calculateAverage from '../utils/average'
 
-export default BlockHeader = ({ data, rating, userRating, isAuthenticated }) => {
+export default BlockHeader = ({ data, rating, userRating, isAuthenticated, navigation, user }) => {
   const { name, phone, reviewCount } = data
 
   let postReviewBtn = (
     <Button
       testID="post-review-btn"
       style={styles.postReviewBtn}
-      onPress={() => navigation.navigate('NewReview', { wineryData, user, avgRating: calculateAverage(wineryData.avgRating, wineryData.reviewCount) })}>
+      onPress={() => navigation.navigate('NewReview', { wineryData: data, user, avgRating: calculateAverage(data.avgRating, reviewCount) })}>
       {/* <Icon
         style={{ color: '#620014' }}
         type="FontAwesome"
