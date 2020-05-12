@@ -32,11 +32,7 @@ export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
     </Button>
   )
 
-  let activeUserId
-  if (isAuthenticated) {
-    activeUserId = activeUser._id
-  } else {
-    // activeUserId = null
+  if (!isAuthenticated) {
     postCommentBtn = null
   }
 
@@ -45,12 +41,12 @@ export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
       <Review 
         review={review} 
         navigation={navigation}
-        activeUserId={activeUserId}
+        activeUser={activeUser}
         style={{ paddingBottom: 0 }}
         addLike={addLike}/>
       {postCommentBtn}
       <CommentList
-        activeUserId={activeUserId}
+        activeUser={activeUser}
         comments={commentsList}/>
     </View>
   )

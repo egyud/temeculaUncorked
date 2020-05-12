@@ -103,7 +103,8 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
             heading="Reviews" 
             activeTextStyle={{color: '#620014'}}
           >
-            <ReviewList 
+            <ReviewList
+              activeUser={user} 
               reviews={filteredReviews}
               navigation={navigation}/>
           </Tab>

@@ -81,7 +81,8 @@ exports.loginUser = async (req, res, next) => {
         email: user.email,
         avatar: user.avatar,
         memberOf: user.memberOf,
-        following: user.following
+        following: user.following,
+        blockedUsers: user.blockedUsers
       }
       return res.status(200).send({
         success: true,

@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
@@ -8,7 +7,7 @@ import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
-export default Review = ({ review, navigation, activeUserId, isProfileScreen, addLike }) => {
+export default Review = ({ review, navigation, activeUser, isProfileScreen, addLike }) => {
   const { _id, text, rating, likes, timestamp, userId: { name: userName, _id: userId, avatar }, reviewedId: { name: winery } } = review
 
   let topLeft
@@ -30,6 +29,10 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
     )
   }
 
+  if (activeUser && activeUser.blockedUsers.includes(userId)) {
+    return null
+  }
+  
   return (
     <View testID="review">
       <Card style={styles.reviewCard}>
@@ -61,7 +64,7 @@ export default Review = ({ review, navigation, activeUserId, isProfileScreen, ad
             <Button
               testID="add-like-button" 
               transparent
-              onPress={() => addLike('reviews', activeUserId, _id)}>
+              onPress={() => addLike('reviews', activeUser._id, _id)}>
               <Icon
                 style={styles.btns} 
                 active name="thumbs-up" />

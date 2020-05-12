@@ -158,6 +158,7 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
             <Text style={styles.text}>Winery Review History</Text>
           </View>
           <ReviewList
+            activeUser={activeUser}
             navigation={navigation} 
             reviews={userReviews}
             isProfileScreen={true}/>
