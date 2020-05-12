@@ -38,4 +38,7 @@ router.post('/bio', UsersController.postBio)
 // post /users/link
 router.post('/link', UsersController.postLink)
 
+// post /users/block
+router.post('/block', UsersController.blockUser)
+
 module.exports = router

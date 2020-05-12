@@ -228,3 +228,14 @@ exports.postBio = async (req, res) => {
     return res.send({ message: 'Error updating your bio' })
   }
 }
+
+exports.blockUser = async (req, res) => {
+  const { activeUserId, userToBlockId } = req.body
+  try {
+    await User.updateOne({ _id: activeUserId }, { $addToSet: { blockedUsers: userToBlockId } })
+    return res.send({ message: 'User was successfully blocked' })
+  } catch (error) {
+    console.error(error)
+    return res.send({ message: 'There was an error with blocking the user' })
+  }
+}

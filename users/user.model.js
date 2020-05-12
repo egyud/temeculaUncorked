@@ -39,7 +39,11 @@ const UserSchema = new mongoose.Schema({
       default: 'https://res.cloudinary.com/dkoz1ezfx/image/upload/v1588609403/user-1633249_640_xu3gf8.png'
     },
     public_id: String
-  }
+  },
+  blockedUsers: [{
+    type: ObjectId,
+    ref: 'User'
+  }]
 })
 
 module.exports = mongoose.model('User', UserSchema)

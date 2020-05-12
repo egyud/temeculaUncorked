@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native'
@@ -12,6 +11,7 @@ import getUserInfo from '../utils/getUserInfo'
 import getUserReviews from '../utils/getUserReviews'
 import getUserRatings from '../utils/getUserRatings'
 import followUser from '../utils/followUser'
+import blockUser from '../utils/blockUser'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
@@ -62,6 +62,24 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
     }
   }
 
+  function blockHandler() {
+    if (activeUser) {
+      blockUser(activeUser._id, userId)
+        .then(res => {
+          showMessage({
+            message: res.data.message,
+            type: 'success'
+          })
+        })
+        .catch(err => {
+          showMessage({
+            message: err.response.data.message,
+            type: 'danger'
+          })
+        })
+    }
+  }
+
   if (isLoading) {
     return (
       <View>
@@ -82,6 +100,15 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
       testID="follow-btn" 
       onPress={() => followHandler()}>
       <Text style={styles.followBtnText}>Follow</Text>
+    </Button>
+  )
+
+  const blockButton = (
+    <Button
+      style={styles.followBtn}
+      testID="block-btn" 
+      onPress={() => blockHandler()}>
+      <Text style={styles.followBtnText}>Block</Text>
     </Button>
   )
 
@@ -113,6 +140,11 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
             <Left>
               {/* <Text>Member at {currentUser.memberOf.length} wineries</Text> */}
               <Text style={styles.text}>"{currentUser.bio}"</Text>
+            </Left>
+          </CardItem>
+          <CardItem>
+            <Left>
+              {isAuthenticated ? blockButton : null}
             </Left>
             <Right>
               {isAuthenticated ? followButton : null}
