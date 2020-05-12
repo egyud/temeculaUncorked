@@ -92,6 +92,8 @@ export const WineryScreen = ({ navigation, reviews, user, isAuthenticated, winer
             rating={calculateAverage(wineryData.avgRating, wineryData.reviewCount)}
             userRating={userRating}
             isAuthenticated={isAuthenticated}
+            navigation={navigation}
+            user={user}
           />
         </View>
         <Tabs 

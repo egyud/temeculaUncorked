@@ -20,7 +20,7 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
             testID="account-tab"
             heading="Settings"
             activeTextStyle={{color: '#89012c'}}>
-            <Settings user={user}/>
+            <Settings user={user} navigation={navigation}/>
           </Tab>
           <Tab
             testID="account-tab"

@@ -1,4 +1,6 @@
 const User = require('./user.model')
+const Review = require('../reviews/review.model')
+const Comment = require('../comments/comment.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const dataUri = require('../middleware/multer').dataUri
@@ -93,6 +95,20 @@ exports.loginUser = async (req, res, next) => {
     res.status(500).send({ message: 'There was an error logging in.  Please check your email and password.' })
   }
 
+}
+
+// delete user and all reviews/comments posted by user from database
+exports.deleteUser = async (req, res) => {
+  const { id } = req.body
+  try {
+    await User.deleteOne({ _id: id })
+    await Review.deleteMany({ userId: id })
+    await Comment.deleteMany({ userId: id })
+    return res.send({ message: 'User successfully deleted' })
+  } catch (error) {
+    console.error(error)
+    return res.send({ message: 'There was an error deleting the user' })
+  }
 }
 
 exports.getUserInfo = async (req, res) => {

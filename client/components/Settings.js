@@ -5,14 +5,17 @@ import updateEmail from '../utils/updateEmail'
 import updatePassword from '../utils/updatePassword'
 import updateLink from '../utils/updateLink'
 import updateBio from '../utils/updateBio'
+import deleteUser from '../utils/deleteUser'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { showMessage } from 'react-native-flash-message'
 
-export default Settings = ({ user }) => {
+export default Settings = ({ user, navigation }) => {
   const [setting, updateSetting] = useState(null)
   const [newEmail, updateNewEmail] = useState('')
   const [newPassword, updateNewPassword] = useState('')
   const [newLink, updateNewLink] = useState('')
   const [newBio, updateNewBio] = useState('')
+  const [deleteEmail, updateDeleteEmail] = useState('')
 
   const updateEmailSubmitHandler = () => {
     updateEmail(newEmail, user._id)
@@ -50,6 +53,25 @@ export default Settings = ({ user }) => {
       .catch(err => console.error(err))
   }
 
+  const deleteAccountHandler = () => {
+    if (user.email === deleteEmail) {
+      deleteUser(user._id)
+        .then(res => {
+          navigation.navigate('Home')
+          showMessage({
+            message: 'Your account was successfully deleted',
+            type: 'success'
+          })
+        })
+        .catch(err => console.error(err))
+    } else {
+      showMessage({
+        message: 'You did not enter the correct email address. Please try again.',
+        type: 'danger'
+      })
+    }
+  }
+
   if (setting === null) {
     return (
       <View>
@@ -78,6 +100,10 @@ export default Settings = ({ user }) => {
             testID="link-setting"
             onPress={() => updateSetting('link')}>
             <Text style={styles.text}>Update Homepage/Social Link</Text>
+          </ListItem>
+          <ListItem
+            onPress={() => updateSetting('delete')}>
+            <Text style={styles.text}>Delete Account</Text>
           </ListItem>
         </List>
       </View>
@@ -187,6 +213,28 @@ export default Settings = ({ user }) => {
             </Button>
           </Form>
         )
+        break
+      case 'delete':
+        display = (
+          <View>
+            <Text style={styles.text}>This cannot be undone</Text>
+            <Item stackedLabel>
+              <Label style={styles.text}>Confirm your email address</Label>
+              <Input
+                style={styles.text} 
+                autoCapitalize="none"
+                onChangeText={(text) => updateDeleteEmail(text)}
+                value={deleteEmail}
+              />
+            </Item>
+            <Button 
+              onPress={() => deleteAccountHandler()}
+              style={styles.submitBtns}>
+              <Text style={styles.submitBtnText}>Delete Account</Text>
+            </Button>
+          </View>
+        )
+        break
       default:
         display = (
           <View>

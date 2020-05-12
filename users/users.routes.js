@@ -11,6 +11,9 @@ router.post('/register', userRegistrationRules(), validate, UsersController.regi
 // post /users/login
 router.post('/login', userValidationRules(), validate, UsersController.loginUser)
 
+// post /users/delete
+router.post('/delete', UsersController.deleteUser)
+
 // get /users/:userId
 router.get('/:userId', UsersController.getUserInfo)
 
