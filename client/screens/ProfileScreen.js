@@ -70,6 +70,7 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
             message: res.data.message,
             type: 'success'
           })
+          navigation.navigate('Home')
         })
         .catch(err => {
           showMessage({
