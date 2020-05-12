@@ -5,7 +5,7 @@ import addLike from '../utils/addLike'
 import CommentListItem from './CommentListItem'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
-export default CommentList = ({ comments, activeUserId }) => {
+export default CommentList = ({ comments, activeUser }) => {
 
   if (comments && comments.length > 0) {
     return (
@@ -14,7 +14,7 @@ export default CommentList = ({ comments, activeUserId }) => {
           <CommentListItem 
             key={comment._id}
             comment={comment}
-            activeUserId={activeUserId}
+            activeUser={activeUser}
             addLike={addLike}/>
         ))}
       </View>

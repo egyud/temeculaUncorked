@@ -7,12 +7,16 @@ import modifyTimestamp from '../utils/modifyTimestamp'
 import moment from 'moment'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
-export default CommentListItem = ({ comment, navigation, activeUserId, addLike }) => {
+export default CommentListItem = ({ comment, navigation, activeUser, addLike }) => {
   const { _id, timestamp, text, likes, userId: { name: userName, _id: userId, avatar } } = comment
 
   let avatarThumbnail = null
   if (avatar !== undefined) {
     avatarThumbnail = <Thumbnail source={{ uri: avatar.url }}/>
+  }
+
+  if (activeUser && activeUser.blockedUsers.includes(userId)) {
+    return null
   }
 
   return (

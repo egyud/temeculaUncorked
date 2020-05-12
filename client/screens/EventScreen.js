@@ -161,7 +161,9 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           <Tab
             heading="Comments"
             activeTextStyle={{color: '#620014'}}>
-            <CommentList comments={comments}/>
+            <CommentList
+              activeUser={activeUser} 
+              comments={comments}/>
           </Tab>
           <Tab
             heading="More Details"
