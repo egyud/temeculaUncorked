@@ -75,6 +75,7 @@ export const RegisterScreen = ({ registerUser, navigation }) => {
           testID="login-link"
           style={styles.loginLink} 
           onPress={() => navigation.navigate('Login')}>Already have an account? Login here</Text>
+        <Text style={styles.reqText}>*Password must be at least 6 characters, include at least 1 number, 1 upper case and 1 lower case letter.</Text>
       </Form>
     </Content>
   )
@@ -111,13 +112,17 @@ const styles = StyleSheet.create({
   loginLink: {
     paddingTop: 25,
     textAlign: 'center',
-    fontSize: hp('1.6%')
+    fontSize: hp('1.6%'),
   },
   label: {
     fontSize: hp('1.6%')
   },
   input: {
     fontSize: hp('1.6%')
+  },
+  reqText: {
+    fontSize: hp('1.6%'),
+    marginTop: hp('2%'),
   }
 })
 
