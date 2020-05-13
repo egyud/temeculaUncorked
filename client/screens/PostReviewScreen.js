@@ -29,7 +29,7 @@ export default PostReviewScreen = ({ navigation }) => {
           testID="review-rating"
           style={styles.rating} 
           imageSize={40}
-          startingValue={avgRating}
+          startingValue={0}
           onFinishRating={(rating) => updateRating(rating)}
           type="custom"
           ratingColor='#fcf1d2' />
