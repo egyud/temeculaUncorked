@@ -14,10 +14,6 @@ export default BlockHeader = ({ data, rating, userRating, isAuthenticated, navig
       testID="post-review-btn"
       style={styles.postReviewBtn}
       onPress={() => navigation.navigate('NewReview', { wineryData: data, user, avgRating: calculateAverage(data.avgRating, reviewCount) })}>
-      {/* <Icon
-        style={{ color: '#620014' }}
-        type="FontAwesome"
-        name='plus' /> */}
       <Text style={styles.postReviewBtnText}>Add a new review</Text>
     </Button>
   )
@@ -60,7 +56,11 @@ export default BlockHeader = ({ data, rating, userRating, isAuthenticated, navig
       <CardItem>
         <Left>
           <Button style={styles.callButton}>
-            <Text style={styles.callText}>Call: {phone}</Text>
+            <Icon
+              style={{ color: '#620014', marginRight: 0 }}
+              type="FontAwesome"
+              name='phone' />
+            <Text style={styles.callText}>{phone}</Text>
           </Button>
         </Left>
         <Right>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   callText: {
     color: '#620014',
     fontWeight: '700',
-    fontSize: hp('1.8%')
+    fontSize: hp('1.8%'),
   },
   reviewCount: {
     fontSize: hp('1.7%')
