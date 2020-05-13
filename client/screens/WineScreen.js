@@ -27,7 +27,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
 
   useEffect(() => {
     if (isAuthenticated && wineRating > 0) {
-      postRating()
+      postRating(user._id, wineId, wineRating)
         .then(res => {
           showMessage({
             message: res.data.message,
