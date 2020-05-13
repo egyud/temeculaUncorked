@@ -1,6 +1,7 @@
 const User = require('./user.model')
 const Review = require('../reviews/review.model')
 const Comment = require('../comments/comment.model')
+const Rating = require('../ratings/rating.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const dataUri = require('../middleware/multer').dataUri
@@ -105,6 +106,7 @@ exports.deleteUser = async (req, res) => {
     await User.deleteOne({ _id: id })
     await Review.deleteMany({ userId: id })
     await Comment.deleteMany({ userId: id })
+    await Rating.deleteMany({ userId: id })
     return res.send({ message: 'User successfully deleted' })
   } catch (error) {
     console.error(error)
