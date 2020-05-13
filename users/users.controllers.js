@@ -134,15 +134,15 @@ exports.followUser = async (req, res) => {
   if (!activeUser._id) return res.send({ message: 'You must be logged in to do this' })
   try {
     console.log(activeUser)
-    // check to see if user is already following, and make sure that the user isn't trying to follow themself
-    if (!activeUser.following.includes(userIdToFollow) && userIdToFollow !== activeUser._id ) {
-      let updatedUser = await User.updateOne({ _id: activeUser._id }, { $push: { following: userIdToFollow } })
+    // make sure that the user isn't trying to follow themself
+    if (userIdToFollow !== activeUser._id ) {
+      let updatedUser = await User.updateOne({ _id: activeUser._id }, { $addToSet: { following: userIdToFollow } })
       return res.status(200).send({ 
         updatedUser,
         message: `Success! You are now following this user`
       })
     }
-    return res.send({ message: 'You already follow this user' })
+    return res.send({ message: 'You cannot follow yourself' })
   } catch(error) {
     console.error(error)
     res.status(400).send({ message: 'There was an error submitting your follow request.' })
@@ -167,7 +167,7 @@ exports.postAvatar = async (req, res) => {
 exports.postAddToMembership = async (req, res) => {
   const { wineryId, userId } = req.body
   try {
-    const user = await User.updateOne({ _id: userId }, { $push: { memberOf: wineryId } })
+    const user = await User.updateOne({ _id: userId }, { $addToSet: { memberOf: wineryId } })
     return res.status(200).send({user})
   } catch (error) {
     console.error(error)
