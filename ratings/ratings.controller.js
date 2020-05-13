@@ -54,7 +54,7 @@ exports.getUserRating = async (req, res) => {
   try {
     const rating = await Rating.findOne({ wineId, userId }, 'rating')
     console.log(rating.rating)
-    return res.status(200).send({rating: rating.rating})
+    return res.status(200).send({ rating: rating.rating })
   } catch(error) {
     console.error(error)
     return res.status(400).end()

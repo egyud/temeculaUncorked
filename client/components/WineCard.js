@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 import { showMessage } from 'react-native-flash-message'
 import postRating from '../utils/postRating'
+import calculateAverage from '../utils/average'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
   const [wineRating, updateWineRating] = useState(0)
-  const { name, rating, winery, ratingCount, price, _id: wineId } = wine
+  const { name, avgRating, winery, ratingCount, price, _id: wineId } = wine
 
   useEffect(() => {
     if (isAuthenticated && wineRating > 0) {
@@ -41,10 +41,10 @@ export default WineCard = ({ wine, isAuthenticated, user, navigation }) => {
           <Right>
             <Body>
               <Rating
-                startingValue={rating}
+                startingValue={calculateAverage(avgRating, ratingCount)}
                 imageSize={25}
                 readonly={true}
-                onFinishRating={(rate) => updateWineRating(rate)}
+                // onFinishRating={(rate) => updateWineRating(rate)}
                 type="custom"
                 ratingColor='#fcf1d2'
                 style={{ paddingRight: 0, marginRight: 0 }}

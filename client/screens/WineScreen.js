@@ -46,7 +46,10 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
   function getUserRating() {
     if (isAuthenticated) {
       getUserWineRating(wineId, user._id)
-        .then(res => updateUserRating(res.data.rating))
+        .then(res => {
+          // if (res.data.rating) 
+          updateUserRating(res.data.rating)
+        })
         .then(res => updateIsLoading(false))
         .catch(err => console.error(err))
     }
@@ -60,7 +63,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
         testID="user-rating"
         disabled={false}
         size={25} 
-        value={userRating}
+        value={userRating || 0}
         rateFunc={(rate) => updateWineRating(rate)}/>
     </>
   )
