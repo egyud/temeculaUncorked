@@ -6,12 +6,12 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 export default SortModal = ({ close, modalVisible, updateSortBy }) => {
 
   const sortVals = [
-    {label: 'ratingA', value: 'rating up'},
-    {label: 'ratingD', value: 'rating down'},
-    {label: 'numRatingA', value: '# of ratings up'},
-    {label: 'numRatingD', value: '# of ratings down'},
-    {label: 'priceA', value: 'price up'},
-    {label: 'priceD', value: 'price down'},
+    {label: 'ratingA', value: 'rating ascending'},
+    {label: 'ratingD', value: 'rating descending'},
+    {label: 'numRatingA', value: '# of ratings ascending'},
+    {label: 'numRatingD', value: '# of ratings descending'},
+    {label: 'priceA', value: 'price ascending'},
+    {label: 'priceD', value: 'price descending'},
   ]
 
   return (
