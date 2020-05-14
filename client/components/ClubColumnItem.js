@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
     borderRadius: 25,
     marginBottom: 10,
-    height: 150
+    height: 110
   },
   rowTall: {
     flex: 1,
