@@ -8,6 +8,7 @@ import UserRating from '../components/UserRating'
 import getUserWineRating from '../utils/getUserWineRating'
 import getRecentRatings from '../utils/getRecentRatings'
 import postRating from '../utils/postRating'
+import calculateAverage from '../utils/average'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export const WineScreen = ({ navigation, user, isAuthenticated }) => {
@@ -16,7 +17,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
   const [userRating, updateUserRating] = useState(0)
   const [isLoading, updateIsLoading] = useState(true)
   const wine = navigation.getParam('wine')
-  const { name, rating, winery, ratingCount, price, clubPrice, _id: wineId, description } = wine
+  const { name, avgRating, winery, ratingCount, price, clubPrice, _id: wineId, description } = wine
 
   useEffect(() => {
     getRecentRatings(wineId)
@@ -105,7 +106,7 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
                 <Rating
                   style={{ marginLeft: 0, paddingLeft: 0 }}
                   imageSize={isAuthenticated ? 25 : 40} 
-                  startingValue={rating}
+                  startingValue={calculateAverage(avgRating, ratingCount)}
                   readonly={true}
                   type="custom"
                   ratingColor='#fcf1d2' />
