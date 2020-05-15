@@ -57,7 +57,7 @@ exports.getUserRating = async (req, res) => {
     return res.status(200).send({ rating: rating.rating })
   } catch(error) {
     console.error(error)
-    return res.status(400).end()
+    return res.end()
   }
 }
 
