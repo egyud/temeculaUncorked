@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   clubCard: {
     // flex: 1,
     width: '100%',
-    paddingHorizontal: wp('7%')
+    // paddingHorizontal: wp('7%')
   },
   moreBtn: {
     backgroundColor: '#620014'

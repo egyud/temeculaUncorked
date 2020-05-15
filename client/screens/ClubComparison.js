@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 30,
     borderColor: '#fcf1d2',
-    borderWidth: 5,
+    borderWidth: 2,
     justifyContent: 'center',
     marginTop: 10
   },
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     justifyContent: 'center',
     marginTop: 25,
-    borderWidth: 5,
+    borderWidth: 2,
     paddingVertical: 20,
     borderRadius: 20
   },

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   card: {
     // backgroundColor: '#f5f5f5',
     width: '100%',
-    paddingHorizontal: wp('7%')
+    // paddingHorizontal: wp('7%')
   },
   text: {
     fontSize: hp('1.6%')
