@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import { List, ListItem } from 'native-base'
 import { Linking } from 'expo'
 import openMap from 'react-native-open-maps'

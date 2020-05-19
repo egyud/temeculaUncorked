@@ -13,14 +13,6 @@ export default ClubColumn = ({ club }) => {
       <Text style={styles.headText}>{winery}</Text>
       <Text style={styles.headText}>{name}</Text>
       <ScrollView style={styles.columnScroll}>
-        {/* <ClubColumnItem
-          number={1}
-          title="Winery" 
-          body={winery}/>
-        <ClubColumnItem
-          number={2} 
-          title="Club" 
-          body={name}/> */}
         <ClubColumnItem
           number={1} 
           title="Tastings" 

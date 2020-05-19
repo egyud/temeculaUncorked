@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Text, Modal, ScrollView } from 'react-native'
-import { Form, Picker, Button } from 'native-base'
+import { View, StyleSheet, Text } from 'react-native'
+import { Button } from 'native-base'
 import WineList from './WineList'
 import FilterModal from './FilterModal'
 import SortModal from './SortModal'

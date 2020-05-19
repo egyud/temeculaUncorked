@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
+import { Text } from 'native-base'
 import addLike from '../utils/addLike'
 import CommentListItem from './CommentListItem'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'

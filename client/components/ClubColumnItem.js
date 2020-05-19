@@ -7,6 +7,7 @@ export default ClubColumnItem = ({ title, body, number }) => {
   
   let bodyContent
   let rowStyle
+  // give bigger rows in the column to the items with more content
   if (title !== 'Discounts' && title !== 'Other Benefits') {
     rowStyle = styles.row
     bodyContent = <Text style={styles.text}>{body}</Text>
@@ -57,10 +58,8 @@ const styles = StyleSheet.create({
   },
   light: {
     backgroundColor: '#fcf1d2',
-    // backgroundColor: '#ede1c4'
   },
   dark: {
-    // backgroundColor: '#ede1c4',
     backgroundColor: '#f9e8c0'
   },
   text: {

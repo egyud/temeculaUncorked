@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import ReportBtn from './ReportBtn'

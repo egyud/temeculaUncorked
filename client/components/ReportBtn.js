@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Linking } from 'react-native'
+import { StyleSheet, Linking } from 'react-native'
 import { Button, Text, Icon } from 'native-base'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
@@ -19,7 +19,6 @@ export default ReportBtn = ({ body, userName, userId }) => {
 
 const styles = StyleSheet.create({
   btn: {
-    // backgroundColor: 'transparent',
   },
   btnText: {
     fontSize: hp('1.6%'),

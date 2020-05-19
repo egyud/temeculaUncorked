@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { Icon } from 'native-base'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fcf1d2',
     justifyContent: 'center',
     alignItems: 'center'
-    // overflow: 'hidden'
   },
   icon: {
     color: '#620014'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, ScrollView } from 'react-native'
-import { Text, Button, Icon, List, ListItem, Form, Input, Label, Item } from 'native-base'
+import { View, StyleSheet } from 'react-native'
+import { Text, Button, List, ListItem, Form, Input, Label, Item } from 'native-base'
 import updateEmail from '../utils/updateEmail'
 import updatePassword from '../utils/updatePassword'
 import updateLink from '../utils/updateLink'

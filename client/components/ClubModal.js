@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fcf1d2',
     borderColor: '#620014',
     borderWidth: 3,
-    // flex: 1,
     justifyContent: 'center',
     width: wp('80%'),
   },

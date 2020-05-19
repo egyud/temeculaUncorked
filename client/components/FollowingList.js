@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { View, StyleSheet, TouchableHighlight } from 'react-native'
-import { List, ListItem, Left, Right, Body, Thumbnail, Text } from 'native-base'
+import { List, ListItem, Left, Body, Thumbnail, Text } from 'native-base'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 export default FollowingList = ({ navigation, users }) => {

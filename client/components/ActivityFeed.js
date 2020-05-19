@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import modifyTimestamp from '../utils/modifyTimestamp'
-import { View, StyleSheet, TouchableHighlight } from 'react-native'
+import { StyleSheet, TouchableHighlight } from 'react-native'
 import { List, ListItem, Left, Right, Body, Thumbnail, Text, Spinner } from 'native-base'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 

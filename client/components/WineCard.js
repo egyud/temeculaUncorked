@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
+import { StyleSheet } from 'react-native'
+import { Card, CardItem, Text, Button, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings' 
 import { showMessage } from 'react-native-flash-message'
 import postRating from '../utils/postRating'
@@ -77,9 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#620014'
   },
   card: {
-    // backgroundColor: '#f5f5f5',
     width: '100%',
-    // paddingHorizontal: wp('7%')
   },
   text: {
     fontSize: hp('1.6%')

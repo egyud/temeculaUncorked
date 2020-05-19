@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Card, CardItem, Text, Thumbnail, Button, Icon, Left, Right, Body } from 'native-base'
+import { StyleSheet } from 'react-native'
+import { Card, CardItem, Text, Button, Icon, Left, Right, Body } from 'native-base'
 import { Rating } from 'react-native-ratings'
 import UserRating from '../components/UserRating'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'

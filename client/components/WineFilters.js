@@ -46,6 +46,5 @@ export default WineFilters = ({ wineryList, addToFilters, isWineryScreen }) => {
 
 const styles = StyleSheet.create({
   wineFilters: {
-    // flex: 1
   }
 })
