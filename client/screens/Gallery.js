@@ -60,16 +60,14 @@ export default Gallery = ({ navigation }) => {
         style={styles.upload}>
         <Text style={{ color: 'white', fontWeight: 'bold', fontSize: hp('1.6%')}}>Upload Photos</Text>
       </TouchableOpacity>
-      <ScrollView>
-        {imgList.map((image, idx) => (
-          <GalleryImage
-            uri={image.uri} 
-            index={idx}
-            key={idx}
-            onPress={openLightBox}
-          />
-        ))}
-      </ScrollView>
+      {imgList.map((image, idx) => (
+        <GalleryImage
+          uri={image.uri} 
+          index={idx}
+          key={idx}
+          onPress={openLightBox}
+        />
+      ))}
       <ImageView
         images={imgList} 
         visible={shown}
