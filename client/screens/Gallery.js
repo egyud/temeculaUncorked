@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dimensions, View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { Spinner } from 'native-base'
 import ImageView from 'react-native-image-viewing'
 import GalleryImage from '../components/GalleryImage'

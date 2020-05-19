@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
 import { showMessage } from 'react-native-flash-message'

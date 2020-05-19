@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineList } from '../actions/wineActions'
-import { View, StyleSheet, Text, Modal, ScrollView } from 'react-native'
-import { Form, Picker, Button } from 'native-base'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import { Button } from 'native-base'
 import WineList from '../components/WineList'
 import FilterModal from '../components/FilterModal'
 import SortModal from '../components/SortModal'
@@ -111,7 +111,6 @@ export const WineSearch = ({ wineArray, fetchWineList, navigation, user, isAuthe
           isAuthenticated={isAuthenticated} 
           wines={wineList} 
           navigation={navigation}/>
-        
       </View>
     </ScrollView>
   )
@@ -125,7 +124,12 @@ WineSearch.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  container: { 
+    flex: 1, 
+    padding: 16, 
+    paddingTop: 30, 
+    backgroundColor: '#fff' 
+  },
   filterBtn: {
     backgroundColor: '#fcf1d2',
     width: wp('25%'),

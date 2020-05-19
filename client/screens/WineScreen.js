@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Image } from 'react-native'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, List, ListItem, Spinner } from 'native-base'
+import { Content, Card, CardItem, Thumbnail, Text, Left, Body, Right, List, ListItem, Spinner } from 'native-base'
 import { Rating } from 'react-native-ratings'
 import { showMessage } from 'react-native-flash-message'
 import UserRating from '../components/UserRating'
@@ -47,11 +47,8 @@ export const WineScreen = ({ navigation, user, isAuthenticated }) => {
   function getUserRating() {
     if (isAuthenticated) {
       getUserWineRating(wineId, user._id)
-        .then(res => {
-          // if (res.data.rating) 
-          updateUserRating(res.data.rating)
-        })
-        .then(res => updateIsLoading(false))
+        .then(res => updateUserRating(res.data.rating))
+        .then(() => updateIsLoading(false))
         .catch(err => console.error(err))
     }
     updateIsLoading(false)
@@ -165,7 +162,6 @@ const styles = StyleSheet.create({
   image: {
     height: 200,
     width: '100%',
-    // flex: 1
   },
   title: {
     fontSize: hp('2.7%')

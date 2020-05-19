@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
   imageBackground: {
     width: '100%', 
     height: hp('30%'),
-    // height: 300,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Spinner } from 'native-base'
+import { View, StyleSheet, ScrollView } from 'react-native'
+import { Card, CardItem, Thumbnail, Text, Button, Left, Body, Right, Spinner } from 'native-base'
 import { Linking } from 'expo'
 import { showMessage } from 'react-native-flash-message'
 import ReviewList from '../components/ReviewList'
@@ -113,9 +113,6 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
     </Button>
   )
 
-  console.log('currentUser')
-  console.log(currentUser)
-
   return (
     <View
       testID="profile-screen" 
@@ -139,7 +136,6 @@ export const ProfileScreen = ({ activeUser, navigation, isAuthenticated }) => {
           </CardItem>
           <CardItem>
             <Left>
-              {/* <Text>Member at {currentUser.memberOf.length} wineries</Text> */}
               <Text style={styles.text}>"{currentUser.bio}"</Text>
             </Left>
           </CardItem>
@@ -183,7 +179,6 @@ ProfileScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   headerCard: {
-    // flex: 1,
     width: '100%',
     height: 200
   },

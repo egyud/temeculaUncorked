@@ -10,7 +10,6 @@ import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-nat
 
 export const ReviewScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [commentsList, updateCommentsList] = useState([])
-  // const reviewId = navigation.getParam('reviewId')
   const review = navigation.getParam('review')
   const { _id: reviewId } = review 
 
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
   },
   postCommentBtn: {
     backgroundColor: '#620014',
-    // backgroundColor: '#ede1c4',
     justifyContent: 'center',
   },
   postCommentBtnText: {

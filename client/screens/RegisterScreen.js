@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { registerUser } from '../actions/authActions'
-import { View, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { Content, Form, Item, Input, Label, Text, Button } from 'native-base'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 

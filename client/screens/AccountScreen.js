@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { View, StyleSheet, ImageBackground } from 'react-native'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Tabs, Tab, Form, Input, Label, Item } from 'native-base'
+import { View, StyleSheet } from 'react-native'
+import { Content, Tabs, Tab } from 'native-base'
 import EventList from '../components/EventList'
 import FollowingWineryList from '../components/FollowingWineryList'
 import FollowingList from '../components/FollowingList'
@@ -50,9 +50,7 @@ export const AccountScreen = ({ user, isAuthenticated, userEvents, wineryList, n
               navigation={navigation} 
               users={following}/>
           </Tab>
-          
         </Tabs>
-        
       </Content>
   )
 }

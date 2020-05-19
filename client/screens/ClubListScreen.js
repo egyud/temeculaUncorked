@@ -8,8 +8,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 export const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
   const [clubsList, updateClubsList] = useState([])
-  const [modalVisible, updateModalVisible] = useState(false)
-  const [sortBy, updateSortBy] = useState('ratingD')
 
   useEffect(() => {
     fetchWineClubs()
@@ -19,6 +17,7 @@ export const ClubListScreen = ({ wineClubs, fetchWineClubs, navigation }) => {
     convertClubData()
   }, [wineClubs])
 
+  // this function just makes it easier to use the club data
   function convertClubData() {
     let tempClubArray = []
     wineClubs.forEach(winery => {

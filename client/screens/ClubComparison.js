@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWineClubs } from '../actions/wineActions'
-import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { Button, Spinner } from 'native-base'
 import ClubColumn from '../components/ClubColumn'
 import ClubModal from '../components/ClubModal'
@@ -23,6 +23,7 @@ export const ClubComparison = ({ wineClubs, fetchWineClubs, navigation }) => {
     createClubDataArray()
   }, [wineClubs])
 
+  // this function just makes it easier to use the club data
   function createClubDataArray() {
     let clubListArray = []
     wineClubs.forEach(winery => {
@@ -115,10 +116,6 @@ ClubComparison.navigationOptions = {
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
-    // padding: 10, 
-    // paddingTop: 30, 
-    // backgroundColor: '#e6ffe6'
-    // backgroundColor: '#f5f5f5'
   },
   columnWrapper: {
     flex: 1,
@@ -165,7 +162,6 @@ const styles = StyleSheet.create({
   clubSelectionBtnWrapper: {
     flexDirection: 'row',
     marginVertical: 30,
-    // width: '50%'
   },
   selectBtnText: {
     color: '#620014',

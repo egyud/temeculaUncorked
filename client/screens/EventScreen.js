@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Share, View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
-import { showMessage, hideMessage } from 'react-native-flash-message'
+import { showMessage } from 'react-native-flash-message'
 import CommentList from '../components/CommentList'
 import getComments from '../utils/getCommentsEvent'
 import attendEvent from '../utils/attendEvent'
@@ -14,12 +14,6 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
   const [comments, updateComments] = useState([])
   const event = navigation.getParam('event')
   const { title, winery, date, time, price, attending, membersOnly, adultsOnly, description, address, _id } = event
-
-  // useEffect(async () => {
-  //   await Font.loadAsync({
-  //     'lemon-milk-light': require('../assets/fonts/LemonMilklight.otf')
-  //   })
-  // }, [])
 
   useEffect(() => {
     getComments(_id)
@@ -43,23 +37,6 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
       })
   }
 
-  // async function shareEvent() {
-  //   try {
-  //     const result = await Share.share({
-  //       message: `${title} - ${description}`,
-  //       title: `Check out this event from Temecula Uncorked`
-  //     })
-
-  //     if (result.action === Share.sharedAction) {
-  //       alert('Post Shared')
-  //     } else if (result.action === Share.dismissedAction) {
-  //       alert('Post cancelled')
-  //     }
-  //   } catch (error) {
-  //     alert(error.message)
-  //   }
-  // }
-
   let postCommentBtn = (
     <Button
       testID="post-comment-btn"
@@ -80,13 +57,6 @@ export const EventScreen = ({ navigation, activeUser, isAuthenticated }) => {
           <Text style={styles.postCommentBtnText}>Attend</Text>
         </Button>
       </Left>
-      {/* <Body>
-        <Button 
-          style={styles.button}
-          onPress={() => shareEvent()}>
-          <Text>Share</Text>
-        </Button>
-      </Body> */}
     </>
   )
 
@@ -223,7 +193,6 @@ const styles = StyleSheet.create({
     marginVertical: hp('2%')
   },
   text: {
-    // fontFamily: 'lemon-milk-light'
     fontSize: hp('1.6%')
   }
 })

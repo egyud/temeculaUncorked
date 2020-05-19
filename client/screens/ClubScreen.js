@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Image } from 'react-native'
 import { Content, Card, CardItem, Text, Button, Icon, Left, Right, Body, Tab, Tabs, ListItem } from 'native-base'
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
   image: {
     height: 200,
     width: '100%',
-    // flex: 1
   },
   title: {
     fontSize: hp('2.7%')

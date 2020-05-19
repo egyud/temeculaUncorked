@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { View, StyleSheet } from 'react-native'
 import { Textarea, Form, Button, Text } from 'native-base'
 import { Rating } from 'react-native-ratings'
-import { showMessage } from 'react-native-flash-message'
 import postReview from '../utils/postReview'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
@@ -13,7 +11,6 @@ export default PostReviewScreen = ({ navigation }) => {
 
   const user = navigation.getParam('user')
   const wineryData = navigation.getParam('wineryData')
-  const avgRating = navigation.getParam('avgRating')
 
   function submit() {
     if (reviewText.length > 0 && rating > 0) {
