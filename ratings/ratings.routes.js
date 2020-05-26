@@ -15,6 +15,4 @@ router.get('/:wineId/:userId', RatingsController.getUserRating)
 // get /api/ratings/:userId
 router.get('/:userId', RatingsController.getUserWineRatings)
 
-
-
 module.exports = router

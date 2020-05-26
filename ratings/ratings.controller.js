@@ -1,15 +1,12 @@
 const Rating = require('./rating.model')
 const Wine = require('../wines/wine.model')
 
-
 exports.postWineRating = async (req, res) => {
   const { userId, rating, wineId } = req.body
   try {
     // check to see if user has already rated wine
     const hasRated = await Rating.findOne({ userId, wineId })
     if (hasRated) {
-      console.log('hasRated')
-      console.log(hasRated)
       // check to see if rating is the same as previous, if so, don't do anything
       if (hasRated.rating === rating) {
         return res.send({ message: 'Nothing changed, rated same as previously' })
@@ -33,7 +30,6 @@ exports.postWineRating = async (req, res) => {
         message: 'Your rating for this wine has been successfully added.' })
     }
   } catch(error) {
-    console.error(error)
     return res.status(400).send({ message: 'There was an error submitting your rating.' })
   }
 }
@@ -44,7 +40,6 @@ exports.getUserWineRatings = async (req, res) => {
     const ratings = await Rating.find({ userId }).populate('userId', 'name').populate('wineId', 'name winery')
     return res.status(200).send({ ratings })
   } catch(error) {
-    console.error(error)
     return res.status(400).end()
   }
 }
@@ -56,7 +51,6 @@ exports.getUserRating = async (req, res) => {
     console.log(rating.rating)
     return res.status(200).send({ rating: rating.rating })
   } catch(error) {
-    console.error(error)
     return res.end()
   }
 }
@@ -71,7 +65,6 @@ exports.getRecentWineRatings = async (req, res) => {
       .limit(10)
     return res.status(200).send({ ratings })
   } catch (error) {
-    console.error(error)
     return res.send({ message: 'There was an error retrieving the recent ratings for this wine' })
   }
 }

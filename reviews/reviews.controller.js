@@ -9,8 +9,6 @@ exports.postWineryReview = async (req, res) => {
     console.log('in postWineryReview')
     if (user && reviewText && winery) {
       wineryId = await Winery.find({name: winery}, '_id')
-      console.log(user)
-      console.log(wineryId[0]._id)
       const review = await Review.create({
         userId: user._id,
         reviewedId: wineryId[0]._id,
@@ -21,7 +19,6 @@ exports.postWineryReview = async (req, res) => {
       // update the rating count and average on winery model
       const updatedWinery = await Winery.updateOne({ _id: wineryId }, { $inc: { avgRating: rating, reviewCount: 1 } })
   
-  
       return res.status(200).send({ 
         review, 
         updatedWinery,
@@ -30,7 +27,6 @@ exports.postWineryReview = async (req, res) => {
     }
 
   } catch(error) {
-    console.error(error)
     return res.status(400).send({ message: 'There was an error submitting your review.' })
   }
 }

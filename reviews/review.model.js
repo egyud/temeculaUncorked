@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-const user = require('../users/user.model')
-const winery = require('../wineries/winery.model')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
 const ReviewSchema = new mongoose.Schema({

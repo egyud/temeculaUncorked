@@ -3,17 +3,11 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const db = require('./config/config').mongoURI
 const passport = require('passport')
-const multer = require('multer')
-const cloudinary = require('cloudinary')
-const cloudinaryStorage = require('multer-storage-cloudinary')
 const cloudinaryConfig = require('./config/cloudinaryConfig').cloudinaryConfig
 
 const app = express()
 
 require('dotenv').config()
-
-app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
 
 app.use(express.static('public'))
 
@@ -25,7 +19,6 @@ const wineRoutes = require('./wines/wines.routes')
 const eventRoutes = require('./events/events.routes')
 const imageRoutes = require('./images/images.routes')
 const commentRoutes = require('./comments/comments.routes')
-const managementRoutes = require('./management/management.routes')
 
 const PORT = process.env.PORT || 5000
 
@@ -45,7 +38,6 @@ app.use('/api/wines', wineRoutes)
 app.use('/api/events', eventRoutes)
 app.use('/api/images', imageRoutes)
 app.use('/api/comments', commentRoutes)
-app.use('/', managementRoutes)
 
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(() => console.log('Connected to MongoDB'))

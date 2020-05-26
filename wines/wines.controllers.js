@@ -62,10 +62,7 @@ exports.postWines = async (req, res) => {
 
 exports.postWine = async (req, res) => {
   try {
-    console.log(req.body)
-    console.log('in postWine')
-    const wine = await Wine.create({ ...req.body })
-    // return res.status(201).redirect('http://localhost:5000/')
+    await Wine.create({ ...req.body })
     return res.status(201).send({ message: 'success' })
   } catch(error) {
     console.error(error)

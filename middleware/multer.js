@@ -1,11 +1,6 @@
 const multer = require('multer')
-const Datauri = require('datauri')
-const path = require('path')
-// const storage = multer.memoryStorage()
 const cloudinary = require('cloudinary')
 const cloudinaryStorage = require('multer-storage-cloudinary')
-
-// const dUri = new Datauri()
 
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
@@ -16,5 +11,3 @@ const storage = cloudinaryStorage({
 
 
 exports.multerUploads = multer({ storage }).single('image')
-
-// exports.dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)

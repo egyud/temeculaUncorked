@@ -13,7 +13,6 @@ exports.postComment = async (req, res) => {
       message: 'Your comment was successfully submitted.  It may take a few minutes to appear.'
     })
   } catch (error) {
-    console.error(error)
     return res.status(400).send({ 
       message: 'There was an error submitting your comment.'
     })
@@ -33,7 +32,6 @@ exports.postCommentForEvent = async (req, res) => {
       message: 'Your comment was successfully submitted.  It may take a few minutes to appear.'
     })
   } catch (error) {
-    console.error(error)
     return res.status(400).send({ message: 'There was an error submitting your comment.' })
   }
 }
@@ -49,7 +47,6 @@ exports.getCommentsForReview = async (req, res) => {
 
     return res.status(200).send({ comments })
   } catch (error) {
-    console.error(error)
     return res.status(400).send({ message: 'Error getting the comments' })
   }
 }
@@ -65,7 +62,6 @@ exports.getCommentsForEvent = async (req, res) => {
 
     return res.status(200).send({ comments })
   } catch (error) {
-    console.error(error)
     return res.status(400).send({ message: 'Error getting the comments' })
   }
 }

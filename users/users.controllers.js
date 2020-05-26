@@ -4,11 +4,8 @@ const Comment = require('../comments/comment.model')
 const Rating = require('../ratings/rating.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const dataUri = require('../middleware/multer').dataUri
-const uploader = require('../config/cloudinaryConfig').uploader
 
 require('dotenv').config()
-
 
 // register user
 exports.registerUser = async (req, res, next) => {
@@ -30,8 +27,6 @@ exports.registerUser = async (req, res, next) => {
             password
           })
   
-          console.log(newUser)
-  
           // hash password
           bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -42,7 +37,6 @@ exports.registerUser = async (req, res, next) => {
               newUser.save()
                 .then(user => {
                   res.status(200).json({ data: user })
-                  // redirect to login form
                 })
                 .catch(err => {
                   console.error(err)

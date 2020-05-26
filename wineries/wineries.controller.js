@@ -6,7 +6,6 @@ exports.postWinery = async (req, res) => {
   // req.body will include name, address, hours, wineClubs, hasRestaurant, hasLiveMusic
   try {
     const winery = await Winery.create({...req.body})
-    console.log(req.body)
     return res.status(201).send({ winery })
   } catch(error) {
     console.error(error)
@@ -18,7 +17,6 @@ exports.postWinery = async (req, res) => {
 exports.getWinery = async (req, res) => {
   const { name } = req.params
   try {
-    console.log('getWinery: ', name)
     const winery = await Winery.findOne({ name })
     const wines = await Wine.find({ winery: name })
     return res.status(200).send({ winery, wines })
@@ -82,7 +80,6 @@ exports.postWineClub = async (req, res) => {
   let discountsList = discounts.split('; ')
   let benefitsList = otherBenefits.split('; ')
 
-
   try {
     await Winery.updateOne({ name: winery }, { $push: { wineClubs: {
       name,
@@ -92,7 +89,7 @@ exports.postWineClub = async (req, res) => {
       avgPrice,
       shipments
     } } })
-    return res.status(201).redirect('http://localhost:5000/')
+    return res.status(201).send({ message: 'Club Posted' })
   } catch(error) {
     console.error(error)
     return res.status(400).end()
@@ -102,44 +99,8 @@ exports.postWineClub = async (req, res) => {
 // return data for all wine clubs
 exports.getWineClubs = async (req, res) => {
   try {
-    console.log('req made to getWineClubs')
     let data = await Winery.find({ wineClubs: { $exists: true } }, 'name wineClubs')
     return res.status(200).send({ data })
-  } catch(error) {
-    console.error(error)
-    return res.status(400).end()
-  }
-}
-
-// add live music data for winery entry
-exports.postLiveMusic = async (req, res) => {
-  const { name } = req.params
-  try {
-    const winery = await Winery.updateOne({ name }, { $set: { musicDays: req.body } })
-    return res.status(201).send({ data: req.body })
-  } catch(error) {
-    console.error(error)
-    return res.status(400).end()
-  }
-}
-
-// retrieve live music data
-exports.getLiveMusic = async (req, res) => {
-  try {
-    const wineries = await Winery.find({ musicDays: { $exists: true } }, 'name musicDays')
-    return res.status(200).send({ wineries })
-  } catch (error) {
-    console.error(error)
-    return res.status(400).end()
-  }
-}
-
-// add keywords to winery entry
-exports.postKeywords = async (req, res) => {
-  const { name } = req.params
-  try {
-    await Winery.updateOne({ name }, { $push: { keywords: req.body } })
-    return res.status(201).send({ data: req.body })
   } catch(error) {
     console.error(error)
     return res.status(400).end()
@@ -162,7 +123,6 @@ exports.getWine = async (req, res) => {
 exports.postEvents = async (req, res) => {
   console.log('in post events controller')
   const wineryName = req.params.winery
-  const { title, date, time } = req.body
   try {
     const winery = await Winery.findOneAndUpdate({ name: wineryName }, { $push: { events: req.body }})
     return res.status(201).send({ data: winery })
