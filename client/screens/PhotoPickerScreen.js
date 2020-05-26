@@ -7,7 +7,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 export default PhotoPickerScreen = ({ navigation }) => {
   const [cameraRollPermissions, updateCameraRollPermissions] = useState(null)
-  const [image, updateImage]= useState(null)
   const [photo, updatePhoto] = useState(null)
   
   const wineryData = navigation.getParam('wineryData')
@@ -44,7 +43,6 @@ export default PhotoPickerScreen = ({ navigation }) => {
       if (result.cancelled) {
         return
       }
-      updateImage({ localUri: result.uri })
 
       let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dkoz1ezfx/upload'
 
@@ -72,16 +70,27 @@ export default PhotoPickerScreen = ({ navigation }) => {
   }
 
   function savePhoto() {
-    axios.post('http://localhost:5000/api/images', {
-      activeUserId: user._id,
-      wineryId: wineryData._id,
-      url: photo
-    })
-      .then(res => {
-        console.log(res.data)
-        navigation.navigate('Winery', { winery: wineryData.name })
+    if(wineryData) {
+      // if uploading an image for a winery
+      axios.post('http://localhost:5000/api/images', {
+        activeUserId: user._id,
+        wineryId: wineryData._id,
+        url: photo
       })
-      .catch(err => console.error(err))
+        .then(res => {
+          console.log(res.data)
+          navigation.navigate('Winery', { winery: wineryData.name })
+        })
+        .catch(err => console.error(err))
+    } else {
+      // if uploading an avatar
+      axios.post('http://localhost:5000/api/users/avatar', {
+        activeUserId: user._id,
+        url: photo
+      })
+        .then(() => navigation.navigate('Account'))
+        .catch(err => console.error(err))
+    }
   }
 
   if (cameraRollPermissions === null) {

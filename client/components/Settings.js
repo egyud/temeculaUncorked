@@ -164,6 +164,21 @@ export default Settings = ({ user, navigation }) => {
           </Form>
         )
         break
+      case 'avatar': 
+        display = (
+          <Form style={styles.form}>
+            <Text style={styles.text}>Update Your Avatar</Text>
+
+            <Button
+              testID="submit-btn"
+              style={styles.submitBtns}
+              onPress={() => navigation.navigate('PhotoPicker', { user })}
+            >
+              <Text style={styles.submitBtnText}>Select Photo</Text>
+            </Button>
+          </Form>
+        )
+        break
       case 'bio': 
         display = (
           <Form style={styles.form}>

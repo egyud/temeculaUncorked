@@ -150,13 +150,10 @@ exports.followUser = async (req, res) => {
 }
 
 exports.postAvatar = async (req, res) => {
-  const { activeUserId } = req.body
-  console.log(activeUserId)
-  console.log(req.file)
+  const { activeUserId, url } = req.body
   try {
-    const { url, public_id } = req.file
     const user = await User.updateOne({ _id: activeUserId }, {
-       $set: { avatar: { url, public_id } } 
+       $set: { avatar: { url } } 
     })
     return res.status(200).send({ user, message: 'Avatar successfully changed' })
   } catch (error) {
