@@ -5,5 +5,5 @@ dist/
 .DS_Store
 coverage/
 .vscode/
-config/
+# config/
 data/
