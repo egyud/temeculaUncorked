@@ -4,6 +4,7 @@ const Comment = require('../comments/comment.model')
 const Rating = require('../ratings/rating.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const access_token_secret = require('../config/config').access_token_secret
 
 require('dotenv').config()
 
@@ -67,7 +68,7 @@ exports.loginUser = async (req, res, next) => {
   try {
     // check if the entered password matches with the hashed password from database
     if(await bcrypt.compare(password, user.password)) {
-      const accessToken = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET, {
+      const accessToken = jwt.sign({ id: user._id }, access_token_secret, {
         expiresIn: 31556926
       })
       const data = {
