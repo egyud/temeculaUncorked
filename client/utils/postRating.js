@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default function postRating(userId, wineId, rating) {
-  return axios.post('http://localhost:5000/api/ratings', {
+  return axios.post('https://t-uncorked.herokuapp.com/api/ratings', {
     userId,
     wineId,
     rating

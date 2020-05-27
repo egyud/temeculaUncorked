@@ -1,14 +1,14 @@
 function addLike(type, userId, contentId) {
   // type prop will be either 'reviews' or 'comments'
   if (type === 'reviews') {
-    axios.post('http://localhost:5000/api/reviews/like', {
+    axios.post('https://t-uncorked.herokuapp.com/api/reviews/like', {
       userId,
       reviewId: contentId
     })
       .then(res => console.log(res))
       .catch(err => console.error(err))
   } else {
-    axios.post('http://localhost:5000/api/comments/like', {
+    axios.post('https://t-uncorked.herokuapp.com/api/comments/like', {
       userId,
       commentId: contendId
     })

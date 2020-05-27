@@ -13,7 +13,7 @@ export const SET_USER_EVENTS = "SET_USER_EVENTS"
 // Register User
 export const registerUser = (userData, navigation) => async (dispatch) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/users/register', userData)
+    const response = await axios.post('https://t-uncorked.herokuapp.com/api/users/register', userData)
     if (response) {
       showMessage({
         message: 'Registration successful! You can now log in.',
@@ -36,7 +36,7 @@ export const registerUser = (userData, navigation) => async (dispatch) => {
 
 export const loginUser = (userData, navigation) => async (dispatch) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/users/login', userData)
+    const response = await axios.post('https://t-uncorked.herokuapp.com/api/users/login', userData)
     if (response) {
       // Save token to deviceStorage
       const { token, user } = response.data
@@ -68,7 +68,7 @@ export const loginUser = (userData, navigation) => async (dispatch) => {
 // get a list of all events the user is set to attend
 export const getUserEvents = (user) => async (dispatch) => {
   try {
-    const response = await axios.get(`http://localhost:5000/api/events/user/${user._id}`)
+    const response = await axios.get(`https://t-uncorked.herokuapp.com/api/events/user/${user._id}`)
     const { events } = response.data
     return dispatch(setUserEvents(events))
   } catch (err) {

@@ -7,7 +7,7 @@ export const FETCH_ALL_WINERIES = 'FETCH_ALL_WINERIES'
 
 export const fetchWineClubs = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:5000/api/wineries/club')
+    const response = await axios.get('https://t-uncorked.herokuapp.com/api/wineries/club')
   
     return dispatch({
       type: FETCH_CLUBS,
@@ -23,7 +23,7 @@ export const fetchWineClubs = () => async (dispatch) => {
 
 export const fetchWineList = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:5000/api/wines')
+    const response = await axios.get('https://t-uncorked.herokuapp.com/api/wines')
   
     return dispatch({
       type: FETCH_ALL_WINES,
@@ -39,7 +39,7 @@ export const fetchWineList = () => async (dispatch) => {
 
 export const fetchWineryList = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:5000/api/wineries')
+    const response = await axios.get('https://t-uncorked.herokuapp.com/api/wineries')
   
     return dispatch({
       type: FETCH_ALL_WINERIES,

@@ -72,7 +72,7 @@ export default PhotoPickerScreen = ({ navigation }) => {
   function savePhoto() {
     if(wineryData) {
       // if uploading an image for a winery
-      axios.post('http://localhost:5000/api/images', {
+      axios.post('https://t-uncorked.herokuapp.com/api/images', {
         activeUserId: user._id,
         wineryId: wineryData._id,
         url: photo
@@ -84,7 +84,7 @@ export default PhotoPickerScreen = ({ navigation }) => {
         .catch(err => console.error(err))
     } else {
       // if uploading an avatar
-      axios.post('http://localhost:5000/api/users/avatar', {
+      axios.post('https://t-uncorked.herokuapp.com/api/users/avatar', {
         activeUserId: user._id,
         url: photo
       })

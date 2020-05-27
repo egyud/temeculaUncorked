@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default function getComments(reviewId) {
-  return axios.get(`http://localhost:5000/api/comments/review/${reviewId}`)
+  return axios.get(`https://t-uncorked.herokuapp.com/api/comments/review/${reviewId}`)
 }

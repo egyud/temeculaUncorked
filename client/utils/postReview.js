@@ -2,7 +2,7 @@ import axios from 'axios'
 import { showMessage } from 'react-native-flash-message'
 
 export default function postReview(winery, user, reviewText, rating, navigation) {
-  axios.post(`http://localhost:5000/api/reviews/winery`, {
+  axios.post(`https://t-uncorked.herokuapp.com/api/reviews/winery`, {
     winery,
     user,
     reviewText,
