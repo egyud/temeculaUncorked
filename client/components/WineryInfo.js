@@ -12,7 +12,7 @@ export default WineryInfo = ({ info }) => {
     Linking.openURL(url)
   }
 
-  if (!address || !url) {
+  if (!address || !url || !hours) {
     return (
       <Text>Info is missing for this winery</Text>
     )
